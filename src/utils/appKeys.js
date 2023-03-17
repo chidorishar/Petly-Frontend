@@ -1,4 +1,8 @@
 /**
+ * File contains global application reusable keys.
+ */
+
+/**
  * Application main navigation routes.
  */
 const ROUTES = {
