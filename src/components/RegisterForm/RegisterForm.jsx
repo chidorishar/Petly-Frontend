@@ -6,6 +6,8 @@ import { StepTwo } from './StepTwo';
 
 import { registerSchema } from 'utils/validations';
 
+import * as Styled from './RegisterForm.styled';
+
 const initialRegistrationValues = {
   email: '',
   password: '',
@@ -31,22 +33,27 @@ const RegisterForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialRegistrationValues}
-      validationSchema={registerSchema}
-      onSubmit={handleFormSubmit}
-      validateOnBlur={false}
-      validateOnChange={false}
-    >
-      <Form>
-        {registerStep === 1 && (
-          <StepOne handleStepChange={handleStepIncrement} />
-        )}
-        {registerStep === 2 && (
-          <StepTwo handleStepChange={handleStepDecrement} />
-        )}
-      </Form>
-    </Formik>
+    <Styled.FormWrapper>
+      <Formik
+        initialValues={initialRegistrationValues}
+        validationSchema={registerSchema}
+        onSubmit={handleFormSubmit}
+        validateOnBlur={false}
+        validateOnChange={false}
+        isInitialValid={false}
+      >
+        <Form>
+          <Styled.Wrapper>
+            {registerStep === 1 && (
+              <StepOne handleStepChange={handleStepIncrement} />
+            )}
+            {registerStep === 2 && (
+              <StepTwo handleStepChange={handleStepDecrement} />
+            )}
+          </Styled.Wrapper>
+        </Form>
+      </Formik>
+    </Styled.FormWrapper>
   );
 };
 

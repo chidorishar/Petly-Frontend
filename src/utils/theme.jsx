@@ -12,11 +12,17 @@ export const theme = {
     dark: '#121212',
     grey: '#acb4be',
     warning: '#ff7777',
+
+    // ! Below was added; do not remove:
+    white: '#fff',
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fontWeights: {
-    body: 400,
+    // ! Already updated; do not remove:
+    light: 300,
+    normal: 400,
     medium: 500,
+    semibold: 600,
     bold: 700,
   },
   radii: {
