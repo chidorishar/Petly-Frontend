@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import { ROUTES } from 'utils/appKeys';
 
 const StepTwo = ({ handleStepChange }) => {
-  const { values, handleChange } = useFormikContext();
+  const { values, handleChange, errors } = useFormikContext();
 
   const handlePrevClick = () => {
     handleStepChange();
   };
 
   return (
-    <div>
+    <>
       <div>Registration</div>
       <div>
         <input
@@ -22,18 +22,21 @@ const StepTwo = ({ handleStepChange }) => {
           value={values.name}
           onChange={handleChange}
         />
+        <div>{errors.name}</div>
         <input
           name="location"
           placeholder="City, region"
           value={values.location}
           onChange={handleChange}
         />
+        <div>{errors.location}</div>
         <input
           name="phone"
           placeholder="Mobile phone"
           value={values.phone}
           onChange={handleChange}
         />
+        <div>{errors.phone}</div>
       </div>
       <div>
         <button type="submit">Register</button>
@@ -44,7 +47,7 @@ const StepTwo = ({ handleStepChange }) => {
       <div>
         Already have an account? <Link to={ROUTES.LOGIN}>Login</Link>
       </div>
-    </div>
+    </>
   );
 };
 
