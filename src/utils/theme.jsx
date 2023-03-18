@@ -15,6 +15,9 @@ export const theme = {
 
     // ! Below was added; do not remove:
     white: '#fff',
+    darkMain: '#111111',
+    gray: 'rgba(17, 17, 17, 0.6)',
+    lightBlue: '#3091EB',
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fontWeights: {
@@ -24,6 +27,9 @@ export const theme = {
     medium: 500,
     semibold: 600,
     bold: 700,
+  },
+  fontFamilies: {
+    Manrope: 'Manrope',
   },
   radii: {
     none: '0',

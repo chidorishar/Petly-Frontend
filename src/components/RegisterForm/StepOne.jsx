@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useFormikContext } from 'formik';
 
 import PropTypes from 'prop-types';
 
 import { ROUTES } from 'utils/appKeys';
+
+import * as Styled from './RegisterForm.styled';
 
 const StepOne = ({ handleStepChange }) => {
   const { values, handleChange, validateField, errors, isValidating } =
@@ -29,38 +30,45 @@ const StepOne = ({ handleStepChange }) => {
 
   return (
     <>
-      <div>Registration</div>
-      <div>
-        <input
-          name="email"
-          placeholder="Email"
-          value={values.email}
-          onChange={handleChange}
-        />
-        <div>{errors.email}</div>
-        <input
-          name="password"
-          placeholder="Password"
-          value={values.password}
-          onChange={handleChange}
-        />
-        <div>{errors.password}</div>
-        <input
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={values.confirmPassword}
-          onChange={handleChange}
-        />
-        <div>{errors.confirmPassword}</div>
-      </div>
-      <div>
+      <Styled.Title>Registration</Styled.Title>
+      <Styled.InputWrapper>
+        <div>
+          <input
+            name="email"
+            placeholder="Email"
+            value={values.email}
+            onChange={handleChange}
+          />
+          {/* <div>{errors.email}</div> */}
+        </div>
+        <div>
+          <input
+            name="password"
+            placeholder="Password"
+            value={values.password}
+            onChange={handleChange}
+          />
+          {/* <div>{errors.password}</div> */}
+        </div>
+        <div>
+          <input
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={values.confirmPassword}
+            onChange={handleChange}
+          />
+          {/* <div>{errors.confirmPassword}</div> */}
+        </div>
+      </Styled.InputWrapper>
+      <Styled.ButtonWrapper>
         <button type="button" onClick={handleNextClick}>
           Next
         </button>
-      </div>
-      <div>
-        Already have an account? <Link to={ROUTES.LOGIN}>Login</Link>
-      </div>
+      </Styled.ButtonWrapper>
+      <Styled.BottomText>
+        Already have an account?{' '}
+        <Styled.BottomLink to={ROUTES.LOGIN}>Login</Styled.BottomLink>
+      </Styled.BottomText>
     </>
   );
 };
