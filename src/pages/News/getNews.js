@@ -1,18 +1,23 @@
 import axios from "axios";
 
 // eslint-disable-next-line no-undef
-const {DB_HOST} = process.env;
+const {REACT_APP_BACKEND_URL} = process.env;
 
+console.log(REACT_APP_BACKEND_URL);
 
-axios.defaults.baseURL = DB_HOST;
+axios.defaults.baseURL = `http://${REACT_APP_BACKEND_URL}`;
 
 const getNews = async () => {
+  let response = null;
+  
   try {
-    const response = await axios.get("/news");
-    return response.data;
+     response = await axios.get("/api/news");
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
+
+  return response.data;
 };
 
 export default getNews;
+
