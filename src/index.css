@@ -6,15 +6,6 @@
   box-sizing: border-box;
 }
 
-html {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -23,7 +14,6 @@ h5,
 h6,
 p {
   margin: 0;
-  margin-bottom: 0;
 }
 
 ul,
@@ -31,8 +21,6 @@ ol,
 form {
   margin: 0;
   padding: 0;
-  padding-left: 0;
-  list-style: none;
 }
 
 img {
@@ -55,19 +43,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-}
-button{
-  cursor: pointer;
-  border: none;
 }
