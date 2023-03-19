@@ -6,6 +6,8 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
+
+import { NoticesPage } from 'pages/NoticesPage';
 // import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
@@ -34,6 +36,7 @@ export const App = () => {
         )}
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/notices" element={<NoticesPage />} />
     </Routes>
   );
 };
