@@ -67,11 +67,6 @@ export const theme = {
   transitions: {
     normal: '250ms ease-in-out',
   },
-  media: {
-    mobile: '(min-width: 320px)',
-    tablet: '(min-width: 768px)',
-    desktop: '(min-width: 1280px)',
-  },
   breakpoints: {
     mobile: {
       media: '(min-width: 320px)',
