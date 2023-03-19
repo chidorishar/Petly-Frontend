@@ -2,15 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  
-html {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
-html {
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-}
+ 
 body {
     margin: 0;
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
@@ -38,33 +30,9 @@ body {
   color: ${p => p.theme.colors.accent};
   background-color: ${p => p.theme.colors.accent};
 }
-ul, ol{
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none;
-}
-h1, h2, h3, h4, h5, p{
-  margin-top: 0;
-  margin-bottom: 0;
-}
 table {
   text-indent: 0;
   border-color: inherit;
-}
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
-}
-button{
-  cursor: pointer;
-  border: none;
 }
 `;
 
@@ -74,15 +42,15 @@ export const Container = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
-  @media screen and (min-width: 480px) {
+  @media ${p => p.theme.media.tablet} {
     width: 480px;
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     padding-left: 32px;
     padding-right: 32px;
     width: 768px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     padding-left: 18px;
     padding-right: 18px;
     width: 1280px;
@@ -94,10 +62,10 @@ export const Section = styled.section`
   padding-top: 42px;
   padding-bottom: 100px;
   color: ${p => p.theme.colors.heading};
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.media.tablet} {
     padding-top: 88px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.media.desktop} {
     padding-top: 60px;
   }
 `;
