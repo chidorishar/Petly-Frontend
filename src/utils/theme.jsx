@@ -15,7 +15,7 @@ export const theme = {
     black: '#000000',
     link: '#3091EB',
     backdrop: ' #11111199',
-    placegolder: '#1b1b1b99',
+    placeholder: '#1b1b1b99',
     hoverBtn: '#FF6101',
     input: '#FDF7F2',
     shadowCard: 'rgba(49, 21, 4, 0.07)',

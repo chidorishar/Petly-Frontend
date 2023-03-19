@@ -41,8 +41,7 @@ export const Container = styled.div`
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
-  width: 100%;
-  @media ${p => p.theme.media.tablet} {
+  @media ${p => p.theme.media.mobile} {
     width: 480px;
   }
   @media ${p => p.theme.media.tablet} {
@@ -51,8 +50,8 @@ export const Container = styled.div`
     width: 768px;
   }
   @media ${p => p.theme.media.desktop} {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
     width: 1280px;
   }
 `;
