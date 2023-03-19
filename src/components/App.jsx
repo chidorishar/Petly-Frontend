@@ -32,6 +32,8 @@ export const App = () => {
               index
               element={<RestrictedRoute redirectTo="/" component={<></>} />}
             />
+
+            {/* ⏬ WRITE your PAGES below this comment ⏬*/}
           </>
         )}
       </Route>
