@@ -1,43 +1,37 @@
-import { useAuth } from 'redux/hooks/getAuth';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
+import { selectIsAuth } from 'redux/auth/authSelectors';
+import { Nav } from 'components/Nav/Nav';
+import { AuthNav } from 'components/AuthNav/AuthNav';
+import { UserNav } from 'components/UserNav/UserNav';
+import { BurgerNavOpenBtn } from 'components/BurgerNav/BurgerNavOpenBtn';
+import { BurgerNav } from 'components/BurgerNav/BurgerNav';
 
-import { ContainerFrameCommon } from 'components/common/shared.styled';
-import { HeaderLink, LinksListItem } from './Navigation.styled';
+export const Navigation = () => {
+  const [isBurgerNavOpen, setIsBurgerNavOpen] = useState(false);
+  const isAuth = useSelector(selectIsAuth);
+  const isDesktop = useMedia('(min-width: 1280px)');
+  const isMobile = useMedia('(max-width: 767px)');
 
-const LINK_TYPES = {
-  protected: 'PROT',
-  private: 'PRIVATE',
-};
+  const open = () => {
+    setIsBurgerNavOpen(true);
+  };
 
-const LINKS = [
-  { name: 'Register', to: '/', type: LINK_TYPES.protected },
-  { name: 'Login', to: 'login', type: LINK_TYPES.protected },
-  { name: 'Contacts', to: 'contacts', type: LINK_TYPES.private },
-];
-
-export function Navigation() {
-  const { isUserAuthorized } = useAuth();
+  const close = e => {
+    if (e.target.nodeName === 'A' || e.currentTarget.nodeName === 'BUTTON') {
+      setIsBurgerNavOpen(false);
+    }
+  };
 
   return (
-    <nav>
-      <ContainerFrameCommon as="ul">
-        {LINKS.map(({ to, name, type }) => (
-          <LinksListItem key={name}>
-            <HeaderLink
-              className={
-                (!isUserAuthorized && type === LINK_TYPES.private
-                  ? 'disabled'
-                  : '') +
-                (isUserAuthorized && type === LINK_TYPES.protected
-                  ? 'disabled'
-                  : '')
-              }
-              to={to}
-            >
-              {name}
-            </HeaderLink>
-          </LinksListItem>
-        ))}
-      </ContainerFrameCommon>
-    </nav>
+    <>
+      {isDesktop && <Nav />}
+      {!isMobile && isAuth && <UserNav />}
+      {!isMobile && !isAuth && <AuthNav />}
+      {!isDesktop && <BurgerNavOpenBtn onClick={open} />}
+
+      {isBurgerNavOpen && !isDesktop && <BurgerNav close={close} />}
+    </>
   );
-}
+};
