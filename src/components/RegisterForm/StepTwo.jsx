@@ -6,15 +6,15 @@ import { ROUTES } from 'utils/appKeys';
 
 import * as Styled from './RegisterForm.styled';
 
-const StepTwo = ({ handleStepChange }) => {
-  const { values, handleChange } = useFormikContext();
+const StepTwo = ({ handleStepChange, animationState, refProp }) => {
+  const { values, handleChange, errors } = useFormikContext();
 
   const handlePrevClick = () => {
     handleStepChange();
   };
 
   return (
-    <>
+    <Styled.WrapperTwo state={animationState} ref={refProp}>
       <Styled.Title>Registration</Styled.Title>
       <Styled.InputWrapper>
         <div>
@@ -24,7 +24,7 @@ const StepTwo = ({ handleStepChange }) => {
             value={values.name}
             onChange={handleChange}
           />
-          {/* <div>{errors.name}</div> */}
+          <div>{errors.name}</div>
         </div>
         <div>
           <input
@@ -33,7 +33,7 @@ const StepTwo = ({ handleStepChange }) => {
             value={values.location}
             onChange={handleChange}
           />
-          {/* <div>{errors.location}</div> */}
+          <div>{errors.location}</div>
         </div>
         <div>
           <input
@@ -42,7 +42,7 @@ const StepTwo = ({ handleStepChange }) => {
             value={values.phone}
             onChange={handleChange}
           />
-          {/* <div>{errors.phone}</div> */}
+          <div>{errors.phone}</div>
         </div>
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
@@ -55,12 +55,17 @@ const StepTwo = ({ handleStepChange }) => {
         Already have an account?{' '}
         <Styled.BottomLink to={ROUTES.LOGIN}>Login</Styled.BottomLink>
       </Styled.BottomText>
-    </>
+    </Styled.WrapperTwo>
   );
 };
 
 StepTwo.propTypes = {
   handleStepChange: PropTypes.func.isRequired,
+  animationState: PropTypes.string.isRequired,
+  refProp: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
 };
 
 export { StepTwo };

@@ -29,7 +29,7 @@ const StepOne = ({ handleStepChange }) => {
   };
 
   return (
-    <>
+    <Styled.Wrapper>
       <Styled.Title>Registration</Styled.Title>
       <Styled.InputWrapper>
         <div>
@@ -39,7 +39,7 @@ const StepOne = ({ handleStepChange }) => {
             value={values.email}
             onChange={handleChange}
           />
-          {/* <div>{errors.email}</div> */}
+          <div>{errors.email}</div>
         </div>
         <div>
           <input
@@ -48,7 +48,7 @@ const StepOne = ({ handleStepChange }) => {
             value={values.password}
             onChange={handleChange}
           />
-          {/* <div>{errors.password}</div> */}
+          <div>{errors.password}</div>
         </div>
         <div>
           <input
@@ -57,7 +57,7 @@ const StepOne = ({ handleStepChange }) => {
             value={values.confirmPassword}
             onChange={handleChange}
           />
-          {/* <div>{errors.confirmPassword}</div> */}
+          <div>{errors.confirmPassword}</div>
         </div>
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
@@ -69,7 +69,7 @@ const StepOne = ({ handleStepChange }) => {
         Already have an account?{' '}
         <Styled.BottomLink to={ROUTES.LOGIN}>Login</Styled.BottomLink>
       </Styled.BottomText>
-    </>
+    </Styled.Wrapper>
   );
 };
 

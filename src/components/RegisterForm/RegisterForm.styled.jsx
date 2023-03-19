@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 // TODO: Change all media into variables.
 const FormWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  position: relative;
+  width: 100%;
 
   @media (max-width: 767px) {
     margin-top: 42px;
@@ -20,17 +20,22 @@ const FormWrapper = styled.div`
 `;
 
 const Wrapper = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+
   display: flex;
   flex-direction: column;
-  gap: 40px;
   align-items: center;
+  gap: 40px;
+
+  background: ${p => p.theme.colors.white};
 
   @media (max-width: 767px) {
-    max-width: 500px;
+    min-width: 280px;
   }
 
   @media (min-width: 768px) {
-    background: ${p => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
 
@@ -38,12 +43,44 @@ const Wrapper = styled.div`
   }
 
   @media (min-width: 768px) and (max-width: 1279px) {
-    min-width: 608px;
+    width: 608px;
   }
 
   @media (min-width: 1280px) {
-    min-width: 618px;
+    width: 618px;
   }
+`;
+
+const WrapperTwo = styled(Wrapper)`
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  z-index: ${({ state }) => (state === 'exited' ? -1 : 1)};
+
+  opacity: ${({ state }) => {
+    switch (state) {
+      case 'exited':
+        return 0;
+      case 'exiting':
+        return 0;
+      default:
+        return 1;
+    }
+  }};
+
+  transform: translateX(
+    calc(
+      -50% + ${({ state }) => {
+          switch (state) {
+            case 'exited':
+              return 300;
+            case 'exiting':
+              return 300;
+            default:
+              return 0;
+          }
+        }}px
+    )
+  );
 `;
 
 const Title = styled.h2`
@@ -104,6 +141,7 @@ const BottomLink = styled(Link)`
 
 export {
   Wrapper,
+  WrapperTwo,
   FormWrapper,
   Title,
   InputWrapper,
