@@ -10,11 +10,11 @@ const FormWrapper = styled.div`
     margin-top: 42px;
   }
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
     margin-top: 80px;
   }
 
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.breakpoints.desktop.media} {
     margin-top: 44px;
   }
 `;
@@ -29,24 +29,24 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 40px;
 
-  background: ${p => p.theme.colors.white};
+  background: ${p => p.theme.colors.secondaryBackground};
 
   @media (max-width: 767px) {
     min-width: 280px;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
 
     padding: 60px 80px;
   }
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
     width: 608px;
   }
 
-  @media (min-width: 1280px) {
+  @media ${p => p.theme.breakpoints.desktop.media} {
     width: 618px;
   }
 `;
@@ -84,22 +84,21 @@ const WrapperTwo = styled(Wrapper)`
 `;
 
 const Title = styled.h2`
-  font-family: ${p => p.theme.fontFamilies.Manrope};
+  font-family: ${p => p.theme.fonts.mainFamily};
   line-height: 1.36;
   text-align: center;
 
-  // TODO: Extract font sizes pixels into vars.
   @media (max-width: 767px) {
-    font-weight: ${p => p.theme.fontWeights.bold};
+    font-weight: ${p => p.theme.fontWeights.logo};
     font-size: 24px;
   }
 
-  @media (min-width: 768px) {
-    font-weight: ${p => p.theme.fontWeights.medium};
-    font-size: 36px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-weight: ${p => p.theme.fontWeights.heading};
+    font-size: ${p => p.theme.fontSizes.lx};
   }
 
-  color: ${p => p.theme.colors.darkMain};
+  color: ${p => p.theme.colors.heading};
 `;
 
 const InputWrapper = styled.div`
@@ -110,7 +109,7 @@ const InputWrapper = styled.div`
     gap: 24px;
   }
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     gap: 40px;
   }
 `;
@@ -123,20 +122,20 @@ const ButtonWrapper = styled.div`
     gap: 12px;
   }
 
-  @media (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     gap: 16px;
   }
 `;
 
 const BottomText = styled.p`
   font-family: ${p => p.theme.fontFamilies.Manrope};
-  font-size: 12px;
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
-  color: ${p => p.theme.colors.gray};
+  color: ${p => p.theme.colors.inputText};
 `;
 
 const BottomLink = styled(Link)`
-  color: ${p => p.theme.colors.lightBlue};
+  color: ${p => p.theme.colors.link};
 `;
 
 export {
