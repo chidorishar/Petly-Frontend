@@ -42,17 +42,17 @@ export const Container = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   @media ${p => p.theme.media.mobile} {
-    width: 480px;
+    width: ${p => p.theme.breakpoints.mobile.width};
   }
   @media ${p => p.theme.media.tablet} {
     padding-left: 32px;
     padding-right: 32px;
-    width: 768px;
+    width: ${p => p.theme.breakpoints.tablet.width};
   }
   @media ${p => p.theme.media.desktop} {
     padding-left: 16px;
     padding-right: 16px;
-    width: 1280px;
+    width: ${p => p.theme.breakpoints.desktop.width};
   }
 `;
 
