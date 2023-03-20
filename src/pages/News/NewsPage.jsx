@@ -92,11 +92,3 @@ const News = () => {
 };
 
 export default News;
-
-// const News = () => {
-//   (async () => {
-//     const { news } = await getNews();
-//     console.log(news);
-//   })();
-//   return <></>;
-// };
