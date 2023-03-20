@@ -38,7 +38,6 @@ export const theme = {
     heading: 500,
     semiBold: 600,
     logo: 700,
-    bold: 700,
   },
   radii: {
     mainBorderRadius: '40px',
