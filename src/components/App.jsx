@@ -6,7 +6,6 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
-import { UserPetsList } from './UserPetsList/UserPetsList';
 // import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {

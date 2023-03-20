@@ -7,11 +7,11 @@ export const List = styled.ul`
   max-width: 280px;
   margin: auto;
   gap: 20px;
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     max-width: 704px;
     margin-top: 24px;
   }
-  @media screen and (min-width: 1280px) {
+  @media ${p => p.theme.breakpoints.desktop.media} {
     max-width: 821px;
   }
 `;
@@ -21,7 +21,7 @@ export const ListItem = styled(Box)`
   padding: 16px 20px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.11);
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     display: flex;
     padding: 20px;
     border-radius: ${({ theme: { radii } }) => radii.mainBorderRadius};
@@ -37,7 +37,7 @@ export const PetImg = styled.img`
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   margin-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     display: block;
     margin-right: 32px;
     margin-bottom: 0;
@@ -62,7 +62,7 @@ export const PetInfo = styled.ul`
       font-weight: ${({ theme: { fontWeights } }) => fontWeights.heading};
     }
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     width: 100%;
     position: relative;
     li {
@@ -84,7 +84,7 @@ export const DeleteBtn = styled.button`
     background-color: transparent;
     color: ${({ theme: { colors } }) => colors.hoverBtn};
   }
-  @media screen and (min-width: 768px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     position: absolute;
     width: 44px;
     height: 44px;
