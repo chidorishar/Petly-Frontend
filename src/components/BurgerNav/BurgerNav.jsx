@@ -10,7 +10,7 @@ import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { BurgerNavCloseBtn } from 'components/BurgerNav/BurgerNavCloseBtn';
 import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
-import { Container } from 'utils/GlobalStyle';
+import { Container } from 'components/common';
 
 export const BurgerNav = ({ close }) => {
   const isAuth = useSelector(selectIsAuth);
