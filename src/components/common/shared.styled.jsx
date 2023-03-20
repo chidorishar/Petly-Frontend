@@ -12,7 +12,6 @@ export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   transition: background-color ${theme.transitions.normal},
     color ${theme.transitions.normal};
 
-
   &:focus,
   &:hover {
     outline: none;
@@ -26,7 +25,6 @@ export const interactiveInput = ({ theme }) => css`
   display: block;
   border-style: solid;
   outline: none;
-
 
   transition: border-color ${theme.transitions.normal};
 
@@ -99,7 +97,6 @@ export const InsetButtonCommon = styled.button`
   min-width: ${p => p.theme.sizes.buttons.normal};
   padding: ${p => p.theme.space[1]}px ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.normal};
-
 `;
 
 export const InputInfoLabelCommon = styled.label`

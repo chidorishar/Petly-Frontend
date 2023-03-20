@@ -8,6 +8,11 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 
+import { ROUTES } from 'utils/appKeys';
+
+// TODO: Add lazy loading.
+import RegisterPage from 'pages/Register/RegisterPage';
+
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
     useLazyRefreshUserQuery();
@@ -32,6 +37,7 @@ export const App = () => {
             />
 
             {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+            <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           </>
         )}
       </Route>
