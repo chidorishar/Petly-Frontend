@@ -28,7 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint src/**/*.{js,jsx}"
+    "lint:js": "eslint src/**/*.{js,jsx}",
+    "format": "prettier --write \"src/**/*.(js|jsx)\""
   },
   "eslintConfig": {
     "extends": [
@@ -48,12 +49,17 @@
       "last 1 safari version"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && git add ."
+    }
+  },
   "devDependencies": {
     "eslint": "^8.36.0",
     "eslint-plugin-react": "^7.32.2",
     "husky": "^4.3.8",
     "lint-staged": "^13.2.0",
     "postcss-normalize": "^10.0.1",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.5"
   }
 }
