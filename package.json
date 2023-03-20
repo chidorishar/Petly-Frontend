@@ -54,6 +54,6 @@
     "husky": "^4.3.8",
     "lint-staged": "^13.2.0",
     "postcss-normalize": "^10.0.1",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.5"
   }
 }
