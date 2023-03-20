@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { GrClose } from 'react-icons/gr';
+
 import { GiHamburgerMenuClose } from './BurgerNavCloseBtn.styled';
 
 export const BurgerNavCloseBtn = ({ onClick }) => {
@@ -9,4 +11,8 @@ export const BurgerNavCloseBtn = ({ onClick }) => {
       </GiHamburgerMenuClose>
     </>
   );
+};
+
+BurgerNavCloseBtn.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
+import PropTypes from 'prop-types';
 
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import { UserNav } from 'components/UserNav/UserNav';
@@ -36,4 +37,8 @@ export const BurgerNav = ({ close }) => {
       </Container>
     </BurgerNavMenu>
   );
+};
+
+BurgerNav.propTypes = {
+  close: PropTypes.func.isRequired,
 };

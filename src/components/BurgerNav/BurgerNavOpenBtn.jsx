@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
 import { GiHamburgerMenuOpen } from './BurgerNavOpenBtn.styled';
 
 export const BurgerNavOpenBtn = ({ onClick }) => {
@@ -9,4 +11,8 @@ export const BurgerNavOpenBtn = ({ onClick }) => {
       </GiHamburgerMenuOpen>
     </>
   );
+};
+
+BurgerNavOpenBtn.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
