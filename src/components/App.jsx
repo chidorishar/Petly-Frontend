@@ -6,6 +6,7 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
+import { UserPetsList } from './UserPetsList/UserPetsList';
 // import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
@@ -34,6 +35,7 @@ export const App = () => {
             {/* ⏬ WRITE your PAGES below this comment ⏬*/}
           </>
         )}
+        <Route path="/list" element={<UserPetsList />}></Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

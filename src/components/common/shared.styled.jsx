@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { color, flexbox, layout, position, space } from 'styled-system';
+import {
+  color,
+  flexbox,
+  layout,
+  position,
+  space,
+  border,
+  shadow,
+} from 'styled-system';
 
 export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   border: ${theme.borders.small};
@@ -11,7 +19,6 @@ export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   cursor: pointer;
   transition: background-color ${theme.transitions.normal},
     color ${theme.transitions.normal};
-
 
   &:focus,
   &:hover {
@@ -26,7 +33,6 @@ export const interactiveInput = ({ theme }) => css`
   display: block;
   border-style: solid;
   outline: none;
-
 
   transition: border-color ${theme.transitions.normal};
 
@@ -49,7 +55,15 @@ export const ButtonWideCommon = styled.button`
   border-radius: ${p => p.theme.radii.big};
 `;
 
-export const Box = styled.div(space, color, layout, flexbox, position);
+export const Box = styled.div(
+  space,
+  color,
+  layout,
+  flexbox,
+  position,
+  border,
+  shadow
+);
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -99,7 +113,6 @@ export const InsetButtonCommon = styled.button`
   min-width: ${p => p.theme.sizes.buttons.normal};
   padding: ${p => p.theme.space[1]}px ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.normal};
-
 `;
 
 export const InputInfoLabelCommon = styled.label`
