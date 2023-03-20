@@ -35,7 +35,6 @@ export const App = () => {
             {/* ⏬ WRITE your PAGES below this comment ⏬*/}
           </>
         )}
-        <Route path="/list" element={<UserPetsList />}></Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

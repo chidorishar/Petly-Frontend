@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Box } from 'components/common/shared.styled';
 import {
   List,
@@ -7,41 +9,48 @@ import {
   ListItem,
   NameBox,
 } from './UserPetsList.styled';
-import { RiDeleteBinFill } from 'react-icons/ri';
+import { DeleteIcon } from 'components/DeleteIcon/DeleteIcon';
+
 export const UserPetsList = () => {
-  const petsFilteredList = [
-    {
-      id: 1,
-      comment: 'cute dog looking for a home',
-      petImg: 'https://placehold.co/240x240/orange/white',
-      breed: 'Pomeranian',
-      name: 'Lviv',
-      age: 1679092817793,
-    },
-    {
-      id: 2,
-      comment: 'cute dog looking for a home',
-      petImg: 'https://placehold.co/240x240',
-      breed: 'Pomeranian',
-      name: 'Lviv',
-      age: 1679092817793,
-    },
-    {
-      id: 3,
-      comment: 'cute dog looking for a home',
-      petImg: 'https://placehold.co/240x240',
-      breed: 'Pomeranian',
-      name: 'Lviv',
-      age: 1679092817793,
-    },
-  ];
-  return (
+  const [pets, setPets] = useState([]);
+  useEffect(() => {
+    const controller = new AbortController();
+    async function getPets() {
+      try {
+        const response = await axios('/api/users', {
+          signal: controller.signal,
+          params: {},
+        });
+        setPets(response.data.pets);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getPets();
+    return () => {
+      controller.abort();
+    };
+  }, [pets]);
+  const handleDeletePet = async id => {
+    await deletePetFromList(id);
+    setPets(pets.filter(pet => pet.id !== id));
+  };
+  async function deletePetFromList(id) {
+    try {
+      await axios.delete('/api/users/pets', {
+        params: { petId: id },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  return pets.length > 0 ? (
     <Box>
       <List>
-        {petsFilteredList.map(({ id, petImg, breed, name, age, comment }) => {
+        {pets.map(({ id, photo, breed, name, birthday, comment }) => {
           return (
             <ListItem key={id}>
-              <PetImg src={petImg} alt={name} />
+              <PetImg src={photo} alt={name} />
               <PetInfo>
                 <li>
                   <NameBox>
@@ -49,14 +58,14 @@ export const UserPetsList = () => {
                       <span>Name: </span>
                       {name}
                     </Box>
-                    <DeleteBtn>
-                      <RiDeleteBinFill />
+                    <DeleteBtn onClick={handleDeletePet(id)}>
+                      <DeleteIcon />
                     </DeleteBtn>
                   </NameBox>
                 </li>
                 <li>
                   <span>Date of birth: </span>
-                  {age}
+                  {birthday}
                 </li>
                 <li>
                   <span>Breed: </span>
@@ -71,6 +80,10 @@ export const UserPetsList = () => {
           );
         })}
       </List>
+    </Box>
+  ) : (
+    <Box>
+      <p> No pets... </p>
     </Box>
   );
 };

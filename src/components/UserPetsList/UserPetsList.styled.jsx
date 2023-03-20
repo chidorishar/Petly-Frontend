@@ -16,7 +16,7 @@ export const List = styled.ul`
   }
 `;
 export const ListItem = styled(Box)`
-  background-color: #8ba76b;
+  background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   padding: 16px 20px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.11);
