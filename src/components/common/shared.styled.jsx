@@ -12,8 +12,6 @@ export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   transition: background-color ${theme.transitions.normal},
     color ${theme.transitions.normal};
 
-  box-shadow: ${theme.shadows.small};
-
   &:focus,
   &:hover {
     outline: none;
@@ -27,8 +25,6 @@ export const interactiveInput = ({ theme }) => css`
   display: block;
   border-style: solid;
   outline: none;
-
-  box-shadow: ${theme.shadows.inputInset};
 
   transition: border-color ${theme.transitions.normal};
 
@@ -69,8 +65,6 @@ export const ContainerFrameCommon = styled.div`
   border-radius: ${({ theme: { radii } }) => radii.big};
 
   background-color: ${({ theme: { colors } }) => colors.light};
-  box-shadow: ${({ theme: { shadows } }) => shadows.insetBig},
-    ${({ theme: { shadows } }) => shadows.insetColored};
 `;
 
 export const ContainerCardCommon = styled.div`
@@ -79,7 +73,6 @@ export const ContainerCardCommon = styled.div`
   padding: ${p => p.theme.space[3]}px;
   text-align: center;
   border-radius: ${p => p.theme.radii.normal};
-  box-shadow: ${p => p.theme.shadows.medium};
 `;
 
 export const ContainerInnerCardCommon = styled.div`
@@ -104,8 +97,6 @@ export const InsetButtonCommon = styled.button`
   min-width: ${p => p.theme.sizes.buttons.normal};
   padding: ${p => p.theme.space[1]}px ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.normal};
-
-  box-shadow: ${p => p.theme.shadows.buttonInset};
 `;
 
 export const InputInfoLabelCommon = styled.label`

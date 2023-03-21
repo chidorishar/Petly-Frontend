@@ -9,7 +9,7 @@ const LINK_TYPES = {
 };
 
 const LINKS = [
-  { name: 'Register', to: '/', type: LINK_TYPES.protected },
+  { name: 'Register', to: 'register', type: LINK_TYPES.protected },
   { name: 'Login', to: 'login', type: LINK_TYPES.protected },
   { name: 'Contacts', to: 'contacts', type: LINK_TYPES.private },
 ];

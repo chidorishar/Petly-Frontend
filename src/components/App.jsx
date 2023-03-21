@@ -8,7 +8,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 
-import NewsPage from "../pages/News/NewsPage";
+import NewsPage from '../pages/News/NewsPage';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =

@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import getNews from '../News/getNews';
+import { HiOutlineXCircle } from 'react-icons/hi';
+import { IoSearchSharp } from 'react-icons/io5';
+import { Card, Form, Button, Input } from './NewsPage.styled';
+import NewsCard from '../../components/NewsCards/NewsCard';
+//  import { HiSearch } from "react-icons/hi";  лупа
+// import { IoCloseCircleOutline } from "react-icons/io5";  хретсик
 
 // const News = () => {
 //   (async () => {
@@ -13,7 +19,7 @@ import getNews from '../News/getNews';
 
 const News = () => {
   const [news, setNews] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSeachParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const [search, setSearch] = useState('');
 
@@ -21,10 +27,9 @@ const News = () => {
     const newsPage = async () => {
       try {
         const newsArray = await getNews();
-        const newsResult = newsArray.result;
-        console.log(newsResult);
-
-        setNews(newsResult);
+        const newsRes = newsArray.result;
+        console.log(newsRes);
+        setNews(newsRes);
       } catch (error) {
         console.log(error.message);
       }
@@ -33,15 +38,13 @@ const News = () => {
   }, []);
 
   const handleChange = e => {
-    setSearchParams({
-      query: e.currentTarget.value.toLocaleLowerCase().trim(),
-    });
+    setSeachParams({ query: e.currentTarget.value.toLocaleLowerCase().trim() });
     setSearch(e.currentTarget.value.toLocaleLowerCase());
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSearchParams({ query: search });
+    setSeachParams({ query: search });
   };
 
   const getFilteredNews = () => {
@@ -56,11 +59,15 @@ const News = () => {
 
   const filteredNews = getFilteredNews();
 
+  const removeQuery = () => {
+    setSearch('');
+  };
+
   return (
-    <Container>
-      <Title>News</Title>
-      <ToastContainer />
-      <SearchBox onSubmit={handleSubmit}>
+    <div>
+      <title>News</title>
+      {/* <ToastContainer /> */}
+      <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           name="query"
@@ -69,9 +76,15 @@ const News = () => {
           autoFocus
           onChange={handleChange}
         />
-        <Button type="submit"></Button>
-      </SearchBox>
-      <Box>
+        <Button
+          type="submit"
+          style={{ position: 'absolute', right: '10px', top: '10px' }}
+        >
+          {!search && <IoSearchSharp size={20} />}
+          {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
+        </Button>
+      </Form>
+      <div>
         {news.length > 0 ? (
           filteredNews.map(newItem => (
             <Card key={newItem._id}>
@@ -79,15 +92,15 @@ const News = () => {
             </Card>
           ))
         ) : (
-          <Loader />
+          <div />
         )}
-      </Box>
+      </div>
       {search !== '' && query && filteredNews.length === 0 && (
-        <NotFoundBox>
-          <NotFound>Nothing found. Please, try again.</NotFound>
-        </NotFoundBox>
+        <div>
+          <div>Nothing found. Please, try again.</div>
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
 
