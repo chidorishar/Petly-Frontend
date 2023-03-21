@@ -41,6 +41,7 @@ export const Container = styled.div`
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+
   @media ${p => p.theme.media.mobile} {
     width: ${p => p.theme.breakpoints.mobile.width};
   }

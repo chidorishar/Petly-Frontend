@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import getNews from '../News/getNews';
 import { HiOutlineXCircle } from 'react-icons/hi';
 import { IoSearchSharp } from 'react-icons/io5';
-import { Card, Form, Button, Input } from './NewsPage.styled';
+import { Card, Title, Form, Button, Input } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
 //  import { HiSearch } from "react-icons/hi";  лупа
 // import { IoCloseCircleOutline } from "react-icons/io5";  хретсик
@@ -16,6 +16,17 @@ import NewsCard from '../../components/NewsCards/NewsCard';
 //   })();
 //   return <></>;
 // };
+
+// const ourFriends = () => {
+//   (async () => {
+//     const newsArray = await getOurFriends();
+//     const {services} = newsArray;
+//     console.log(services);
+//   })();
+//   return <></>;
+// };
+
+// export default ourFriends;
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -65,7 +76,7 @@ const News = () => {
 
   return (
     <div>
-      <title>News</title>
+      <Title>News</Title>
       {/* <ToastContainer /> */}
       <Form onSubmit={handleSubmit}>
         <Input

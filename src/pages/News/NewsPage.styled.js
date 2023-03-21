@@ -2,6 +2,22 @@ import styled from 'styled-components';
 
 export const Card = styled.li``;
 
+export const Title = styled.h2`
+  font-family: ${p => p.theme.fonts.mainFamily};
+  line-height: 1.36;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    font-weight: ${p => p.theme.fontWeights.logo};
+    font-size: 24px;
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-weight: ${p => p.theme.fontWeights.heading};
+    font-size: ${p => p.theme.fontSizes.lx};
+  }
+  color: ${p => p.theme.colors.heading};
+`;
+
 export const Form = styled.form`
   position: relative;
   display: flex;
