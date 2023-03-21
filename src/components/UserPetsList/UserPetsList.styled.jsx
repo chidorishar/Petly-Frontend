@@ -53,7 +53,7 @@ export const PetInfo = styled.ul`
     :not(:last-child) {
       margin-bottom: 12px;
     }
-    font-family: ${({ theme: { fonts } }) => fonts.mainFamily};
+    font-family: ${p => p.theme.fonts.mainFamily};
     font-size: ${({ theme: { fontSizes } }) => fontSizes.s};
     font-weight: ${({ theme: { fontWeights } }) => fontWeights.text};
     line-height: ${({ theme: { lineHeights } }) => lineHeights.body};
