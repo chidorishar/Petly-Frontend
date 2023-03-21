@@ -12,6 +12,7 @@ import { ROUTES } from 'utils/appKeys';
 
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+import { PetsData } from './PetsData/PetsData';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -40,6 +41,7 @@ export const App = () => {
             <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           </>
         )}
+        <Route path="/pets" element={<PetsData />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
