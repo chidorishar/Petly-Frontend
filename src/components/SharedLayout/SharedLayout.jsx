@@ -23,9 +23,11 @@ export default function SharedLayout() {
       <NewsPage />
 
       {/* <Suspense fallback={<div>Loading...</div>}> */}
+
       <Container>
         <Outlet />
       </Container>
+
       {/* </Suspense> */}
     </>
   );
