@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
@@ -12,6 +12,8 @@ import { ROUTES } from 'utils/appKeys';
 
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+
+const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -42,6 +44,7 @@ export const App = () => {
         )}
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/services" element={<OurFriendsPage />} />
     </Routes>
   );
 };

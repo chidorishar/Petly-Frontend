@@ -11,11 +11,13 @@ import {
 
 import { persistedAuthReducer } from './slices/authSlice.js';
 import { usersAPI } from './slices/usersAPISlice.js';
+import { friendsReducer } from './slices/friendsSlice.js';
 
 export const store = configureStore({
   reducer: {
     [usersAPI.reducerPath]: usersAPI.reducer,
     auth: persistedAuthReducer,
+    friends: friendsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
