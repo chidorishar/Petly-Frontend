@@ -8,26 +8,6 @@ import NewsCard from '../../components/NewsCards/NewsCard';
 //  import { HiSearch } from "react-icons/hi";  лупа
 // import { IoCloseCircleOutline } from "react-icons/io5";  хретсик
 
-// const News = () => {
-//   (async () => {
-//     const newsArray = await getNews();
-//     const newsResult = newsArray.result;
-//     console.log(newsResult);
-//   })();
-//   return <></>;
-// };
-
-// const ourFriends = () => {
-//   (async () => {
-//     const newsArray = await getOurFriends();
-//     const {services} = newsArray;
-//     console.log(services);
-//   })();
-//   return <></>;
-// };
-
-// export default ourFriends;
-
 const News = () => {
   const [news, setNews] = useState([]);
   const [searchParams, setSeachParams] = useSearchParams();
@@ -116,3 +96,25 @@ const News = () => {
 };
 
 export default News;
+
+// const News = () => {
+//   (async () => {
+//     const newsArray = await getNews();
+//     const newsResult = newsArray.result;
+//     console.log(newsResult);
+//   })();
+//   return <></>;
+// };
+
+// useEffect(() => {
+//   const newsPage = async () => {
+//     try {
+//       const { news } = await getNews();
+//       console.log(news);
+//       setNews(news);
+//     } catch (error) {
+//       console.log(error.message);
+//     }
+//   };
+//   newsPage();
+// }, []);
