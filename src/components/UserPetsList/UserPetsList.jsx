@@ -44,6 +44,7 @@ export const UserPetsList = () => {
       console.error(error);
     }
   }
+
   return pets.length > 0 ? (
     <Box>
       <List>

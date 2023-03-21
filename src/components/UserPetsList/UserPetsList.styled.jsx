@@ -46,7 +46,6 @@ export const PetImg = styled.img`
 `;
 export const PetInfo = styled.ul`
   list-style: none;
-  font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: ${({ theme: { colors } }) => colors.dark};
   li {
@@ -88,7 +87,7 @@ export const DeleteBtn = styled.button`
     position: absolute;
     width: 44px;
     height: 44px;
-    font-size: 24px;
+    font-size: ${p => p.theme.fontSizes.ml};
     right: 0;
     top: 0;
     border-radius: ${({ theme: { radii } }) => radii.round};
