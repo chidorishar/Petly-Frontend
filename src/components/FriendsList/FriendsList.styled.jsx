@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   display: grid;
-  margin-top: 40px;
+  margin-top: 28px;
   gap: 12px;
   @media ${p => p.theme.breakpoints.tablet.media} {
     grid-template-columns: 1fr 1fr;
-    margin-top: 45px;
+    margin-top: 40px;
     gap: 32px;
   }
   @media ${p => p.theme.breakpoints.desktop.media} {
