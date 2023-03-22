@@ -1,25 +1,31 @@
-// import { Wrapper, Input, Icon } from './NoticesSearch.styled';
-// import { Link } from 'react-router-dom';
-import { Wrapper, Button, Li } from './NoticesNavigation.styled';
+import {
+  Wrapper,
+  Button,
+  CommonWrapper,
+  Icon,
+  AddPetBtn,
+  Span,
+} from './NoticesNavigation.styled';
 
 export const NoticesNavigation = () => {
+  const nameCategory = {
+    sell: 'sell',
+    lost: 'lost/found',
+    hands: 'in good hands',
+  };
   return (
-    <Wrapper>
-      <Li>
-        <Button>
-          <span>sell</span>
-        </Button>
-      </Li>
-      <Li>
-        <Button>
-          <span>lost/found</span>
-        </Button>
-      </Li>
-      <Li>
-        <Button>
-          <span>in good hands</span>
-        </Button>
-      </Li>
-    </Wrapper>
+    <CommonWrapper>
+      <Wrapper>
+        <Button>{nameCategory.sell}</Button>
+        <Button>{nameCategory.lost}</Button>
+        <Button>{nameCategory.hands}</Button>
+      </Wrapper>
+      <Wrapper>
+        <Span>Add pet</Span>
+        <AddPetBtn>
+          <Icon />
+        </AddPetBtn>
+      </Wrapper>
+    </CommonWrapper>
   );
 };
