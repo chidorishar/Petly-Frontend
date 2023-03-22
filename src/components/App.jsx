@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
@@ -10,6 +10,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 import { GlobalStyle } from 'utils';
 
@@ -40,6 +41,7 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
             </>
           )}
