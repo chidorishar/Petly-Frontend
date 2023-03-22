@@ -4,7 +4,9 @@ import { LogoImg } from './Logo.styled';
 export const Logo = () => {
   return (
     <>
-      <LogoImg src={logoIcon} alt="petly" />
+      <a href="">
+        <LogoImg src={logoIcon} alt="petly" />
+      </a>
     </>
   );
 };
