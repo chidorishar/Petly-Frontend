@@ -18,7 +18,7 @@ import { TimeTable } from './TimeTable';
 import defaultFriendImage from '../../images/defaultmageForOurFriends.jpg';
 
 const maxSymbolsInLine = 25;
-const noDataPlaceholder = String('-').repeat(maxSymbolsInLine - 1);
+const noDataPlaceholder = String('– ').repeat(10);
 
 export const FriendsItem = ({
   title,
