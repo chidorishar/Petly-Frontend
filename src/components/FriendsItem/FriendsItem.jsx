@@ -15,6 +15,9 @@ import {
 import { TimeTable } from './TimeTable';
 import defaultFriendImage from '../../images/defaultmageForOurFriends.jpg';
 
+const maxSymbolsInLine = 25;
+const noDataPlaceholder = String('-').repeat(maxSymbolsInLine - 1);
+
 export const FriendsItem = ({
   title,
   siteUrl,
@@ -55,7 +58,7 @@ export const FriendsItem = ({
             {workDays === null || workDays === undefined ? (
               <>
                 <Text>Time: </Text>
-                <Text>дані відсутні</Text>
+                <Text>{noDataPlaceholder}</Text>
               </>
             ) : (
               <>
@@ -84,7 +87,7 @@ export const FriendsItem = ({
                 {adress}
               </ContactLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>{noDataPlaceholder}</Text>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -92,7 +95,7 @@ export const FriendsItem = ({
             {email ? (
               <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>{noDataPlaceholder}</Text>
             )}
           </TextWrapper>
           <TextWrapper>
@@ -100,7 +103,7 @@ export const FriendsItem = ({
             {phone ? (
               <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
             ) : (
-              <Text>дані відсутні</Text>
+              <Text>{noDataPlaceholder}</Text>
             )}
           </TextWrapper>
         </List>
