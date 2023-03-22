@@ -5,8 +5,8 @@ import { useAuth } from 'redux/hooks/getAuth';
 import { Navigation } from 'components/Navigation/Navigation';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 
-import { Container } from 'components/common/shared.styled';
-import { Header } from './SharedLayout.styled';
+import { Container } from 'components/common';
+import { Header } from 'components';
 
 export default function SharedLayout() {
   const { isUserAuthorized } = useAuth();
