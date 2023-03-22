@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import getFriends from 'redux/hooks/getFriends';
 import FriendsList from 'components/FriendsList/FriendsList';
-import { Container, Section } from 'utils/GlobalStyle';
+import { Container, Section } from 'components/common';
 import { useState } from 'react';
 
 const OurFriendsPage = () => {
