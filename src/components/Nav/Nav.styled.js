@@ -30,7 +30,6 @@ export const NaviLink = styled(NavLink)`
   transition: color ${p => p.theme.transitions.normal};
 
   &.active {
-    background: ${p => p.theme.colors.mainBackground};
     color: ${p => p.theme.colors.accent};
     font-weight: 700;
     text-decoration-line: underline;
