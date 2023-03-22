@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { NoticeCategoriesItem } from './NoticeCategoriesItem';
-import {
-  Container,
-  CardWrapper,
-} from './NoticesCategoriesList.styled';
+import { Container, CardWrapper } from './NoticesCategoriesList.styled';
 
 export const NoticesCategoriesList = ({ notices }) => {
   return (
