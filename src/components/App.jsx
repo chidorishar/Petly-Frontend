@@ -10,6 +10,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+import NewsPage from 'pages/News/NewsPage';
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 import { GlobalStyle } from 'utils';

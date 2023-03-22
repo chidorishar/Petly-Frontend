@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 
-export const Card = styled.li``;
-
 export const Title = styled.h1`
   font-weight: ${p => p.theme.fontWeights.logo};
+  color: ${p => p.theme.colors.heading};
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     text-align: center;
     margin-bottom: 28px;
-    font-size: 24px;
+    font-size: ${p => p.theme.fontSizes.ml};
     line-height: 33px;
   }
 
@@ -88,4 +87,34 @@ export const Button = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+`;
+
+export const Box = styled.ul`
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 100px;
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px 33px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 60px 33px;
+  }
+`;
+
+export const NotFound = styled.p`
+  font-size: ${p => p.theme.fontSizes.nl};
+  color: red;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: 30px;
+  }
+`;
+export const NotFoundBox = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
 `;

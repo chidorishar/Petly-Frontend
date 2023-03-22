@@ -1,4 +1,13 @@
 import dateConverter from '../../components/NewsCards/dateConverter';
+import {
+  Item,
+  Border,
+  Title,
+  Wrapper,
+  Box,
+  Date,
+  Link,
+} from './NewsCard.styled';
 
 const NewsCard = newItem => {
   const { date, description, title, url } = newItem.newItem;
@@ -8,20 +17,17 @@ const NewsCard = newItem => {
 
   return (
     <>
-      <div>
-        <title>
-          <span>{title}</span>
-          {name}
-        </title>
-        <p>{text}</p>
-
-        <div>
-          <span>{dateConverter(date)}</span>
-          <a href={url} target="_blank" rel="noreferrer">
+      <Item>
+        <Border></Border>
+        <Title>{name}</Title>
+        <Wrapper>{text}</Wrapper>
+        <Box>
+          <Date>{dateConverter(date)}</Date>
+          <Link href={url} target="_blank" rel="noreferrer">
             Read more
-          </a>
-        </div>
-      </div>
+          </Link>
+        </Box>
+      </Item>
     </>
   );
 };

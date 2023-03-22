@@ -3,11 +3,18 @@ import { useSearchParams } from 'react-router-dom';
 import getNews from '../News/getNews';
 import { HiOutlineXCircle } from 'react-icons/hi';
 import { IoSearchSharp } from 'react-icons/io5';
-import { Card, Title, Form, Button, Input } from './NewsPage.styled';
+import {
+  Title,
+  Form,
+  Button,
+  Input,
+  Box,
+  NotFoundBox,
+  NotFound,
+} from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
 import { Container } from 'components/common';
 import { Section } from 'components/common';
-import { Loader } from 'components/common';
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -77,21 +84,21 @@ const News = () => {
             {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
           </Button>
         </Form>
-        <div>
+        <Box>
           {news.length > 0 ? (
             filteredNews.map(newItem => (
-              <Card key={newItem._id}>
+              <div key={newItem._id}>
                 <NewsCard newItem={newItem} />
-              </Card>
+              </div>
             ))
           ) : (
-            <Loader />
+            <div />
           )}
-        </div>
+        </Box>
         {search !== '' && query && filteredNews.length === 0 && (
-          <div>
-            <div>Nothing found. Please, try again.</div>
-          </div>
+          <NotFoundBox>
+            <NotFound>Nothing found. Please, try again.</NotFound>
+          </NotFoundBox>
         )}
       </Section>
     </Container>
@@ -99,25 +106,3 @@ const News = () => {
 };
 
 export default News;
-
-// const News = () => {
-//   (async () => {
-//     const newsArray = await getNews();
-//     const newsResult = newsArray.result;
-//     console.log(newsResult);
-//   })();
-//   return <></>;
-// };
-
-// useEffect(() => {
-//   const newsPage = async () => {
-//     try {
-//       const { news } = await getNews();
-//       console.log(news);
-//       setNews(news);
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-//   newsPage();
-// }, []);
