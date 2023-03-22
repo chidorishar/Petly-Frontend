@@ -27,6 +27,8 @@ export const NaviLink = styled(NavLink)`
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.navText};
 
+  transition: color ${p => p.theme.transitions.normal};
+
   &.active {
     background: ${p => p.theme.colors.mainBackground};
     color: ${p => p.theme.colors.accent};
@@ -42,7 +44,6 @@ export const NaviLink = styled(NavLink)`
     font-size: 20px;
     line-height: 1.35;
   }
-  transition: color ${p => p.theme.transition};
 
   :hover,
   :focus {
