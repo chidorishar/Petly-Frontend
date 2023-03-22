@@ -8,6 +8,10 @@
 const ROUTES = {
   REGISTER: '/register',
   LOGIN: '/login',
+  NEWS: '/news',
+  NOTICES: '/notices',
+  FRIENDS: '/friends',
+  SERVICES: '/services',
 };
 
 export { ROUTES };

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { color, flexbox, layout, position, space } from 'styled-system';
 
 export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   border: ${theme.borders.small};
@@ -45,14 +44,6 @@ export const ButtonWideCommon = styled.button`
   margin-top: ${p => p.theme.space[3]}px;
   padding: ${p => p.theme.space[2]}px;
   border-radius: ${p => p.theme.radii.big};
-`;
-
-export const Box = styled.div(space, color, layout, flexbox, position);
-
-export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
 `;
 
 export const ContainerFrameCommon = styled.div`
@@ -124,10 +115,6 @@ export const InputCommon = styled.input`
   margin-top: ${p => p.theme.space[1]}px;
   padding: ${p => p.theme.space[1]}px;
   border-radius: ${p => p.theme.radii.normal};
-`;
-
-export const Section = styled.section`
-  padding: ${({ theme: { space } }) => space[4]}px;
 `;
 
 export const MainWrapper = styled.main`
