@@ -6,6 +6,7 @@ import { IoSearchSharp } from 'react-icons/io5';
 import { Card, Title, Form, Button, Input } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
 import { Container } from 'components/common';
+import { Section } from 'components/common';
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -55,41 +56,43 @@ const News = () => {
 
   return (
     <Container>
-      <Title>News</Title>
-      {/* <ToastContainer /> */}
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="query"
-          value={search}
-          placeholder="Search"
-          autoFocus
-          onChange={handleChange}
-        />
-        <Button
-          type="submit"
-          style={{ position: 'absolute', right: '10px', top: '10px' }}
-        >
-          {!search && <IoSearchSharp size={20} />}
-          {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
-        </Button>
-      </Form>
-      <div>
-        {news.length > 0 ? (
-          filteredNews.map(newItem => (
-            <Card key={newItem._id}>
-              <NewsCard newItem={newItem} />
-            </Card>
-          ))
-        ) : (
-          <div />
-        )}
-      </div>
-      {search !== '' && query && filteredNews.length === 0 && (
+      <Section>
+        <Title>News</Title>
+        {/* <ToastContainer /> */}
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="query"
+            value={search}
+            placeholder="Search"
+            autoFocus
+            onChange={handleChange}
+          />
+          <Button
+            type="submit"
+            style={{ position: 'absolute', right: '10px', top: '10px' }}
+          >
+            {!search && <IoSearchSharp size={20} />}
+            {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
+          </Button>
+        </Form>
         <div>
-          <div>Nothing found. Please, try again.</div>
+          {news.length > 0 ? (
+            filteredNews.map(newItem => (
+              <Card key={newItem._id}>
+                <NewsCard newItem={newItem} />
+              </Card>
+            ))
+          ) : (
+            <div />
+          )}
         </div>
-      )}
+        {search !== '' && query && filteredNews.length === 0 && (
+          <div>
+            <div>Nothing found. Please, try again.</div>
+          </div>
+        )}
+      </Section>
     </Container>
   );
 };

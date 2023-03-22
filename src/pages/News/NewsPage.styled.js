@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Card = styled.li``;
 
 export const Title = styled.h1`
-  font-family: ${p => p.theme.fonts.mainFamily};
   font-weight: ${p => p.theme.fontWeights.logo};
 
   @media ${p => p.theme.breakpoints.mobile.media} {
