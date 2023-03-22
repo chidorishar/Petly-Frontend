@@ -1,4 +1,4 @@
-import { Box } from 'components/common/shared.styled';
+import { Box } from 'components/common/Box/Box.styled';
 import { PetsTitle, AddPetBtn, DataTopBox, AddBox } from './PetsData.styled';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 

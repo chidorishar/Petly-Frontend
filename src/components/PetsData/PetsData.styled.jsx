@@ -1,4 +1,4 @@
-import { Box } from 'components/common/shared.styled';
+import { Box } from 'components/common/Box/Box.styled';
 import styled from 'styled-components';
 
 export const PetsTitle = styled.p`
