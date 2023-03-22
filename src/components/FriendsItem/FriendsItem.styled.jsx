@@ -41,6 +41,9 @@ export const Time = styled.button`
   cursor: pointer;
   border: none;
   background-color: inherit;
+
+  transition: color ${p => p.theme.transitions.normal};
+
   &.active {
     color: ${p => p.theme.colors.accent};
   }
