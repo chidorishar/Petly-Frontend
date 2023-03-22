@@ -5,7 +5,9 @@ export const AuthNav = () => {
     <>
       <AuthNavList>
         <li>
-          <AuthNavLink to="/login">Login</AuthNavLink>
+          <AuthNavLink className="active" to="/login">
+            Login
+          </AuthNavLink>
         </li>
         <li>
           <AuthNavLink to="/register">Registration</AuthNavLink>
