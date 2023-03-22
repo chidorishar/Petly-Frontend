@@ -7,6 +7,7 @@ import { Card, Title, Form, Button, Input } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
 import { Container } from 'components/common';
 import { Section } from 'components/common';
+import { Loader } from 'components/common';
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -84,7 +85,7 @@ const News = () => {
               </Card>
             ))
           ) : (
-            <div />
+            <Loader />
           )}
         </div>
         {search !== '' && query && filteredNews.length === 0 && (
