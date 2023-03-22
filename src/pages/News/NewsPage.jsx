@@ -5,8 +5,6 @@ import { HiOutlineXCircle } from 'react-icons/hi';
 import { IoSearchSharp } from 'react-icons/io5';
 import { Card, Title, Form, Button, Input } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
-//  import { HiSearch } from "react-icons/hi";  лупа
-// import { IoCloseCircleOutline } from "react-icons/io5";  хретсик
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -19,7 +17,7 @@ const News = () => {
       try {
         const newsArray = await getNews();
         const newsRes = newsArray.result;
-        console.log(newsRes);
+
         setNews(newsRes);
       } catch (error) {
         console.log(error.message);
@@ -55,7 +53,7 @@ const News = () => {
   };
 
   return (
-    <div>
+    <>
       <Title>News</Title>
       {/* <ToastContainer /> */}
       <Form onSubmit={handleSubmit}>
@@ -91,7 +89,7 @@ const News = () => {
           <div>Nothing found. Please, try again.</div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

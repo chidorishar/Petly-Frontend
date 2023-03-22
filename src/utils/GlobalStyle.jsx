@@ -45,11 +45,13 @@ export const Container = styled.div`
   @media ${p => p.theme.media.mobile} {
     width: ${p => p.theme.breakpoints.mobile.width};
   }
+
   @media ${p => p.theme.media.tablet} {
     padding-left: 32px;
     padding-right: 32px;
     width: ${p => p.theme.breakpoints.tablet.width};
   }
+
   @media ${p => p.theme.media.desktop} {
     padding-left: 16px;
     padding-right: 16px;
