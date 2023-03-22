@@ -8,5 +8,4 @@ export const Header = styled.header`
 
   background-color: ${({ theme: { colors } }) => colors.accentSecondary};
   border-bottom: 1px solid;
-  box-shadow: ${({ theme: { shadows } }) => shadows.small};
 `;
