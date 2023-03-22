@@ -79,7 +79,9 @@ export const TextWrapper = styled.li`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 12px;
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
 `;
 
 export const ContactLink = styled.a`
