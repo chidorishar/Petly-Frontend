@@ -27,7 +27,7 @@ export const SponsorLink = styled.a`
 export const FriendCard = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const Time = styled.button`
