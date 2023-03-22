@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
  
@@ -34,40 +33,4 @@ table {
   text-indent: 0;
   border-color: inherit;
 }
-`;
-
-export const Container = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  @media ${p => p.theme.media.mobile} {
-    width: ${p => p.theme.breakpoints.mobile.width};
-  }
-
-  @media ${p => p.theme.media.tablet} {
-    padding-left: 32px;
-    padding-right: 32px;
-    width: ${p => p.theme.breakpoints.tablet.width};
-  }
-
-  @media ${p => p.theme.media.desktop} {
-    padding-left: 16px;
-    padding-right: 16px;
-    width: ${p => p.theme.breakpoints.desktop.width};
-  }
-`;
-
-export const Section = styled.section`
-  min-height: 97vh;
-  padding-top: 42px;
-  padding-bottom: 100px;
-  color: ${p => p.theme.colors.heading};
-  @media ${p => p.theme.media.tablet} {
-    padding-top: 88px;
-  }
-  @media ${p => p.theme.media.desktop} {
-    padding-top: 60px;
-  }
 `;
