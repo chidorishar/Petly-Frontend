@@ -13,4 +13,6 @@ const ROUTES = {
   FRIENDS: '/friends',
 };
 
+export const BACKEND_BASE_URL = 'localhost:4000';
+
 export { ROUTES };

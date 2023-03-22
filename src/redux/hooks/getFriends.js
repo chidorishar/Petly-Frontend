@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+import { BACKEND_BASE_URL } from 'utils/appKeys';
 // import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // const { REACT_APP_BACKEND_URL } = process.env;
@@ -18,8 +20,7 @@ import axios from 'axios';
 //   }
 // );
 
-const { REACT_APP_BACKEND_URL } = process.env;
-axios.defaults.baseURL = `http://${REACT_APP_BACKEND_URL}`;
+axios.defaults.baseURL = `http://${BACKEND_BASE_URL}`;
 
 const getFriends = async () => {
   let response = null;
