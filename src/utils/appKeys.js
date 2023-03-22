@@ -8,6 +8,7 @@
 const ROUTES = {
   REGISTER: '/register',
   LOGIN: '/login',
+  USERPAGE: '/user',
 };
 
 export { ROUTES };
