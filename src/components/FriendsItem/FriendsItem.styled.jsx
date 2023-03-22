@@ -8,8 +8,8 @@ export const SponsorLink = styled.a`
   line-height: 16px;
   color: ${p => p.theme.colors.accent};
   text-align: center;
-  transition: color ${p => p.theme.transition},
-    transform ${p => p.theme.transition};
+  transition: color ${p => p.theme.transitions.normal},
+    transform ${p => p.theme.transitions.normal};
   :hover,
   :focus {
     color: ${p => p.theme.colors.hoverBtn};
@@ -90,6 +90,9 @@ export const ContactLink = styled.a`
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+
+  transition: color ${p => p.theme.transitions.normal};
+
   :hover,
   :focus {
     color: ${p => p.theme.colors.accent};
