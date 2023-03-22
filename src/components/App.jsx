@@ -8,11 +8,11 @@ import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
-
-import { ROUTES } from 'utils/appKeys';
-
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+import NewsPage from 'pages/News/NewsPage';
+
+import { GlobalStyle } from 'utils';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -39,12 +39,15 @@ export const App = () => {
                 element={<RestrictedRoute redirectTo="/" component={<></>} />}
               />
 
-            {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-            <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-          </>
-        )}
-      </Route>
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+              {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route path="*" element={<></>} />
+              <Route path="news" element={<NewsPage />} />
+            </>
+          )}
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
 };

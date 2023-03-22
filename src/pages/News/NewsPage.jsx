@@ -5,6 +5,7 @@ import { HiOutlineXCircle } from 'react-icons/hi';
 import { IoSearchSharp } from 'react-icons/io5';
 import { Card, Title, Form, Button, Input } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
+import { Container } from 'components/common';
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -53,7 +54,7 @@ const News = () => {
   };
 
   return (
-    <>
+    <Container>
       <Title>News</Title>
       {/* <ToastContainer /> */}
       <Form onSubmit={handleSubmit}>
@@ -89,7 +90,7 @@ const News = () => {
           <div>Nothing found. Please, try again.</div>
         </div>
       )}
-    </>
+    </Container>
   );
 };
 
