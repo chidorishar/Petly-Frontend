@@ -12,6 +12,7 @@ import { ROUTES } from 'utils/appKeys';
 
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+import LoginPage from 'pages/Login/LoginPage';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -37,6 +38,12 @@ export const App = () => {
             />
 
             {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+            <Route
+              path={ROUTES.LOGIN}
+              element={
+                <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+              }
+            />
             <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
           </>
         )}
