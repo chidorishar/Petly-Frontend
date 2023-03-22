@@ -11,7 +11,6 @@ const ROUTES = {
   NEWS: '/news',
   NOTICES: '/notices',
   FRIENDS: '/friends',
-  SERVICES: '/services',
 };
 
 export { ROUTES };

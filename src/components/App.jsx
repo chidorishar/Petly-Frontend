@@ -41,7 +41,7 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-              <Route path={ROUTES.SERVICES} element={<OurFriendsPage />} />
+              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
             </>
           )}
