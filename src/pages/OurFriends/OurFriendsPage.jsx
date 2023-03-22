@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import getFriends from 'redux/hooks/getFriends';
 import FriendsList from 'components/FriendsList/FriendsList';
-import { Container, Section } from 'components/common';
+import { Section } from 'components/common';
 import { useState } from 'react';
 
 const OurFriendsPage = () => {
@@ -21,9 +21,7 @@ const OurFriendsPage = () => {
 
   return (
     <Section>
-      <Container>
-        <FriendsList friends={friends} />
-      </Container>
+      <FriendsList friends={friends} />
     </Section>
   );
 };
