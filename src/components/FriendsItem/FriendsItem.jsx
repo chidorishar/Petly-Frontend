@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+import EllipsisText from 'react-ellipsis-text';
+
 import {
   SponsorLink,
   FriendCard,
@@ -40,7 +42,7 @@ export const FriendsItem = ({
   return (
     <SponsorItem>
       <SponsorLink href={siteUrl} target="_blank">
-        {title}
+        <EllipsisText text={title} length={maxSymbolsInLine} />
       </SponsorLink>
       <FriendCard>
         <Img src={imageUrl ?? defaultFriendImage} alt={title} />
@@ -84,7 +86,7 @@ export const FriendsItem = ({
             <Text>Adress:</Text>
             {mapUrl ? (
               <ContactLink href={mapUrl} target="_blank">
-                {adress}
+                <EllipsisText text={adress} length={maxSymbolsInLine} />
               </ContactLink>
             ) : (
               <Text>{noDataPlaceholder}</Text>
