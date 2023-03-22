@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Box } from 'components/common/shared.styled';
+import { Box } from 'components/common/Box/Box.styled';
 import {
   List,
   PetImg,

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box } from 'components/common/shared.styled';
+import { Box } from 'components/common/Box/Box.styled';
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
