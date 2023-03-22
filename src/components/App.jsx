@@ -12,6 +12,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 import RegisterPage from 'pages/Register/RegisterPage';
 
 import { GlobalStyle } from 'utils';
+import { UserDataItem } from './UserDataItem/UserDataItem';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -43,6 +44,7 @@ export const App = () => {
               <Route path="*" element={<></>} />
             </>
           )}
+          <Route path="/input" element={<UserDataItem />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
