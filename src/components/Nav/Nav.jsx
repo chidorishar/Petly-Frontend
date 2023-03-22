@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { ROUTES } from 'utils/appKeys';
 import { NaviList, NaviLink } from './Nav.styled';
 
 export const Nav = () => {
@@ -8,11 +9,11 @@ export const Nav = () => {
     <nav>
       <NaviList>
         <li>
-          <NaviLink to="/news">News</NaviLink>
+          <NaviLink to={ROUTES.NEWS}>News</NaviLink>
         </li>
         <li>
           <NaviLink
-            to="/notices/sell"
+            to={ROUTES.NOTICES}
             className={
               categoryName === 'lost-found' ||
               categoryName === 'for-free' ||
@@ -26,7 +27,7 @@ export const Nav = () => {
           </NaviLink>
         </li>
         <li>
-          <NaviLink to="/friends">Our friends</NaviLink>
+          <NaviLink to={ROUTES.FRIENDS}>Our friends</NaviLink>
         </li>
       </NaviList>
     </nav>
