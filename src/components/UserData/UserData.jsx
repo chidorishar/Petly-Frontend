@@ -2,19 +2,22 @@ import { useState } from 'react';
 import {
   UserInput,
   UserTitle,
-  UserContainer,
   UserImageWrapper,
   UserLabel,
   UserSpan,
-  EditPhotoBtn,
+  EditPhotoLabel,
   UserWrapper,
+  EditAvatarIcon,
+  AvatarInput,
 } from './UserData.styled';
+
+import sprite from 'images/sprite.svg';
 
 export const UserData = () => {
   const [currEditInputID, setCurrEditInputID] = useState(null);
 
   return (
-    <UserContainer>
+    <>
       <UserTitle>My information:</UserTitle>
       <UserWrapper>
         <UserImageWrapper>
@@ -23,20 +26,16 @@ export const UserData = () => {
             alt="User Photo"
             style={{ borderRadius: '50%', objectFit: 'contain' }}
           />
-          <EditPhotoBtn type="button" className="btn">
-            Edit Photo
-          </EditPhotoBtn>
-          <input
-            name="img"
-            type="file"
-            accept="image/*"
-            style={{
-              display: 'none',
-              border: 'none',
-            }}
-          />
+          <EditPhotoLabel>
+            <AvatarInput name="img" type="file" accept="image/*" />
+            <EditAvatarIcon>
+              <use href={sprite + '#camera'} />
+            </EditAvatarIcon>
+            <span>Edit Photo</span>
+          </EditPhotoLabel>
         </UserImageWrapper>
 
+        {/* UserForm component */}
         <form type="submit">
           <UserLabel>
             <UserSpan>Name:</UserSpan>
@@ -85,7 +84,8 @@ export const UserData = () => {
             <UserInput type="text" value="Kiev" />
           </UserLabel>
         </form>
+        {/* ....... */}
       </UserWrapper>
-    </UserContainer>
+    </>
   );
 };

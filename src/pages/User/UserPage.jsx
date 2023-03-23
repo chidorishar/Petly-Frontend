@@ -1,15 +1,16 @@
 import { PetsData } from 'components/PetsData/PetsData';
 import { UserData } from 'components/UserData/UserData';
-import { UserContainer } from './UserPage.styled';
+import { UserPageContainer, UserInfoConatainer } from './UserPage.styled';
 
 export const UserPage = () => {
   return (
-    <>
-      <UserContainer>
+    <UserPageContainer>
+      <UserInfoConatainer>
         <UserData />
-        {/* <Logout /> */}
-        <PetsData />
-      </UserContainer>
-    </>
+        {/* <Logout/> */}
+      </UserInfoConatainer>
+
+      <PetsData />
+    </UserPageContainer>
   );
 };

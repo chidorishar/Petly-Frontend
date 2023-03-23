@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import { InputCommon } from 'components/common/shared.styled';
 
-export const UserContainer = styled.div`
-  width: 411px;
-  margin-right: 32px;
-`;
-
 export const UserInput = styled(InputCommon)`
   border: none;
   background-color: transparent;
@@ -69,21 +64,37 @@ export const UserSpan = styled.span`
   width: 107px;
 `;
 
-export const EditPhotoBtn = styled.button`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
+export const EditPhotoLabel = styled.label`
   font-size: 12px;
   line-height: 22px;
   letter-spacing: 0.04em;
 
-  borderradius: 4;
-  background-color: #f59256;
+  background-color: #fff;
   color: black;
   position: absolute;
-  left: 95%;
+  left: 92%;
   bottom: 0;
   padding: 0;
-  display: inline-block;
+  display: flex;
   white-space: nowrap;
+  cursor: pointer;
+`;
+
+export const AvatarInput = styled.input`
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+`;
+
+export const EditAvatarIcon = styled.svg`
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  fill: #f59256;
+
+  transition: fill 250ms ease-in-out;
+
+  &:hover {
+    fill: #ff6101;
+  }
 `;
