@@ -13,7 +13,6 @@ import {
   NotFound,
 } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
-import { Container } from 'components/common';
 import { Section } from 'components/common';
 
 const NewsPage = () => {
@@ -63,45 +62,41 @@ const NewsPage = () => {
   };
 
   return (
-    <Container>
-      <Section>
-        <Title>News</Title>
-        {/* <ToastContainer /> */}
-        <Form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            name="query"
-            value={search}
-            placeholder="Search"
-            autoFocus
-            onChange={handleChange}
-          />
-          <Button
-            type="submit"
-            style={{ position: 'absolute', right: '10px', top: '10px' }}
-          >
-            {!search && <IoSearchSharp size={20} />}
-            {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
-          </Button>
-        </Form>
-        <Box>
-          {news.length > 0 ? (
-            filteredNews.map(newItem => (
-              <div key={newItem._id}>
-                <NewsCard newItem={newItem} />
-              </div>
-            ))
-          ) : (
-            <div />
-          )}
-        </Box>
-        {search !== '' && query && filteredNews.length === 0 && (
-          <NotFoundBox>
-            <NotFound>Nothing found. Please, try again.</NotFound>
-          </NotFoundBox>
+    <Section>
+      <Title>News</Title>
+      {/* <ToastContainer /> */}
+      <Form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          name="query"
+          value={search}
+          placeholder="Search"
+          autoFocus
+          onChange={handleChange}
+        />
+        <Button
+          type="submit"
+          style={{ position: 'absolute', right: '10px', top: '10px' }}
+        >
+          {!search && <IoSearchSharp size={20} />}
+          {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
+        </Button>
+      </Form>
+      <Box>
+        {news.length > 0 ? (
+          filteredNews.map(newItem => (
+            <NewsCard key={newItem._id} newItem={newItem} />
+          ))
+        ) : (
+          <div />
         )}
-      </Section>
-    </Container>
+      </Box>
+      {search !== '' && query && filteredNews.length === 0 && (
+        <NotFoundBox>
+          <NotFound>Nothing found. Please, try again.</NotFound>
+        </NotFoundBox>
+      )}
+    </Section>
   );
 };
 
