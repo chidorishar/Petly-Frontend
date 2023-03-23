@@ -1,9 +1,7 @@
 import axios from 'axios';
+import { BACKEND_BASE_URL } from 'utils/appKeys';
 
-// eslint-disable-next-line no-undef
-const { REACT_APP_BACKEND_URL } = process.env;
-
-axios.defaults.baseURL = `http://${REACT_APP_BACKEND_URL}`;
+axios.defaults.baseURL = `http://${BACKEND_BASE_URL}`;
 
 const getNews = async () => {
   let response = null;
