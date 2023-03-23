@@ -7,7 +7,6 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 
 import { Container } from 'components/common';
 import { Header } from 'components';
-import NewsPage from '../../pages/News/NewsPage';
 export default function SharedLayout() {
   const { isUserAuthorized } = useAuth();
 
@@ -19,7 +18,6 @@ export default function SharedLayout() {
           {isUserAuthorized && <UserMenu />}
         </Container>
       </Header>
-      <NewsPage />
 
       <Suspense fallback={<div>Loading...</div>}>
         <Container>
