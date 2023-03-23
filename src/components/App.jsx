@@ -43,8 +43,8 @@ export const App = () => {
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path="*" element={<></>} />
-              <Route path="news" element={<NewsPage />} />
             </>
           )}
         </Route>
