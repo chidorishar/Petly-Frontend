@@ -16,7 +16,7 @@ import NewsCard from '../../components/NewsCards/NewsCard';
 import { Container } from 'components/common';
 import { Section } from 'components/common';
 
-const News = () => {
+const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [searchParams, setSeachParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -105,4 +105,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default NewsPage;
