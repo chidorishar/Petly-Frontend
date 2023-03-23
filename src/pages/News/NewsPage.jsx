@@ -19,7 +19,7 @@ const NewsPage = () => {
   const [news, setNews] = useState([]);
   const [searchParams, setSeachParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(query);
 
   useEffect(() => {
     const newsPage = async () => {
