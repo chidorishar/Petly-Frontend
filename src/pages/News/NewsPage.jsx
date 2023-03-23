@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import getNews from '../News/getNews';
+import getNews from './getNews';
 import { HiOutlineXCircle } from 'react-icons/hi';
 import { IoSearchSharp } from 'react-icons/io5';
 import {
@@ -17,45 +17,36 @@ import { Section } from 'components/common';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
-  const [searchParams, setSeachParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const [search, setSearch] = useState(query);
 
-  useEffect(() => {
-    const newsPage = async () => {
-      try {
-        const newsArray = await getNews();
-        const newsRes = newsArray.result;
+  const fetchNews = async searchString => {
+    try {
+      const newsArray = await getNews(searchString);
+      const newsRes = newsArray.result;
 
-        setNews(newsRes);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    newsPage();
+      setNews(newsRes);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
   }, []);
 
   const handleChange = e => {
-    setSeachParams({ query: e.currentTarget.value.toLocaleLowerCase().trim() });
+    setSearchParams({
+      query: e.currentTarget.value.toLocaleLowerCase().trim(),
+    });
     setSearch(e.currentTarget.value.toLocaleLowerCase());
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSeachParams({ query: search });
+    fetchNews(search);
   };
-
-  const getFilteredNews = () => {
-    if (news) {
-      return news.filter(
-        newsItem =>
-          newsItem.title.toLowerCase().includes(search) ||
-          newsItem.description.toLowerCase().includes(search)
-      );
-    }
-  };
-
-  const filteredNews = getFilteredNews();
 
   const removeQuery = () => {
     setSearch('');
@@ -84,14 +75,12 @@ const NewsPage = () => {
       </Form>
       <Box>
         {news.length > 0 ? (
-          filteredNews.map(newItem => (
-            <NewsCard key={newItem._id} newItem={newItem} />
-          ))
+          news.map(newItem => <NewsCard key={newItem._id} newItem={newItem} />)
         ) : (
           <div />
         )}
       </Box>
-      {search !== '' && query && filteredNews.length === 0 && (
+      {search !== '' && query && news.length === 0 && (
         <NotFoundBox>
           <NotFound>Nothing found. Please, try again.</NotFound>
         </NotFoundBox>
