@@ -1,92 +1,78 @@
 import styled from 'styled-components';
 import { InputCommon } from 'components/common/shared.styled';
-
-export const UserContainer = styled.div`
-  width: 411px;
-  margin-right: 32px;
-`;
+import { Box } from 'components/common';
 
 export const UserInput = styled(InputCommon)`
-  border: none;
   background-color: transparent;
   margin: 0;
-  width: 216px;
-  font-weight: 400;
-  margin-right: 20px;
+  width: 159px;
+  margin-right: 9px;
   border: 1px solid transparent;
-  border-radius: 40px;
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
+  padding: 4px 18px;
+  line-height: ${p => p.theme.lineHeights.body};
 
   &.enabled {
     background: #fdf7f2;
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
-`;
-
-export const UserTitle = styled.p`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 38px;
-
-  margin-bottom: 24px;
-  color: #111;
-`;
-
-export const UserWrapper = styled.div`
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  width: 411px;
-  border-radius: 0 40px 40px 0;
-  position: relative;
-  left: -32px;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  padding: 20px 16px;
-`;
-
-export const UserImageWrapper = styled.div`
-  width: 233px;
-  height: 233px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin: 0 auto 36px auto;
-  object-fit: contain;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    width: 216px;
+    padding-left: 12px;
+  }
 `;
 
 export const UserLabel = styled.label`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.text};
+  line-height: ${p => p.theme.lineHeights.body};
   letter-spacing: 0.04em;
   display: flex;
+  align-items: center;
   &:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+  }
+  span {
+    font-weight: ${p => p.theme.fontWeights.heading};
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: ${p => p.theme.fontSizes.n};
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
   }
 `;
 
 export const UserSpan = styled.span`
-  width: 107px;
+  width: 56px;
+  margin-right: 8px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    width: 83px;
+    margin-right: 24px;
+  }
 `;
-
-export const EditPhotoBtn = styled.button`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
-
-  border-radius: 4;
-  background-color: #f59256;
-  color: black;
-  position: absolute;
-  left: 100%;
-  bottom: 0;
+export const EditBtn = styled.button`
+  display: flex;
+  border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+  background-color: ${p => p.theme.colors.mainBackground};
+  font-size: ${p => p.theme.fontSizes.xs};
+  width: 20px;
+  height: 20px;
   padding: 0;
-  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: ${p => p.theme.fontSizes.nl};
+
+    width: 32px;
+    height: 32px;
+  }
+`;
+export const FormBox = styled(Box)`
+  background-color: ${p => p.theme.colors.secondaryBackground};
+  max-width: 100%;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-width: 379px;
+  }
 `;
