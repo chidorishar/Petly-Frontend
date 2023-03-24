@@ -36,7 +36,8 @@ export const InputCommon = styled.input`
 
   border-radius: 26px;
   border: none;
-  outline: ${p => p.theme.borders.inputModal} ${({ theme: { colors } }) => colors.inputModal};
+  outline: ${p => p.theme.borders.inputModal}
+    ${({ theme: { colors } }) => colors.inputModal};
 
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
 
@@ -58,13 +59,11 @@ export const InputCommon = styled.input`
     margin-top: 0;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     outline-width: 2px;
-  };
-
+  }
 `;
-
-
 
 export const TextMessage = styled.p`
   font-weight: ${p => p.theme.fontWeights.text};
@@ -104,24 +103,24 @@ export const Button = styled.button`
     transition: transform 0.5s;
   }
   :hover:before {
-      left: 100%;
-    }
+    left: 100%;
+  }
 
-    :before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.6),
-        transparent
-      );
-      transition: all 650ms;
-    }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export const Text = styled.p`
