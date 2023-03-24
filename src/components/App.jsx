@@ -12,7 +12,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-
+// const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 import { GlobalStyle } from 'utils';
 
 export const App = () => {
