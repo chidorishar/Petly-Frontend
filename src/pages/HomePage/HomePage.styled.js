@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import dogMobile from '../../images/homePage/dog-mobile.png';
+import dogMobile from '../../images/homePage/dog-desktop.png';
 import dogMobile2x from '../../images/homePage/dog-mobile@2x.png';
 import dogTablet from '../../images/homePage/dog-tablet.png';
 import dogTablet2x from '../../images/homePage/dog-tablet@2x.png';

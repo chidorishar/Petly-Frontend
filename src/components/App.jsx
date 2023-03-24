@@ -6,13 +6,13 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 import { ROUTES } from 'utils/appKeys';
 
 import SharedLayout from './SharedLayout/SharedLayout';
-import { RestrictedRoute } from './ProtectedRoute';
+// import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-// const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 import { GlobalStyle } from 'utils';
 
 export const App = () => {
@@ -37,7 +37,7 @@ export const App = () => {
               {/* HOMEPAGE */}
               <Route
                 index
-                element={<RestrictedRoute redirectTo="/" component={<></>} />}
+                element={<HomePage />}
               />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
