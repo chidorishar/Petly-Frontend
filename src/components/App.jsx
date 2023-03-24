@@ -11,7 +11,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-
+// const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 import { GlobalStyle } from 'utils';
 
 export const App = () => {
