@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   UserInput,
   UserLabel,
@@ -62,14 +63,64 @@ export const UserDataItem = user => {
     }
     setActiveType(e.currentTarget.dataset.type);
     setIsClicked(!isClicked);
+    if (currEditInputID !== null) {
+      selectDataToUpdate(currEditInputID);
+    }
     setCurrEditInputID(prevState => {
       return prevState !== index ? index : null;
     });
   };
   const handleKeyDown = event => {
     if (event.keyCode === 13) {
+      selectDataToUpdate(currEditInputID);
       setCurrEditInputID(null);
       setIsClicked(false);
+    }
+  };
+  const updateUserData = async data => {
+    console.log('data send', data);
+    await axios
+      .post('ServerEndpoint', { data })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  const selectDataToUpdate = index => {
+    let updateData = {};
+    switch (index) {
+      case 0:
+        updateData = {
+          name: name,
+        };
+        updateUserData(updateData);
+        break;
+      case 1:
+        updateData = {
+          email: email,
+        };
+        updateUserData(updateData);
+        break;
+      case 2:
+        updateData = {
+          date: date,
+        };
+        updateUserData(updateData);
+        break;
+      case 3:
+        updateData = {
+          phone: phone,
+        };
+        updateUserData(updateData);
+        break;
+      case 4:
+        updateData = {
+          city: city,
+        };
+        updateUserData(updateData);
+        break;
     }
   };
   return (
