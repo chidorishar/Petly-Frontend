@@ -1,7 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { ROUTES } from 'utils/appKeys';
-import css from './LoginForm.module.css';
 import {
   Button,
   ContainerCardCommon,

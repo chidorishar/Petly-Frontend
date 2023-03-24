@@ -8,7 +8,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-
 import { persistedAuthReducer } from './slices/authSlice.js';
 import { usersAPI } from './slices/usersAPISlice.js';
 import { friendsReducer } from './slices/friendsSlice.js';

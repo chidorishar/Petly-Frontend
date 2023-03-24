@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <App />
           </PersistGate>
         </Provider>
-      </ThemeProvider>{' '}
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
