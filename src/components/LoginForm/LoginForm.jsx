@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
 
@@ -18,7 +19,8 @@ import {
 } from './LoginForm.styled';
 
 export const LoginForm = () => {
-  const [login, { isSuccess }] = useLoginUserMutation({});
+  const [sendLoginRequest, { isSuccess }] = useLoginUserMutation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -27,14 +29,17 @@ export const LoginForm = () => {
     validationSchema: loginschema,
 
     onSubmit: async values => {
-      const { error } = await login(values);
-      if (error) {
+      try {
+        const {
+          data: { user },
+        } = await sendLoginRequest(values).unwrap();
+
+        toast.success(`Welcome back, ${user.name}!`);
+      } catch (error) {
         toast.error(
-          error.status === 400 ? 'Wrong credentials!' : 'Something went wrong'
+          error.status === 401 ? 'Wrong credentials!' : 'Something went wrong'
         );
       }
-
-      // toastify success
     },
   });
 
