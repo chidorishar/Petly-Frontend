@@ -25,7 +25,17 @@ export const Heading = styled.h1`
     line-height: calc(100 / 68);
   }
 `;
-
+export const DonateImg = styled.img`
+  width: 72px;
+  height: 52px;
+  @media (min-width: 768px) {
+    width: 124px;
+    height: 108px;
+  }
+  @media (min-width: 1280px) {
+    margin-right: 80px;
+  }
+`;
 export const Section = styled.section`
   padding-top: 60px;
   min-height: 543px;
