@@ -9,7 +9,7 @@ const ROUTES = {
   REGISTER: '/register',
   LOGIN: '/login',
   NEWS: '/news',
-  NOTICES: '/notices',
+  NOTICES: '/notices/',
   FRIENDS: '/friends',
 };
 

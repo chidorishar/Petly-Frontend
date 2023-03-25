@@ -2,7 +2,7 @@ const notices = [
   {
     id: '1',
     name: 'cat',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'kiiv',
@@ -13,7 +13,7 @@ const notices = [
   {
     id: '2',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/tomato/white',
+    petImg: 'https://placehold.co/280x288/tomato/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -24,7 +24,7 @@ const notices = [
   {
     id: '3',
     name: 'cat',
-    petImg: 'https://placehold.co/200x288/tomato/white',
+    petImg: 'https://placehold.co/280x288/tomato/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -35,7 +35,7 @@ const notices = [
   {
     id: '4',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -46,7 +46,7 @@ const notices = [
   {
     id: '5',
     name: 'cat',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -57,7 +57,7 @@ const notices = [
   {
     id: '6',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -68,7 +68,7 @@ const notices = [
   {
     id: '7',
     name: 'cat',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -79,7 +79,7 @@ const notices = [
   {
     id: '8',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -90,7 +90,7 @@ const notices = [
   {
     id: '9',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -101,7 +101,7 @@ const notices = [
   {
     id: '10',
     name: 'cat',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -112,7 +112,7 @@ const notices = [
   {
     id: '11',
     name: 'dog',
-    petImg: 'https://placehold.co/200x288/orange/white',
+    petImg: 'https://placehold.co/280x288/orange/white',
     title: 'Сute dog looking for a home',
     breed: 'Pomeranian',
     place: 'Lviv',
@@ -122,10 +122,14 @@ const notices = [
   },
 ];
 
-export const getNotices = () => {
-  return notices;
+const getNotices = (category, name) => {
+  const result = notices.filter(
+    notice => notice.category === category && notice.name === name
+  );
+  return result;
 };
 
+export default getNotices;
 // export const getProductById = productId => {
 //   return products.find(product => product.id === productId);
 // };

@@ -4,8 +4,12 @@ import { IoAddOutline } from 'react-icons/io5';
 export const Wrapper = styled.div`
   position: relative;
   margin-top: 36px;
-  // margin-right: auto;
-  // margin-left: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 500px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 1000px;
+  }
 `;
 
 export const Button = styled.button`
@@ -14,6 +18,13 @@ export const Button = styled.button`
   border-radius: 40px;
   margin-right: 12px;
   margin-top: 12px;
+
+  &.active {
+    color: white;
+    background-color: orangered;
+  }
+  /* background: ${props => (props.activeCategory ? 'orange' : 'white')};
+  color: ${props => (props.activeCategory ? 'white' : 'orange')}; */
 `;
 export const AddPetBtn = styled.button`
   width: 80px;
@@ -23,9 +34,9 @@ export const AddPetBtn = styled.button`
   padding: 0;
   background: #f59256;
   min-width: 44px;
-  position: absolute;
-  top: 200px;
-  right: 5px;
+  position: fixed;
+  right: 115px;
+  bottom: 90px;
   z-index: 99;
 
   color: #fff;
@@ -44,10 +55,10 @@ export const CommonWrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
-    max-width: 732px;
+    max-width: 768px;
   }
-  @media screen and (min-width: 1000px) {
-    max-width: 864px;
+  @media screen and (min-width: 1280px) {
+    max-width: 1280px;
   }
 `;
 
@@ -66,13 +77,13 @@ export const Icon = styled(IoAddOutline)`
 `;
 export const Span = styled.span`
   position: absolute;
-  top: 240px;
-  right: 15px;
+  left: 10px;
   color: #fff;
   z-index: 100;
   min-width: 60px;
   @media screen and (min-width: 768px) {
-    position: static;
+    position: absolute;
+    left: -60px;
     color: #000;
   }
 `;

@@ -12,14 +12,14 @@ export const Container = styled.ul`
     margin-top: 60px;
     gap: 32px;
   }
-  @media screen and (min-width: 1080px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    max-width: 1080px;
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 1280px;
     margin-top: 60px;
   }
 `;
 export const CardWrapper = styled.li`
-  width: 100%;
+  /* width: 100%;
   list-style-type: none;
   border: 1px solid black;
   border-radius: 0px 0px 40px 40px;
@@ -31,5 +31,5 @@ export const CardWrapper = styled.li`
   }
   @media screen and (min-width: 1280px) {
     width: 288px;
-  }
+  } */
 `;

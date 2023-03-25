@@ -8,11 +8,11 @@ export const NoticesCategoriesList = ({ notices }) => {
       {notices.map(notice => (
         <CardWrapper key={notice.id}>
           <NoticeCategoriesItem
-            petImg={notice.petImg}
+            image={notice.image}
             title={notice.title}
             breed={notice.breed}
-            place={notice.place}
-            age={notice.age}
+            location={notice.location}
+            birthDate={notice.birthDate}
             price={notice.price}
           />
         </CardWrapper>

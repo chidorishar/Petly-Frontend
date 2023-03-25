@@ -8,7 +8,7 @@ import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
 
-import { NoticesPage } from 'pages/NoticesPage';
+import { NoticesPage } from 'pages/Notices/NoticesPage';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
@@ -44,6 +44,7 @@ export const App = () => {
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
               <Route path="*" element={<></>} />
             </>
           )}

@@ -12,18 +12,28 @@ export const NoticesNavigation = () => {
     sell: 'sell',
     lost: 'lost/found',
     hands: 'in good hands',
+    favorite_ads: 'favorite ads',
+    my_ads: 'my ads',
   };
+  const isLoggedIn = true;
+  // const activeCategory = 'sell';
   return (
     <CommonWrapper>
       <Wrapper>
-        <Button>{nameCategory.sell}</Button>
-        <Button>{nameCategory.lost}</Button>
-        <Button>{nameCategory.hands}</Button>
+        <Button type="button">{nameCategory.lost}</Button>
+        <Button type="button">{nameCategory.hands}</Button>
+        <Button type="button">{nameCategory.sell}</Button>
+        {isLoggedIn && (
+          <>
+            <Button type="button">{nameCategory.favorite_ads}</Button>
+            <Button type="button">{nameCategory.my_ads}</Button>
+          </>
+        )}
       </Wrapper>
       <Wrapper>
-        <Span>Add pet</Span>
         <AddPetBtn>
           <Icon />
+          <Span>Add pet</Span>
         </AddPetBtn>
       </Wrapper>
     </CommonWrapper>

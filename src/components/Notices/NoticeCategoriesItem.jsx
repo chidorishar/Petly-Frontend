@@ -1,52 +1,46 @@
 import PropTypes from 'prop-types';
-import { Box } from 'components/common/shared.styled';
+import { Box } from 'components/common/';
+import { RiDeleteBinFill } from 'react-icons/ri';
+
 import {
-  // Container,
-  // ImgWrapper,
+  CardContainer,
+  ImgWrapper,
+  Wrapper,
   PetImg,
   PetInfo,
   CardWrapper,
   CardTitle,
-  // CardList,
+  BottomWrapper,
   Button,
+  DeleteButton,
   CategoryTitle,
   AddToFavBtn,
   FavoriteIcon,
+  Span,
 } from './NoticeCategoriesItem.styled';
 
 export const NoticeCategoriesItem = ({
-  id,
-  petImg,
+  // id,
+  image,
   title,
   breed,
-  place,
-  age,
+  location,
+  // birthDate,
   price,
 }) => {
+  let isActive = true;
+
   return (
-    <Box
-      key={id}
-      position="relative"
-      backgroundColor="#ffffff"
-      border-radius="0px 0px 40px 40px"
-      // borderBottomLeftRadius="20px"
-      // borderBottomRightRadius="20px"
-      boxShadow="7px 4px 14px rgba(49, 21, 4, 0.07)"
-    >
-      <PetImg src={petImg} alt={breed} />
-      <Box
-        display="flex"
-        position="absolute"
-        width="100%"
-        justifyContent="space-between"
-        top="12px"
-        alignItems="center"
-      >
-        <CategoryTitle>sell</CategoryTitle>
-        <AddToFavBtn>
-          <FavoriteIcon />
-        </AddToFavBtn>
-      </Box>
+    <CardContainer>
+      <ImgWrapper>
+        <PetImg src={image} alt={breed} />
+        <Wrapper>
+          <CategoryTitle>sell</CategoryTitle>
+          <AddToFavBtn>
+            <FavoriteIcon />
+          </AddToFavBtn>
+        </Wrapper>
+      </ImgWrapper>
       <CardWrapper>
         <CardTitle>{title}</CardTitle>
         <Box display="flex" marginTop="20px">
@@ -55,30 +49,36 @@ export const NoticeCategoriesItem = ({
               <li>Breed:</li>
               <li>Place:</li>
               <li>Age:</li>
-              <li>Price:</li>
+              {!isActive && <li>Price:</li>}
             </PetInfo>
           </Box>
           <PetInfo>
             <li>{breed}</li>
-            <li>{place}</li>
-            <li>{age}</li>
-            <li>{price}</li>
+            <li>{location}</li>
+            <li>{}</li>
+            {!isActive && <li>{price}</li>}
           </PetInfo>
         </Box>
-        <Box display="flex" justifyContent="center">
+        <BottomWrapper>
           <Button>Learn more</Button>
-        </Box>
+          {isActive && (
+            <DeleteButton>
+              <Span>Delete</Span>
+              <RiDeleteBinFill />
+            </DeleteButton>
+          )}
+        </BottomWrapper>
       </CardWrapper>
-    </Box>
+    </CardContainer>
   );
 };
 
 NoticeCategoriesItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  petImg: PropTypes.string.isRequired,
+  // id: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
-  place: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  birthDate: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
 };

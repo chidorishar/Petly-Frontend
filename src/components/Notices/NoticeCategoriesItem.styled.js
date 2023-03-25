@@ -2,27 +2,43 @@ import styled from 'styled-components';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { InsetButtonCommon } from 'components/common/shared.styled';
 
-export const Container = styled.div`
+export const CardContainer = styled.div`
+  position: relative;
+  width: 280px;
+  height: 606px;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
+  border: none;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 288px;
+  }
 `;
-// export const ImgWrapper = styled.div`
-//   width: 288px;
-//   height: 288px;
-//   border: 1px solid black;
-//   border-radius: 4px;
-//   > a {
-//     text-decoration: none;
-//   }
-// `;
+export const Wrapper = styled.div`
+  display: flex;
+  position: absolute;
+  width: 100%;
+  justify-content: space-between;
+  top: 12px;
+  align-items: center;
+`;
+export const ImgWrapper = styled.div`
+  width: 100%;
+  height: 288px;
+  border: none;
+`;
 export const PetImg = styled.img`
   width: 100%;
+  object-fit: cover;
 `;
 export const CardWrapper = styled.div`
-  width: 288px;
+  width: 280px;
   height: 318px;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 16px 0px 16px;
   // text-align: center;
-  border: 1px solid black;
+  border: none;
   border-radius: 0px 0px 40px 40px;
   > a {
     text-decoration: none;
@@ -39,7 +55,6 @@ export const CardTitle = styled.h3`
   height: 76px;
   margin-left: 20px;
   margin-right: 37px;
-  margin-top: 20px;
 
   font-family: 'Manrope';
   font-style: normal;
@@ -70,8 +85,23 @@ export const P = styled.p`
   color: #111111;
 `;
 export const Button = styled.button`
-  width: 248px;
+  width: 100%;
   margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  border: 2px solid #f59256;
+  border-radius: 40px;
+  font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
+  font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
+  color: #f59256;
+  padding: 8px 16px;
+`;
+export const DeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 12px;
   margin-right: auto;
   margin-left: auto;
   border: 2px solid #f59256;
@@ -119,4 +149,16 @@ export const PetInfo = styled.ul`
   font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: ${({ theme: { colors } }) => colors.dark};
+`;
+export const BottomWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 248px;
+  justify-content: center;
+  /* align-items: center; */
+  margin-right: auto;
+  margin-left: auto;
+`;
+export const Span = styled.span`
+  margin-right: 14px;
 `;

@@ -6,7 +6,7 @@ export const Title = styled.h1`
   height: 33px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 89px;
+  margin-top: 42px;
 
   font-family: 'Manrope';
   font-style: normal;
@@ -24,6 +24,7 @@ export const Title = styled.h1`
     font-weight: 700;
     font-size: 48px;
     line-height: 66px;
+    margin-top: 88px;
   }
   @media screen and (min-width: 1280px) {
     width: 492px;
@@ -31,5 +32,6 @@ export const Title = styled.h1`
     font-weight: 700;
     font-size: 48px;
     line-height: 66px;
+    margin-top: 70px;
   }
 `;

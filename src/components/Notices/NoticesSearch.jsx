@@ -1,23 +1,33 @@
-import { Wrapper, Input, Icon, Button } from './NoticesSearch.styled';
+import {
+  Form,
+  Input,
+  IconHiSearch,
+  IconHiOutlineXCircle,
+  Button,
+} from './NoticesSearch.styled';
 import PropTypes from 'prop-types';
 
-export const NoticesSearch = ({ value, onChange }) => {
+export const NoticesSearch = ({ onChange, onSubmit }) => {
+  let search = false;
   return (
-    <Wrapper>
+    <Form onSubmit={onSubmit}>
       <Input
         type="text"
         placeholder="Search"
-        value={value}
-        onChange={e => onChange(e.target.value)}
+        name="name"
+        // value={value}
+        onChange={onChange}
       />
-      <Button>
-        <Icon />
+      <Button type="onSubmit">
+        {search && <IconHiSearch />}
+        {!search && <IconHiOutlineXCircle width={20} />}
       </Button>
-    </Wrapper>
+    </Form>
   );
 };
 
 NoticesSearch.propTypes = {
   value: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };
