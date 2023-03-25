@@ -3,17 +3,17 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
-import { ROUTES } from 'utils/appKeys';
 
+import { GlobalStyle, ToastContainer } from 'utils';
+import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
-import { RestrictedRoute } from './ProtectedRoute';
+
+// import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-
-import { GlobalStyle, ToastContainer } from 'utils';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -36,10 +36,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route
-                index
-                element={<RestrictedRoute redirectTo="/" component={<></>} />}
-              />
+              <Route index element={<></>} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />

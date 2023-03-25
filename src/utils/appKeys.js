@@ -29,6 +29,7 @@ const BACKEND_ENDPOINTS = {
   LOGIN: 'auth/login',
   LOGOUT: 'auth/logout',
   REFRESH: 'auth/refresh',
+  UPDATE_USER_INFO: 'users',
 };
 
 const CACHE_TAGS = {
