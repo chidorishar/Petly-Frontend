@@ -6,12 +6,13 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 import { ROUTES } from 'utils/appKeys';
 
 import SharedLayout from './SharedLayout/SharedLayout';
-import { RestrictedRoute } from './ProtectedRoute';
+// import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
 
 import { GlobalStyle } from 'utils';
+import { UserDataItem } from './UserDataItem/UserDataItem';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -33,10 +34,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route
-                index
-                element={<RestrictedRoute redirectTo="/" component={<></>} />}
-              />
+              <Route index element={<UserDataItem />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
