@@ -11,8 +11,30 @@ const ROUTES = {
   NEWS: '/news',
   NOTICES: '/notices',
   FRIENDS: '/friends',
+  PROFILE: '/profile',
+};
+
+/**
+ * Application local storage keys.
+ */
+const LOCAL_STORAGE_KEYS = {
+  ACCESS_TOKEN: 'accessToken',
+};
+
+/**
+ * Application backend endpoints.
+ */
+const BACKEND_ENDPOINTS = {
+  REGISTER: 'auth/register',
+  LOGIN: 'auth/login',
+  LOGOUT: 'auth/logout',
+  REFRESH: 'auth/refresh',
+};
+
+const CACHE_TAGS = {
+  AUTH_LOGIN: 'AuthLogin',
 };
 
 export const BACKEND_BASE_URL = 'localhost:4000';
 
-export { ROUTES };
+export { ROUTES, LOCAL_STORAGE_KEYS, BACKEND_ENDPOINTS, CACHE_TAGS };
