@@ -1,3 +1,4 @@
+import { TextInput } from 'components/common';
 import { useFormikContext } from 'formik';
 
 import PropTypes from 'prop-types';
@@ -17,33 +18,27 @@ const StepTwo = ({ handleStepChange, animationState, refProp }) => {
     <Styled.WrapperTwo state={animationState} ref={refProp}>
       <Styled.Title>Registration</Styled.Title>
       <Styled.InputWrapper>
-        <div>
-          <input
-            name="name"
-            placeholder="Name"
-            value={values.name}
-            onChange={handleChange}
-          />
-          <div>{errors.name}</div>
-        </div>
-        <div>
-          <input
-            name="location"
-            placeholder="City, region"
-            value={values.location}
-            onChange={handleChange}
-          />
-          <div>{errors.location}</div>
-        </div>
-        <div>
-          <input
-            name="phone"
-            placeholder="Mobile phone"
-            value={values.phone}
-            onChange={handleChange}
-          />
-          <div>{errors.phone}</div>
-        </div>
+        <TextInput
+          inputName="name"
+          placeholder="Name"
+          value={values.name}
+          errorText={errors.name}
+          handleChange={handleChange}
+        />
+        <TextInput
+          inputName="location"
+          placeholder="City, region"
+          value={values.location}
+          errorText={errors.location}
+          handleChange={handleChange}
+        />
+        <TextInput
+          inputName="phone"
+          placeholder="Mobile phone"
+          value={values.phone}
+          errorText={errors.phone}
+          handleChange={handleChange}
+        />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
         <button type="submit">Register</button>

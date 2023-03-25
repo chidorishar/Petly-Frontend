@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { ROUTES } from 'utils/appKeys';
 
 import * as Styled from './RegisterForm.styled';
+import { TextInput } from 'components/common';
 
 const StepOne = ({ handleStepChange }) => {
   const { values, handleChange, validateField, errors, isValidating } =
@@ -32,33 +33,29 @@ const StepOne = ({ handleStepChange }) => {
     <Styled.Wrapper>
       <Styled.Title>Registration</Styled.Title>
       <Styled.InputWrapper>
-        <div>
-          <input
-            name="email"
-            placeholder="Email"
-            value={values.email}
-            onChange={handleChange}
-          />
-          <div>{errors.email}</div>
-        </div>
-        <div>
-          <input
-            name="password"
-            placeholder="Password"
-            value={values.password}
-            onChange={handleChange}
-          />
-          <div>{errors.password}</div>
-        </div>
-        <div>
-          <input
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={values.confirmPassword}
-            onChange={handleChange}
-          />
-          <div>{errors.confirmPassword}</div>
-        </div>
+        <TextInput
+          errorText={errors.email}
+          handleChange={handleChange}
+          inputName="email"
+          placeholder="Email"
+          value={values.email}
+        />
+        <TextInput
+          errorText={errors.password}
+          handleChange={handleChange}
+          inputName="password"
+          placeholder="Password"
+          value={values.password}
+          inputType="password"
+        />
+        <TextInput
+          errorText={errors.confirmPassword}
+          handleChange={handleChange}
+          inputName="confirmPassword"
+          placeholder="Confrim Password"
+          value={values.confirmPassword}
+          inputType="password"
+        />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
         <button type="button" onClick={handleNextClick}>
