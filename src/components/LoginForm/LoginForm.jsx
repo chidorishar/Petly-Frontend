@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
 
@@ -28,9 +29,11 @@ export const LoginForm = () => {
     validationSchema: loginschema,
 
     onSubmit: async values => {
-      const response = await login(values);
-      if (response.error) {
-        // toastify error
+      const { error } = await login(values);
+      if (error) {
+        toast.error(
+          error.status === 400 ? 'Wrong credentials!' : 'Something went wrong'
+        );
       }
 
       // toastify success
