@@ -11,7 +11,7 @@ import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
 
-// import { RestrictedRoute } from './ProtectedRoute';
+import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
@@ -53,7 +53,13 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
-              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route
+                path={ROUTES.LOGIN}
+                element={
+                  <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+                }
+              />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
