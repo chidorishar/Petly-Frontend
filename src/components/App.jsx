@@ -12,12 +12,13 @@ import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
 
 import { RestrictedRoute } from './ProtectedRoute';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 const LoginPage = lazy(() => import('pages/Login/LoginPage'));
+const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
 
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
@@ -50,6 +51,12 @@ export const App = () => {
             <>
               {/* HOMEPAGE */}
               <Route index element={<></>} />
+              <Route
+                index
+                element={
+                  <PrivateRoute redirectTo="/" component={<UserMenu />} />
+                }
+              />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
