@@ -65,11 +65,19 @@ export const EditBtn = styled.button`
   justify-content: center;
   align-items: center;
   margin-left: auto;
+
+  transition: ${p => p.theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.media} {
     font-size: ${p => p.theme.fontSizes.nl};
 
     width: 32px;
     height: 32px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.hoverBtn};
   }
 `;
 export const FormBox = styled(Box)`
