@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoAddOutline } from 'react-icons/io5';
 
 export const PetsContainer = styled.div`
   width: 821px;
@@ -89,4 +90,41 @@ export const PetsDeleteIcon = styled.svg`
   width: 24px;
   height: 24px;
   fill: currentColor;
+`;
+
+export const AddPetBtn = styled.button`
+  width: 40px;
+  height: 40px;
+  border-radius: ${({ theme: { radii } }) => radii.round};
+  // border: ${({ theme: { borders } }) => borders.small} #f59256;
+  // padding: 0;
+  background-color: #f59256;
+  color: #fff;
+  // min-width: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+
+  &:hover {
+    background-color: #fff;
+    color: #f59256;
+    border: 2px solid #f59256;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: 12px;
+    width: 44px;
+    height: 44px;
+  }
+`;
+
+export const Icon = styled(IoAddOutline)`
+  width: 24px;
+  height: 24px;
+  fill: curentColor;
+  // @media screen and (min-width: 768px) {
+  //   width: 17.49px;
+  //   height: 17.49px;
+  // }
 `;

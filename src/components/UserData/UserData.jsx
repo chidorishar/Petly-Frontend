@@ -1,91 +1,87 @@
-import { useState } from 'react';
+import { Logout } from 'components/Logout/Logout';
+import PropTypes from 'prop-types';
 import {
   UserInput,
-  UserTitle,
   UserImageWrapper,
   UserLabel,
   UserSpan,
   EditPhotoLabel,
-  UserWrapper,
   EditAvatarIcon,
   AvatarInput,
+  Form,
+  FormWrapper,
+  UserImage,
 } from './UserData.styled';
 
 import sprite from 'images/sprite.svg';
 
-export const UserData = () => {
-  const [currEditInputID, setCurrEditInputID] = useState(null);
+import userDefaultImage from 'images/userDefaultImage.jpg';
+
+export const UserData = ({ user }) => {
+  const {
+    avatarURL = userDefaultImage,
+    birthday,
+    email,
+    name,
+    phone,
+    location,
+  } = user;
 
   return (
     <>
-      <UserTitle>My information:</UserTitle>
-      <UserWrapper>
-        <UserImageWrapper>
-          <img
-            src="https://images.unsplash.com/photo-1611915387288-fd8d2f5f928b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80"
-            alt="User Photo"
-            style={{ borderRadius: '50%', objectFit: 'contain' }}
-          />
-          <EditPhotoLabel>
-            <AvatarInput name="img" type="file" accept="image/*" />
-            <EditAvatarIcon>
-              <use href={sprite + '#camera'} />
-            </EditAvatarIcon>
-            <span>Edit Photo</span>
-          </EditPhotoLabel>
-        </UserImageWrapper>
-
+      <UserImageWrapper>
+        <UserImage src={avatarURL} alt="User Photo" />
+        <EditPhotoLabel>
+          <AvatarInput name="img" type="file" accept="image/*" />
+          <EditAvatarIcon>
+            <use href={sprite + '#camera'} />
+          </EditAvatarIcon>
+          <span>Edit Photo</span>
+        </EditPhotoLabel>
+      </UserImageWrapper>
+      {/* Контейнер FormWrapper потрібний для зміни позиціонування компонентів UserForm та Logout */}
+      <FormWrapper>
         {/* UserForm component */}
-        <form type="submit">
+        <Form type="submit">
           <UserLabel>
             <UserSpan>Name:</UserSpan>
-            <UserInput
-              type="text"
-              value="Anna"
-              className={currEditInputID === 0 ? 'enabled' : ''}
-            />
-            <button
-              onClick={() => {
-                setCurrEditInputID(prevState => {
-                  return prevState !== 0 ? 0 : null;
-                });
-              }}
-            >
-              Edit
-            </button>
+            <UserInput type="text" value={name} />
           </UserLabel>
           <UserLabel>
             <UserSpan>Email:</UserSpan>
-            <UserInput
-              type="email"
-              value="anna00@gmail.com"
-              className={currEditInputID === 1 ? 'enabled' : ''}
-            />
-            <button
-              onClick={() => {
-                setCurrEditInputID(prevState => {
-                  return prevState !== 1 ? 1 : null;
-                });
-              }}
-            >
-              Edit
-            </button>
+            <UserInput type="email" value={email} />
           </UserLabel>
           <UserLabel>
             <UserSpan>Birthday:</UserSpan>
-            <UserInput type="text" value="00.00.0000" />
+            <UserInput
+              type="text"
+              value={new Date(birthday).toLocaleString().split(',')[0]}
+            />
           </UserLabel>
           <UserLabel>
             <UserSpan>Phone:</UserSpan>
-            <UserInput type="phone" value="+38000000000" />
+            <UserInput type="phone" value={phone} />
           </UserLabel>
           <UserLabel>
             <UserSpan>City:</UserSpan>
-            <UserInput type="text" value="Kiev" />
+            <UserInput type="text" value={location.split(',')[0]} />
           </UserLabel>
-        </form>
+        </Form>
         {/* ....... */}
-      </UserWrapper>
+
+        <Logout userInfo={(birthday, email, name, phone, location)} />
+      </FormWrapper>
     </>
   );
+};
+
+UserData.propTypes = {
+  user: PropTypes.shape({
+    avatarURL: PropTypes.string,
+    birthday: PropTypes.string,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    location: PropTypes.string,
+  }),
 };

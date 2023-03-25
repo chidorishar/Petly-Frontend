@@ -8,11 +8,13 @@ import { ROUTES } from 'utils/appKeys';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
+// import { UserPage } from 'pages/User/UserPage';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
-import RegisterPage from 'pages/Register/RegisterPage';
-import { UserPage } from 'pages/User/UserPage';
+const NewsPage = lazy(() => import('../pages/News/NewsPage'));
+const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
+const UserPage = lazy(() => import('../pages/User/UserPage'));
 
 import { GlobalStyle } from 'utils';
 
@@ -42,9 +44,10 @@ export const App = () => {
               />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.USERPAGE} element={<UserPage />} />
+              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
             </>
           )}

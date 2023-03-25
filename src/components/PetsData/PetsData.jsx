@@ -11,6 +11,8 @@ import {
   PetsDeleteButton,
   PetsDeleteIcon,
   PetsInfoWrapper,
+  AddPetBtn,
+  Icon,
 } from './PetsData.styled';
 
 import sprite from 'images/sprite.svg';
@@ -20,18 +22,12 @@ export const PetsData = () => {
     <PetsContainer>
       <PetsTitleWraper>
         <PetsTitle>My pets:</PetsTitle>
-        <button
-          type="button"
-          style={{
-            display: 'inline-block',
-            height: '20px',
-            borderRadius: 4,
-            backgroundColor: '#F59256',
-            color: 'black',
-          }}
-        >
-          Add pet
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span>Add pet</span>
+          <AddPetBtn type="button">
+            <Icon />
+          </AddPetBtn>
+        </div>
       </PetsTitleWraper>
       <ul>
         <PetsItem>
