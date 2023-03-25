@@ -5,18 +5,18 @@ import dogTablet from '../../images/homePage/dog-tablet.png';
 import dogTablet2x from '../../images/homePage/dog-tablet@2x.png';
 import dogDesktop from '../../images/homePage/dog-desktop.png';
 import dogDesktop2x from '../../images/homePage/dog-desktop@2x.png';
-import waveMobile from '../../images/homePage/wave-mobile.png';
-import waveMobile2x from '../../images/homePage/wave-mobile@2x.png';
-import waveTablet from '../../images/homePage/wave-tablet.png';
-import waveTablet2x from '../../images/homePage/wave-tablet@2x.png';
-import waveDesktop from '../../images/homePage/wave-desktop.png';
-import waveDesktop2x from '../../images/homePage/wave-desktop@2x.png';
+import waveMobile from '../../images/homePage/wave-mobile.jpg';
+import waveMobile2x from '../../images/homePage/wave-mobile@2x.jpg';
+import waveTablet from '../../images/homePage/wave-tablet.jpg';
+import waveTablet2x from '../../images/homePage/wave-tablet@2x.jpg';
+import waveDesktop from '../../images/homePage/wave-desktop.jpg';
+import waveDesktop2x from '../../images/homePage/wave-desktop@2x.jpg';
 import union from '../../images/homePage/union.png';
 import union2x from '../../images/homePage/union@2.png';
 
 export const Heading = styled.h1`
   width: 280px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 32px;
   line-height: calc(44 / 32);
   @media screen and (min-width: 768px) {
@@ -33,7 +33,7 @@ export const Section = styled.section`
   background-repeat: no-repeat;
   background-position: bottom;
   background-image: url(${dogMobile}), url(${waveMobile});
-  background-size: 320px 337px, 100vw 470px;
+  background-size: 250px 337px, 90vw 415px;
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
@@ -57,9 +57,9 @@ export const Section = styled.section`
     height: calc(100vh - 64px);
     background-image: url(${dogDesktop}), url(${waveDesktop}),
       url(${union});
-    background-size: 590px 640px, 100vw calc(100vw * 0.375), 92px 89px;
-    background-position-x: calc(50% + 330px), center, calc(50% + 118px);
-    background-position-y: bottom, bottom, calc(50% - 204px);
+    background-size: 500px 600px, 80vw calc(105vw * 0.275), 92px 89px;
+    background-position-x: calc(50% + 330px), center, calc(50% + 58px);
+    background-position-y: bottom, bottom, calc(50% - 244px);
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
