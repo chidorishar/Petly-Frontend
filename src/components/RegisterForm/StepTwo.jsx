@@ -41,10 +41,10 @@ const StepTwo = ({ handleStepChange, animationState, refProp }) => {
         />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
-        <button type="submit">Register</button>
-        <button type="button" onClick={handlePrevClick}>
+        <Styled.Button type="submit">Register</Styled.Button>
+        <Styled.Button type="button" onClick={handlePrevClick} isLight>
           Back
-        </button>
+        </Styled.Button>
       </Styled.ButtonWrapper>
       <Styled.BottomText>
         Already have an account?{' '}

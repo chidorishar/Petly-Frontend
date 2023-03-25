@@ -22,6 +22,7 @@ export const theme = {
     inputModal: 'rgba(245, 146, 86, 0.5)',
     success: '#3cbc81',
     warning: '#e2001a',
+    darkMain: '#000',
   },
   fontSizes: {
     xs: '12px',

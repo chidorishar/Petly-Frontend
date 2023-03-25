@@ -58,9 +58,9 @@ const StepOne = ({ handleStepChange }) => {
         />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
-        <button type="button" onClick={handleNextClick}>
+        <Styled.Button type="button" onClick={handleNextClick}>
           Next
-        </button>
+        </Styled.Button>
       </Styled.ButtonWrapper>
       <Styled.BottomText>
         Already have an account?{' '}
