@@ -42,7 +42,12 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+              <Route
+                path={ROUTES.LOGIN}
+                element={
+                  <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+                }
+              />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
             </>
