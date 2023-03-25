@@ -7,22 +7,31 @@ import { usersAPI } from './usersAPISlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken', 'refreshToken'],
   blacklist: [usersAPI.reducerPath],
 };
 
 function setAuthData(state, { payload }) {
   if (!payload) return;
 
-  const { token, ...user } = payload.data.user;
+  const { accessToken, refreshToken, ...user } = payload.data.user;
 
-  state.token = token;
+  state.accessToken = accessToken;
+  state.refreshToken = refreshToken;
   state.user = user;
   state.isUserAuthorized = true;
 }
 
+function setUserData(state, { payload }) {
+  if (!payload) return;
+
+  state.user = payload.data.user;
+  state.isUserAuthorized = true;
+}
+
 function clearAuthData(state) {
-  state.token = null;
+  state.accessToken = null;
+  state.refreshToken = null;
   state.user = null;
   state.isUserAuthorized = false;
 }
@@ -31,7 +40,8 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: null,
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     isUserAuthorized: false,
   },
   reducers: {},
@@ -43,7 +53,7 @@ const authSlice = createSlice({
     builder
       .addMatcher(signupUser.matchFulfilled, setAuthData)
       .addMatcher(loginUser.matchFulfilled, setAuthData)
-      .addMatcher(refreshUser.matchFulfilled, setAuthData)
+      .addMatcher(refreshUser.matchFulfilled, setUserData)
       .addMatcher(logoutUser.matchFulfilled, clearAuthData);
   },
 });

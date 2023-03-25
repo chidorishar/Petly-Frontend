@@ -20,9 +20,9 @@ export const App = () => {
     useLazyRefreshUserQuery();
 
   useEffect(() => {
-    const { token } = store.getState().auth;
+    const { accessToken } = store.getState().auth;
 
-    token && refreshUser();
+    accessToken && refreshUser();
   }, []);
 
   return (

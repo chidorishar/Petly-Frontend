@@ -24,9 +24,9 @@ export const usersAPI = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set([AUTH_HEADER_NAME], `Bearer ${token}`);
+      const acessToken = getState().auth.accessToken;
+      if (acessToken) {
+        headers.set([AUTH_HEADER_NAME], `Bearer ${acessToken}`);
       }
       return headers;
     },
@@ -63,7 +63,7 @@ export const usersAPI = createApi({
     }),
 
     refreshUser: builder.query({
-      query: () => ({ url: BACKEND_ENDPOINTS.REFRESH }),
+      query: () => ({ url: BACKEND_ENDPOINTS.CURRENT }),
       onQueryStarted: invalidateCachedSmthng,
       invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
