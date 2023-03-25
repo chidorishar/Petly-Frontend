@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { PropTypes } from 'prop-types';
+
 import {
   UserInput,
   UserLabel,
@@ -10,180 +12,189 @@ import {
 
 import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
+import { BACKEND_BASE_URL, BACKEND_ENDPOINTS } from 'utils/appKeys';
 
-const updateUserData = async dataObject => {
-  await axios
-    .post(`http://${'asdasd'}/api/users`, dataObject)
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+const updateUserDataInBD = async dataObject => {
+  return await axios.patch(
+    `http://${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
+    dataObject
+  );
 };
 
-export const UserDataItem = user => {
-  const [currEditInputID, setCurrEditInputID] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [date, setDate] = useState('');
-  const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
-  const [isClicked, setIsClicked] = useState(false);
-  const [activeType, setActiveType] = useState('');
-  const [errorInput, setErrorInput] = useState(false);
-  const { userName, userEmail, userDate, userPhone, userCity } = user;
-  useEffect(() => {
-    setName(userName);
-    setEmail(userEmail);
-    setDate(userDate);
-    setPhone(userPhone);
-    setCity(userCity);
-  }, [user]);
+export const UserDataItem = ({ user, onUserDataUpdated }) => {
+  const {
+    name: userName = '',
+    email: userEmail = '',
+    birthday: userBirthdayDate = '',
+    phone: userPhone = '',
+    location: userLocation = '',
+  } = user;
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'name':
-        setErrorInput(value.match(/^[a-zA-Z0-9_]{3,16}$/) ? false : true);
-        setName(value);
-        break;
-
-      case 'email':
-        setErrorInput(
-          value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]+)/) ? false : true
-        );
-        setEmail(value);
-        break;
-
-      case 'date':
-        setErrorInput(
-          value.match(/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.\d{4}$/)
-            ? false
-            : true
-        );
-        setDate(value);
-        break;
-
-      case 'phone':
-        setErrorInput(value.match(/^\+380\d{9}$/) ? false : true);
-        setPhone(value);
-        break;
-
-      case 'city':
-        setErrorInput(
-          value.match(/^[a-zA-Zа-яА-ЯёЁ]+[-\s]?[a-zA-Zа-яА-ЯёЁ]*$/)
-            ? false
-            : true
-        );
-        setCity(value);
-        break;
-      default:
-        break;
-    }
-  };
-  const handleEnableToEdit = (index, e) => {
-    e.preventDefault();
-    const changedField = e.currentTarget.dataset.type;
-
-    if (errorInput) return;
-    if (isClicked && changedField !== activeType) {
-      return;
-    }
-    setActiveType(changedField);
-    setIsClicked(!isClicked);
-    if (currEditInputID !== null) {
-      updateUserData({ changedField });
-    }
-    setCurrEditInputID(prevState => {
-      return prevState !== index ? index : null;
-    });
-  };
-  const handleKeyDown = event => {
-    if (errorInput) return;
-    if (event.keyCode === 13) {
-      // selectDataToUpdate(currEditInputID);
-      setCurrEditInputID(null);
-      setIsClicked(false);
-    }
-  };
-
-  const elementsData = [
-    {
+  const [name, setName] = useState(userName);
+  const [email, setEmail] = useState(userEmail);
+  const [birthday, setBirthday] = useState(userBirthdayDate);
+  const [phone, setPhone] = useState(userPhone);
+  const [location, setLocation] = useState(userLocation);
+  const elementsData = {
+    name: {
       id: 0,
       name: 'name',
       text: 'Name:',
       value: name,
       placeholder: 'Your name',
       type: 'text',
+      pattern: /^[a-zA-Z0-9_]{3,16}$/,
+      initialValue: userName,
+      changeValueMethod: setName,
     },
-    {
+    email: {
       id: 1,
       name: 'email',
       text: 'Email:',
       value: email,
       placeholder: 'user@email.com',
       type: 'email',
+      pattern: /^([\w.%+-]+)@([\w-]+\.)+([\w]+)/,
+      initialValue: userEmail,
+      changeValueMethod: setEmail,
     },
-    {
+    birthday: {
       id: 2,
       name: 'birthday',
       text: 'Birthday:',
-      value: date,
+      value: birthday,
       placeholder: '01.01.2023',
       type: 'text',
+      pattern: /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.\d{4}$/,
+      initialValue: userBirthdayDate,
+      changeValueMethod: setBirthday,
     },
-    {
+    phone: {
       id: 3,
       name: 'phone',
       text: 'Phone:',
       value: phone,
       placeholder: '+380XXXXXXXXX',
       type: 'text',
+      pattern: /^\+380\d{9}$/,
+      initialValue: userPhone,
+      changeValueMethod: setPhone,
     },
-    {
+    location: {
       id: 4,
       name: 'location',
       text: 'City:',
-      value: city,
+      value: location,
       placeholder: 'Brovary, Kiev',
       type: 'text',
+      pattern: /^[A-Z][a-z]+[,][ ][A-Z][a-z]+$/,
+      initialValue: userLocation,
+      changeValueMethod: setLocation,
     },
-  ];
+  };
+
+  const [currEditedInputName, setCurrEditedInputName] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isInputDataNotValid, setIsInputDataNotValid] = useState(false);
+
+  const updateUserData = async dataObject => {
+    try {
+      const res = await updateUserDataInBD(dataObject);
+      if (res.status === 200) onUserDataUpdated();
+    } catch (error) {
+      console.log(`Error updating user data ${error}`);
+    }
+  };
+
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    const currElement = elementsData[name];
+
+    setIsInputDataNotValid(value.match(currElement.pattern) ? false : true);
+    currElement.changeValueMethod(value);
+  };
+
+  const handleEditButtonClick = e => {
+    e.preventDefault();
+    const inputNameToSwitchTo = e.currentTarget.dataset.elName;
+
+    // currently there is no active input
+    if (!isEditing) {
+      setIsEditing(true);
+      setCurrEditedInputName(inputNameToSwitchTo);
+      return;
+    }
+
+    const currentElement = elementsData[currEditedInputName];
+    const currElInitialValue = currentElement.initialValue;
+    const isInputContentChanged = currElInitialValue !== currentElement.value;
+
+    //reset current input value if input has invalid data
+    if (isInputDataNotValid) {
+      currentElement.changeValueMethod(currElInitialValue);
+    } else if (isInputContentChanged) {
+      updateUserData({ [currEditedInputName]: currentElement.value });
+    }
+
+    // if clicked on the same input's edit button
+    if (isEditing && inputNameToSwitchTo === currEditedInputName) {
+      setCurrEditedInputName(null);
+      setIsEditing(false);
+      return;
+    }
+
+    // if clicked on another input's edit button
+    setCurrEditedInputName(inputNameToSwitchTo);
+  };
+
+  /** handle escape key press */
+  const handleKeyDown = event => {
+    if (event.code !== 'Escape' || !currEditedInputName) return;
+
+    const currElement = elementsData[currEditedInputName];
+    if (isInputDataNotValid) {
+      currElement.changeValueMethod(currElement.initialValue);
+    } else if (currElement.initialValue !== currElement.value)
+      updateUserData({ [currElement.name]: currElement.value });
+
+    setCurrEditedInputName(null);
+    setIsEditing(false);
+  };
 
   return (
     <FormBox>
-      <form type="submit">
-        {elementsData.map(el => {
+      <form type="submit" onKeyDown={handleKeyDown}>
+        {Object.values(elementsData).map(el => {
+          const elName = el.name;
+
           return (
             <UserLabel key={el.id}>
               <UserSpan>{el.text}</UserSpan>
               <UserInput
                 type={el.type}
-                name={el.name}
+                name={elName}
                 value={el.value ?? ''}
                 placeholder={el.placeholder}
                 className={
-                  errorInput
-                    ? currEditInputID === el.id
+                  isInputDataNotValid
+                    ? currEditedInputName === elName
                       ? 'enabled error'
                       : ''
-                    : currEditInputID === el.id
+                    : currEditedInputName === elName
                     ? 'enabled'
                     : ''
                 }
-                disabled={currEditInputID !== el.id}
+                disabled={currEditedInputName !== elName}
                 onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
               />
               <EditBtn
-                data-type={el.name}
-                onClick={e => handleEnableToEdit(el.id, e)}
+                data-el-name={elName}
+                onClick={handleEditButtonClick}
                 className={
-                  isClicked && currEditInputID !== el.id ? 'disabled' : ''
+                  isEditing && currEditedInputName !== elName ? 'disabled' : ''
                 }
               >
-                {isClicked && currEditInputID === el.id ? (
+                {isEditing && currEditedInputName === elName ? (
                   <FaCheck fill={'currentColor'} />
                 ) : (
                   <MdEdit fill={'currentColor'} />
@@ -195,6 +206,17 @@ export const UserDataItem = user => {
       </form>
     </FormBox>
   );
+};
+
+UserDataItem.propTypes = {
+  onUserDataUpdated: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    birthday: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 //old code

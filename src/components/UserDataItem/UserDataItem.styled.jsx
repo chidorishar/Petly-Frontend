@@ -12,12 +12,19 @@ export const UserInput = styled(InputCommon)`
   padding: 4px 18px;
   line-height: ${p => p.theme.lineHeights.body};
 
+  transition: background-color ${p => p.theme.transitions.normal};
+
   &.enabled {
-    background: #fdf7f2;
+    background-color: ${p => p.theme.colors.success}5e;
     border: 1px solid ${p => p.theme.colors.inputModal};
   }
   &.error {
+    background-color: ${p => p.theme.colors.warning}38;
     border-color: red;
+  }
+  &:disabled {
+    border-color: transparent;
+    outline: none;
   }
   @media ${p => p.theme.breakpoints.tablet.media} {
     width: 216px;
@@ -78,8 +85,8 @@ export const EditBtn = styled.button`
     height: 32px;
   }
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     color: ${p => p.theme.colors.mainBackground};
     background-color: ${p => p.theme.colors.hoverBtn};
   }
