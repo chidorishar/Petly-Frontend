@@ -6,13 +6,16 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
-import SharedLayout from './SharedLayout/SharedLayout';
 
-// import { RestrictedRoute } from './ProtectedRoute';
+import SharedLayout from './SharedLayout/SharedLayout';
+import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
-// TODO: Add lazy loading.
-const NewsPage = lazy(() => import('../pages/News/NewsPage'));
+
+import { UserMenu } from './UserMenu/UserMenu';
+
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
+const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 export const App = () => {
@@ -36,13 +39,26 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route index element={<></>} />
+              <Route index element={<UserMenu />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+              <Route
+                path={ROUTES.LOGIN}
+                element={
+                  <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+                }
+              />
+              <Route
+                path={ROUTES.REGISTER}
+                element={
+                  <RestrictedRoute
+                    redirectTo="/"
+                    component={<RegisterPage />}
+                  />
+                }
+              />
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-              <Route path="*" element={<></>} />
             </>
           )}
         </Route>
