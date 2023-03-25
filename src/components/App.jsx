@@ -44,7 +44,6 @@ export const App = () => {
               <Route path="*" element={<></>} />
             </>
           )}
-          <Route path="/input" element={<UserDataItem />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

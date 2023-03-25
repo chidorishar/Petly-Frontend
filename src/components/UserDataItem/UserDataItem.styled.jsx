@@ -14,7 +14,10 @@ export const UserInput = styled(InputCommon)`
 
   &.enabled {
     background: #fdf7f2;
-    border: 1px solid rgba(245, 146, 86, 0.5);
+    border: 1px solid ${p => p.theme.colors.inputModal};
+  }
+  &.error {
+    border-color: red;
   }
   @media ${p => p.theme.breakpoints.tablet.media} {
     width: 216px;
