@@ -12,7 +12,6 @@ import { RestrictedRoute } from './ProtectedRoute';
 import RegisterPage from 'pages/Register/RegisterPage';
 
 import { GlobalStyle } from 'utils';
-import { UserDataItem } from './UserDataItem/UserDataItem';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
