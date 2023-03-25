@@ -1,10 +1,13 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { AuthBox } from 'components/common/Box/AuthBox.styled';
+import { Container } from 'components/common';
 
 const LoginPage = () => {
   return (
     <AuthBox>
-      <LoginForm />
+      <Container>
+        <LoginForm />
+      </Container>
     </AuthBox>
   );
 };
