@@ -53,7 +53,15 @@ export const App = () => {
                   <RestrictedRoute redirectTo="/" component={<LoginPage />} />
                 }
               />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route
+                path={ROUTES.REGISTER}
+                element={
+                  <RestrictedRoute
+                    redirectTo="/"
+                    component={<RegisterPage />}
+                  />
+                }
+              />
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
             </>
