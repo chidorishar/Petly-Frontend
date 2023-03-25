@@ -66,7 +66,10 @@ export const EditBtn = styled.button`
   align-items: center;
   margin-left: auto;
 
-  transition: ${p => p.theme.transitions.normal};
+  color: ${p => p.theme.colors.accent};
+
+  transition: background-color ${p => p.theme.transitions.normal},
+    color ${p => p.theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.tablet.media} {
     font-size: ${p => p.theme.fontSizes.nl};
@@ -77,7 +80,12 @@ export const EditBtn = styled.button`
 
   &:hover,
   &:focus {
+    color: ${p => p.theme.colors.mainBackground};
     background-color: ${p => p.theme.colors.hoverBtn};
+  }
+
+  &.disabled {
+    color: ${p => p.theme.colors.heading};
   }
 `;
 export const FormBox = styled(Box)`

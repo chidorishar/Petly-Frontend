@@ -10,7 +10,17 @@ import {
 
 import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
-import { theme } from 'utils';
+
+const updateUserData = async dataObject => {
+  await axios
+    .post(`http://${'asdasd'}/api/users`, dataObject)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 
 export const UserDataItem = user => {
   const [currEditInputID, setCurrEditInputID] = useState(null);
@@ -74,14 +84,16 @@ export const UserDataItem = user => {
   };
   const handleEnableToEdit = (index, e) => {
     e.preventDefault();
+    const changedField = e.currentTarget.dataset.type;
+
     if (errorInput) return;
-    if (isClicked && e.currentTarget.dataset.type !== activeType) {
+    if (isClicked && changedField !== activeType) {
       return;
     }
-    setActiveType(e.currentTarget.dataset.type);
+    setActiveType(changedField);
     setIsClicked(!isClicked);
     if (currEditInputID !== null) {
-      selectDataToUpdate(currEditInputID);
+      updateUserData({ changedField });
     }
     setCurrEditInputID(prevState => {
       return prevState !== index ? index : null;
@@ -90,65 +102,103 @@ export const UserDataItem = user => {
   const handleKeyDown = event => {
     if (errorInput) return;
     if (event.keyCode === 13) {
-      selectDataToUpdate(currEditInputID);
+      // selectDataToUpdate(currEditInputID);
       setCurrEditInputID(null);
       setIsClicked(false);
     }
   };
-  const updateUserData = async data => {
-    await axios
-      .post('http://localhost:4000/api/users', { data })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  const selectDataToUpdate = index => {
-    let updateData = {};
-    switch (index) {
-      case 0:
-        if (!name) return;
-        updateData = {
-          name: name,
-        };
-        updateUserData(updateData);
-        break;
-      case 1:
-        if (!email) return;
-        updateData = {
-          email: email,
-        };
-        updateUserData(updateData);
-        break;
-      case 2:
-        if (!date) return;
-        updateData = {
-          date: date,
-        };
-        updateUserData(updateData);
-        break;
-      case 3:
-        if (!phone) return;
-        updateData = {
-          phone: phone,
-        };
-        updateUserData(updateData);
-        break;
-      case 4:
-        if (!city) return;
-        updateData = {
-          city: city,
-        };
-        updateUserData(updateData);
-        break;
-    }
-  };
+
+  const elementsData = [
+    {
+      id: 0,
+      name: 'name',
+      text: 'Name:',
+      value: name,
+      placeholder: 'Your name',
+      type: 'text',
+    },
+    {
+      id: 1,
+      name: 'email',
+      text: 'Email:',
+      value: email,
+      placeholder: 'user@email.com',
+      type: 'email',
+    },
+    {
+      id: 2,
+      name: 'birthday',
+      text: 'Birthday:',
+      value: date,
+      placeholder: '01.01.2023',
+      type: 'text',
+    },
+    {
+      id: 3,
+      name: 'phone',
+      text: 'Phone:',
+      value: phone,
+      placeholder: '+380XXXXXXXXX',
+      type: 'text',
+    },
+    {
+      id: 4,
+      name: 'location',
+      text: 'City:',
+      value: city,
+      placeholder: 'Brovary, Kiev',
+      type: 'text',
+    },
+  ];
 
   return (
     <FormBox>
       <form type="submit">
+        {elementsData.map(el => {
+          return (
+            <UserLabel key={el.id}>
+              <UserSpan>{el.text}</UserSpan>
+              <UserInput
+                type={el.type}
+                name={el.name}
+                value={el.value ?? ''}
+                placeholder={el.placeholder}
+                className={
+                  errorInput
+                    ? currEditInputID === el.id
+                      ? 'enabled error'
+                      : ''
+                    : currEditInputID === el.id
+                    ? 'enabled'
+                    : ''
+                }
+                disabled={currEditInputID !== el.id}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+              />
+              <EditBtn
+                data-type={el.name}
+                onClick={e => handleEnableToEdit(el.id, e)}
+                className={
+                  isClicked && currEditInputID !== el.id ? 'disabled' : ''
+                }
+              >
+                {isClicked && currEditInputID === el.id ? (
+                  <FaCheck fill={'currentColor'} />
+                ) : (
+                  <MdEdit fill={'currentColor'} />
+                )}
+              </EditBtn>
+            </UserLabel>
+          );
+        })}
+      </form>
+    </FormBox>
+  );
+};
+
+//old code
+/*
         <UserLabel>
           <UserSpan>Name:</UserSpan>
           <UserInput
@@ -171,19 +221,16 @@ export const UserDataItem = user => {
           <EditBtn
             data-type="name"
             onClick={e => handleEnableToEdit(0, e)}
-            color="red"
+            className={isClicked && currEditInputID !== 0 ? 'disabled' : ''}
           >
-            {isClicked && activeType === 'name' ? (
-              <FaCheck
-                fill={errorInput ? theme.colors.heading : theme.colors.accent}
-              />
+            {isClicked && currEditInputID === 0 ? (
+              <FaCheck fill={'currentColor'} />
             ) : (
-              <MdEdit
-                fill={isClicked ? theme.colors.heading : theme.colors.accent}
-              />
+              <MdEdit fill={'currentColor'} />
             )}
           </EditBtn>
         </UserLabel>
+
         <UserLabel>
           <UserSpan>Email:</UserSpan>
           <UserInput
@@ -204,15 +251,15 @@ export const UserDataItem = user => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
           />
-          <EditBtn data-type="email" onClick={e => handleEnableToEdit(1, e)}>
-            {isClicked && activeType === 'email' ? (
-              <FaCheck
-                fill={errorInput ? theme.colors.heading : theme.colors.accent}
-              />
+          <EditBtn
+            data-type="email"
+            onClick={e => handleEnableToEdit(1, e)}
+            className={isClicked && currEditInputID !== 1 ? 'disabled' : ''}
+          >
+            {isClicked && currEditInputID === 1 ? (
+              <FaCheck fill={'currentColor'} />
             ) : (
-              <MdEdit
-                fill={isClicked ? theme.colors.heading : theme.colors.accent}
-              />
+              <MdEdit fill={'currentColor'} />
             )}
           </EditBtn>
         </UserLabel>
@@ -236,15 +283,15 @@ export const UserDataItem = user => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
           />
-          <EditBtn data-type="date" onClick={e => handleEnableToEdit(2, e)}>
-            {isClicked && activeType === 'date' ? (
-              <FaCheck
-                fill={errorInput ? theme.colors.heading : theme.colors.accent}
-              />
+          <EditBtn
+            data-type="date"
+            onClick={e => handleEnableToEdit(2, e)}
+            className={isClicked && currEditInputID !== 2 ? 'disabled' : ''}
+          >
+            {isClicked && currEditInputID === 2 ? (
+              <FaCheck fill={'currentColor'} />
             ) : (
-              <MdEdit
-                fill={isClicked ? theme.colors.heading : theme.colors.accent}
-              />
+              <MdEdit fill={'currentColor'} />
             )}
           </EditBtn>
         </UserLabel>
@@ -268,15 +315,15 @@ export const UserDataItem = user => {
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
           />
-          <EditBtn data-type="phone" onClick={e => handleEnableToEdit(3, e)}>
-            {isClicked && activeType === 'phone' ? (
-              <FaCheck
-                fill={errorInput ? theme.colors.heading : theme.colors.accent}
-              />
+          <EditBtn
+            data-type="phone"
+            onClick={e => handleEnableToEdit(3, e)}
+            className={isClicked && currEditInputID !== 3 ? 'disabled' : ''}
+          >
+            {isClicked && currEditInputID === 3 ? (
+              <FaCheck fill={'currentColor'} />
             ) : (
-              <MdEdit
-                fill={isClicked ? theme.colors.heading : theme.colors.accent}
-              />
+              <MdEdit fill={'currentColor'} />
             )}
           </EditBtn>
         </UserLabel>
@@ -312,7 +359,4 @@ export const UserDataItem = user => {
             )}
           </EditBtn>
         </UserLabel>
-      </form>
-    </FormBox>
-  );
-};
+*/
