@@ -1,4 +1,4 @@
-// import { Suspense } from 'react';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useAuth } from 'redux/hooks/getAuth';
@@ -19,12 +19,11 @@ export default function SharedLayout() {
           {isUserAuthorized && <UserMenu />}
         </Container>
       </Header>
-
-      {/* <Suspense fallback={<div>Loading...</div>}> */}
-      <Container>
-        <Outlet />
-      </Container>
-      {/* </Suspense> */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <Container>
+          <Outlet />
+        </Container>
+      </Suspense>
     </>
   );
 }

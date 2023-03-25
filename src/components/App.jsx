@@ -1,17 +1,20 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
-import { ROUTES } from 'utils/appKeys';
 
+import { GlobalStyle, ToastContainer } from 'utils';
+import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
+
 // import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
-import RegisterPage from 'pages/Register/RegisterPage';
+const NewsPage = lazy(() => import('../pages/News/NewsPage'));
+const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
+const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
-import { GlobalStyle } from 'utils';
 import { UserDataItem } from './UserDataItem/UserDataItem';
 
 export const App = () => {
@@ -27,6 +30,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           {isRefreshingUserData ? (
@@ -37,6 +41,8 @@ export const App = () => {
               <Route index element={<UserDataItem />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
+              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
             </>
