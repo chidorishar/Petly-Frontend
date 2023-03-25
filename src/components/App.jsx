@@ -68,7 +68,6 @@ export const App = () => {
                 }
               />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
             </>
           )}

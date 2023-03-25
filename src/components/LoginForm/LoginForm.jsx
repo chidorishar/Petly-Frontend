@@ -1,6 +1,5 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
@@ -20,7 +19,6 @@ import {
 
 export const LoginForm = () => {
   const [login, { isSuccess }] = useLoginUserMutation({});
-  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -43,9 +41,8 @@ export const LoginForm = () => {
   useEffect(() => {
     if (isSuccess) {
       formik.resetForm();
-      navigate(ROUTES.USER_PROFILE);
     }
-  });
+  }, [isSuccess, formik]);
 
   const ifCurrentEmail = () => {
     let currentColor = '';
