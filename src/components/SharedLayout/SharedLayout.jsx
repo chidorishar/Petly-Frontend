@@ -19,7 +19,6 @@ export default function SharedLayout() {
           {isUserAuthorized && <UserMenu />}
         </Container>
       </Header>
-
       <Suspense fallback={<div>Loading...</div>}>
         <Container>
           <Outlet />
