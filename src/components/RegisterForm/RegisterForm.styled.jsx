@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// TODO: Change all media into variables.
 const FormWrapper = styled.div`
   position: relative;
   width: 100%;
 
-  @media (max-width: 767px) {
+  @media (max-width: 767.9px) {
     margin-top: 42px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
+  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279.9px) {
     margin-top: 80px;
   }
 
@@ -29,20 +28,20 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 40px;
 
-  background: ${p => p.theme.colors.secondaryBackground};
-
-  @media (max-width: 767px) {
+  @media (max-width: 767.9px) {
+    background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
   }
 
   @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
+    background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
 
     padding: 60px 80px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
+  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279.9px) {
     width: 608px;
   }
 
@@ -90,7 +89,7 @@ const Title = styled.h2`
 
   @media (max-width: 767px) {
     font-weight: ${p => p.theme.fontWeights.logo};
-    font-size: 24px;
+    font-size: ${p => p.theme.fontSizes.ml};
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
@@ -104,6 +103,8 @@ const Title = styled.h2`
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  width: 100%;
 
   @media (max-width: 767px) {
     gap: 24px;
