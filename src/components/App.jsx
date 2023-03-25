@@ -15,8 +15,6 @@ const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
-import { UserDataItem } from './UserDataItem/UserDataItem';
-
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
     useLazyRefreshUserQuery();
@@ -38,7 +36,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route index element={<UserDataItem />} />
+              <Route index element={<></>} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
