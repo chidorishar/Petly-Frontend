@@ -114,7 +114,7 @@ export const LoginForm = () => {
             {formik.errors.password}
           </TextMessage>
         ) : null}
-        <Button disabled={!formik.isValid || isSuccess} type="submit">
+        <Button disabled={isSuccess} type="submit">
           Login
         </Button>
       </FormCommon>

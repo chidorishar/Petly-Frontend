@@ -15,7 +15,6 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 import { GlobalStyle } from 'utils';
 
-
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
     useLazyRefreshUserQuery();

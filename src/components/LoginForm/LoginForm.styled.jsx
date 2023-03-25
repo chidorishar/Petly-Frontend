@@ -39,18 +39,16 @@ export const FormCommon = styled.form`
   letter-spacing: 0.04em;
 
   @media (max-width: 767px) {
-  padding: 40px 0;
+    padding: 40px 0;
   }
 `;
 
 export const InputCommon = styled.input`
-
-@media (max-width: 767px) {
-  font-size: ${p => p.theme.fontSizes.s};
-
-  padding: 11px 14px 12px 14px;
+  @media (max-width: 767px) {
+    font-size: ${p => p.theme.fontSizes.s};
+    padding: 11px 14px 12px 14px;
+    border-radius: 20px;
   }
-
 
   font-size: ${p => p.theme.fontSizes.n};
   font-weight: ${p => p.theme.fontWeights.text};
@@ -62,7 +60,8 @@ export const InputCommon = styled.input`
 
   border-radius: 26px;
   border: none;
-  outline: ${p => p.theme.borders.inputModal} ${({ theme: { colors } }) => colors.inputModal};
+  outline: ${p => p.theme.borders.inputModal}
+    ${({ theme: { colors } }) => colors.inputModal};
 
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
 
@@ -94,6 +93,7 @@ export const TextMessage = styled.p`
   font-weight: ${p => p.theme.fontWeights.text};
   font-size: ${p => p.theme.fontSizes.s};
   letter-spacing: 0.04em;
+  text-align: left;
 
   margin: 0 auto 0 32px;
 
@@ -125,8 +125,6 @@ export const Button = styled.button`
     padding: 8.5px;
     border-radius: 22px;
   }
-
-
 
   background: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.secondaryBackground};
