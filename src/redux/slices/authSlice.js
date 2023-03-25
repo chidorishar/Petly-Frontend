@@ -11,7 +11,11 @@ const persistConfig = {
   blacklist: [usersAPI.reducerPath],
 };
 
-function setAuthData(state, { payload: { token, user } }) {
+function setAuthData(state, { payload }) {
+  if (!payload) return;
+
+  const { token, ...user } = payload.data.user;
+
   state.token = token;
   state.user = user;
   state.isUserAuthorized = true;

@@ -11,6 +11,7 @@ const ROUTES = {
   NEWS: '/news',
   NOTICES: '/notices',
   FRIENDS: '/friends',
+  PROFILE: '/profile',
 };
 
 /**

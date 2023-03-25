@@ -7,6 +7,9 @@ import * as Yup from 'yup';
 const passwordRegexp =
   /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()-_/#:;<>])[A-Za-z\d@$!%*?&]/;
 
+const emailRegexp =
+  /^([a-zA-Z0-9_.]+){1}([a-zA-Z0-9_\-.]+){1}@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,3})$/;
+
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
 
 const passwordSchema = Yup.string()
@@ -20,6 +23,7 @@ const passwordSchema = Yup.string()
 
 const emailSchema = Yup.string()
   .email('Email is invalid')
+  .matches(emailRegexp, 'Email is invalid')
   .required('Email is required');
 
 const phoneSchema = Yup.string()

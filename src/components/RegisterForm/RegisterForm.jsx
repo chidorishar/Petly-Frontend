@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { Form, Formik } from 'formik';
+import { toast } from 'react-toastify';
 import { Transition } from 'react-transition-group';
 
 import { StepOne } from './StepOne';
@@ -12,7 +13,6 @@ import { registerSchema } from 'utils/validations';
 
 import * as Styled from './RegisterForm.styled';
 import { ROUTES } from 'utils/appKeys';
-import { toast } from 'react-toastify';
 
 const initialRegistrationValues = {
   email: '',
@@ -35,7 +35,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(ROUTES.LOGIN);
+      navigate(ROUTES.PROFILE);
     }
   }, [isSuccess, navigate]);
 
@@ -58,26 +58,22 @@ const RegisterForm = () => {
     location,
     phone,
   }) => {
-    try {
-      const { error } = await register({
-        email,
-        password,
-        name,
-        location,
-        phone,
-      });
+    const { error } = await register({
+      email,
+      password,
+      name,
+      location,
+      phone,
+    });
 
-      if (error) {
-        toast.error(
-          error.status === 409 ? 'User already exists' : 'Something went wrong'
-        );
-        return;
-      }
-
-      toast.success('User created successfully');
-    } catch {
-      toast.error('Something went wrong');
+    if (error) {
+      toast.error(
+        error.status === 409 ? 'User already exists' : 'Something went wrong'
+      );
+      return;
     }
+
+    toast.success('User created successfully');
   };
 
   return (
