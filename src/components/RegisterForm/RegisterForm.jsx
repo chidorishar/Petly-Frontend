@@ -76,7 +76,7 @@ const RegisterForm = () => {
 
       toast.success('User created successfully');
     } catch {
-      return;
+      toast.error('Something went wrong');
     }
   };
 
