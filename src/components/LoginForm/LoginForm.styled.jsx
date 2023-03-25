@@ -1,20 +1,34 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const ContainerCardCommon = styled.div`
   max-width: 618px;
-  max-height: 496px;
   margin: 0 auto;
   padding: 60px 40px;
   text-align: center;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: ${({ theme: { colors } }) => colors.mainBackground};
+    box-shadow: none;
+  }
 `;
 
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.lx};
   color: ${({ theme: { colors } }) => colors.heading};
+  @media (max-width: 767px) {
+    font-weight: ${p => p.theme.fontWeights.logo};
+    font-size: ${p => p.theme.fontSizes.ml};
+  }
 `;
 
 export const FormCommon = styled.form`
@@ -23,9 +37,21 @@ export const FormCommon = styled.form`
   justify-content: space-around;
   flex-direction: column;
   letter-spacing: 0.04em;
+
+  @media (max-width: 767px) {
+  padding: 40px 0;
+  }
 `;
 
 export const InputCommon = styled.input`
+
+@media (max-width: 767px) {
+  font-size: ${p => p.theme.fontSizes.s};
+
+  padding: 11px 14px 12px 14px;
+  }
+
+
   font-size: ${p => p.theme.fontSizes.n};
   font-weight: ${p => p.theme.fontWeights.text};
   color: ${({ theme: { colors } }) => colors.inputText};
@@ -58,13 +84,11 @@ export const InputCommon = styled.input`
     margin-top: 0;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     outline-width: 2px;
-  };
-
+  }
 `;
-
-
 
 export const TextMessage = styled.p`
   font-weight: ${p => p.theme.fontWeights.text};
@@ -87,10 +111,22 @@ export const Button = styled.button`
   letter-spacing: 0.04em;
 
   margin-top: 40px;
-
   padding: 10.5px;
-
   border-radius: 24px;
+
+  @media ${p => p.theme.breakpoints.tablet.desktop} {
+    margin-top: 40px;
+    padding: 10.5px;
+    border-radius: 24px;
+  }
+
+  @media (max-width: 1279px) {
+    margin-top: 40px;
+    padding: 8.5px;
+    border-radius: 22px;
+  }
+
+
 
   background: ${p => p.theme.colors.accent};
   color: ${p => p.theme.colors.secondaryBackground};
@@ -104,24 +140,24 @@ export const Button = styled.button`
     transition: transform 0.5s;
   }
   :hover:before {
-      left: 100%;
-    }
+    left: 100%;
+  }
 
-    :before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.6),
-        transparent
-      );
-      transition: all 650ms;
-    }
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export const Text = styled.p`
@@ -135,7 +171,7 @@ export const Text = styled.p`
   color: ${({ theme: { colors } }) => colors.inputText};
 `;
 
-export const Link = styled.a`
+export const Link = styled(NavLink)`
   color: ${({ theme: { colors } }) => colors.link};
   cursor: pointer;
 `;

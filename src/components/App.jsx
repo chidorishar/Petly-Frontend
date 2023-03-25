@@ -10,9 +10,11 @@ import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
+import LoginPage from 'pages/Login/LoginPage';
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 import { GlobalStyle } from 'utils';
+
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -41,6 +43,7 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
             </>

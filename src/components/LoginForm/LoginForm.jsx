@@ -1,7 +1,11 @@
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
-import css from './LoginForm.module.css';
+
+import { useLoginUserMutation } from 'redux/slices/usersAPISlice';
+
 import {
   Button,
   ContainerCardCommon,
@@ -13,32 +17,31 @@ import {
   Title,
 } from './LoginForm.styled';
 
-const Loginschema = Yup.object().shape({
-  email: Yup.string()
-    .required('Email is a required field')
-    .email('Enter a valid Email'),
-  password: Yup.string()
-    .required('Password is a required field')
-    .min(8, 'Password must be at least 8 characters')
-    .matches(/[0-9]/, 'Password requires a number')
-    .matches(/[a-z]/, 'Password requires a lowercase letter'),
-  confirm: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Must match "password" field value'
-  ),
-});
-
 export const LoginForm = () => {
+  const [login, { isSuccess }] = useLoginUserMutation({});
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    validationSchema: Loginschema,
+    validationSchema: loginschema,
 
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async values => {
+      const response = await login(values);
+      if (response.error) {
+        // toastify error
+      }
+
+      // toastify success
     },
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      formik.resetForm();
+      navigate(ROUTES.USER_PROFILE);
+    }
   });
 
   const ifCurrentEmail = () => {
@@ -56,11 +59,11 @@ export const LoginForm = () => {
 
   const ifCurrentPassword = () => {
     let currentColor = '';
-    if (formik.touched.email) {
-      if (formik.errors.email) {
+    if (formik.touched.password) {
+      if (formik.errors.password) {
         currentColor = '#E2001A';
       }
-      if (formik.errors.email === undefined) {
+      if (formik.errors.password === undefined) {
         currentColor = '#3CBC81';
       }
       return currentColor;
@@ -111,7 +114,7 @@ export const LoginForm = () => {
             {formik.errors.password}
           </TextMessage>
         ) : null}
-        <Button disabled={!formik.isValid || formik.isSubmitting} type="submit">
+        <Button disabled={!formik.isValid || isSuccess} type="submit">
           Login
         </Button>
       </FormCommon>
