@@ -63,7 +63,7 @@ export const usersAPI = createApi({
     }),
 
     refreshUser: builder.query({
-      query: () => ({ url: `current` }),
+      query: () => ({ url: BACKEND_ENDPOINTS.REFRESH }),
       onQueryStarted: invalidateCachedSmthng,
       invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
