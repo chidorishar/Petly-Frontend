@@ -12,6 +12,7 @@ import { registerSchema } from 'utils/validations';
 
 import * as Styled from './RegisterForm.styled';
 import { ROUTES } from 'utils/appKeys';
+import { toast } from 'react-toastify';
 
 const initialRegistrationValues = {
   email: '',
@@ -58,13 +59,22 @@ const RegisterForm = () => {
     phone,
   }) => {
     try {
-      await register({
+      const { error } = await register({
         email,
         password,
         name,
         location,
         phone,
       });
+
+      if (error) {
+        toast.error(
+          error.status === 409 ? 'User already exists' : 'Something went wrong'
+        );
+        return;
+      }
+
+      toast.success('User created successfully');
     } catch {
       return;
     }

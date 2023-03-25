@@ -13,7 +13,7 @@ const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
-import { GlobalStyle } from 'utils';
+import { GlobalStyle, ToastContainer } from 'utils';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -28,6 +28,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           {isRefreshingUserData ? (
