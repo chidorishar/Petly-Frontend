@@ -9,7 +9,7 @@ import { ROUTES } from 'utils/appKeys';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
-import { PrivateRoute } from './PrivateRoute';
+// import { PrivateRoute } from './PrivateRoute';
 
 import { UserMenu } from './UserMenu/UserMenu';
 
@@ -39,12 +39,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route
-                index
-                element={
-                  <PrivateRoute redirectTo="/" component={<UserMenu />} />
-                }
-              />
+              <Route index element={<UserMenu />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
