@@ -7,13 +7,14 @@ import { ROUTES } from 'utils/appKeys';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 // TODO: Add lazy loading.
 import RegisterPage from 'pages/Register/RegisterPage';
 import LoginPage from 'pages/Login/LoginPage';
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 import { GlobalStyle } from 'utils';
+import { UserMenu } from './UserMenu/UserMenu';
 
 export const App = () => {
   const [refreshUser, { isLoading: isRefreshingUserData }] =
@@ -37,7 +38,9 @@ export const App = () => {
               {/* HOMEPAGE */}
               <Route
                 index
-                element={<RestrictedRoute redirectTo="/" component={<></>} />}
+                element={
+                  <PrivateRoute redirectTo="/" component={<UserMenu />} />
+                }
               />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
