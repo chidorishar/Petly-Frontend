@@ -27,7 +27,7 @@ export const Heading = styled.h1`
 `;
 export const DonateImg = styled.img`
   width: 72px;
-  height: 52px;
+  height: 62px;
   @media (min-width: 768px) {
     width: 124px;
     height: 108px;
@@ -35,6 +35,12 @@ export const DonateImg = styled.img`
   @media (min-width: 1280px) {
     margin-right: 80px;
   }
+  animation: pulse 4s infinite;
+
+  @keyframes pulse {
+    50% {
+      transform: scale(0.5);
+    }
 `;
 export const Section = styled.section`
   padding-top: 60px;
