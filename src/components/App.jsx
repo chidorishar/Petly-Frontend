@@ -13,7 +13,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 
 import { RestrictedRoute } from './ProtectedRoute';
 import { PrivateRoute } from './PrivateRoute';
-// TODO: Add lazy loading.
+
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
