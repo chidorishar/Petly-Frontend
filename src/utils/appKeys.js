@@ -28,7 +28,7 @@ const BACKEND_ENDPOINTS = {
   REGISTER: 'auth/register',
   LOGIN: 'auth/login',
   LOGOUT: 'auth/logout',
-  REFRESH: 'auth/refresh',
+  REFRESH: 'auth/current',
   UPDATE_USER_INFO: 'users',
 };
 

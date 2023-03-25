@@ -6,4 +6,4 @@ export const selectFavoriteNoticesIds = state =>
   state.auth.user.favoriteNotices;
 export const selectIsLoading = state => state.auth.isLoading;
 export const selectError = state => state.auth.error;
-export const selectIsAuth = state => state.auth.isAuth;
+export const selectIsAuth = state => state.auth.isUserAuthorized;

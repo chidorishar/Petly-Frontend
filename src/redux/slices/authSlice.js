@@ -43,14 +43,7 @@ const authSlice = createSlice({
     builder
       .addMatcher(signupUser.matchFulfilled, setAuthData)
       .addMatcher(loginUser.matchFulfilled, setAuthData)
-      .addMatcher(refreshUser.matchFulfilled, (state, { payload }) => {
-        const transformedResp = {
-          token: state.token,
-          user: { name: payload.name, email: payload.email },
-        };
-
-        setAuthData(state, { payload: transformedResp });
-      })
+      .addMatcher(refreshUser.matchFulfilled, setAuthData)
       .addMatcher(logoutUser.matchFulfilled, clearAuthData);
   },
 });
