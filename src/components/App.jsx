@@ -17,6 +17,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
+const LoginPage = lazy(() => import('pages/Login/LoginPage'));
 
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
@@ -52,6 +53,7 @@ export const App = () => {
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
+              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
