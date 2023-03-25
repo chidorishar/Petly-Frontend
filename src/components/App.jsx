@@ -14,7 +14,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { UserMenu } from './UserMenu/UserMenu';
 
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
-import LoginPage from 'pages/Login/LoginPage';
+const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
