@@ -14,6 +14,7 @@ import {
 } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
 import { Section } from 'components/common';
+import { useTranslation } from 'react-i18next';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -52,16 +53,18 @@ const NewsPage = () => {
     setSearch('');
   };
 
+  const { t } = useTranslation();
+
   return (
     <Section>
-      <Title>News</Title>
+      <Title>{t('main.news')}</Title>
       {/* <ToastContainer /> */}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           name="query"
           value={search}
-          placeholder="Search"
+          placeholder={t('news.search')}
           autoFocus
           onChange={handleChange}
         />

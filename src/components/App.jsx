@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { store } from 'redux/store';
 import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 import { ROUTES } from 'utils/appKeys';
+// import { useTranslation } from 'react-i18next';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
