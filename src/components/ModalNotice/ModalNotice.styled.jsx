@@ -1,0 +1,15 @@
+import { Box } from 'components/common';
+import { ButtonWideCommon } from 'components/common/shared.styled';
+import styled from 'styled-components';
+export const BackDrop = styled(Box)``;
+export const ModalBox = styled(Box)``;
+export const PetBox = styled(Box)``;
+export const ImgBox = styled(Box)``;
+export const CategoryBox = styled(Box)``;
+export const PetTitle = styled.p``;
+export const PetInfo = styled.ul``;
+export const PetInfoItem = styled.li``;
+export const PetInfoItemTitle = styled.span``;
+export const PetComments = styled.p``;
+export const PhoneLink = styled(ButtonWideCommon)``;
+export const AddToFavoriteBtn = styled(ButtonWideCommon)``;
