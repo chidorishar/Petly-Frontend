@@ -1,38 +1,48 @@
 import styled from 'styled-components';
+import { Section } from 'components/common';
 
-export const UserPageContainer = styled.div`
-  width: 100%;
+export const UserPageSection = styled(Section)`
   display: flex;
-  padding-top: 61px;
+  flex-direction: column;
+  padding-top: 60px;
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    flex-direction: row;
+  }
+`;
 
-  @media ${p => p.theme.breakpoints.mobileOnly.media} {
-    flex-direction: column;
+export const UserInfoContainer = styled.div`
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    width: 280px;
+    margin-bottom: 40px;
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
-    padding-top: 88px;
+    width: 704px;
+    margin-bottom: 20px;
+    position: relative;
   }
-
   @media ${p => p.theme.breakpoints.desktop.media} {
-    padding-top: 58px;
+    width: 411px;
+    margin-right: 16px;
+    margin-bottom: 0;
   }
 `;
 
 export const UserTitle = styled.p`
   margin-bottom: 18px;
 
-  color: #000;
+  color: ${p => p.theme.colors.black};
 
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: ${p => p.theme.fontWeights.heading};
+  font-size: ${p => p.theme.fontSizes.nl};
   line-height: 1.35;
 
   @media ${p => p.theme.breakpoints.tablet.media} {
     margin-bottom: 40px;
 
-    color: #111;
+    color: ${p => p.theme.colors.heading};
 
-    font-size: 28px;
+    font-size: ${p => p.theme.fontSizes.mll};
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
@@ -40,41 +50,30 @@ export const UserTitle = styled.p`
   }
 `;
 
-export const UserInfoContainer = styled.div`
-  @media ${p => p.theme.breakpoints.mobile.media} {
-    width: 280px;
-  }
-
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    width: 704px;
-  }
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    width: 411px;
-  }
-`;
-
 export const UserWrapper = styled.div`
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   padding: 20px 16px;
+  border-radius: 20px;
+
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  background-color: ${p => p.theme.colors.secondaryBackground};
 
   @media ${p => p.theme.breakpoints.tablet.media} {
+    position: absolute;
+    left: -32px;
     flex-direction: row-reverse;
     width: 736px;
-    padding-top: 88px;
-    position: relative;
-    left: -32px;
-    border-radius: 0 40px 40px 0;
     padding: 24px 40px 24px 32px;
+
+    border-radius: 0 40px 40px 0;
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
+    left: -16px;
     flex-direction: column;
-    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-    padding: 24px 32px;
     width: 100%;
+    padding: 20px 16px;
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   }
 `;

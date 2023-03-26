@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 // import { PetsData } from 'components/PetsData/PetsData';
+
 import { UserData } from 'components/UserData/UserData';
 import {
-  UserPageContainer,
+  UserPageSection,
   UserInfoContainer,
   UserTitle,
   UserWrapper,
@@ -26,7 +27,7 @@ const UserPage = () => {
   }, []);
 
   return (
-    <UserPageContainer>
+    <UserPageSection>
       <UserInfoContainer>
         <UserTitle>My information:</UserTitle>
         {userData && (
@@ -35,9 +36,8 @@ const UserPage = () => {
           </UserWrapper>
         )}
       </UserInfoContainer>
-
-      {/* <PetsData /> */}
-    </UserPageContainer>
+      {/* <PetsData pets={user.pets}/> */}
+    </UserPageSection>
   );
 };
 

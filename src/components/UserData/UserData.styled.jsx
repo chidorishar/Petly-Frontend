@@ -1,14 +1,15 @@
 import styled from 'styled-components';
-import { InputCommon } from 'components/common/shared.styled';
 
 export const UserImageWrapper = styled.div`
-  width: 233px;
-  height: 233px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin: 0 auto 66px auto;
+  width: 233px;
+  height: 233px;
+  margin: 0 auto;
+  margin-bottom: 70px;
+
   background-color: transparent;
 
   @media ${p => p.theme.breakpoints.tablet.media} {
@@ -16,7 +17,7 @@ export const UserImageWrapper = styled.div`
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
 `;
 
@@ -29,20 +30,21 @@ export const EditPhotoLabel = styled.label`
   display: flex;
   padding: 0;
   position: absolute;
-  bottom: -34px;
+  bottom: -35px;
   right: 0;
-
   white-space: nowrap;
   cursor: pointer;
-  background-color: #fff;
-  color: black;
 
-  font-size: 12px;
+  background-color: transparent;
+  color: ${p => p.theme.colors.black};
+
+  font-weight: ${p => p.theme.fontWeights.text};
+  font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.83;
   letter-spacing: 0.04em;
 
   @media ${p => p.theme.breakpoints.tablet.media} {
-    bottom: -25px;
+    bottom: -30px;
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
@@ -70,7 +72,7 @@ export const EditAvatarIcon = styled.svg`
   }
 `;
 
-export const FormWrapper = styled.div`
+export const UserDataWrapper = styled.div`
   @media ${p => p.theme.breakpoints.tablet.media} {
     margin-right: 52px;
   }
@@ -79,48 +81,3 @@ export const FormWrapper = styled.div`
     margin-right: 0;
   }
 `;
-
-// <- Стилі для компонента з формою, можна видалити після додавання компонента
-export const Form = styled.form`
-  margin-bottom: 44px;
-
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin-bottom: 33px;
-    padding-top: 16px;
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    padding-top: 0;
-    margin-bottom: 24px;
-  }
-`;
-
-export const UserLabel = styled.label`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
-  letter-spacing: 0.04em;
-  display: flex;
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-`;
-
-export const UserSpan = styled.span`
-  width: 107px;
-`;
-
-export const UserInput = styled(InputCommon)`
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  width: 272px;
-  font-weight: 400;
-
-  &.enabled {
-    background-color: red;
-  }
-`;
-// Стилі для компонента з формою, можна видалити після додавання компонента ->
