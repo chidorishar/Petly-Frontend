@@ -10,9 +10,8 @@ import {
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
-
 import { RestrictedRoute } from './ProtectedRoute';
-import { PrivateRoute } from './PrivateRoute';
+// import { PrivateRoute } from './PrivateRoute';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 
@@ -20,7 +19,6 @@ const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-const LoginPage = lazy(() => import('pages/Login/LoginPage'));
 const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
 
 export const App = () => {
@@ -55,13 +53,8 @@ export const App = () => {
               {/* HOMEPAGE */}
 
               <Route index element={<></>} />
-              <Route
-                index
-                element={
-                  <PrivateRoute redirectTo="/" component={<UserMenu />} />
-                }
-              />
-              
+              <Route index element={<UserMenu />} />
+
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
                 path={ROUTES.LOGIN}
@@ -78,10 +71,9 @@ export const App = () => {
                   />
                 }
               />
-              <Route path={ROUTES.NEWS} element={<NewsPage />} /
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
-
             </>
           )}
         </Route>
