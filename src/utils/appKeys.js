@@ -25,6 +25,7 @@ const BACKEND_ENDPOINTS = {
   REGISTER: 'auth/register',
   LOGIN: 'auth/login',
   LOGOUT: 'auth/logout',
+  CURRENT: 'auth/current',
   REFRESH: 'auth/refresh',
 };
 
