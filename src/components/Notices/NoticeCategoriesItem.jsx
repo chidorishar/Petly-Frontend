@@ -6,7 +6,7 @@ import {
   CardContainer,
   ImgWrapper,
   Wrapper,
-  PetImg,
+  // PetImg,
   PetInfo,
   CardWrapper,
   CardTitle,
@@ -21,7 +21,7 @@ import {
 
 export const NoticeCategoriesItem = ({
   // id,
-  image,
+  // image,
   title,
   breed,
   location,
@@ -33,7 +33,7 @@ export const NoticeCategoriesItem = ({
   return (
     <CardContainer>
       <ImgWrapper>
-        <PetImg src={image} alt={breed} />
+        {/* <PetImg src={image} alt={breed} /> */}
         <Wrapper>
           <CategoryTitle>sell</CategoryTitle>
           <AddToFavBtn>
@@ -75,7 +75,7 @@ export const NoticeCategoriesItem = ({
 
 NoticeCategoriesItem.propTypes = {
   // id: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
+  // image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   breed: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,

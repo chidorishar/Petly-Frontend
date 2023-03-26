@@ -27,7 +27,7 @@ export const NoticesSearch = ({ onChange, onSubmit }) => {
 };
 
 NoticesSearch.propTypes = {
-  value: PropTypes.string.isRequired,
+  // value: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
 };

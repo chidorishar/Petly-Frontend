@@ -1,19 +1,21 @@
-import { NoticesSearch } from 'components/Notices/NoticesSearch';
+//import { NoticesSearch } from 'components/Notices/NoticesSearch';
 import { NoticesTitle } from 'components/Notices/NoticesTitle';
-import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
-import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
-import getNotices from './getNotices';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+//import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
+// import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
+//import getNotices from './getNotices';
+//import { useState, useEffect } from 'react';
+//import { useSearchParams } from 'react-router-dom';
 
 export const NoticesPage = () => {
-  const [notices, setNotices] = useState([]);
-  // const [category, setCategory] = useState('sell');
+  /*const [notices, setNotices] = useState([]);
+  const [category, setCategory] = useState('sell');
   // const [search, setSearch] = useState('');
 
-  const fetchNotices = async () => {
+  console.log(notices);
+  const fetchNotices = async category => {
     try {
-      const noticesArray = await getNotices();
+      const noticesArray = await getNotices(category);
+      debugger;
       setNotices(noticesArray);
     } catch (error) {
       console.log(error.message);
@@ -21,12 +23,11 @@ export const NoticesPage = () => {
   };
 
   useEffect(() => {
-    fetchNotices();
-  }, []);
+    fetchNotices(category);
+  }, [category]);
 
-  // useEffect(() => {});
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.get('a'));
+  console.log(searchParams.get('a'));*/
   // console.log('today', Date.now());
   // const date = '2023-03-22T22:00:00.000Z';
   // const birthday = new Date(date);
@@ -39,7 +40,7 @@ export const NoticesPage = () => {
   // const visibleNotices = notices.filter(notice =>
   //   notice.name.toLowerCase().includes(noticeName.toLowerCase())
   // );
-
+  /*
   const updateQueryString = e => {
     setSearchParams({ query: e.target.value });
   };
@@ -51,19 +52,20 @@ export const NoticesPage = () => {
     const query = form.elements.name.value;
     // const password = form.elements.password.value;
     console.log('q ', query);
+    setCategory('lost/found');
     // this.props.onSubmit({ login, password });
     // form.reset();
-  };
+  };*/
   return (
     <div>
       <NoticesTitle />
-      <NoticesSearch
+      {/* <NoticesSearch
         // value={query}
         onChange={updateQueryString}
         onSubmit={handleSubmit}
       />
-      <NoticesNavigation />
-      <NoticesCategoriesList notices={notices} />
+      <NoticesNavigation /> */}
+      {/* <NoticesCategoriesList notices={notices} /> */}
     </div>
   );
 };
