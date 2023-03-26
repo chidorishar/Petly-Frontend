@@ -2,30 +2,42 @@ import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
-import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
+import {
+  useLazyCurrentUserQuery,
+  useRefreshUserMutation,
+} from 'redux/slices/usersAPISlice';
 
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
-import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 
-import { UserMenu } from './UserMenu/UserMenu';
+import SharedLayout from './SharedLayout/SharedLayout';
 
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
+const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
 
 export const App = () => {
-  const [refreshUser, { isLoading: isRefreshingUserData }] =
-    useLazyRefreshUserQuery();
+  const [getCurrentUser, { isLoading: isRefreshingUserData }] =
+    useLazyCurrentUserQuery();
+  const [getAccessToken] = useRefreshUserMutation();
 
   useEffect(() => {
-    const { token } = store.getState().auth;
+    const { accessToken, refreshToken } = store.getState().auth;
 
-    token && refreshUser();
+    (async () => {
+      if (accessToken) {
+        const response = await getCurrentUser();
+
+        if (response?.error && refreshToken) {
+          await getAccessToken(refreshToken);
+        }
+      }
+    })();
   }, []);
 
   return (
@@ -39,6 +51,8 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
+
+              <Route index element={<></>} />
               <Route index element={<UserMenu />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
@@ -59,6 +73,7 @@ export const App = () => {
               />
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+              <Route path="*" element={<></>} />
             </>
           )}
         </Route>
