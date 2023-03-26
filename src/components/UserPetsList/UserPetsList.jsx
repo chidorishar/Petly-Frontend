@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+
 import { Box } from 'components/common/Box/Box.styled';
 import {
   List,
@@ -10,45 +12,33 @@ import {
   NameBox,
 } from './UserPetsList.styled';
 import { DeleteIcon } from 'components/DeleteIcon/DeleteIcon';
+import { toast } from 'react-toastify';
 
-export const UserPetsList = () => {
-  const [pets, setPets] = useState([]);
-  useEffect(() => {
-    const controller = new AbortController();
-    async function getPets() {
-      try {
-        const response = await axios('/api/users', {
-          signal: controller.signal,
-          params: {},
-        });
-        setPets(response.data.pets);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getPets();
-    return () => {
-      controller.abort();
-    };
-  }, [pets]);
-  const handleDeletePet = async id => {
-    await deletePetFromList(id);
-    setPets(pets.filter(pet => pet.id !== id));
-  };
-  async function deletePetFromList(id) {
-    try {
-      await axios.delete('/api/users/pets', {
-        params: { petId: id },
-      });
-    } catch (error) {
-      console.error(error);
-    }
+async function deletePetFromList(petId) {
+  try {
+    await axios.delete(`/api/users/pets/${petId}`);
+  } catch ({ response }) {
+    console.log(response.status);
+    toast.error(
+      response.status === 400 ? 'Unauthorized!' : 'Something went wrong'
+    );
   }
+}
 
-  return pets.length > 0 ? (
+export const UserPetsList = ({ pets, onPetDeleted }) => {
+  const handleDeletePet = async id => {
+    const resp = await deletePetFromList(id);
+
+    if (resp) {
+      toast.success(`Pet deleted`);
+      onPetDeleted();
+    }
+  };
+
+  return pets.length ? (
     <Box>
       <List>
-        {pets.map(({ id, photo, breed, name, birthday, comment }) => {
+        {pets.map(({ _id: id, photo, breed, name, birthday, comment }) => {
           return (
             <ListItem key={id}>
               <PetImg src={photo} alt={name} />
@@ -59,14 +49,14 @@ export const UserPetsList = () => {
                       <span>Name: </span>
                       {name}
                     </Box>
-                    <DeleteBtn onClick={handleDeletePet(id)}>
+                    <DeleteBtn onClick={() => handleDeletePet(id)}>
                       <DeleteIcon />
                     </DeleteBtn>
                   </NameBox>
                 </li>
                 <li>
                   <span>Date of birth: </span>
-                  {birthday}
+                  {format(new Date(birthday), 'dd.MM.yyyy')}
                 </li>
                 <li>
                   <span>Breed: </span>
@@ -87,4 +77,18 @@ export const UserPetsList = () => {
       <p> No pets... </p>
     </Box>
   );
+};
+
+UserPetsList.propTypes = {
+  pets: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      photo: PropTypes.string.isRequired,
+      breed: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      birthday: PropTypes.string.isRequired,
+      comment: PropTypes.string.isRequired,
+    })
+  ),
+  onPetDeleted: PropTypes.func.isRequired,
 };
