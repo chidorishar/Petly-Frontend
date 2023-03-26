@@ -25,12 +25,10 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
     { type: 'own', text: 'my ads' },
   ];
 
-  const handleClick = e => {
-    setSelectedButton(e.target.innerHTML);
-    const el = nameCategoryUnAuth.find(
-      item => item.text === e.target.innerHTML
-    );
-    onCategoryClick(el.type);
+  const handleClick = buttonType => {
+    setSelectedButton(buttonType);
+
+    onCategoryClick(buttonType);
   };
 
   return (
@@ -39,9 +37,11 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
         {nameCategoryUnAuth.map((item, index) => (
           <Button
             key={index}
-            selected={selectedButton === item.text}
+            selected={selectedButton === item.type}
             type="button"
-            onClick={handleClick}
+            onClick={() => {
+              handleClick(item.type);
+            }}
           >
             {item.text}
           </Button>
@@ -76,7 +76,8 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
               <Button
                 key={index}
                 type="button"
-                onClick={() => onCategoryClick(item.type)}
+                selected={selectedButton === item.type}
+                onClick={() => handleClick(item.type)}
               >
                 {item.text}
               </Button>
