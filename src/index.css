@@ -28,6 +28,7 @@ p {
 
 ul,
 ol,
+li,
 form {
   margin: 0;
   padding: 0;
@@ -67,7 +68,7 @@ textarea {
   line-height: 1.15;
   margin: 0;
 }
-button{
+button {
   cursor: pointer;
   border: none;
 }

@@ -11,7 +11,11 @@ const persistConfig = {
   blacklist: [usersAPI.reducerPath],
 };
 
-function setAuthData(state, { payload: { token, user } }) {
+function setAuthData(state, { payload }) {
+  if (!payload) return;
+
+  const { token, ...user } = payload.data.user;
+
   state.token = token;
   state.user = user;
   state.isUserAuthorized = true;
@@ -39,14 +43,7 @@ const authSlice = createSlice({
     builder
       .addMatcher(signupUser.matchFulfilled, setAuthData)
       .addMatcher(loginUser.matchFulfilled, setAuthData)
-      .addMatcher(refreshUser.matchFulfilled, (state, { payload }) => {
-        const transformedResp = {
-          token: state.token,
-          user: { name: payload.name, email: payload.email },
-        };
-
-        setAuthData(state, { payload: transformedResp });
-      })
+      .addMatcher(refreshUser.matchFulfilled, setAuthData)
       .addMatcher(logoutUser.matchFulfilled, clearAuthData);
   },
 });

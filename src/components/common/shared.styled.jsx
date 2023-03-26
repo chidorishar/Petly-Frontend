@@ -142,10 +142,6 @@ export const InputCommon = styled.input`
   border-radius: ${p => p.theme.radii.normal};
 `;
 
-export const Section = styled.section`
-  padding: ${({ theme: { space } }) => space[4]}px;
-`;
-
 export const MainWrapper = styled.main`
   display: flex;
 

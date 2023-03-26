@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { AUTH_HEADER_NAME, axiosBaseQuery } from 'services/axiosBaseQuery';
+import { BACKEND_BASE_URL, BACKEND_ENDPOINTS, CACHE_TAGS } from 'utils/appKeys';
 // import {
 //   CONTACTS_DATA_CACHE_TAG,
 //   phonebookAPI,
@@ -21,7 +22,7 @@ export const usersAPI = createApi({
   reducerPath: 'usersAPI',
 
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/users/',
+    baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
@@ -31,41 +32,40 @@ export const usersAPI = createApi({
     },
   }),
 
-  tagTypes: ['AuthData'],
+  tagTypes: [CACHE_TAGS.AUTH_LOGIN],
 
   endpoints: builder => ({
     signupUser: builder.mutation({
       query: userCredentials => ({
-        url: `signup`,
+        url: BACKEND_ENDPOINTS.REGISTER,
         method: 'post',
         data: userCredentials,
       }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
     }),
 
     loginUser: builder.mutation({
       query: userCredentials => ({
-        url: `login`,
+        url: BACKEND_ENDPOINTS.LOGIN,
         method: 'post',
         data: userCredentials,
       }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
 
     logoutUser: builder.mutation({
       query: () => ({
-        url: `logout`,
+        url: BACKEND_ENDPOINTS.LOGOUT,
         method: 'post',
       }),
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
 
     refreshUser: builder.query({
-      query: () => ({ url: `current` }),
+      query: () => ({ url: BACKEND_ENDPOINTS.REFRESH }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
   }),
 });

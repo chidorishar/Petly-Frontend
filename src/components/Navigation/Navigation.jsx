@@ -1,43 +1,38 @@
+import { useState } from 'react';
+import { useMedia } from 'react-use';
+
 import { useAuth } from 'redux/hooks/getAuth';
 
-import { ContainerFrameCommon } from 'components/common/shared.styled';
-import { HeaderLink, LinksListItem } from './Navigation.styled';
+import { Nav } from 'components/Nav/Nav';
+import { AuthNav } from 'components/AuthNav/AuthNav';
+import { UserNav } from 'components/UserNav/UserNav';
+import { BurgerNavOpenBtn } from 'components/BurgerNav/BurgerNavOpenBtn';
+import { BurgerNav } from 'components/BurgerNav/BurgerNav';
 
-const LINK_TYPES = {
-  protected: 'PROT',
-  private: 'PRIVATE',
-};
+export const Navigation = () => {
+  const { isUserAuthorized, isUserRefreshing } = useAuth();
+  const [isBurgerNavOpen, setIsBurgerNavOpen] = useState(false);
+  const isDesktop = useMedia('(min-width: 1280px)');
+  const isMobile = useMedia('(max-width: 767px)');
 
-const LINKS = [
-  { name: 'Register', to: '/', type: LINK_TYPES.protected },
-  { name: 'Login', to: 'login', type: LINK_TYPES.protected },
-  { name: 'Contacts', to: 'contacts', type: LINK_TYPES.private },
-];
+  const open = () => {
+    setIsBurgerNavOpen(true);
+  };
 
-export function Navigation() {
-  const { isUserAuthorized } = useAuth();
+  const close = e => {
+    if (e.target.nodeName === 'A' || e.currentTarget.nodeName === 'BUTTON') {
+      setIsBurgerNavOpen(false);
+    }
+  };
 
   return (
-    <nav>
-      <ContainerFrameCommon as="ul">
-        {LINKS.map(({ to, name, type }) => (
-          <LinksListItem key={name}>
-            <HeaderLink
-              className={
-                (!isUserAuthorized && type === LINK_TYPES.private
-                  ? 'disabled'
-                  : '') +
-                (isUserAuthorized && type === LINK_TYPES.protected
-                  ? 'disabled'
-                  : '')
-              }
-              to={to}
-            >
-              {name}
-            </HeaderLink>
-          </LinksListItem>
-        ))}
-      </ContainerFrameCommon>
-    </nav>
+    <>
+      {isDesktop && <Nav />}
+      {!isMobile && isUserAuthorized && !isUserRefreshing && <UserNav />}
+      {!isMobile && !isUserAuthorized && <AuthNav />}
+      {!isDesktop && <BurgerNavOpenBtn onClick={open} />}
+
+      {isBurgerNavOpen && !isDesktop && <BurgerNav close={close} />}
+    </>
   );
-}
+};

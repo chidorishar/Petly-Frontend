@@ -20,6 +20,9 @@ export const theme = {
     input: '#FDF7F2',
     shadowCard: 'rgba(49, 21, 4, 0.07)',
     inputModal: 'rgba(245, 146, 86, 0.5)',
+    success: '#3cbc81',
+    warning: '#e2001a',
+    darkMain: '#000',
   },
   fontSizes: {
     xs: '12px',
@@ -38,7 +41,6 @@ export const theme = {
     heading: 500,
     semiBold: 600,
     logo: 700,
-    bold: 700,
   },
   radii: {
     mainBorderRadius: '40px',

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { theme } from 'utils/theme';
 
 import { persistedStore, store } from 'redux/store';
@@ -14,7 +15,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {' '}
     <BrowserRouter basename="/Petly-Frontend">
       <ThemeProvider theme={theme}>
         <Provider store={store}>
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <App />
           </PersistGate>
         </Provider>
-      </ThemeProvider>{' '}
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
