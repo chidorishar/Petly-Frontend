@@ -5,11 +5,15 @@ import { useState } from 'react';
 
 export const PetsData = () => {
   const [showModal, setShowModal] = useState(false);
+
   const handleAddPet = () => {
     setShowModal(true);
   };
+
   return (
     <Box>
+      {/* MODAL WINDOW */}
+      {showModal && <></>}
       <DataTopBox>
         <PetsTitle>My pets:</PetsTitle>
         <AddBox>
