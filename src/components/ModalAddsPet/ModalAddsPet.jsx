@@ -62,7 +62,6 @@ const validationAddPetTwoStep = yup.object().shape({
 function ModalAddPet() {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null);
-  const [photo, setPhoto] = useState('');
   // const navigate = useNavigate();
 
   // const [createPet, { data: mutationData, error, loading, called }] = useCreatePetMutation();
@@ -102,6 +101,7 @@ function ModalAddPet() {
     breed: '',
     photo: '',
     comments: '',
+    photoPreview: null,
   });
   console.log('data start:', data);
   const [currentStep, setCurrentStep] = useState(0);
@@ -131,6 +131,21 @@ function ModalAddPet() {
     handleChangeData(newData);
     setCurrentStep(prev => prev - 1);
   };
+
+  // const handleFileChange = e => {
+  //   const file = e.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => {
+  //     setData(prev => ({
+  //       ...prev,
+  //       photo: file,
+  //       photoPreview: reader.result,
+  //     }));
+  //   };
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleSubmitForm = async (values, formikBag = {}) => {
     const { setSubmitting } = formikBag;
@@ -397,23 +412,6 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
     await submitForm(formData);
     next(values, true);
     setSubmitting(false);
-
-    // try {
-    //   const formData = new FormData();
-    //   formData.append('photo', selectedFile);
-    //   Object.keys(values).forEach(key => {
-    //     formData.append(key, values[key]);
-    //   });
-    //   updateData(values);
-    //   await submitForm(formData);
-    //   next(values, true);
-
-    //   console.log('formData:', formData);
-    // } catch (err) {
-    //   console.log(err);
-    // } finally {
-    //   setSubmitting(false);
-    // }
   };
 
   return (
@@ -437,7 +435,7 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
                 ref={fileInputRef}
               />
               <Thumb
-                file={selectedFile}
+                file={selectedFile ? selectedFile : data.photo}
                 onClick={() => fileInputRef.current.click()}
               />
             </label>

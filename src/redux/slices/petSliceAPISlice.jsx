@@ -77,6 +77,3 @@ export const {
   useUpdatePetMutation,
   useCreatePetMutation,
 } = petsApi;
-
-
-  

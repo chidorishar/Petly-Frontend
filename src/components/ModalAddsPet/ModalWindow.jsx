@@ -8,7 +8,7 @@ export const Overlay = forwardRef((props, ref) => {
     <ModalPortal ref={ref}>
       <ModalContent>{props.children}</ModalContent>
     </ModalPortal>,
-    document.getElementById("modal-root")
+    document.getElementById('modal-root')
   );
 });
 

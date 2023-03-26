@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // import { NavLink } from 'react-router-dom';
-import {Form as FormikForm, Field as FormikField} from 'formik';
+import { Form as FormikForm, Field as FormikField } from 'formik';
 
 export const Overlay = styled.div`
   background-color: #1e2129;
@@ -90,14 +90,12 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalPortal = styled.div`
- position: fixed;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
 `;
-
-
 
 // ****
 

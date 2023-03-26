@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { AUTH_HEADER_NAME, axiosBaseQuery } from 'services/axiosBaseQuery';
 
-
+const BACKEND_BASE_URL = 'http://localhost:3000';
 // import {
 //   CONTACTS_DATA_CACHE_TAG,
 //   phonebookAPI,
