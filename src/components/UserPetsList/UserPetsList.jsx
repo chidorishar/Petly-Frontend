@@ -1,6 +1,8 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import { toast } from 'react-toastify';
+
+import { dateConverter } from 'utils';
 
 import { Box } from 'components/common/Box/Box.styled';
 import {
@@ -12,7 +14,6 @@ import {
   NameBox,
 } from './UserPetsList.styled';
 import { DeleteIcon } from 'components/DeleteIcon/DeleteIcon';
-import { toast } from 'react-toastify';
 
 async function deletePetFromList(petId) {
   try {
@@ -56,7 +57,7 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
                 </li>
                 <li>
                   <span>Date of birth: </span>
-                  {format(new Date(birthday), 'dd.MM.yyyy')}
+                  {dateConverter(birthday, 'dd.MM.yyyy')}
                 </li>
                 <li>
                   <span>Breed: </span>
