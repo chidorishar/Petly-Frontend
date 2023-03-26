@@ -37,7 +37,7 @@ export const LoginForm = () => {
         toast.success(`Welcome back, ${user.name}!`);
       } catch (error) {
         toast.error(
-          error.status === 401 ? 'Wrong credentials!' : 'Something went wrong'
+          error.status === 400 ? 'Wrong credentials!' : 'Something went wrong'
         );
       }
     },
