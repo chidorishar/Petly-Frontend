@@ -13,3 +13,34 @@ export const Backdrop = styled.div`
   background-color: ${p => p.theme.colors.inputText};
   backdrop-filter: blur(10px);
 `;
+
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  opacity: ${({ state }) => {
+    switch (state) {
+      case 'exited':
+        return 0;
+      case 'exiting':
+        return 0;
+      default:
+        return 1;
+    }
+  }};
+
+  transform: scale(
+    ${({ state }) => {
+      switch (state) {
+        case 'exited':
+          return 0.9;
+        case 'exiting':
+          return 0.9;
+        default:
+          return 1;
+      }
+    }}
+  );
+`;

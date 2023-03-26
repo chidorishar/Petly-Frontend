@@ -1,11 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { Transition } from 'react-transition-group';
 
 import PropTypes from 'prop-types';
 
 import * as Styled from './Modal.styled';
 
 const Modal = ({ isOpen, children, handleClose }) => {
+  const transitionRef = useRef(null);
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
 
@@ -21,7 +24,6 @@ const Modal = ({ isOpen, children, handleClose }) => {
 
   function handleWindowKeydown(e) {
     if (e.code === `Escape`) {
-      console.log('handleClose');
       handleClose();
     }
   }
@@ -32,20 +34,29 @@ const Modal = ({ isOpen, children, handleClose }) => {
     }
   };
 
-  if (!isOpen) return null;
-
   const Element = (
     <>
-      <Styled.Backdrop onClick={handleBackdropClick}>
-        {children}
-      </Styled.Backdrop>
+      <Transition
+        in={isOpen}
+        timeout={250}
+        nodeRef={transitionRef}
+        mountOnEnter={true}
+        unmountOnExit={true}
+      >
+        {state => (
+          <Styled.Backdrop onClick={handleBackdropClick}>
+            <Styled.Wrapper state={state} ref={transitionRef}>
+              {children}
+            </Styled.Wrapper>
+          </Styled.Backdrop>
+        )}
+      </Transition>
     </>
   );
 
   return createPortal(Element, document.getElementById('modal'));
 };
 
-// proptypes
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
