@@ -20,9 +20,9 @@ export const usersAPI = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
-      const acessToken = getState().auth.accessToken;
-      if (acessToken) {
-        headers.set([AUTH_HEADER_NAME], `Bearer ${acessToken}`);
+      const accessToken = getState().auth.accessToken;
+      if (accessToken) {
+        headers.set([AUTH_HEADER_NAME], `Bearer ${accessToken}`);
       }
       return headers;
     },
