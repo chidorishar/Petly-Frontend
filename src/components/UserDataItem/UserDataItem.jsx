@@ -13,6 +13,7 @@ import {
 import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS } from 'utils/appKeys';
+import { dateConverter } from 'utils';
 
 const updateUserDataInBD = async dataObject => {
   return await axios.patch(
@@ -173,7 +174,11 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
               <UserInput
                 type={el.type}
                 name={elName}
-                value={el.value ?? ''}
+                value={
+                  (elName === elementsData.birthday
+                    ? dateConverter(el.value, 'dd.MM.yyyy')
+                    : el.value) ?? ''
+                }
                 placeholder={el.placeholder}
                 className={
                   isInputDataNotValid
