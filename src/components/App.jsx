@@ -2,7 +2,10 @@ import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
-import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
+import {
+  useLazyCurrentUserQuery,
+  useRefreshUserMutation,
+} from 'redux/slices/usersAPISlice';
 
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
@@ -16,13 +19,22 @@ const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 export const App = () => {
-  const [refreshUser, { isLoading: isRefreshingUserData }] =
-    useLazyRefreshUserQuery();
+  const [getCurrentUser, { isLoading: isRefreshingUserData }] =
+    useLazyCurrentUserQuery();
+  const [getAccessToken] = useRefreshUserMutation();
 
   useEffect(() => {
-    const { accessToken } = store.getState().auth;
+    const { accessToken, refreshToken } = store.getState().auth;
 
-    accessToken && refreshUser();
+    (async () => {
+      if (accessToken) {
+        const response = await getCurrentUser();
+
+        if (response?.error && refreshToken) {
+          await getAccessToken(refreshToken);
+        }
+      }
+    })();
   }, []);
 
   return (

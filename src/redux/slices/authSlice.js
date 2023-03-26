@@ -29,6 +29,12 @@ function setUserData(state, { payload }) {
   state.isUserAuthorized = true;
 }
 
+function setAccessToken(state, { payload }) {
+  if (!payload) return;
+
+  state.accessToken = payload.data.user.accessToken;
+}
+
 function clearAuthData(state) {
   state.accessToken = null;
   state.refreshToken = null;
@@ -47,14 +53,15 @@ const authSlice = createSlice({
   reducers: {},
 
   extraReducers: builder => {
-    const { signupUser, loginUser, logoutUser, refreshUser } =
+    const { signupUser, loginUser, logoutUser, currentUser, refreshUser } =
       usersAPI.endpoints;
 
     builder
       .addMatcher(signupUser.matchFulfilled, setAuthData)
       .addMatcher(loginUser.matchFulfilled, setAuthData)
-      .addMatcher(refreshUser.matchFulfilled, setUserData)
-      .addMatcher(logoutUser.matchFulfilled, clearAuthData);
+      .addMatcher(currentUser.matchFulfilled, setUserData)
+      .addMatcher(logoutUser.matchFulfilled, clearAuthData)
+      .addMatcher(refreshUser.matchFulfilled, setAccessToken);
   },
 });
 
