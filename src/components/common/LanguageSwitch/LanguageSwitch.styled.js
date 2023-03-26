@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const LanguageSwitchEl = styled.div`
-  /* background: transparent; */
+  background: transparent;
   padding: 4px;
   border-radius: 3px;
   width: fit-content;

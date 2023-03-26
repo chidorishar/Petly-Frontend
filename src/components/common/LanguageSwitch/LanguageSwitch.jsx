@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useLayoutEffect } from 'react';
 import { LanguageSwitchEl, LanguageOption } from './LanguageSwitch.styled';
+import '../../../i18n';
 
 const LanguageSwitch = () => {
   const { i18n } = useTranslation();
@@ -13,7 +14,7 @@ const LanguageSwitch = () => {
   const [lang, setLang] = useState(window.localStorage.getItem('i18nextLng'));
 
   useLayoutEffect(() => {
-    const selectedLang = window.localStorage.getItem('i18nextLing');
+    const selectedLang = window.localStorage.getItem('i18nextLng');
 
     if (selectedLang) {
       setLang(selectedLang);

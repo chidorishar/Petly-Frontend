@@ -1,20 +1,23 @@
 import { ROUTES } from 'utils/appKeys';
 import LanguageSwitch from 'components/common/LanguageSwitch/LanguageSwitch';
+import { useTranslation } from 'react-i18next';
+import '../../i18n';
 
 import { NaviList, NaviLink } from './Nav.styled';
 
 export const Nav = () => {
+  const { t } = useTranslation();
   return (
     <nav>
       <NaviList>
         <li>
-          <NaviLink to={ROUTES.NEWS}>News</NaviLink>
+          <NaviLink to={ROUTES.NEWS}>{t('main.news')}</NaviLink>
         </li>
         <li>
-          <NaviLink to={ROUTES.NOTICES}>Find pet</NaviLink>
+          <NaviLink to={ROUTES.NOTICES}>{t('main.find')}</NaviLink>
         </li>
         <li>
-          <NaviLink to={ROUTES.FRIENDS}>Our friends</NaviLink>
+          <NaviLink to={ROUTES.FRIENDS}>{t('main.friends')}</NaviLink>
         </li>
         <LanguageSwitch />
       </NaviList>

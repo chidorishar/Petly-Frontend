@@ -1,10 +1,9 @@
-import { lazy, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 import { ROUTES } from 'utils/appKeys';
-// import { useTranslation } from 'react-i18next';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { RestrictedRoute } from './ProtectedRoute';
@@ -28,29 +27,32 @@ export const App = () => {
 
   return (
     <>
-      <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          {isRefreshingUserData ? (
-            <Route index element={<p>Retrieving data...</p>} />
-          ) : (
-            <>
-              {/* HOMEPAGE */}
-              <Route
-                index
-                element={<RestrictedRoute redirectTo="/" component={<></>} />}
-              />
+      <Suspense fallback="<div>Loading...</div>">
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            {isRefreshingUserData ? (
+              <Route index element={<p>Retrieving data...</p>} />
+            ) : (
+              <>
+                {/* HOMEPAGE */}
+                <Route
+                  index
+                  element={<RestrictedRoute redirectTo="/" component={<></>} />}
+                />
 
-              {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-              <Route path={ROUTES.NEWS} element={<NewsPage />} />
-              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-              <Route path="*" element={<></>} />
-            </>
-          )}
-        </Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+                {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+                <Route path={ROUTES.NEWS} element={<NewsPage />} />
+                <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+                <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+                <Route path="*" element={<></>} />
+              </>
+            )}
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+        {/* <div>{t('modal.learn')}</div> */}
+      </Suspense>
     </>
   );
 };

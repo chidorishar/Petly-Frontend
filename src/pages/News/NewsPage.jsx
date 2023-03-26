@@ -15,6 +15,7 @@ import {
 import NewsCard from '../../components/NewsCards/NewsCard';
 import { Section } from 'components/common';
 import { useTranslation } from 'react-i18next';
+// import { Trans } from 'react-i18next';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
