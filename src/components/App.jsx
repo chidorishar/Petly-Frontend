@@ -14,6 +14,7 @@ import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
 
 import SharedLayout from './SharedLayout/SharedLayout';
+import { Loader } from './common';
 
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
@@ -47,7 +48,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           {isRefreshingUserData ? (
-            <Route index element={<p>Retrieving data...</p>} />
+            <Route index element={<Loader />} />
           ) : (
             <>
               {/* HOMEPAGE */}

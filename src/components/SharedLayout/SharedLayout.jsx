@@ -5,7 +5,7 @@ import { useAuth } from 'redux/hooks/getAuth';
 import { Navigation } from 'components/Navigation/Navigation';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 
-import { Container } from 'components/common';
+import { Container, Loader } from 'components/common';
 import { Header } from 'components';
 
 export default function SharedLayout() {
@@ -19,7 +19,7 @@ export default function SharedLayout() {
           {isUserAuthorized && <UserMenu />}
         </Container>
       </Header>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </>
