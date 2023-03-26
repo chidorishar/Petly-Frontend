@@ -83,7 +83,6 @@ const WrapperTwo = styled(Wrapper)`
 `;
 
 const Title = styled.h2`
-  font-family: ${p => p.theme.fonts.mainFamily};
   line-height: 1.36;
   text-align: center;
 
@@ -130,7 +129,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const BottomText = styled.p`
-  font-family: ${p => p.theme.fonts.mainFamily};
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
   color: ${p => p.theme.colors.inputText};
