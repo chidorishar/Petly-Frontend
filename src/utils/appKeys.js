@@ -14,11 +14,8 @@ const ROUTES = {
   PROFILE: '/profile',
 };
 
-/**
- * Application local storage keys.
- */
-const LOCAL_STORAGE_KEYS = {
-  ACCESS_TOKEN: 'accessToken',
+const CACHE_TAGS = {
+  AUTH_LOGIN: 'AuthLogin',
 };
 
 /**
@@ -28,14 +25,10 @@ const BACKEND_ENDPOINTS = {
   REGISTER: 'auth/register',
   LOGIN: 'auth/login',
   LOGOUT: 'auth/logout',
-  REFRESH: 'auth/current',
-  UPDATE_USER_INFO: 'users',
-};
-
-const CACHE_TAGS = {
-  AUTH_LOGIN: 'AuthLogin',
+  CURRENT: 'auth/current',
+  REFRESH: 'auth/refresh',
 };
 
 export const BACKEND_BASE_URL = 'localhost:4000';
 
-export { ROUTES, LOCAL_STORAGE_KEYS, BACKEND_ENDPOINTS, CACHE_TAGS };
+export { ROUTES, BACKEND_ENDPOINTS, CACHE_TAGS };
