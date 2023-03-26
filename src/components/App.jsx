@@ -9,13 +9,16 @@ import {
 
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
-import SharedLayout from './SharedLayout/SharedLayout';
+
 
 import { RestrictedRoute } from './ProtectedRoute';
 import { PrivateRoute } from './PrivateRoute';
 
-const NewsPage = lazy(() => import('../pages/News/NewsPage'));
+import SharedLayout from './SharedLayout/SharedLayout';
+
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
+const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 const LoginPage = lazy(() => import('pages/Login/LoginPage'));
 const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
@@ -50,6 +53,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
+
               <Route index element={<></>} />
               <Route
                 index
@@ -57,18 +61,27 @@ export const App = () => {
                   <PrivateRoute redirectTo="/" component={<UserMenu />} />
                 }
               />
-
+              
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-              <Route path={ROUTES.NEWS} element={<NewsPage />} />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route
                 path={ROUTES.LOGIN}
                 element={
                   <RestrictedRoute redirectTo="/" component={<LoginPage />} />
                 }
               />
+              <Route
+                path={ROUTES.REGISTER}
+                element={
+                  <RestrictedRoute
+                    redirectTo="/"
+                    component={<RegisterPage />}
+                  />
+                }
+              />
+              <Route path={ROUTES.NEWS} element={<NewsPage />} /
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path="*" element={<></>} />
+
             </>
           )}
         </Route>
