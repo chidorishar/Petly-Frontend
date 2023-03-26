@@ -30,7 +30,7 @@ export const UserInfoContainer = styled.div`
   @media ${p => p.theme.breakpoints.tablet.media} {
     width: 704px;
     margin-bottom: 20px;
-    position: relative;
+    // position: relative;
   }
   @media ${p => p.theme.breakpoints.desktop.media} {
     width: 411px;
@@ -71,7 +71,7 @@ export const UserWrapper = styled.div`
   background-color: ${p => p.theme.colors.secondaryBackground};
 
   @media ${p => p.theme.breakpoints.tablet.media} {
-    position: absolute;
+    position: relative;
     left: -32px;
     flex-direction: row-reverse;
     width: 736px;

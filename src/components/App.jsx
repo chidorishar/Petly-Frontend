@@ -12,7 +12,7 @@ import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
 import { RestrictedRoute } from './ProtectedRoute';
-import { PrivateRoute } from './PrivateRoute';
+// import { PrivateRoute } from './PrivateRoute';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 
@@ -75,9 +75,10 @@ export const App = () => {
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route
                 path={ROUTES.USERPAGE}
-                element={
-                  <PrivateRoute redirectTo="/" component={<UserPage />} />
-                }
+                element={<UserPage />}
+                // element={
+                //   <PrivateRoute redirectTo="/" component={<UserPage />} />
+                // }
               />
               <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
