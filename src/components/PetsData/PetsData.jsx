@@ -1,106 +1,32 @@
-import {
-  PetsContainer,
-  PetsTitle,
-  PetsItem,
-  PetsImageWraper,
-  PetsImg,
-  PetsInfoList,
-  PetsSpan,
-  PetsInfoItem,
-  PetsTitleWraper,
-  PetsDeleteButton,
-  PetsDeleteIcon,
-  PetsInfoWrapper,
-  AddPetBtn,
-  Icon,
-} from './PetsData.styled';
+import { Box } from 'components/common/Box/Box.styled';
+import { PetsTitle, AddPetBtn, DataTopBox, AddBox } from './PetsData.styled';
+import { BsFillPlusCircleFill } from 'react-icons/bs';
+// import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { UserPetsList } from 'components/UserPetsList/UserPetsList';
 
-import sprite from 'images/sprite.svg';
-
-export const PetsData = () => {
+export const PetsData = ({ pets, onPetDeleted }) => {
+  // const [showModal, setShowModal] = useState(false);
+  const handleAddPet = () => {
+    // setShowModal(true);
+  };
   return (
-    <PetsContainer>
-      <PetsTitleWraper>
+    <Box>
+      <DataTopBox>
         <PetsTitle>My pets:</PetsTitle>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <AddBox>
           <span>Add pet</span>
-          <AddPetBtn type="button">
-            <Icon />
+          <AddPetBtn onClick={handleAddPet}>
+            <BsFillPlusCircleFill />
           </AddPetBtn>
-        </div>
-      </PetsTitleWraper>
-      <ul>
-        <PetsItem>
-          <PetsDeleteButton type="button">
-            <PetsDeleteIcon>
-              <use href={sprite + '#trash-can'} />
-            </PetsDeleteIcon>
-          </PetsDeleteButton>
-          <PetsImageWraper>
-            <PetsImg
-              src="https://images.prom.ua/901671004_w640_h640_lev-iz-dereva.jpg"
-              alt="Pet Photo"
-            />
-          </PetsImageWraper>
-          <PetsInfoWrapper>
-            <PetsInfoList>
-              <PetsInfoItem>
-                <PetsSpan>Name: </PetsSpan>Jack
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Date of birth: </PetsSpan>22.04.2018
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Breed: </PetsSpan>Persian cat
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Comments: </PetsSpan>Lorem ipsum dolor sit amet,
-                consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum
-                dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-                consectetur
-              </PetsInfoItem>
-            </PetsInfoList>
-          </PetsInfoWrapper>
-        </PetsItem>
-        <PetsItem>
-          <PetsDeleteButton type="button">
-            <PetsDeleteIcon>
-              <use href={sprite + '#trash-can'} />
-            </PetsDeleteIcon>
-          </PetsDeleteButton>
-          <PetsImageWraper>
-            <PetsImg
-              src="https://images.prom.ua/901671004_w640_h640_lev-iz-dereva.jpg"
-              alt="Pet Photo"
-              width="161"
-            />
-          </PetsImageWraper>
-          <PetsInfoWrapper>
-            <PetsInfoList>
-              <PetsInfoItem>
-                <PetsSpan>Name: </PetsSpan>Jack
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Date of birth: </PetsSpan>22.04.2018
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Breed: </PetsSpan>Basenji
-              </PetsInfoItem>
-              <PetsInfoItem>
-                <PetsSpan>Comments: </PetsSpan>Lorem ipsum dolor sit amet,
-                consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum
-                dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-                consectetur Lorem ipsum dolor sit amet, consecteturLorem ipsum
-                dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-                consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum
-                dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-                consectetur ipsum dolor sit amet, rem ipsum dolor sit amet,
-                ipsum sit,
-              </PetsInfoItem>
-            </PetsInfoList>
-          </PetsInfoWrapper>
-        </PetsItem>
-      </ul>
-    </PetsContainer>
+        </AddBox>
+      </DataTopBox>
+      <UserPetsList pets={pets} onPetDeleted={onPetDeleted} />
+    </Box>
   );
+};
+
+PetsData.propTypes = {
+  pets: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  onPetDeleted: PropTypes.func.isRequired,
 };

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useMedia } from 'react-use';
 import PropTypes from 'prop-types';
 
-import { selectIsAuth } from 'redux/auth/authSelectors';
+import { useAuth } from 'redux/hooks/getAuth';
+
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Logo } from 'components/Logo/Logo';
@@ -13,7 +13,7 @@ import { BurgerNavMenu, LogoMenu, UserAuthMenu } from './BurgerNav.styled';
 import { Container } from 'components/common';
 
 export const BurgerNav = ({ close }) => {
-  const isAuth = useSelector(selectIsAuth);
+  const { isUserAuthorized, isUserRefreshing } = useAuth();
   const isMobile = useMedia('(max-width: 767px)');
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -30,8 +30,8 @@ export const BurgerNav = ({ close }) => {
           <BurgerNavCloseBtn onClick={close} />
         </LogoMenu>
         <UserAuthMenu>
-          {isMobile && isAuth && <UserNav />}
-          {isMobile && !isAuth && <AuthNav />}
+          {isMobile && isUserAuthorized && !isUserRefreshing && <UserNav />}
+          {isMobile && !isUserAuthorized && <AuthNav />}
         </UserAuthMenu>
         <Nav />
       </Container>

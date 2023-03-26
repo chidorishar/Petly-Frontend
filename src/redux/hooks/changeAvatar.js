@@ -7,8 +7,8 @@ export const changeAvatar = async file => {
   try {
     console.log(file.get('avatarImg'));
     const response = await axios.patch('/api/users/avatar', file);
-    return response.data;
+    return response;
   } catch (error) {
-    console.log(error.message);
+    return error.response;
   }
 };

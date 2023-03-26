@@ -1,10 +1,21 @@
 import styled from 'styled-components';
-import { Section } from 'components/common';
+import { Section, Container } from 'components/common';
 
 export const UserPageSection = styled(Section)`
+  padding-top: 60px;
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    padding-top: 90px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    padding-top: 60px;
+  }
+`;
+
+export const UserPageContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  padding-top: 60px;
   @media ${p => p.theme.breakpoints.desktop.media} {
     flex-direction: row;
   }

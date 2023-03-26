@@ -29,8 +29,8 @@ export const UserData = ({ user, onUserDataUpdated }) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('avatarImg', e.target.files[0]);
-    changeAvatar(formData);
-    // console.log(formData.get('file'));
+    const response = await changeAvatar(formData);
+    if (response.status === 201) onUserDataUpdated();
   };
 
   return (
