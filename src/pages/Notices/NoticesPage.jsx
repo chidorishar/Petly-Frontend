@@ -23,6 +23,8 @@ export const NoticesPage = () => {
       // console.log(userToken);
       if (userToken)
         axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+      else axios.defaults.headers.common['Authorization'] = null;
+
       const noticesArray = await getNotices(category, query);
       // console.log(noticesArray);
       setNotices(noticesArray);
