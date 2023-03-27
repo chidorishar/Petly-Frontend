@@ -34,7 +34,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
   const [name, setName] = useState(userName);
   const [email, setEmail] = useState(userEmail);
   const [birthday, setBirthday] = useState(
-    new Date(userBirthdayDate).toLocaleString().split(',')[0]
+    dateConverter(userBirthdayDate, 'dd.MM.yyyy')
   );
   const [phone, setPhone] = useState(userPhone);
   const [location, setLocation] = useState(userLocation);
@@ -47,7 +47,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       placeholder: 'Your name',
       type: 'text',
       pattern: /^[a-zA-Z0-9_]{3,16}$/,
-      initialValue: userName,
+      initialValue: name,
       changeValueMethod: setName,
     },
     email: {
@@ -69,7 +69,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       placeholder: '01.01.2023',
       type: 'text',
       pattern: /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.\d{4}$/,
-      initialValue: userBirthdayDate,
+      initialValue: dateConverter(userBirthdayDate, 'dd.MM.yyyy'),
       changeValueMethod: setBirthday,
     },
     phone: {
@@ -102,9 +102,22 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
 
   const updateUserData = async dataObject => {
     try {
+      // if passed object contains "birthday" field then:
+      // convert date from dd.MM.yyyy to "MM/dd/yyyy" and set it as a Date object
+      if (dataObject['birthday']) {
+        const dataValue = dataObject['birthday'];
+
+        const transformedDate = dataValue.replace(/(\d+[.])(\d+[.])/, '$2$1');
+        dataObject['birthday'] = new Date(transformedDate);
+      }
+
       const res = await updateUserDataInBD(dataObject);
       if (res.status === 200) onUserDataUpdated();
     } catch (error) {
+      // reset all inputs to their initial values if error occurred
+      Object.values(elementsData).forEach(element =>
+        element.changeValueMethod(element.initialValue)
+      );
       console.log(`Error updating user data ${error}`);
     }
   };
@@ -175,11 +188,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
             <UserInput
               type={el.type}
               name={elName}
-              value={
-                (elName === elementsData.birthday
-                  ? dateConverter(el.value, 'dd.MM.yyyy')
-                  : el.value) ?? ''
-              }
+              value={el.value ?? ''}
               placeholder={el.placeholder}
               className={
                 isInputDataNotValid
