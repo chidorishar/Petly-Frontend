@@ -48,7 +48,6 @@ export const InputWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  
 
   @media (max-width: 767px) {
     padding: 11px 14px 12px 14px;
@@ -61,7 +60,8 @@ export const InputWrapper = styled.div`
 
   border-radius: 26px;
   border: none;
-  outline: ${p => p.theme.borders.inputModal} ${({ theme: { colors } }) => colors.inputModal};
+  outline: ${p => p.theme.borders.inputModal}
+    ${({ theme: { colors } }) => colors.inputModal};
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
   transition: border ${({ theme: { transitions } }) => transitions.normal};
 
@@ -87,8 +87,7 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const InputCommon = styled.input` 
-  
+export const InputCommon = styled.input`
   font-size: ${p => p.theme.fontSizes.n};
   font-weight: ${p => p.theme.fontWeights.text};
   background-color: ${({ theme: { colors } }) => colors.mainBackground};

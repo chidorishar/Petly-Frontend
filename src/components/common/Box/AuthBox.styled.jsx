@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
-import desktop from '../../../images/auth/desktop.png';
-import tablet from '../../../images/auth/tablet.png';
-import mobile from '../../../images/auth/mobile.png';
-import desktop2x from '../../../images/auth/desktop@2x.png';
-import tablet2x from '../../../images/auth/tablet@2x.png';
-import mobile2x from '../../../images/auth/mobile@2x.png';
-
-import desktopWebp from '../../../images/auth/desktop.webp';
-import tabletWebp from '../../../images/auth/tablet.webp';
-import mobileWebp from '../../../images/auth/mobile.webp';
-import desktop2xWebp from '../../../images/auth/desktop@2x.webp';
-import tablet2xWebp from '../../../images/auth/tablet@2x.webp';
-import mobile2xWebp from '../../../images/auth/mobile@2x.webp';
+import {
+  desktop,
+  tablet,
+  mobile,
+  desktop2x,
+  tablet2x,
+  mobile2x,
+  desktopWebp,
+  tabletWebp,
+  mobileWebp,
+  desktop2xWebp,
+  tablet2xWebp,
+  mobile2xWebp,
+} from 'images/auth';
 
 export const AuthBox = styled.div`
   width: max-content;

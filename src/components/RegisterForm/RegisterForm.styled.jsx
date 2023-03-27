@@ -43,8 +43,8 @@ const WrapperTwo = styled(Wrapper)`
   transition: opacity 0.5s ease, transform 0.5s ease;
 
   @media ${p => p.theme.breakpoints.desktop.media} {
-  padding-bottom: 16px;
-}
+    padding-bottom: 16px;
+  }
 
   z-index: ${({ state }) => (state === 'exited' ? -1 : 1)};
 
@@ -82,7 +82,6 @@ const Title = styled.h2`
   @media (max-width: 767px) {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
-    
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
