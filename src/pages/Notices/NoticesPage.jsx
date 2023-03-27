@@ -20,13 +20,11 @@ export const NoticesPage = () => {
 
   const fetchNotices = async (category, query) => {
     try {
-      // console.log(userToken);
       if (userToken)
         axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
       else axios.defaults.headers.common['Authorization'] = null;
 
       const noticesArray = await getNotices(category, query);
-      // console.log(noticesArray);
       setNotices(noticesArray);
     } catch (error) {
       console.log(error.message);
@@ -37,10 +35,6 @@ export const NoticesPage = () => {
     fetchNotices(category, search);
   }, [category]);
 
-  /* 
-  console.log(searchParams.get('a'));*/
-  // const noticeName = searchParams.get('name') ?? '';
-
   const updateQueryString = e => {
     setSearchParams({ query: e.target.value.toLocaleLowerCase().trim() });
     setSearch(e.target.value.toLocaleLowerCase());
@@ -49,16 +43,11 @@ export const NoticesPage = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    //const form = evt.currentTarget;
-    //const query = form.elements.name.value;
-    //console.log('q ', query);
-    //console.log('search', search);
     fetchNotices(category, search);
   };
 
   const handleClick = category => {
     setCategory(category);
-    // fetchNotices(category, search);
   };
 
   const clearSearch = () => {

@@ -46,30 +46,6 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
             {item.text}
           </Button>
         ))}
-        {/* <Button
-          type="button"
-          onClick={() => {
-            onCategoryClick(nameCategory[0].type);
-          }}
-        >
-          {nameCategory[0].text}
-        </Button>
-        <Button
-          type="button"
-          onClick={() => {
-            onCategoryClick(nameCategory[1].type);
-          }}
-        >
-          {nameCategory[1].text}
-        </Button>
-        <Button
-          type="button"
-          onClick={() => {
-            onCategoryClick(nameCategory[2].type);
-          }}
-        >
-          {nameCategory[2].text}
-        </Button> */}
         {isUserAuthorized && !isUserRefreshing && (
           <>
             {nameCategoryAuth.map((item, index) => (
@@ -82,22 +58,6 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
                 {item.text}
               </Button>
             ))}
-            {/* <Button
-              type="button"
-              onClick={() => {
-                onCategoryClick(nameCategoryAuth[0].type);
-              }}
-            >
-              {nameCategoryAuth[0].text}
-            </Button>
-            <Button
-              type="button"
-              onClick={() => {
-                onCategoryClick(nameCategoryAuth[1].myAds);
-              }}
-            >
-              {nameCategoryAuth[1].myAds}
-            </Button> */}
           </>
         )}
       </Wrapper>
