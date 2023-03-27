@@ -11,11 +11,11 @@ import { persistedStore, store } from 'redux/store';
 
 import { App } from 'components/App';
 import { BrowserRouter } from 'react-router-dom';
-import './i18n.js';
+import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback="<div>Loading...</div>">
       <BrowserRouter basename="/Petly-Frontend">
         <ThemeProvider theme={theme}>
           <Provider store={store}>

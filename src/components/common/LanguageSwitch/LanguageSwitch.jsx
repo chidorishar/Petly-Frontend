@@ -4,7 +4,7 @@ import { LanguageSwitchEl, LanguageOption } from './LanguageSwitch.styled';
 
 const LanguageSwitch = () => {
   const { i18n } = useTranslation();
-  const changeLanguage = language => {
+  const changeLanguageT = language => {
     i18n.changeLanguage(language);
   };
 
@@ -33,7 +33,7 @@ const LanguageSwitch = () => {
         name="language"
         value="en"
         onChange={() => {
-          changeLanguage('en');
+          changeLanguageT('en');
           changeOption();
         }}
       ></LanguageOption>
@@ -44,7 +44,7 @@ const LanguageSwitch = () => {
         name="language"
         value="uk"
         onChange={() => {
-          changeLanguage('uk');
+          changeLanguageT('uk');
           changeOption();
         }}
       ></LanguageOption>
