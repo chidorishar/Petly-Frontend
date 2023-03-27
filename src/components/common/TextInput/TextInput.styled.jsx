@@ -13,11 +13,11 @@ export const Wrapper = styled.div`
 
   transition: border 0.2s ease;
 
-  @media (max-width: 767.9px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     padding: 12px 14px;
   }
 
-  @media (${p => p.theme.breakpoints.tablet.media}) {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     padding: 14px 18px 14px 32px;
   }
 `;
@@ -38,11 +38,11 @@ export const TextInput = styled.input`
   font-weight: ${p => p.theme.fontWeights.text};
   color: ${({ theme: { colors } }) => colors.inputText};
 
-  @media (max-width: 767.9px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
   }
 
-  @media (${p => p.theme.breakpoints.tablet.media}) {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.n};
   }
 `;
@@ -68,7 +68,7 @@ export const ErrorText = styled.p`
 
   transition: transform 0.2s ease, opacity 0.2s ease;
 
-  @media (max-width: 767.9px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.xs};
 
     transform: translateY(
@@ -85,7 +85,7 @@ export const ErrorText = styled.p`
     );
   }
 
-  @media (${p => p.theme.breakpoints.tablet.media}) {
+  @media (${p => p.theme.breakpoints.tablet.mediaFrom}) {
     font-size: ${p => p.theme.fontSizes.s};
 
     transform: translateY(
