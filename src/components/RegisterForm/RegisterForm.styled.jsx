@@ -4,6 +4,18 @@ import styled from 'styled-components';
 const FormWrapper = styled.div`
   position: relative;
   width: 100%;
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    margin-top: 42px;
+  }
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    margin-top: 150px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    margin-top: 44px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -16,13 +28,13 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 40px;
 
-  @media (max-width: 767.9px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
     border-radius: 22px;
   }
 
-  @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
@@ -30,7 +42,7 @@ const Wrapper = styled.div`
     padding: 60px 80px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279.9px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     width: 608px;
   }
 
@@ -79,12 +91,12 @@ const Title = styled.h2`
   line-height: 1.36;
   text-align: center;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-weight: ${p => p.theme.fontWeights.heading};
     font-size: ${p => p.theme.fontSizes.lx};
   }
@@ -98,11 +110,11 @@ const InputWrapper = styled.div`
 
   width: 100%;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     gap: 24px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     gap: 40px;
   }
 `;
@@ -112,11 +124,11 @@ const ButtonWrapper = styled.div`
   flex-direction: column;
   width: 100%;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     gap: 12px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     gap: 16px;
   }
 `;
