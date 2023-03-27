@@ -71,8 +71,7 @@ export const Section = styled.section`
     padding-bottom: 408px;
     min-height: 704px;
     height: calc(100vh - 64px);
-    background-image: url(${dogDesktop}), url(${waveDesktop}),
-      url(${union});
+    background-image: url(${dogDesktop}), url(${waveDesktop}), url(${union});
     background-size: 500px 600px, 80vw calc(105vw * 0.275), 92px 89px;
     background-position-x: calc(50% + 330px), center, calc(50% + 58px);
     background-position-y: bottom, bottom, calc(50% - 244px);

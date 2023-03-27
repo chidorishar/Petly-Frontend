@@ -35,10 +35,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-              <Route
-                index
-                element={<HomePage />}
-              />
+              <Route index element={<HomePage />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
