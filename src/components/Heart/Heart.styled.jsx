@@ -19,7 +19,7 @@ export const LinkStyled = styled.a`
     right: 49%;
     bottom: 17%;
 
-    transform: scale(1.83) rotate(38deg);
+    transform: scale(1.83) rotate(19deg);
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
