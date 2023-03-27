@@ -6,5 +6,5 @@ export const BackgroundImageStyled = styled(BackgroundImage)`
   z-index: ${p => p.zIndex};
 
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 `;

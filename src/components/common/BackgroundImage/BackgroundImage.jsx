@@ -7,17 +7,14 @@ const BackgroundImage = ({
   typeOldTypes = 'image/jpeg',
   typeWebp = 'image/webp',
   className = '',
+  children,
 }) => {
   return (
-    //     <picture>
-    //   <source srcset="photo.webp 1x, photo@2x.webp 2x" type="image/webp" />
-    //   <source srcset="photo.jpg 1x, photo@2x.jpg 2x" type="image/jpeg" />
-    //   <img src="photo.jpg" alt="Кот" />
-    // </picture>
     <picture className={className}>
       <source srcSet={srcSetWebp} type={typeWebp} />
       <source srcSet={srcSetOldTypes} type={typeOldTypes} />
       <img src={placeholderImg} />
+      {children}
     </picture>
   );
 };
@@ -31,4 +28,5 @@ BackgroundImage.propTypes = {
   typeOldTypes: PropTypes.string,
   typeWebp: PropTypes.string,
   className: PropTypes.string,
+  children: PropTypes.node,
 };
