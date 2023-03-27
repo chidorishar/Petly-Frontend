@@ -1,10 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { AUTH_HEADER_NAME, axiosBaseQuery } from 'services/axiosBaseQuery';
-// import {
-//   CONTACTS_DATA_CACHE_TAG,
-//   phonebookAPI,
-// } from 'redux/slices/contactsApiSlice';
+import { BACKEND_BASE_URL, BACKEND_ENDPOINTS, CACHE_TAGS } from 'utils/appKeys';
 
 async function invalidateCachedSmthng(_, { dispatch, queryFulfilled }) {
   try {
@@ -21,51 +18,60 @@ export const usersAPI = createApi({
   reducerPath: 'usersAPI',
 
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/users/',
+    baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set([AUTH_HEADER_NAME], `Bearer ${token}`);
+      const accessToken = getState().auth.accessToken;
+      if (accessToken) {
+        headers.set([AUTH_HEADER_NAME], `Bearer ${accessToken}`);
       }
       return headers;
     },
   }),
 
-  tagTypes: ['AuthData'],
+  tagTypes: [CACHE_TAGS.AUTH_LOGIN],
 
   endpoints: builder => ({
     signupUser: builder.mutation({
       query: userCredentials => ({
-        url: `signup`,
+        url: BACKEND_ENDPOINTS.REGISTER,
         method: 'post',
         data: userCredentials,
       }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
     }),
 
     loginUser: builder.mutation({
       query: userCredentials => ({
-        url: `login`,
+        url: BACKEND_ENDPOINTS.LOGIN,
         method: 'post',
         data: userCredentials,
       }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
 
     logoutUser: builder.mutation({
       query: () => ({
-        url: `logout`,
+        url: BACKEND_ENDPOINTS.LOGOUT,
         method: 'post',
       }),
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
 
-    refreshUser: builder.query({
-      query: () => ({ url: `current` }),
+    currentUser: builder.query({
+      query: () => ({ url: BACKEND_ENDPOINTS.CURRENT }),
       onQueryStarted: invalidateCachedSmthng,
-      invalidatesTags: ['AuthData'],
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
+    }),
+
+    refreshUser: builder.mutation({
+      query: payload => ({
+        url: BACKEND_ENDPOINTS.REFRESH,
+        method: 'post',
+        data: { refreshToken: payload },
+      }),
+      onQueryStarted: invalidateCachedSmthng,
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
   }),
 });
@@ -74,5 +80,6 @@ export const {
   useSignupUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
-  useLazyRefreshUserQuery,
+  useLazyCurrentUserQuery,
+  useRefreshUserMutation,
 } = usersAPI;

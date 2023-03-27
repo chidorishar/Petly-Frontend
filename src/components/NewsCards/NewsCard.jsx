@@ -1,4 +1,5 @@
-import dateConverter from '../../components/NewsCards/dateConverter';
+import { dateConverter } from 'utils';
+
 import {
   Item,
   Border,
@@ -22,7 +23,7 @@ const NewsCard = newItem => {
         <Title>{name}</Title>
         <Wrapper>{text}</Wrapper>
         <Box>
-          <Date>{dateConverter(date)}</Date>
+          <Date>{dateConverter(date, 'dd/MM/yyyy')}</Date>
           <Link href={url} target="_blank" rel="noreferrer">
             Read more
           </Link>
