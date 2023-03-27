@@ -4,12 +4,11 @@ import { LanguageSwitchEl, LanguageOption } from './LanguageSwitch.styled';
 
 const LanguageSwitch = () => {
   const { i18n } = useTranslation();
-
   const changeLanguage = language => {
     i18n.changeLanguage(language);
   };
 
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState(true);
   const [lang, setLang] = useState(window.localStorage.getItem('i18nextLng'));
 
   useLayoutEffect(() => {
