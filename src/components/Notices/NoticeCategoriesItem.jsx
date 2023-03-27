@@ -47,7 +47,6 @@ export const NoticeCategoriesItem = ({
 }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let isActive = true;
 
   const getLabel = category => {
     const el = nameCategory.find(item => item.type === category);
@@ -69,8 +68,8 @@ export const NoticeCategoriesItem = ({
         <PetImg src={image} alt={breed} />
         <Wrapper>
           <CategoryTitle>{getLabel(category)}</CategoryTitle>
-          <AddToFavBtn selected={isFavorite} onClick={() => handleClick(id)}>
-            <FavoriteIcon />
+          <AddToFavBtn onClick={() => handleClick(id)}>
+            <FavoriteIcon $favorite={isFavorite} />
           </AddToFavBtn>
         </Wrapper>
       </ImgWrapper>
@@ -82,7 +81,7 @@ export const NoticeCategoriesItem = ({
               <li>Breed:</li>
               <li>Place:</li>
               <li>Age:</li>
-              {!isActive && <li>Price:</li>}
+              {category === 'sell' && <li>Price:</li>}
             </PetInfo>
           </Box>
           <PetInfo>

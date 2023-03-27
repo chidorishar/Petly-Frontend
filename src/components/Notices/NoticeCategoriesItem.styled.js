@@ -178,28 +178,33 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
   justify-content: center;
   align-items: center;
   color: #fff;
-
-  &:hover,
-  &:focus {
-    fill: ${({ theme: { colors } }) => colors.hoverBtn};
-  }
-
-  fill: ${props =>
-    props.selected
-      ? props.theme.colors.accent
-      : props.theme.colors.secondaryBackground};
 `;
+
 export const FavoriteIcon = styled(AiFillHeart)`
-  fill: inherit;
-  stroke-width: 90px;
   stroke: ${({ theme: { colors } }) => colors.accent};
+  stroke-width: 90px;
 
   transition: stroke ${({ theme: { transitions } }) => transitions.normal};
+  animation: ${props =>
+    props.$favorite ? 'beat 0.8s infinite alternate' : 'none'};
 
   &:hover,
   &:focus {
     stroke: ${({ theme: { colors } }) => colors.secondaryBackground};
+    fill: ${({ theme: { colors } }) => colors.accent};
   }
+
+  fill: ${props =>
+    props.$favorite
+      ? props.theme.colors.accent
+      : props.theme.colors.secondaryBackground};
+
+  @keyframes beat {
+    to {
+      transform: scale(1.1);
+    }
+  }
+
   // fill: ;
 `;
 export const PetInfo = styled.ul`
