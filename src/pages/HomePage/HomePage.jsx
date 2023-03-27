@@ -29,9 +29,14 @@ import dogDesktopWEBP from 'pages/HomePage/images/desktop/dog-desktop.webp';
 import dogDesktop2xWEBP from 'pages/HomePage/images/desktop/dog-desktop@2x.webp';
 
 import { theme } from 'utils';
-import { BackgroundImageStyled } from 'components/common';
+import { Container } from 'components/common';
 
-import { Section, Heading, DogBackground } from './HomePage.styled';
+import {
+  Section,
+  Heading,
+  DogBackground,
+  WavesBackground,
+} from './HomePage.styled';
 import { Heart } from 'components';
 
 const HomePage = () => {
@@ -44,7 +49,7 @@ const HomePage = () => {
       {isMobile && (
         <>
           {/* WAVES */}
-          <BackgroundImageStyled
+          <WavesBackground
             srcSetWebp={`${waveMobileWEBP} 1x, ${waveMobile2xWEBP} 2x`}
             srcSetOldTypes={`${waveMobile} 1x, ${waveMobile2x} 2x`}
             placeholderImg={`${waveMobile}`}
@@ -60,13 +65,13 @@ const HomePage = () => {
             >
               <Heart />
             </DogBackground>
-          </BackgroundImageStyled>
+          </WavesBackground>
         </>
       )}
       {isTablet && (
         <>
           {/* WAVES */}
-          <BackgroundImageStyled
+          <WavesBackground
             srcSetWebp={`${waveTabletWEBP} 1x, ${waveTablet2xWEBP} 2x`}
             srcSetOldTypes={`${waveTablet} 1x, ${waveTablet2x} 2x`}
             placeholderImg={`${waveTablet}`}
@@ -82,13 +87,13 @@ const HomePage = () => {
             >
               <Heart />
             </DogBackground>
-          </BackgroundImageStyled>
+          </WavesBackground>
         </>
       )}
       {isDesktop && (
         <>
           {/* WAVES */}
-          <BackgroundImageStyled
+          <WavesBackground
             srcSetWebp={`${waveDesktopWEBP} 1x, ${waveDesktop2xWEBP} 2x`}
             srcSetOldTypes={`${waveDesktop} 1x, ${waveDesktop2x} 2x`}
             placeholderImg={`${waveDesktop}`}
@@ -104,10 +109,13 @@ const HomePage = () => {
             >
               <Heart />
             </DogBackground>
-          </BackgroundImageStyled>
+          </WavesBackground>
         </>
       )}
-      <Heading> Take good care of your small pets</Heading>
+
+      <Container>
+        <Heading> Take good care of your small pets</Heading>
+      </Container>
     </Section>
   );
 };
