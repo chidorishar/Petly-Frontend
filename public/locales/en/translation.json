@@ -38,6 +38,8 @@
   },
 
   "friends": {
+    "email": "Email",
+    "closed": "Closed",
     "friends": "Our friends",
     "time": "Time:",
     "address": "Address:",

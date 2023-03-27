@@ -10,15 +10,13 @@ export const Nav = () => {
     <nav>
       <NaviList>
         <li>
-          <NaviLink to={ROUTES.NEWS}>{t('news', { ns: 'main' })}</NaviLink>
+          <NaviLink to={ROUTES.NEWS}>{t('main.news')}</NaviLink>
         </li>
         <li>
-          <NaviLink to={ROUTES.NOTICES}>{t('find', { ns: 'main' })}</NaviLink>
+          <NaviLink to={ROUTES.NOTICES}>{t('main.find')}</NaviLink>
         </li>
         <li>
-          <NaviLink to={ROUTES.FRIENDS}>
-            {t('friends', { ns: 'main' })}
-          </NaviLink>
+          <NaviLink to={ROUTES.FRIENDS}>{t('main.friends')}</NaviLink>
         </li>
         {/* <LanguageSwitch /> */}
       </NaviList>

@@ -58,14 +58,14 @@ const NewsPage = () => {
 
   return (
     <Section>
-      <Title>{t('news', { ns: 'main' })}</Title>
+      <Title>{t('news.news')}</Title>
       {/* <ToastContainer /> */}
       <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           name="query"
           value={search}
-          placeholder={t('search', { ns: 'news' })}
+          placeholder={t('news.search')}
           autoFocus
           onChange={handleChange}
         />

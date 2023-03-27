@@ -28,7 +28,7 @@ const NewsCard = newItem => {
         <Box>
           <Date>{dateConverter(date)}</Date>
           <Link href={url} target="_blank" rel="noreferrer">
-            {t('more', { ns: 'news' })}
+            {t('news.more')}
           </Link>
         </Box>
       </Item>
