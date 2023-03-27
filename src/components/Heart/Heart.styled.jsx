@@ -46,21 +46,3 @@ export const HeartImgStyled = styled(BackgroundImageStyled)`
   @media ${p => p.theme.breakpoints.desktop.media} {
   }
 `;
-
-export const DogBackground = styled(BackgroundImageStyled)`
-  right: 0;
-  bottom: 0;
-  transform-origin: bottom;
-  transform: scale(0.83);
-
-  width: fit-content;
-  height: fit-content;
-
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    transform: scale(0.94);
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    transform: scale(0.94);
-  }
-`;
