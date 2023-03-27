@@ -4,12 +4,19 @@ import { InsetButtonCommon } from 'components/common/shared.styled';
 
 export const CardContainer = styled.div`
   position: relative;
+
+  display: flex;
+  flex-direction: column;
   width: 280px;
-  height: 606px;
+  height: 100%;
+
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
   border: none;
   cursor: pointer;
+
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
+
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -26,8 +33,11 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 export const ImgWrapper = styled.div`
+  flex-shrink: 0;
+
   width: 100%;
   height: 288px;
+
   border: none;
   overflow: hidden;
 `;
@@ -36,14 +46,16 @@ export const PetImg = styled.img`
   object-fit: cover;
 `;
 export const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 280px;
-  height: 318px;
+  height: 100%;
   padding: 20px 16px 0px 16px;
-  // text-align: center;
+  padding-bottom: ${p => (p.isOwner ? '12px' : '32px')};
+
   border: none;
   border-radius: 0px 0px 40px 40px;
-
-  background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -181,9 +193,10 @@ export const PetInfo = styled.ul`
 export const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 248px;
+  flex-grow: 1;
   justify-content: center;
-  /* align-items: center; */
+
+  width: 248px;
   margin-right: auto;
   margin-left: auto;
 `;

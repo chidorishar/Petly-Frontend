@@ -62,7 +62,7 @@ export const NoticeCategoriesItem = ({
   const calcFullYearsOld = birthDate => {
     return differenceInCalendarYears(new Date(), new Date(birthDate));
   };
-  console.log(isFavorite);
+
   return (
     <CardContainer onClick={() => setIsModalOpen(true)}>
       <ImgWrapper>
@@ -74,7 +74,7 @@ export const NoticeCategoriesItem = ({
           </AddToFavBtn>
         </Wrapper>
       </ImgWrapper>
-      <CardWrapper>
+      <CardWrapper isOwner={isOwner}>
         <CardTitle>{title}</CardTitle>
         <Box display="flex">
           <Box marginRight="40px">
