@@ -4,18 +4,6 @@ import styled from 'styled-components';
 const FormWrapper = styled.div`
   position: relative;
   width: 100%;
-
-  @media (max-width: 767.9px) {
-    margin-top: 42px;
-  }
-
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279.9px) {
-    margin-top: 80px;
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    margin-top: 44px;
-  }
 `;
 
 const Wrapper = styled.div`
@@ -31,6 +19,7 @@ const Wrapper = styled.div`
   @media (max-width: 767.9px) {
     background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
+    border-radius: 22px;
   }
 
   @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
@@ -52,6 +41,10 @@ const Wrapper = styled.div`
 
 const WrapperTwo = styled(Wrapper)`
   transition: opacity 0.5s ease, transform 0.5s ease;
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+  padding-bottom: 16px;
+}
 
   z-index: ${({ state }) => (state === 'exited' ? -1 : 1)};
 
@@ -89,6 +82,7 @@ const Title = styled.h2`
   @media (max-width: 767px) {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
+    
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {

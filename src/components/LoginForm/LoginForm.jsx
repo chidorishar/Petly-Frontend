@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { ErrorIcon } from 'assets/icons';
+import { SuccessIcon } from 'assets/icons';
 
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
@@ -11,7 +13,9 @@ import {
   Button,
   ContainerCardCommon,
   FormCommon,
+  IconInput,
   InputCommon,
+  InputWrapper,
   Link,
   Text,
   TextMessage,
@@ -79,17 +83,22 @@ export const LoginForm = () => {
     <ContainerCardCommon>
       <Title>Login</Title>
       <FormCommon onSubmit={formik.handleSubmit}>
-        <InputCommon
-          type="email"
-          name="email"
-          placeholder="Email"
-          autoComplete="on"
-          autoFocus
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-          style={{ outlineColor: ifCurrentEmail() }}
-        ></InputCommon>
+        <InputWrapper style={{ outlineColor: ifCurrentEmail() }}>
+          <InputCommon
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          ></InputCommon>
+          <IconInput>
+            {formik.touched.email && formik.errors.email ? <ErrorIcon /> : null}
+            {formik.touched.email && !formik.errors.email ? (
+              <SuccessIcon />
+            ) : null}
+          </IconInput>
+        </InputWrapper>
         {formik.touched.email && !formik.errors.email ? (
           <TextMessage style={{ color: '#3CBC81' }}>
             Email is correct
@@ -100,15 +109,24 @@ export const LoginForm = () => {
             {formik.errors.email}
           </TextMessage>
         ) : null}
-        <InputCommon
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-          style={{ outlineColor: ifCurrentPassword() }}
-        ></InputCommon>
+        <InputWrapper style={{ outlineColor: ifCurrentPassword() }}>
+          <InputCommon
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          ></InputCommon>
+          <IconInput>
+            {formik.touched.password && formik.errors.password ? (
+              <ErrorIcon />
+            ) : null}
+            {formik.touched.password && !formik.errors.password ? (
+              <SuccessIcon />
+            ) : null}
+          </IconInput>
+        </InputWrapper>
         {formik.touched.password && !formik.errors.password ? (
           <TextMessage style={{ color: '#3CBC81' }}>
             Password is secure
