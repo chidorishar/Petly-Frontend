@@ -8,7 +8,6 @@ import {
 import PropTypes from 'prop-types';
 
 export const NoticesSearch = ({ value, onChange, onSubmit, removeQuery }) => {
-  let search = false;
   return (
     <Form onSubmit={onSubmit}>
       <Input
@@ -19,8 +18,8 @@ export const NoticesSearch = ({ value, onChange, onSubmit, removeQuery }) => {
         onChange={onChange}
       />
       <Button type="onSubmit">
-        {search && <IconHiSearch />}
-        {!search && <IconHiOutlineXCircle width={20} onClick={removeQuery} />}
+        {value && <IconHiOutlineXCircle width={20} onClick={removeQuery} />}
+        {!value && <IconHiSearch />}
       </Button>
     </Form>
   );
