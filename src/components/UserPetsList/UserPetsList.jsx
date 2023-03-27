@@ -16,14 +16,18 @@ import {
 import { DeleteIcon } from 'components/DeleteIcon/DeleteIcon';
 
 async function deletePetFromList(petId) {
+  let axResponse = null;
+
   try {
-    await axios.delete(`/api/users/pets/${petId}`);
+    axResponse = await axios.delete(`/api/users/pets/${petId}`);
   } catch ({ response }) {
     console.log(response.status);
     toast.error(
       response.status === 400 ? 'Unauthorized!' : 'Something went wrong'
     );
   }
+
+  return axResponse;
 }
 
 export const UserPetsList = ({ pets, onPetDeleted }) => {
