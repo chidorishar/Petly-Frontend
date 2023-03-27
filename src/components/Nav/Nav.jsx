@@ -1,7 +1,6 @@
 import { ROUTES } from 'utils/appKeys';
 import LanguageSwitch from 'components/common/LanguageSwitch/LanguageSwitch';
 import { useTranslation } from 'react-i18next';
-import '../../i18n';
 
 import { NaviList, NaviLink } from './Nav.styled';
 

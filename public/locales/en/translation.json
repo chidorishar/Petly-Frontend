@@ -1,6 +1,4 @@
 {
-  // "title": "Internationalizing with i18next",
-
   "main": {
     "news": "News",
     "find": "Find pet",
@@ -160,18 +158,12 @@
   },
 
   "validation": {
-    "requiredEmail": "Email is a required field",
-    "requiredPass": "Password is a required field",
-    "requiredPassConfirm": "Confirm Password is a required field",
-    "requiredName": "Name is a required field",
-    "requiredAddress": "Address is a required field",
-    "requiredPhone": "Phone is a required field",
-    "addressExample": "For example: Bucha, Kyiv",
-    "phoneExample": "Example: +380111111111",
-    "invalidEmail": "Invalid email",
-    "passMin": "Min length 7 symbols",
-    "passMax": "Too Long!",
-    "noSpaces": "Spaces are not allowed",
+    "requiredLocation": "City, region is required",
+    "requiredEmail": "Email is a required",
+    "requiredPass": "Password is a required",
+    "requiredName": "Name is a required",
+    "requiredPhone": "Mobile phone is a required",
+    "invalidEmail": "Email is invalid",
     "passMatch": "Passwords must match",
     "checkModalTitle": "Please enter between 2 and 48 letters",
     "checkModalField": "Please enter between 2 and 16 letters",

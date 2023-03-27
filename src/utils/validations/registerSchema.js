@@ -3,6 +3,7 @@
  */
 
 import * as Yup from 'yup';
+import i18n from 'i18next';
 
 import { passwordSchema, emailSchema, phoneSchema } from './common';
 
@@ -11,10 +12,10 @@ const registerSchema = Yup.object({
   password: passwordSchema,
   confirmPassword: passwordSchema.oneOf(
     [Yup.ref('password'), null],
-    'Passwords must match'
+    i18n.t('validation.passMatch')
   ),
-  name: Yup.string().required('Name is required'),
-  location: Yup.string().required('City, region is required'),
+  name: Yup.string().required(i18n.t('validation.requiredName')),
+  location: Yup.string().required(i18n.t('validation.requiredLocation')),
   phone: phoneSchema,
 });
 

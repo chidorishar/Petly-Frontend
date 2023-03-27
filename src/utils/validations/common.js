@@ -3,15 +3,16 @@
  */
 
 import * as Yup from 'yup';
+import i18n from 'i18next';
 
-const passwordSchema = Yup.string().required('Password is required');
+const passwordSchema = Yup.string().required(i18n.t('validation.requiredPass'));
 
 // TODO: Add regexp for password
 const emailSchema = Yup.string()
-  .email('Email is invalid')
-  .required('Email is required');
+  .email(i18n.t('validation.invalidEmail'))
+  .required(i18n.t('validation.requiredEmail'));
 
 // TODO: Add regexp for phone
-const phoneSchema = Yup.string().required('Mobile phone is required');
+const phoneSchema = Yup.string().required(i18n.t('validation.requiredPhone'));
 
 export { passwordSchema, emailSchema, phoneSchema };
