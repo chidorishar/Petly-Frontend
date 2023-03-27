@@ -20,7 +20,7 @@ const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
@@ -52,9 +52,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-
-              <Route index element={<></>} />
-              <Route index element={<UserMenu />} />
+              <Route index element={<HomePage />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
