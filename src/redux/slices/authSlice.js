@@ -7,18 +7,37 @@ import { usersAPI } from './usersAPISlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken', 'refreshToken'],
   blacklist: [usersAPI.reducerPath],
 };
 
-function setAuthData(state, { payload: { token, user } }) {
-  state.token = token;
+function setAuthData(state, { payload }) {
+  if (!payload) return;
+
+  const { accessToken, refreshToken, ...user } = payload.data.user;
+
+  state.accessToken = accessToken;
+  state.refreshToken = refreshToken;
   state.user = user;
   state.isUserAuthorized = true;
 }
 
+function setUserData(state, { payload }) {
+  if (!payload) return;
+
+  state.user = payload.data.user;
+  state.isUserAuthorized = true;
+}
+
+function setAccessToken(state, { payload }) {
+  if (!payload) return;
+
+  state.accessToken = payload.data.user.accessToken;
+}
+
 function clearAuthData(state) {
-  state.token = null;
+  state.accessToken = null;
+  state.refreshToken = null;
   state.user = null;
   state.isUserAuthorized = false;
 }
@@ -27,27 +46,22 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     user: null,
-    token: null,
+    accessToken: null,
+    refreshToken: null,
     isUserAuthorized: false,
   },
   reducers: {},
 
   extraReducers: builder => {
-    const { signupUser, loginUser, logoutUser, refreshUser } =
+    const { signupUser, loginUser, logoutUser, currentUser, refreshUser } =
       usersAPI.endpoints;
 
     builder
       .addMatcher(signupUser.matchFulfilled, setAuthData)
       .addMatcher(loginUser.matchFulfilled, setAuthData)
-      .addMatcher(refreshUser.matchFulfilled, (state, { payload }) => {
-        const transformedResp = {
-          token: state.token,
-          user: { name: payload.name, email: payload.email },
-        };
-
-        setAuthData(state, { payload: transformedResp });
-      })
-      .addMatcher(logoutUser.matchFulfilled, clearAuthData);
+      .addMatcher(currentUser.matchFulfilled, setUserData)
+      .addMatcher(logoutUser.matchFulfilled, clearAuthData)
+      .addMatcher(refreshUser.matchFulfilled, setAccessToken);
   },
 });
 

@@ -5,14 +5,30 @@
 import * as Yup from 'yup';
 import i18n from 'i18next';
 
-const passwordSchema = Yup.string().required(i18n.t('validation.requiredPass'));
+const passwordRegexp =
+  /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()-_/#:;<>])[A-Za-z\d@$!%*?&]/;
 
-// TODO: Add regexp for password
+const emailRegexp =
+  /^([a-zA-Z0-9_.]+){1}([a-zA-Z0-9_\-.]+){1}@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,3})$/;
+
+const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
+
+const passwordSchema = Yup.string()
+  .required('Password is required')
+  .min(7, 'Must be at least 7 characters long')
+  .max(32, 'Must be at most 32 characters long')
+  .matches(
+    passwordRegexp,
+    'At least one number and one special character required'
+  );
+
 const emailSchema = Yup.string()
-  .email(i18n.t('validation.invalidEmail'))
-  .required(i18n.t('validation.requiredEmail'));
+  .email('Email is invalid')
+  .matches(emailRegexp, 'Email is invalid')
+  .required('Email is required');
 
-// TODO: Add regexp for phone
-const phoneSchema = Yup.string().required(i18n.t('validation.requiredPhone'));
+const phoneSchema = Yup.string()
+  .required('Mobile phone is required')
+  .matches(phoneRegexp, 'Phone number is invalid');
 
 export { passwordSchema, emailSchema, phoneSchema };

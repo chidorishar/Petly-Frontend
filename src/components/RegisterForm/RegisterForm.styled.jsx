@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// TODO: Change all media into variables.
 const FormWrapper = styled.div`
   position: relative;
   width: 100%;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     margin-top: 42px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
-    margin-top: 80px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    margin-top: 150px;
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
@@ -29,20 +28,21 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 40px;
 
-  background: ${p => p.theme.colors.secondaryBackground};
-
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
+    border-radius: 22px;
   }
 
-  @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
 
     padding: 60px 80px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
+  @media ${p => p.theme.breakpoints.tablet.media} {
     width: 608px;
   }
 
@@ -53,6 +53,10 @@ const Wrapper = styled.div`
 
 const WrapperTwo = styled(Wrapper)`
   transition: opacity 0.5s ease, transform 0.5s ease;
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    padding-bottom: 16px;
+  }
 
   z-index: ${({ state }) => (state === 'exited' ? -1 : 1)};
 
@@ -84,16 +88,15 @@ const WrapperTwo = styled(Wrapper)`
 `;
 
 const Title = styled.h2`
-  font-family: ${p => p.theme.fonts.mainFamily};
   line-height: 1.36;
   text-align: center;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.logo};
-    font-size: 24px;
+    font-size: ${p => p.theme.fontSizes.ml};
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-weight: ${p => p.theme.fontWeights.heading};
     font-size: ${p => p.theme.fontSizes.lx};
   }
@@ -105,11 +108,13 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 767px) {
+  width: 100%;
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
     gap: 24px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     gap: 40px;
   }
 `;
@@ -117,18 +122,18 @@ const InputWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     gap: 12px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     gap: 16px;
   }
 `;
 
 const BottomText = styled.p`
-  font-family: ${p => p.theme.fonts.mainFamily};
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
   color: ${p => p.theme.colors.inputText};
@@ -136,6 +141,48 @@ const BottomText = styled.p`
 
 const BottomLink = styled(Link)`
   color: ${p => p.theme.colors.link};
+`;
+
+export const Button = styled.button`
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  font-weight: ${p => p.theme.fontWeights.heading};
+  font-size: ${p => p.theme.fontSizes.nl};
+  letter-spacing: 0.04em;
+
+  padding: 10.5px;
+
+  border-radius: 24px;
+  border: ${p => p.isLight && `2px solid ${p.theme.colors.accent}`};
+
+  background: ${p => (p.isLight ? 'transparent' : p.theme.colors.accent)};
+  color: ${p =>
+    p.isLight ? p.theme.colors.darkMain : p.theme.colors.secondaryBackground};
+
+  :hover,
+  :focus {
+    transition: transform 0.5s;
+  }
+  :hover:before {
+    left: 100%;
+  }
+
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      /* rgba(255, 255, 255, 0.6), */ transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export {

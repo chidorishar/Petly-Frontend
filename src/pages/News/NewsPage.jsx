@@ -13,9 +13,8 @@ import {
   NotFound,
 } from './NewsPage.styled';
 import NewsCard from '../../components/NewsCards/NewsCard';
-import { Section } from 'components/common';
-import { useTranslation } from 'react-i18next';
-// import { Trans } from 'react-i18next';
+
+import { Section, Container } from 'components/common';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -58,37 +57,41 @@ const NewsPage = () => {
 
   return (
     <Section>
-      <Title>{t('news.news')}</Title>
-      {/* <ToastContainer /> */}
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="query"
-          value={search}
-          placeholder={t('news.search')}
-          autoFocus
-          onChange={handleChange}
-        />
-        <Button
-          type="submit"
-          style={{ position: 'absolute', right: '10px', top: '10px' }}
-        >
-          {!search && <IoSearchSharp size={20} />}
-          {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
-        </Button>
-      </Form>
-      <Box>
-        {news.length > 0 ? (
-          news.map(newItem => <NewsCard key={newItem._id} newItem={newItem} />)
-        ) : (
-          <div />
+      <Container>
+        <Title>News</Title>
+        {/* <ToastContainer /> */}
+        <Form onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="query"
+            value={search}
+            placeholder="Search"
+            autoFocus
+            onChange={handleChange}
+          />
+          <Button
+            type="submit"
+            style={{ position: 'absolute', right: '10px', top: '10px' }}
+          >
+            {!search && <IoSearchSharp size={20} />}
+            {search && <HiOutlineXCircle size={20} onClick={removeQuery} />}
+          </Button>
+        </Form>
+        <Box>
+          {news.length > 0 ? (
+            news.map(newItem => (
+              <NewsCard key={newItem._id} newItem={newItem} />
+            ))
+          ) : (
+            <div />
+          )}
+        </Box>
+        {search !== '' && query && news.length === 0 && (
+          <NotFoundBox>
+            <NotFound>Nothing found. Please, try again.</NotFound>
+          </NotFoundBox>
         )}
-      </Box>
-      {search !== '' && query && news.length === 0 && (
-        <NotFoundBox>
-          <NotFound>Nothing found. Please, try again.</NotFound>
-        </NotFoundBox>
-      )}
+      </Container>
     </Section>
   );
 };

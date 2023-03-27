@@ -16,7 +16,7 @@ import {
   List,
 } from './FriendsItem.styled';
 import { TimeTable } from './TimeTable';
-import defaultFriendImage from '../../images/defaultmageForOurFriends.jpg';
+import defaultFriendImage from 'assets/images/defaultmageForOurFriends.jpg';
 
 const maxSymbolsInLine = 25;
 const noDataPlaceholder = String('– ').repeat(10);

@@ -20,6 +20,9 @@ export const theme = {
     input: '#FDF7F2',
     shadowCard: 'rgba(49, 21, 4, 0.07)',
     inputModal: 'rgba(245, 146, 86, 0.5)',
+    success: '#3cbc81',
+    warning: '#e2001a',
+    darkMain: '#000',
   },
   fontSizes: {
     xs: '12px',
@@ -68,11 +71,12 @@ export const theme = {
   },
   breakpoints: {
     mobile: {
-      media: '(min-width: 320px)',
+      media: '(max-width: 767px)',
       width: '320px',
     },
     tablet: {
-      media: '(min-width: 768px)',
+      media: '(min-width: 768px) and (max-width: 1279px)',
+      mediaFrom: '(min-width: 768px)',
       width: '768px',
     },
     desktop: {
