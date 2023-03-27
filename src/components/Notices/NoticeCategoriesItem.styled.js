@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 import { InsetButtonCommon } from 'components/common/shared.styled';
 
 export const CardContainer = styled.div`
@@ -178,11 +178,29 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
   justify-content: center;
   align-items: center;
   color: #fff;
-`;
-export const FavoriteIcon = styled(AiOutlineHeart)`
-  fill: #f59256;
 
-  // fill: ${props => (props.selected ? 'orange' : 'white')};
+  &:hover,
+  &:focus {
+    fill: ${({ theme: { colors } }) => colors.hoverBtn};
+  }
+
+  fill: ${props =>
+    props.selected
+      ? props.theme.colors.accent
+      : props.theme.colors.secondaryBackground};
+`;
+export const FavoriteIcon = styled(AiFillHeart)`
+  fill: inherit;
+  stroke-width: 90px;
+  stroke: ${({ theme: { colors } }) => colors.accent};
+
+  transition: stroke ${({ theme: { transitions } }) => transitions.normal};
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme: { colors } }) => colors.secondaryBackground};
+  }
+  // fill: ;
 `;
 export const PetInfo = styled.ul`
   list-style: none;
