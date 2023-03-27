@@ -7,14 +7,17 @@ const FormWrapper = styled.div`
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     margin-top: 42px;
+    margin-bottom: 107px;
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
     margin-top: 150px;
+    margin-bottom: 201px;
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     margin-top: 44px;
+    margin-bottom: 69px;
   }
 `;
 
