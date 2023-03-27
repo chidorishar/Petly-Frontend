@@ -8,7 +8,7 @@ export const Border = styled.div`
   background: linear-gradient(90deg, #ff634e 0%, #ffdf48 105.44%);
   border-radius: 40px;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 280px;
     height: 8px;
   }
@@ -44,7 +44,7 @@ export const Wrapper = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 40px;
     -webkit-line-clamp: 6;
     display: -webkit-box;
