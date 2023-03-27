@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
@@ -7,7 +7,6 @@ import { useLazyRefreshUserQuery } from 'redux/slices/usersAPISlice';
 import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 import SharedLayout from './SharedLayout/SharedLayout';
-import { ModalNotice } from './ModalNotice/ModalNotice';
 
 // import { RestrictedRoute } from './ProtectedRoute';
 // import { PrivateRoute } from './PrivateRoute';
@@ -17,7 +16,6 @@ const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 
 export const App = () => {
-  const [modalActive, setModalActive] = useState(true);
   const [refreshUser, { isLoading: isRefreshingUserData }] =
     useLazyRefreshUserQuery();
 
@@ -47,12 +45,6 @@ export const App = () => {
               <Route path="*" element={<></>} />
             </>
           )}
-          <Route
-            path="/modal"
-            element={
-              <ModalNotice active={modalActive} setActive={setModalActive} />
-            }
-          />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
