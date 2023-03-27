@@ -38,11 +38,12 @@ export const NameBox = styled(Box)`
   align-items: center;
 `;
 export const PetImg = styled.img`
-  max-width: 100%;
+  width: 240px;
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   margin-bottom: 20px;
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    width: 161px;
     display: block;
     margin-right: 32px;
     margin-bottom: 0;
