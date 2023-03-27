@@ -1,5 +1,6 @@
 import { lazy, useEffect } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+// import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import {
@@ -11,7 +12,7 @@ import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
 import { RestrictedRoute } from './ProtectedRoute';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { Loader } from './common';
@@ -21,7 +22,8 @@ const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
+const UserPage = lazy(() => import('../pages/User/UserPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
@@ -53,9 +55,7 @@ export const App = () => {
           ) : (
             <>
               {/* HOMEPAGE */}
-
-              <Route index element={<></>} />
-              <Route index element={<UserMenu />} />
+              <Route index element={<HomePage />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
@@ -76,11 +76,18 @@ export const App = () => {
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
+              <Route
+                path={ROUTES.USERPAGE}
+                element={
+                  <PrivateRoute redirectTo="/" component={<UserPage />} />
+                }
+              />
+              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
               <Route path="*" element={<></>} />
             </>
           )}
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </>
   );

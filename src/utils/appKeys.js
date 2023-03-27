@@ -11,6 +11,7 @@ const ROUTES = {
   NEWS: '/news',
   NOTICES: '/notices',
   FRIENDS: '/friends',
+  USERPAGE: '/user',
   PROFILE: '/profile',
 };
 
@@ -27,6 +28,7 @@ const BACKEND_ENDPOINTS = {
   LOGOUT: 'auth/logout',
   CURRENT: 'auth/current',
   REFRESH: 'auth/refresh',
+  UPDATE_USER_INFO: 'users',
 };
 
 export const BACKEND_BASE_URL = 'localhost:4000';
