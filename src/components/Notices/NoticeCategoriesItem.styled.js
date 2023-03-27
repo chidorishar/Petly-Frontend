@@ -43,9 +43,8 @@ export const CardWrapper = styled.div`
   border: none;
   border-radius: 0px 0px 40px 40px;
 
-  > a {
-    text-decoration: none;
-  }
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
+
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -98,6 +97,18 @@ export const Button = styled.button`
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: #f59256;
   padding: 8px 16px;
+
+  background-color: transparent;
+
+  transition: background-color
+      ${({ theme: { transitions } }) => transitions.normal},
+    color ${({ theme: { transitions } }) => transitions.normal};
+
+  &:hover,
+  &focus {
+    color: ${({ theme }) => theme.colors.mainBackground};
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 export const DeleteButton = styled.button`
   display: flex;
@@ -113,6 +124,18 @@ export const DeleteButton = styled.button`
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: #f59256;
   padding: 8px 16px;
+
+  background-color: transparent;
+
+  transition: background-color
+      ${({ theme: { transitions } }) => transitions.normal},
+    color ${({ theme: { transitions } }) => transitions.normal};
+
+  &:hover,
+  &focus {
+    color: ${({ theme }) => theme.colors.mainBackground};
+    background-color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 export const CategoryTitle = styled.p`
   display: flex;
