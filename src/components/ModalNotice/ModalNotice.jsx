@@ -7,6 +7,7 @@ import {
   CategoryBox,
   CloseBtn,
   ImgBox,
+  InfoBox,
   ModalBox,
   PetBox,
   PetComments,
@@ -20,9 +21,9 @@ import {
 export const ModalNotice = ({ active, setActive }) => {
   const isAutorized = true;
   const pet = {
-    petTitle: 'cute dog looking fora home',
+    petTitle: 'Cute dog looking for a home',
     category: 'sell',
-    petImg: 'https://placehold.co/240x240/orange/white',
+    petImg: 'https://placehold.co/240x340/orange/white',
     petId: '1',
     petName: 'Rich',
     petBirthdayDate: '21.09.21',
@@ -56,49 +57,51 @@ export const ModalNotice = ({ active, setActive }) => {
               </p>
             </CategoryBox>
           </ImgBox>
-          <PetTitle>{pet.petTitle}</PetTitle>
-          <PetInfo>
-            <PetInfoItem>
-              <PetInfoItemTitle>Name:</PetInfoItemTitle>
-              {pet.petName}
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>Birthday:</PetInfoItemTitle>
-              {pet.petBirthdayDate}
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>Breed:</PetInfoItemTitle>
-              {pet.petBreed}
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>Location:</PetInfoItemTitle>
-              {pet.petLocation}
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>The sex:</PetInfoItemTitle>
-              {pet.petSex}
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>Email:</PetInfoItemTitle>
-              <a className="userContact" href={`mailto:${pet.userEmail}`}>
-                {pet.userEmail}
-              </a>
-            </PetInfoItem>
-            <PetInfoItem>
-              <PetInfoItemTitle>Phone:</PetInfoItemTitle>
-              <a className="userContact" href={`tel:${pet.userPhone}`}>
-                {pet.userPhone}
-              </a>
-            </PetInfoItem>
-            {pet.price ? (
+          <InfoBox>
+            <PetTitle>{pet.petTitle}</PetTitle>
+            <PetInfo>
               <PetInfoItem>
-                <PetInfoItemTitle>Price:</PetInfoItemTitle>
-                {pet.price}
+                <PetInfoItemTitle>Name:</PetInfoItemTitle>
+                {pet.petName}
               </PetInfoItem>
-            ) : (
-              ''
-            )}
-          </PetInfo>
+              <PetInfoItem>
+                <PetInfoItemTitle>Birthday:</PetInfoItemTitle>
+                {pet.petBirthdayDate}
+              </PetInfoItem>
+              <PetInfoItem>
+                <PetInfoItemTitle>Breed:</PetInfoItemTitle>
+                {pet.petBreed}
+              </PetInfoItem>
+              <PetInfoItem>
+                <PetInfoItemTitle>Place:</PetInfoItemTitle>
+                {pet.petLocation}
+              </PetInfoItem>
+              <PetInfoItem>
+                <PetInfoItemTitle>The sex:</PetInfoItemTitle>
+                {pet.petSex}
+              </PetInfoItem>
+              <PetInfoItem>
+                <PetInfoItemTitle>Email:</PetInfoItemTitle>
+                <a className="userContact" href={`mailto:${pet.userEmail}`}>
+                  {pet.userEmail}
+                </a>
+              </PetInfoItem>
+              <PetInfoItem>
+                <PetInfoItemTitle>Phone:</PetInfoItemTitle>
+                <a className="userContact" href={`tel:${pet.userPhone}`}>
+                  {pet.userPhone}
+                </a>
+              </PetInfoItem>
+              {pet.price ? (
+                <PetInfoItem>
+                  <PetInfoItemTitle>Price:</PetInfoItemTitle>
+                  {pet.price}
+                </PetInfoItem>
+              ) : (
+                ''
+              )}
+            </PetInfo>
+          </InfoBox>
           <PetComments>
             <span>Comments: </span>
             {pet.petComments}

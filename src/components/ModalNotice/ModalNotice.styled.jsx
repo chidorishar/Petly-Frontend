@@ -33,27 +33,55 @@ export const ModalBox = styled(Box)`
   &.active {
     transform: scale(1);
   }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-width: 704px;
+    height: 548px;
+    padding-top: 32px;
+  }
 `;
 export const PetBox = styled(Box)`
   width: 100%;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `;
 export const ImgBox = styled(Box)`
-  border-bottom-left-radius: ${p => p.theme.radii.secondaryBorderRadius};
-  border-bottom-right-radius: ${p => p.theme.radii.secondaryBorderRadius};
   position: relative;
   margin-bottom: 16px;
+  border-radius: 0 0 40px 40px;
   overflow: hidden;
+  img {
+    width: 100%;
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    width: 288px;
+    max-height: 328px;
+    margin-right: 20px;
+    img {
+      width: 100%;
+    }
+  }
 `;
 export const CategoryBox = styled(Box)`
   position: absolute;
   left: 0;
   top: 20px;
-  padding-left: 20px;
+  padding: 6px 20px;
   width: 158px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(50px);
+  p {
+    font-size: ${p => p.theme.fontSizes.xs};
+    line-height: ${p => p.theme.lineHeights.body};
+  }
+`;
+export const InfoBox = styled(Box)`
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    width: 250px;
+  }
 `;
 export const PetTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.ml};
@@ -61,6 +89,11 @@ export const PetTitle = styled.p`
   line-height: ${p => p.theme.lineHeights.body};
   letter-spacing: -0.01em;
   margin-bottom: 16px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: ${p => p.theme.fontSizes.mll};
+    line-height: 1.36;
+    margin-bottom: 20px;
+  }
 `;
 export const PetInfo = styled.ul`
   margin-bottom: 28px;
@@ -79,6 +112,10 @@ export const PetInfoItem = styled.li`
       color: ${p => p.theme.colors.hoverBtn};
     }
   }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: 1.36;
+  }
 `;
 export const PetInfoItemTitle = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
@@ -93,6 +130,10 @@ export const PetComments = styled.p`
     font-weight: ${p => p.theme.fontWeights.semiBold};
   }
   margin-bottom: 40px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    font-size: ${p => p.theme.fontSizes.m};
+    margin-bottom: 32px;
+  }
 `;
 export const PhoneLink = styled(ButtonWideCommon)`
   width: 100%;
@@ -116,6 +157,12 @@ export const PhoneLink = styled(ButtonWideCommon)`
     width: 100%;
     text-decoration: none;
     color: inherit;
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-width: 160px;
+    margin-bottom: 0;
+    order: 5;
+    margin-right: 20px;
   }
 `;
 export const AddToFavoriteBtn = styled(ButtonWideCommon)`
@@ -144,6 +191,12 @@ export const AddToFavoriteBtn = styled(ButtonWideCommon)`
       color: ${p => p.theme.colors.secondaryBackground};
       margin-left: 8px;
     }
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-width: 160px;
+    order: 4;
+    margin-left: auto;
+    margin-right: 12px;
   }
 `;
 export const CloseBtn = styled(ButtonWideCommon)`
