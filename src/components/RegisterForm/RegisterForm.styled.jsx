@@ -31,6 +31,7 @@ const Wrapper = styled.div`
   @media ${p => p.theme.breakpoints.mobile.media} {
     background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
+    border-radius: 22px;
   }
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
@@ -52,6 +53,10 @@ const Wrapper = styled.div`
 
 const WrapperTwo = styled(Wrapper)`
   transition: opacity 0.5s ease, transform 0.5s ease;
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    padding-bottom: 16px;
+  }
 
   z-index: ${({ state }) => (state === 'exited' ? -1 : 1)};
 

@@ -14,8 +14,9 @@ export const ContainerCardCommon = styled.div`
     width: 100%;
     margin: 0;
     padding: 0;
+    padding-bottom: 20px;
     border: none;
-    border-radius: 0;
+    border-radius: 22px;
     background-color: ${({ theme: { colors } }) => colors.mainBackground};
     box-shadow: none;
   }
@@ -43,16 +44,15 @@ export const FormCommon = styled.form`
   }
 `;
 
-export const InputCommon = styled.input`
+export const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
   @media (max-width: 767px) {
-    font-size: ${p => p.theme.fontSizes.s};
     padding: 11px 14px 12px 14px;
     border-radius: 20px;
   }
-
-  font-size: ${p => p.theme.fontSizes.n};
-  font-weight: ${p => p.theme.fontWeights.text};
-  color: ${({ theme: { colors } }) => colors.inputText};
 
   width: 100%;
   margin: 0 auto;
@@ -62,9 +62,7 @@ export const InputCommon = styled.input`
   border: none;
   outline: ${p => p.theme.borders.inputModal}
     ${({ theme: { colors } }) => colors.inputModal};
-
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
-
   transition: border ${({ theme: { transitions } }) => transitions.normal};
 
   &:nth-child(2) {
@@ -86,6 +84,29 @@ export const InputCommon = styled.input`
   &:hover,
   &:focus {
     outline-width: 2px;
+  }
+`;
+
+export const InputCommon = styled.input`
+  font-size: ${p => p.theme.fontSizes.n};
+  font-weight: ${p => p.theme.fontWeights.text};
+  background-color: ${({ theme: { colors } }) => colors.mainBackground};
+  color: ${({ theme: { colors } }) => colors.inputText};
+  width: 100%;
+  border: none;
+  outline: none;
+  @media (max-width: 767px) {
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
+export const IconInput = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 767.9px) {
+    margin-top: -3px;
+    max-height: 16px;
   }
 `;
 
