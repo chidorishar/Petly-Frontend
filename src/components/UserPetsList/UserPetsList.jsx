@@ -37,42 +37,40 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
   };
 
   return pets.length ? (
-    <Box>
-      <List>
-        {pets.map(({ _id: id, photo, breed, name, birthday, comment }) => {
-          return (
-            <ListItem key={id}>
-              <PetImg src={photo} alt={name} />
-              <PetInfo>
-                <li>
-                  <NameBox>
-                    <Box>
-                      <span>Name: </span>
-                      {name}
-                    </Box>
-                    <DeleteBtn onClick={() => handleDeletePet(id)}>
-                      <DeleteIcon />
-                    </DeleteBtn>
-                  </NameBox>
-                </li>
-                <li>
-                  <span>Date of birth: </span>
-                  {dateConverter(birthday, 'dd.MM.yyyy')}
-                </li>
-                <li>
-                  <span>Breed: </span>
-                  {breed}
-                </li>
-                <li>
-                  <span>Comments: </span>
-                  {comment}
-                </li>
-              </PetInfo>
-            </ListItem>
-          );
-        })}
-      </List>
-    </Box>
+    <List>
+      {pets.map(({ _id: id, photo, breed, name, birthday, comment }) => {
+        return (
+          <ListItem key={id}>
+            <PetImg src={photo} alt={name} />
+            <PetInfo>
+              <li>
+                <NameBox>
+                  <Box>
+                    <span>Name: </span>
+                    {name}
+                  </Box>
+                  <DeleteBtn onClick={() => handleDeletePet(id)}>
+                    <DeleteIcon />
+                  </DeleteBtn>
+                </NameBox>
+              </li>
+              <li>
+                <span>Date of birth: </span>
+                {dateConverter(birthday, 'dd.MM.yyyy')}
+              </li>
+              <li>
+                <span>Breed: </span>
+                {breed}
+              </li>
+              <li>
+                <span>Comments: </span>
+                {comment}
+              </li>
+            </PetInfo>
+          </ListItem>
+        );
+      })}
+    </List>
   ) : (
     <Box>
       <p> No pets... </p>

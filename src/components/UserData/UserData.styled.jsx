@@ -12,7 +12,7 @@ export const UserImageWrapper = styled.div`
 
   background-color: transparent;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 0;
   }
 
@@ -44,7 +44,7 @@ export const EditPhotoLabel = styled.label`
   line-height: 1.83;
   letter-spacing: 0.04em;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     bottom: -30px;
   }
 
@@ -74,7 +74,7 @@ export const EditAvatarIcon = styled.svg`
 `;
 
 export const UserDataWrapper = styled.div`
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-right: 52px;
   }
 

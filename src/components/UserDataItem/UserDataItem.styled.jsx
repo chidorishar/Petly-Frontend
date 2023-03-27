@@ -4,7 +4,7 @@ import { InputCommon } from 'components/common/shared.styled';
 export const Form = styled.form`
   margin-bottom: 42px;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 33px;
     padding-top: 16px;
   }
@@ -30,7 +30,7 @@ export const UserLabel = styled.label`
   span {
     font-weight: ${p => p.theme.fontWeights.heading};
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.n};
     line-height: 1.38;
   }
@@ -63,7 +63,7 @@ export const UserInput = styled(InputCommon)`
     border: none;
     border-color: transparent;
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 216px;
     padding: 3px 12px;
     margin-right: 24px;
@@ -73,7 +73,7 @@ export const UserInput = styled(InputCommon)`
 export const UserSpan = styled.span`
   width: 60px;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 107px;
   }
 `;
@@ -92,7 +92,7 @@ export const EditBtn = styled.button`
   transition: background-color ${p => p.theme.transitions.normal},
     color ${p => p.theme.transitions.normal};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 32px;
     height: 32px;
 

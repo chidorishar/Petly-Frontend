@@ -13,7 +13,7 @@ export const PetsData = ({ pets, onPetDeleted }) => {
   };
 
   return (
-    <Box>
+    <Box flexGrow={1}>
       {/* MODAL WINDOW */}
       {showModal && <></>}
       <DataTopBox>

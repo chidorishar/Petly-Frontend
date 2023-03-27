@@ -4,7 +4,7 @@ import { Section, Container } from 'components/common';
 export const UserPageSection = styled(Section)`
   padding-top: 60px;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     padding-top: 90px;
   }
 
@@ -27,7 +27,7 @@ export const UserInfoContainer = styled.div`
     margin-bottom: 40px;
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 704px;
     margin-bottom: 20px;
     // position: relative;
@@ -48,7 +48,7 @@ export const UserTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.nl};
   line-height: 1.35;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 40px;
 
     color: ${p => p.theme.colors.heading};
@@ -70,7 +70,7 @@ export const UserWrapper = styled.div`
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background-color: ${p => p.theme.colors.secondaryBackground};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     position: relative;
     left: -32px;
     flex-direction: row-reverse;
