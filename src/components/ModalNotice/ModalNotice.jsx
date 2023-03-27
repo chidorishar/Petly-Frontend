@@ -1,4 +1,10 @@
 import { PropTypes } from 'prop-types';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from 'redux/auth/authSelectors';
+import axios from 'axios';
+import { BACKEND_BASE_URL } from 'utils/appKeys';
+
 import { AiFillHeart } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
 import {
@@ -19,7 +25,19 @@ import {
 } from './ModalNotice.styled';
 
 export const ModalNotice = ({ active, setActive }) => {
-  const isAutorized = true;
+  const isAuth = useSelector(selectIsAuth);
+  useEffect(() => {
+    const handleKeyClose = e => {
+      if (e.key === 'Escape') {
+        setActive(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyClose);
+    return () => {
+      document.removeEventListener('keydown', handleKeyClose);
+    };
+  }, []);
+
   const pet = {
     petTitle: 'Cute dog looking for a home',
     category: 'sell',
@@ -37,7 +55,30 @@ export const ModalNotice = ({ active, setActive }) => {
     petComments:
       'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem',
   };
-
+  const addToFavorite = async id => {
+    try {
+      if (isAuth) {
+        await axios.patch(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
+          params: {
+            id: id,
+          },
+        });
+      }
+    } catch (error) {
+      console.log(`Error update favorite list ${error}`);
+    }
+  };
+  const removeFromFavorite = async id => {
+    try {
+      await axios.delete(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
+        params: {
+          id: id,
+        },
+      });
+    } catch (error) {
+      console.log(`Error update favorite list ${error}`);
+    }
+  };
   return active ? (
     <BackDrop
       className={active ? 'active' : ''}
@@ -110,13 +151,13 @@ export const ModalNotice = ({ active, setActive }) => {
             <a href={`tel:${pet.userPhone}`}>Contact</a>
           </PhoneLink>
 
-          {((isAutorized && !pet.isFavorite) || !isAutorized) && (
-            <AddToFavoriteBtn>
+          {((isAuth && !pet.isFavorite) || !isAuth) && (
+            <AddToFavoriteBtn onClick={addToFavorite(pet.petId)}>
               Add to <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
-          {isAutorized && pet.isFavorite && (
-            <AddToFavoriteBtn>
+          {isAuth && pet.isFavorite && (
+            <AddToFavoriteBtn onClick={removeFromFavorite(pet.petId)}>
               Remove from <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
