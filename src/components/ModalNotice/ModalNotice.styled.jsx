@@ -37,6 +37,7 @@ export const ModalBox = styled(Box)`
     max-width: 704px;
     height: 548px;
     padding-top: 32px;
+    border-radius: ${p => p.theme.radii.mainBorderRadius};
   }
 `;
 export const PetBox = styled(Box)`
