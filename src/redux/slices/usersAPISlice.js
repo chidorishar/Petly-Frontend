@@ -1,4 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
 
 import { AUTH_HEADER_NAME, axiosBaseQuery } from 'services/axiosBaseQuery';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS, CACHE_TAGS } from 'utils/appKeys';
@@ -22,6 +23,9 @@ export const usersAPI = createApi({
     prepareHeaders: (headers, { getState }) => {
       const accessToken = getState().auth.accessToken;
       if (accessToken) {
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`;
         headers.set([AUTH_HEADER_NAME], `Bearer ${accessToken}`);
       }
       return headers;
