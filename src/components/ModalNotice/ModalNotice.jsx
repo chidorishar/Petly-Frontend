@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectIsAuth } from 'redux/auth/authSelectors';
 import axios from 'axios';
 import { BACKEND_BASE_URL } from 'utils/appKeys';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { AiFillHeart } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
@@ -24,7 +26,7 @@ import {
   PhoneLink,
 } from './ModalNotice.styled';
 
-export const ModalNotice = ({ active, setActive }) => {
+export const ModalNotice = ({ pet, active, setActive }) => {
   const isAuth = useSelector(selectIsAuth);
   useEffect(() => {
     const handleKeyClose = e => {
@@ -37,33 +39,37 @@ export const ModalNotice = ({ active, setActive }) => {
       document.removeEventListener('keydown', handleKeyClose);
     };
   }, []);
-
-  const pet = {
-    petTitle: 'Cute dog looking for a home',
-    category: 'sell',
-    petImg: 'https://placehold.co/240x340/orange/white',
-    petId: '1',
-    petName: 'Rich',
-    petBirthdayDate: '21.09.21',
-    petBreed: 'Pomeranian',
-    petLocation: 'Lviv',
-    petSex: 'male',
-    userEmail: 'user@mail.com',
-    userPhone: '+380505050505',
-    price: '2333',
-    isFavorite: false,
-    petComments:
-      'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem',
+  const showToast = () => {
+    toast(' Please login to add to favorites! ');
   };
+  const {
+    _id,
+    title,
+    breed,
+    location,
+    birthDate,
+    category,
+    name,
+    sex,
+    price = '',
+    image,
+    comments,
+    phone,
+    email,
+    isFavorite,
+  } = pet;
+
   const addToFavorite = async id => {
     try {
-      if (isAuth) {
-        await axios.patch(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
-          params: {
-            id: id,
-          },
-        });
+      if (!isAuth) {
+        showToast;
+        return;
       }
+      await axios.patch(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
+        params: {
+          id: id,
+        },
+      });
     } catch (error) {
       console.log(`Error update favorite list ${error}`);
     }
@@ -90,53 +96,53 @@ export const ModalNotice = ({ active, setActive }) => {
       >
         <PetBox>
           <ImgBox>
-            <img src={pet.petImg} alt={pet.petName} />
+            <img src={image} alt={name} />
             <CategoryBox>
               <p>
-                {pet.category}
-                {active && pet.petId}
+                {category}
+                {/* {active && pet.petId} */}
               </p>
             </CategoryBox>
           </ImgBox>
           <InfoBox>
-            <PetTitle>{pet.petTitle}</PetTitle>
+            <PetTitle>{title}</PetTitle>
             <PetInfo>
               <PetInfoItem>
                 <PetInfoItemTitle>Name:</PetInfoItemTitle>
-                {pet.petName}
+                {name}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Birthday:</PetInfoItemTitle>
-                {pet.petBirthdayDate}
+                {birthDate}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Breed:</PetInfoItemTitle>
-                {pet.petBreed}
+                {breed}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Place:</PetInfoItemTitle>
-                {pet.petLocation}
+                {location}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>The sex:</PetInfoItemTitle>
-                {pet.petSex}
+                {sex}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Email:</PetInfoItemTitle>
-                <a className="userContact" href={`mailto:${pet.userEmail}`}>
-                  {pet.userEmail}
+                <a className="userContact" href={`mailto:${email}`}>
+                  {email}
                 </a>
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Phone:</PetInfoItemTitle>
-                <a className="userContact" href={`tel:${pet.userPhone}`}>
-                  {pet.userPhone}
+                <a className="userContact" href={`tel:${phone}`}>
+                  {phone}
                 </a>
               </PetInfoItem>
-              {pet.price ? (
+              {price ? (
                 <PetInfoItem>
                   <PetInfoItemTitle>Price:</PetInfoItemTitle>
-                  {pet.price}
+                  {price}
                 </PetInfoItem>
               ) : (
                 ''
@@ -145,19 +151,19 @@ export const ModalNotice = ({ active, setActive }) => {
           </InfoBox>
           <PetComments>
             <span>Comments: </span>
-            {pet.petComments}
+            {comments}
           </PetComments>
           <PhoneLink>
-            <a href={`tel:${pet.userPhone}`}>Contact</a>
+            <a href={`tel:${phone}`}>Contact</a>
           </PhoneLink>
 
-          {((isAuth && !pet.isFavorite) || !isAuth) && (
-            <AddToFavoriteBtn onClick={addToFavorite(pet.petId)}>
+          {((isAuth && !isFavorite) || !isAuth) && (
+            <AddToFavoriteBtn onClick={addToFavorite(_id)}>
               Add to <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
-          {isAuth && pet.isFavorite && (
-            <AddToFavoriteBtn onClick={removeFromFavorite(pet.petId)}>
+          {isAuth && isFavorite && (
+            <AddToFavoriteBtn onClick={removeFromFavorite(_id)}>
               Remove from <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
@@ -167,26 +173,29 @@ export const ModalNotice = ({ active, setActive }) => {
           <GrClose className="closeIcon" />
         </CloseBtn>
       </ModalBox>
+      <ToastContainer />
     </BackDrop>
   ) : (
     ''
   );
 };
 ModalNotice.propTypes = {
-  //   pet: PropTypes.shape({
-  //     petId: PropTypes.Number.isRequired,
-  //   categoryName: PropTypes.string,
-  //     petImg: PropTypes.string.isRequired,
-  //     petTitle: PropTypes.string.isRequired,
-  //     petName: PropTypes.string.isRequired,
-  //     petBirthdayDate: PropTypes.string.isRequired,
-  //     petBreed: PropTypes.string.isRequired,
-  //     petLocation: PropTypes.string.isRequired,
-  //     petSex: PropTypes.string.isRequired,
-  //     userEmail: PropTypes.string.isRequired,
-  //     userPhone: PropTypes.string.isRequired,
-  //     petComments: PropTypes.string.isRequired,
-  //   }).isRequired,
+  pet: PropTypes.shape({
+    _id: PropTypes.Number.isRequired,
+    category: PropTypes.string,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    birthDate: PropTypes.string.isRequired,
+    breed: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+    comments: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
+  }).isRequired,
 
   active: PropTypes.bool.isRequired,
   setActive: PropTypes.func.isRequired,
