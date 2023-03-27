@@ -33,7 +33,7 @@ export const ModalNotice = ({ active, setActive }) => {
     userEmail: 'user@mail.com',
     userPhone: '+380505050505',
     price: '2333',
-    isFavorite: true,
+    isFavorite: false,
     petComments:
       'Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur  Lorem ipsum dolor sit amet, consectetur Lorem',
   };

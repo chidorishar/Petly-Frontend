@@ -177,8 +177,8 @@ export const AddToFavoriteBtn = styled(ButtonWideCommon)`
   font-weight: ${p => p.theme.fontWeights.heading};
   letter-spacing: 0.04em;
   background-color: ${p => p.theme.colors.secondaryBackground};
-  border: 1px solid ${p => p.theme.colors.accent};
-  padding: 9px;
+  border: 2px solid ${p => p.theme.colors.accent};
+  padding: 8px;
   .addIcon {
     color: ${p => p.theme.colors.accent};
     margin-left: 8px;
