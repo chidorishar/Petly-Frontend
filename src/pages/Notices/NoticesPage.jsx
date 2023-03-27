@@ -5,15 +5,24 @@ import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList'
 import getNotices from './getNotices';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { selectUserAccessToken } from 'redux/selectors';
+import axios from 'axios';
+import { deleteNotice } from 'components/Notices/api';
 
 export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const userToken = useSelector(selectUserAccessToken);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
 
   const fetchNotices = async (category, query) => {
     try {
+      // console.log(userToken);
+      if (userToken)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
       const noticesArray = await getNotices(category, query);
       // console.log(noticesArray);
       setNotices(noticesArray);
@@ -53,6 +62,11 @@ export const NoticesPage = () => {
   const clearSearch = () => {
     setSearch('');
   };
+
+  const handleDelete = async id => {
+    await deleteNotice(id);
+    setNotices(state => state.filter(notice => notice._id !== id));
+  };
   return (
     <div>
       <NoticesTitle />
@@ -63,7 +77,7 @@ export const NoticesPage = () => {
         removeQuery={clearSearch}
       />
       <NoticesNavigation onCategoryClick={handleClick} />
-      <NoticesCategoriesList notices={notices} />
+      <NoticesCategoriesList notices={notices} onDeleteNotice={handleDelete} />
     </div>
   );
 };

@@ -12,8 +12,9 @@ import {
 import { useState } from 'react';
 
 export const NoticesNavigation = ({ onCategoryClick }) => {
-  const [selectedButton, setSelectedButton] = useState('sell');
   const { isUserAuthorized, isUserRefreshing } = useAuth();
+  const [selectedButton, setSelectedButton] = useState('sell');
+
   const nameCategoryUnAuth = [
     { type: 'sell', text: 'sell' },
     { type: 'lostFound', text: 'lost found' },
@@ -27,7 +28,6 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
 
   const handleClick = buttonType => {
     setSelectedButton(buttonType);
-
     onCategoryClick(buttonType);
   };
 

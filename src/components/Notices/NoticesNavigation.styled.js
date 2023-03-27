@@ -36,8 +36,8 @@ export const AddPetBtn = styled.button`
   background: #f59256;
   min-width: 44px;
   position: fixed;
-  right: 115px;
-  bottom: 90px;
+  transform: translateX(-107%);
+  bottom: 15vh;
   z-index: 99;
 
   color: #fff;

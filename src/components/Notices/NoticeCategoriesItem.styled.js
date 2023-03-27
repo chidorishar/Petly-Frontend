@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 40px 40px;
   border: none;
+  cursor: pointer;
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -28,6 +29,7 @@ export const ImgWrapper = styled.div`
   width: 100%;
   height: 288px;
   border: none;
+  overflow: hidden;
 `;
 export const PetImg = styled.img`
   width: 100%;
@@ -40,6 +42,7 @@ export const CardWrapper = styled.div`
   // text-align: center;
   border: none;
   border-radius: 0px 0px 40px 40px;
+
   > a {
     text-decoration: none;
   }
@@ -143,6 +146,8 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
 `;
 export const FavoriteIcon = styled(AiOutlineHeart)`
   fill: #f59256;
+
+  // fill: ${props => (props.selected ? 'orange' : 'white')};
 `;
 export const PetInfo = styled.ul`
   list-style: none;
