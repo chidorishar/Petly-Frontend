@@ -2,8 +2,10 @@ import { Box } from 'components/common/Box/Box.styled';
 import { PetsTitle, AddPetBtn, DataTopBox, AddBox } from './PetsData.styled';
 import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { UserPetsList } from 'components/UserPetsList/UserPetsList';
 
-export const PetsData = () => {
+export const PetsData = ({ pets, onPetDeleted }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleAddPet = () => {
@@ -11,7 +13,7 @@ export const PetsData = () => {
   };
 
   return (
-    <Box>
+    <Box flexGrow={1}>
       {/* MODAL WINDOW */}
       {showModal && <></>}
       <DataTopBox>
@@ -23,7 +25,12 @@ export const PetsData = () => {
           </AddPetBtn>
         </AddBox>
       </DataTopBox>
-      {/* insert UserPetsList component */}
+      <UserPetsList pets={pets} onPetDeleted={onPetDeleted} />
     </Box>
   );
+};
+
+PetsData.propTypes = {
+  pets: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  onPetDeleted: PropTypes.func.isRequired,
 };

@@ -1,88 +1,102 @@
 import styled from 'styled-components';
 import { InputCommon } from 'components/common/shared.styled';
-import { Box } from 'components/common';
+
+export const Form = styled.form`
+  margin-bottom: 42px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    margin-bottom: 33px;
+    padding-top: 16px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    margin-bottom: 24px;
+    padding-top: 0;
+  }
+`;
+
+export const UserLabel = styled.label`
+  display: flex;
+  align-items: center;
+
+  font-size: ${p => p.theme.fontSizes.xs};
+  font-weight: ${p => p.theme.fontWeights.text};
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  span {
+    font-weight: ${p => p.theme.fontWeights.heading};
+  }
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    font-size: ${p => p.theme.fontSizes.n};
+    line-height: 1.38;
+  }
+`;
 
 export const UserInput = styled(InputCommon)`
-  background-color: transparent;
-  margin: 0;
   width: 159px;
+  margin: 0;
   margin-right: 9px;
+  padding: 3px 18px;
   border: 1px solid transparent;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
-  padding: 4px 18px;
-  line-height: ${p => p.theme.lineHeights.body};
+
+  color: inherit;
+  background-color: transparent;
+
+  line-height: 1.33;
 
   transition: background-color ${p => p.theme.transitions.normal};
 
   &.enabled {
-    background-color: ${p => p.theme.colors.success}5e;
     border: 1px solid ${p => p.theme.colors.inputModal};
+    background-color: ${p => p.theme.colors.success}5e;
   }
   &.error {
     background-color: ${p => p.theme.colors.warning}38;
     border-color: red;
   }
   &:disabled {
+    border: none;
     border-color: transparent;
-    outline: none;
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 216px;
-    padding-left: 12px;
-  }
-`;
-
-export const UserLabel = styled.label`
-  font-size: ${p => p.theme.fontSizes.xs};
-  font-weight: ${p => p.theme.fontWeights.text};
-  line-height: ${p => p.theme.lineHeights.body};
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: center;
-  &:not(:last-child) {
-    margin-bottom: 12px;
-  }
-  span {
-    font-weight: ${p => p.theme.fontWeights.heading};
-  }
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.n};
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
+    padding: 3px 12px;
+    margin-right: 24px;
   }
 `;
 
 export const UserSpan = styled.span`
-  width: 56px;
-  margin-right: 8px;
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    width: 83px;
-    margin-right: 24px;
+  width: 60px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    width: 107px;
   }
 `;
 export const EditBtn = styled.button`
   display: flex;
-  border-radius: ${p => p.theme.radii.secondaryBorderRadius};
-  background-color: ${p => p.theme.colors.mainBackground};
-  font-size: ${p => p.theme.fontSizes.xs};
   width: 20px;
   height: 20px;
   padding: 0;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
+  border-radius: ${p => p.theme.radii.round};
 
+  background-color: ${p => p.theme.colors.mainBackground};
   color: ${p => p.theme.colors.accent};
 
   transition: background-color ${p => p.theme.transitions.normal},
     color ${p => p.theme.transitions.normal};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.nl};
-
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 32px;
     height: 32px;
+
+    font-size: ${p => p.theme.fontSizes.nl};
   }
 
   &:hover:not(:disabled),
@@ -93,12 +107,5 @@ export const EditBtn = styled.button`
 
   &.disabled {
     color: ${p => p.theme.colors.heading};
-  }
-`;
-export const FormBox = styled(Box)`
-  background-color: ${p => p.theme.colors.secondaryBackground};
-  max-width: 100%;
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    max-width: 379px;
   }
 `;
