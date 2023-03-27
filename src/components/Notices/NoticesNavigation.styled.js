@@ -3,9 +3,12 @@ import { IoAddOutline } from 'react-icons/io5';
 
 export const Wrapper = styled.div`
   position: relative;
-  margin-top: 36px;
+
+  padding-top: 28px;
+
   @media screen and (min-width: 768px) {
     max-width: 500px;
+    padding-top: 40px;
   }
   @media screen and (min-width: 1280px) {
     max-width: 1000px;
@@ -19,33 +22,53 @@ export const Button = styled.button`
   margin-right: 12px;
   margin-top: 12px;
 
-  &:active {
-    color: white;
-    background-color: ${p => p.theme.colors.accent};
+  transition: ${({ theme }) => theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.mainBackground};
+    background-color: ${p => p.theme.colors.hoverBtn};
   }
 
-  background: ${props => (props.selected ? 'orange' : 'white')};
-  color: ${props => (props.selected ? 'white' : 'orange')};
+  background: ${props =>
+    props.selected ? props.theme.colors.accent : 'transparent'};
+  color: ${props =>
+    props.selected
+      ? props.theme.colors.mainBackground
+      : props.theme.colors.accent};
 `;
+
 export const AddPetBtn = styled.button`
+  position: fixed;
+
   width: 80px;
   height: 80px;
   border-radius: ${({ theme: { radii } }) => radii.round};
   border: ${({ theme: { borders } }) => borders.small} #f59256;
   padding: 0;
-  background: #f59256;
+  background: ${({ theme }) => theme.colors.accent};
   min-width: 44px;
-  position: fixed;
   transform: translateX(-107%);
   bottom: 15vh;
   z-index: 99;
 
-  color: #fff;
+  transition: ${({ theme }) => theme.transitions.normal};
+
+  color: ${({ theme }) => theme.colors.accent};
+
+  &:hover,
+  &:focus {
+    background: ${({ theme }) => theme.colors.hoverBtn};
+  }
+
   @media screen and (min-width: 768px) {
-    margin-left: 12px;
     position: static;
+
     width: 44px;
     height: 44px;
+    margin-left: 12px;
+
+    transform: none;
   }
 `;
 
@@ -64,13 +87,17 @@ export const CommonWrapper = styled.div`
 `;
 
 export const Icon = styled(IoAddOutline)`
+  position: absolute;
+
   width: 21px;
   height: 21px;
   color: #fff;
-  position: absolute;
   top: 20px;
   right: 27px;
+
   @media screen and (min-width: 768px) {
+    position: none;
+
     width: 17.49px;
     height: 17.49px;
     position: static;
@@ -82,6 +109,8 @@ export const Span = styled.span`
   color: #fff;
   z-index: 100;
   min-width: 60px;
+  margin-right: 26px;
+
   @media screen and (min-width: 768px) {
     position: absolute;
     left: -60px;

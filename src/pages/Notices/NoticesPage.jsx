@@ -1,15 +1,18 @@
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
+import { selectUserAccessToken } from 'redux/selectors';
+import { deleteNotice } from 'components/Notices/api';
+import getNotices from './getNotices';
+
 import { NoticesSearch } from 'components/Notices/NoticesSearch';
 import { NoticesTitle } from 'components/Notices/NoticesTitle';
 import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
-import getNotices from './getNotices';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { selectUserAccessToken } from 'redux/selectors';
-import axios from 'axios';
-import { deleteNotice } from 'components/Notices/api';
+import { Container } from 'components/common';
 
 export const NoticesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -59,7 +62,7 @@ export const NoticesPage = () => {
     setNotices(state => state.filter(notice => notice._id !== id));
   };
   return (
-    <div>
+    <Container>
       <NoticesTitle />
       <NoticesSearch
         value={search}
@@ -69,7 +72,7 @@ export const NoticesPage = () => {
       />
       <NoticesNavigation onCategoryClick={handleClick} />
       <NoticesCategoriesList notices={notices} onDeleteNotice={handleDelete} />
-    </div>
+    </Container>
   );
 };
 

@@ -63,8 +63,8 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
       </Wrapper>
       <Wrapper>
         <AddPetBtn>
-          <Icon />
           <Span>Add pet</Span>
+          <Icon />
         </AddPetBtn>
       </Wrapper>
     </CommonWrapper>
