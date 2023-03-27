@@ -77,7 +77,17 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
     </List>
   ) : (
     <Box>
-      <p> No pets... </p>
+      <List>
+        <ListItem key={0}>
+          <PetInfo>
+            <li>
+              <Box m="0 40px" fontSize="ml">
+                <span>No pets...</span>
+              </Box>
+            </li>
+          </PetInfo>
+        </ListItem>
+      </List>
     </Box>
   );
 };
