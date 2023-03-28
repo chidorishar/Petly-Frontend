@@ -4,6 +4,8 @@ import { ButtonWideCommon } from 'components/common/shared.styled';
 
 export const BackDrop = styled(Box)`
   position: fixed;
+  z-index: 101;
+
   width: 100vw;
   height: 100vh;
   background-color: ${p => p.theme.colors.backdrop};
@@ -15,7 +17,7 @@ export const BackDrop = styled(Box)`
 
   opacity: 0;
   pointer-events: none;
-  transition: ${p => p.theme.transitions.normal};
+
   overflow: auto;
   &.active {
     opacity: 1;
@@ -27,15 +29,15 @@ export const ModalBox = styled(Box)`
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   background-color: ${p => p.theme.colors.secondaryBackground};
   max-width: 280px;
-  height: 900px;
+  height: min-content;
   transform: scale(0.5);
-  transition: transform ${p => p.theme.transitions.normal};
+
   &.active {
     transform: scale(1);
   }
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 704px;
-    height: 548px;
     padding-top: 32px;
     border-radius: ${p => p.theme.radii.mainBorderRadius};
   }
@@ -80,9 +82,7 @@ export const CategoryBox = styled(Box)`
   }
 `;
 export const InfoBox = styled(Box)`
-  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
-    width: 250px;
-  }
+  flex-grow: 1;
 `;
 export const PetTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.ml};
@@ -102,11 +102,17 @@ export const PetInfo = styled.ul`
 export const PetInfoItem = styled.li`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeights.heading};
+
+  display: flex;
+
   &:not(:last-child) {
     margin-bottom: 8px;
   }
   .userContact {
+    overflow-y: auto;
+
     text-decoration: none;
+
     color: ${p => p.theme.colors.heading};
     &:focus,
     &:hover {
@@ -120,6 +126,9 @@ export const PetInfoItem = styled.li`
 `;
 export const PetInfoItemTitle = styled.span`
   font-weight: ${p => p.theme.fontWeights.semiBold};
+
+  flex-shrink: 0;
+
   width: 63px;
   margin-right: 55px;
   display: inline-block;
@@ -127,15 +136,20 @@ export const PetInfoItemTitle = styled.span`
 export const PetComments = styled.p`
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeights.text};
+
+  width: 100%;
+
   span {
     font-weight: ${p => p.theme.fontWeights.semiBold};
   }
   margin-bottom: 40px;
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.m};
     margin-bottom: 32px;
   }
 `;
+
 export const PhoneLink = styled(ButtonWideCommon)`
   width: 100%;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
