@@ -90,8 +90,8 @@ export const ModalNotice = ({ noticeData, setIsModalShown }) => {
   };
 
   return (
-    <BackDrop className={'active'} onClick={() => setIsModalShown(false)}>
-      <ModalBox className={'active'} onClick={e => e.stopPropagation()}>
+    <BackDrop onClick={() => setIsModalShown(false)}>
+      <ModalBox onClick={e => e.stopPropagation()}>
         <PetBox>
           <ImgBox>
             <img src={image} alt={name} />

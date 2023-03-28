@@ -19,10 +19,9 @@ export const BackDrop = styled(Box)`
   pointer-events: none;
 
   overflow: auto;
-  &.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+
+  opacity: 1;
+  pointer-events: all;
 `;
 export const ModalBox = styled(Box)`
   padding: 60px 20px 40px;
@@ -32,9 +31,7 @@ export const ModalBox = styled(Box)`
   height: min-content;
   transform: scale(0.5);
 
-  &.active {
-    transform: scale(1);
-  }
+  transform: scale(1);
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 704px;
