@@ -26,9 +26,6 @@ export const AuthBox = styled.div`
   background-size: contain;
 
   @media ${p => p.theme.breakpoints.desktop.media} {
-    
-    
-    
     background-image: url(${(desktop, desktopWebp)});
     background-size: 1280px auto;
     height: 701px;
@@ -40,7 +37,6 @@ export const AuthBox = styled.div`
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
-    
     padding-bottom: auto;
     height: 956px;
     background-image: url(${(tablet, tabletWebp)});
@@ -53,7 +49,6 @@ export const AuthBox = styled.div`
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    
     padding-bottom: auto;
     height: 590px;
     background-image: url(${(mobile, mobileWebp)});
