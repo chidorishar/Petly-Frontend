@@ -17,6 +17,7 @@ import { PrivateRoute } from './PrivateRoute';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { Loader } from './common';
 
+import NoticesPage from 'pages/Notices/NoticesPage';
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
@@ -74,7 +75,7 @@ export const App = () => {
               />
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-
+              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
               <Route
                 path={ROUTES.USERPAGE}
                 element={
