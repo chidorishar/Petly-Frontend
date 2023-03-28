@@ -2,13 +2,12 @@ import { Box } from 'components/common/Box/Box.styled';
 import styled from 'styled-components';
 
 export const PetsTitle = styled.p`
-  font-family: ${p => p.theme.fonts.mainFamily};
   font-weight: ${p => p.theme.fontWeights.heading};
   color: ${p => p.theme.colors.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
   line-height: ${p => p.theme.lineHeights.body};
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.mll};
   }
 `;
@@ -19,6 +18,9 @@ export const AddPetBtn = styled.button`
   font-size: 40px;
   padding: 0;
   line-height: 0;
+
+  transition: color ${({ theme: { transitions } }) => transitions.normal}};  
+
   &:focus,
   &:hover {
     color: ${p => p.theme.colors.hoverBtn};
@@ -27,13 +29,17 @@ export const AddPetBtn = styled.button`
 export const DataTopBox = styled(Box)`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  flex-grow: 1;
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    margin-bottom: 20px;
+  }
 `;
 export const AddBox = styled(Box)`
   display: flex;
   align-items: center;
   span {
-    font-family: ${p => p.theme.fonts.mainFamily};
     font-weight: ${p => p.theme.fontWeights.heading};
     color: ${p => p.theme.colors.heading};
     line-height: ${p => p.theme.lineHeights.body};

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Box } from 'components/common/Box/Box.styled';
+
 export const List = styled.ul`
   display: flex;
   flex-direction: column;
@@ -7,7 +8,7 @@ export const List = styled.ul`
   max-width: 280px;
   margin: auto;
   gap: 20px;
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 704px;
     margin-top: 24px;
   }
@@ -16,13 +17,17 @@ export const List = styled.ul`
   }
 `;
 export const ListItem = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   padding: 16px 20px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.11);
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    display: flex;
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    flex-direction: row;
     padding: 20px;
     border-radius: ${({ theme: { radii } }) => radii.mainBorderRadius};
   }
@@ -33,11 +38,12 @@ export const NameBox = styled(Box)`
   align-items: center;
 `;
 export const PetImg = styled.img`
-  max-width: 100%;
+  width: 240px;
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   margin-bottom: 20px;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    width: 161px;
     display: block;
     margin-right: 32px;
     margin-bottom: 0;
@@ -45,6 +51,8 @@ export const PetImg = styled.img`
   }
 `;
 export const PetInfo = styled.ul`
+  flex-grow: 1;
+
   list-style: none;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: ${({ theme: { colors } }) => colors.dark};
@@ -61,7 +69,7 @@ export const PetInfo = styled.ul`
       font-weight: ${({ theme: { fontWeights } }) => fontWeights.heading};
     }
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 100%;
     position: relative;
     li {
@@ -77,13 +85,16 @@ export const DeleteBtn = styled.button`
   color: ${({ theme: { colors } }) => colors.inputText};
   background-color: transparent;
   font-size: ${({ theme: { fontSizes } }) => fontSizes.nl};
+
+  transition: color ${({ theme: { transitions } }) => transitions.normal}};  
+
   &:focus,
   &:hover {
     outline: none;
     background-color: transparent;
     color: ${({ theme: { colors } }) => colors.hoverBtn};
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     position: absolute;
     width: 44px;
     height: 44px;

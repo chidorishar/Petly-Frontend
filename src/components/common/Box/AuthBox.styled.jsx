@@ -16,19 +16,22 @@ import {
 } from 'images/auth';
 
 export const AuthBox = styled.div`
-  width: max-content;
+  /* width: max-content; */
   height: 100%;
   margin: 0 auto;
+  display: flex;
 
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
 
-  @media ${p => p.theme.breakpoints.tablet.desktop} {
-    padding-top: 91px;
-    padding-bottom: auto;
-    height: 701px;
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    
+    
+    
     background-image: url(${(desktop, desktopWebp)});
+    background-size: 1280px auto;
+    height: 701px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -36,11 +39,12 @@ export const AuthBox = styled.div`
     }
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
-    padding-top: 204px;
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    
     padding-bottom: auto;
     height: 956px;
     background-image: url(${(tablet, tabletWebp)});
+    background-size: 768px auto;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -48,11 +52,12 @@ export const AuthBox = styled.div`
     }
   }
 
-  @media (max-width: 767px) {
-    padding-top: 42px;
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    
     padding-bottom: auto;
-    height: 522px;
+    height: 590px;
     background-image: url(${(mobile, mobileWebp)});
+    background-size: 320px auto;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
