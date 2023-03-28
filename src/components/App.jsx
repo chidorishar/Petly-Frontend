@@ -1,4 +1,5 @@
 import { lazy, useEffect } from 'react';
+// import { Navigate, Route, Routes } from 'react-router-dom';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
@@ -11,15 +12,18 @@ import { GlobalStyle, ToastContainer } from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
 import { RestrictedRoute } from './ProtectedRoute';
-// import { PrivateRoute } from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 import SharedLayout from './SharedLayout/SharedLayout';
+import { Loader } from './common';
 
+const NoticesPage = lazy(() => import('../pages/Notices/NoticesPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
 const NewsPage = lazy(() => import('../pages/News/NewsPage'));
 const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
-const UserMenu = lazy(() => import('./UserMenu/UserMenu'));
+const UserPage = lazy(() => import('../pages/User/UserPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
@@ -47,33 +51,40 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           {isRefreshingUserData ? (
-            <Route index element={<p>Retrieving data...</p>} />
+            <Route index element={<Loader />} />
           ) : (
             <>
               {/* HOMEPAGE */}
-
-              <Route index element={<></>} />
-              <Route index element={<UserMenu />} />
+              <Route index element={<HomePage />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
                 path={ROUTES.LOGIN}
                 element={
-                  <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+                  <RestrictedRoute
+                    redirectTo={ROUTES.USERPAGE}
+                    component={<LoginPage />}
+                  />
                 }
               />
               <Route
                 path={ROUTES.REGISTER}
                 element={
                   <RestrictedRoute
-                    redirectTo="/"
+                    redirectTo={ROUTES.USERPAGE}
                     component={<RegisterPage />}
                   />
                 }
               />
+              <Route
+                path={ROUTES.USERPAGE}
+                element={
+                  <PrivateRoute redirectTo="/" component={<UserPage />} />
+                }
+              />
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-              <Route path="*" element={<></>} />
+              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
             </>
           )}
         </Route>

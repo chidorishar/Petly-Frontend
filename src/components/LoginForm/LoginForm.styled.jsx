@@ -9,13 +9,23 @@ export const ContainerCardCommon = styled.div`
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    margin-top: 81px;
+    margin-bottom: 124px;
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    margin-top: 204px;
+    margin-bottom: 260px;
+  }
 
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     width: 100%;
     margin: 0;
+    margin-top: 54px;
+    margin-bottom: 207px;
     padding: 0;
     border: none;
-    border-radius: 0;
+    border-radius: 22px;
     background-color: ${({ theme: { colors } }) => colors.mainBackground};
     box-shadow: none;
   }
@@ -25,7 +35,7 @@ export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.lx};
   color: ${({ theme: { colors } }) => colors.heading};
-  @media (max-width: 767px) {
+  @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
   }
@@ -43,16 +53,15 @@ export const FormCommon = styled.form`
   }
 `;
 
-export const InputCommon = styled.input`
+export const InputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
   @media (max-width: 767px) {
-    font-size: ${p => p.theme.fontSizes.s};
     padding: 11px 14px 12px 14px;
     border-radius: 20px;
   }
-
-  font-size: ${p => p.theme.fontSizes.n};
-  font-weight: ${p => p.theme.fontWeights.text};
-  color: ${({ theme: { colors } }) => colors.inputText};
 
   width: 100%;
   margin: 0 auto;
@@ -62,9 +71,7 @@ export const InputCommon = styled.input`
   border: none;
   outline: ${p => p.theme.borders.inputModal}
     ${({ theme: { colors } }) => colors.inputModal};
-
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
-
   transition: border ${({ theme: { transitions } }) => transitions.normal};
 
   &:nth-child(2) {
@@ -86,6 +93,29 @@ export const InputCommon = styled.input`
   &:hover,
   &:focus {
     outline-width: 2px;
+  }
+`;
+
+export const InputCommon = styled.input`
+  font-size: ${p => p.theme.fontSizes.n};
+  font-weight: ${p => p.theme.fontWeights.text};
+  background-color: ${({ theme: { colors } }) => colors.mainBackground};
+  color: ${({ theme: { colors } }) => colors.inputText};
+  width: 100%;
+  border: none;
+  outline: none;
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    font-size: ${p => p.theme.fontSizes.s};
+  }
+`;
+
+export const IconInput = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    margin-top: -3px;
+    max-height: 16px;
   }
 `;
 
@@ -114,7 +144,7 @@ export const Button = styled.button`
   padding: 10.5px;
   border-radius: 24px;
 
-  @media ${p => p.theme.breakpoints.tablet.desktop} {
+  @media ${p => p.theme.breakpoints.desktop.media} {
     margin-top: 40px;
     padding: 10.5px;
     border-radius: 24px;

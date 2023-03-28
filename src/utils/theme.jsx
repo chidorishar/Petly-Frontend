@@ -74,6 +74,10 @@ export const theme = {
       media: '(max-width: 767px)',
       width: '320px',
     },
+    mobileOnly: {
+      media: '(max-width: 767.9px)',
+      width: '767.9px',
+    },
     tablet: {
       media: '(min-width: 768px) and (max-width: 1279px)',
       mediaFrom: '(min-width: 768px)',
