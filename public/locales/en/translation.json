@@ -23,6 +23,7 @@
   },
 
   "login": {
+    "email": "Email",
     "login": "Login",
     "password": "Password",
     "register": "Register",

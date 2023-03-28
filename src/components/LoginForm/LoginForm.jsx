@@ -8,6 +8,7 @@ import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
 
 import { useLoginUserMutation } from 'redux/slices/usersAPISlice';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -79,15 +80,17 @@ export const LoginForm = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <ContainerCardCommon>
-      <Title>Login</Title>
+      <Title>{t('login.login')}</Title>
       <FormCommon onSubmit={formik.handleSubmit}>
         <InputWrapper style={{ outlineColor: ifCurrentEmail() }}>
           <InputCommon
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder={t('login.email')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
@@ -113,7 +116,7 @@ export const LoginForm = () => {
           <InputCommon
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={t('login.password')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
