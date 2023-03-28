@@ -1,5 +1,16 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { TfiPlus } from 'react-icons/tfi';
+import PropTypes from 'prop-types';
+
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+import { Formik, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+import { toast } from 'react-toastify';
+// import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import {
   Overlay,
   ModalTitle,
@@ -24,17 +35,11 @@ import {
   ImgPlug,
   ModalButtonDown,
 } from './ModalAddsPet.styled';
-import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
-import PropTypes from 'prop-types';
-import { TfiPlus } from 'react-icons/tfi';
 
 // import { useCreatePetMutation } from 'redux/slices/petSliceAPISlice';
-import { toast } from 'react-toastify';
-import DatePicker from 'react-datepicker';
-// import moment from 'moment';
-import 'react-datepicker/dist/react-datepicker.css';
+import { selectUserAccessToken } from 'redux/selectors';
 import { ResetButton } from './ResetButton';
+import { addNewPet } from './api';
 
 // eslint-disable-next-line react/prop-types
 const FormError = forwardRef(({ name, component: Component = 'div' }, ref) => {
@@ -65,27 +70,23 @@ const validationAddPetTwoStep = yup.object().shape({
   comment: yup.string().min(8).max(120).required('Please write about your pet'),
 });
 
-export const ModalAddPet = () => {
-  const [showModal, setShowModal] = useState(true);
+export const ModalAddPet = ({ setModalStateInParent }) => {
+  const [isModalAddPetShown, setShowModalAddPet] = useState(true);
+  const userToken = useSelector(selectUserAccessToken);
+
   const modalRef = useRef(null);
-  const navigate = useNavigate();
-  const closeModal = () => navigate('/');
-  // const [createPet, { data: mutationData, error, loading, called }] = useCreatePetMutation();
   //Для валідації//
 
   // Функції стосовно модального вікна //
   useEffect(() => {
-    if (showModal && modalRef.current) {
+    if (isModalAddPetShown && modalRef.current) {
       modalRef.current.focus();
     }
-  }, [showModal]);
-
-  // const handleOpenModal = () => {
-  //   setShowModal(true);
-  // };
+  }, [isModalAddPetShown]);
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowModalAddPet(false);
+    setModalStateInParent(false);
     setData({
       name: '',
       birthday: startDate,
@@ -93,7 +94,6 @@ export const ModalAddPet = () => {
       photo: '',
       comment: '',
     });
-    closeModal(false);
   };
 
   const handleOverlayClick = e => {
@@ -101,9 +101,11 @@ export const ModalAddPet = () => {
       handleCloseModal();
     }
   };
+
   const handleKeyDown = e => {
-    if (e.key === 'Escape' && showModal) {
-      setShowModal(false);
+    if (e.key === 'Escape' && isModalAddPetShown) {
+      setModalStateInParent(false);
+      setShowModalAddPet(false);
     }
   };
 
@@ -143,11 +145,12 @@ export const ModalAddPet = () => {
   const handleSubmitForm = async (values, formikBag = {}) => {
     const { setSubmitting } = formikBag;
     const formData = { ...data, ...values };
-    try {
-      await formData;
-      // createPet({variables:{formData}})
 
-      // console.log('await resetForm:', formData);
+    if (userToken)
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+    const addResponse = await addNewPet(formData);
+
+    if (addResponse.status === 201) {
       setCurrentStep(0);
       setData({
         name: '',
@@ -161,15 +164,13 @@ export const ModalAddPet = () => {
       toast.success(`${formData.name} successfully added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
-    } catch (error) {
+    } else
       toast.error('Error adding data!', {
         position: toast.POSITION.TOP_LEFT,
       });
-    } finally {
-      setSubmitting && setSubmitting(false);
-      handleCloseModal();
-    }
-    // console.log('data submit:', formData);
+
+    setSubmitting && setSubmitting(false);
+    handleCloseModal();
   };
 
   const steps = [
@@ -190,22 +191,22 @@ export const ModalAddPet = () => {
   ];
 
   return (
-    <div>
-      {/* <ModalButton onClick={handleOpenModal}>Open Modal</ModalButton> */}
-
-      {showModal && (
-        <Overlay onClick={handleOverlayClick}>
-          <Modal ref={modalRef} tabIndex={0} onKeyDown={handleKeyDown}>
-            <CrossButton onClick={handleCloseModal}>
-              <Icon />
-            </CrossButton>
-            <ModalTitle>Add pet</ModalTitle>
-            {steps[currentStep]}
-          </Modal>
-        </Overlay>
-      )}
-    </div>
+    <>
+      <Overlay onClick={handleOverlayClick}>
+        <Modal ref={modalRef} tabIndex={0} onKeyDown={handleKeyDown}>
+          <CrossButton onClick={handleCloseModal}>
+            <Icon />
+          </CrossButton>
+          <ModalTitle>Add pet</ModalTitle>
+          {steps[currentStep]}
+        </Modal>
+      </Overlay>
+    </>
   );
+};
+
+ModalAddPet.propTypes = {
+  setModalStateInParent: PropTypes.func.isRequired,
 };
 
 const DatePickerField = ({
