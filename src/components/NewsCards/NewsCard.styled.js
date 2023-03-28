@@ -18,7 +18,7 @@ export const Border = styled.div`
   }
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.logo};
   font-style: normal;
   font-size: ${p => p.theme.fontSizes.ml};

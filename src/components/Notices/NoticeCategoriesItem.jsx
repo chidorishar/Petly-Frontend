@@ -24,13 +24,14 @@ import {
   FavoriteIcon,
   Span,
 } from './NoticeCategoriesItem.styled';
+import i18n from 'i18next';
 
 const nameCategory = [
-  { type: 'sell', text: 'sell' },
-  { type: 'lost-found', text: 'lost found' },
-  { type: 'for-free', text: 'in good hands' },
-  { type: 'favorites', text: 'favorite ads' },
-  { type: 'own', text: 'my ads' },
+  { type: 'sell', text: i18n.t('notices.sell') },
+  { type: 'lost-found', text: i18n.t('notices.lost') },
+  { type: 'for-free', text: i18n.t('notices.free') },
+  { type: 'favorites', text: i18n.t('notices.fav') },
+  { type: 'own', text: i18n.t('notices.own') },
 ];
 
 export const NoticeCategoriesItem = ({

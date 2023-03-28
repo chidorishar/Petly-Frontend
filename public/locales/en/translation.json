@@ -59,7 +59,7 @@
     "sell": "sell",
     "lost": "lost/found",
     "free": "in good hands",
-    "fav": "favorite",
+    "fav": "favorite ads",
     "own": "my ads",
     "add": "Add pet",
     "more": "Learn more",
@@ -81,7 +81,7 @@
     "years2": "years",
     "less": "< 1 month",
     "contact": "Contact",
-    "addto": "Add to",
+    "addTo": "Add to",
     "remove": "Remove from"
   },
 

@@ -28,6 +28,7 @@ const LanguageSwitch = () => {
     <LanguageSwitchEl>
       <LanguageOption
         checked={lang === 'en' ? 'checked' : ''}
+        aria-label="EN"
         label="EN"
         type="radio"
         name="language"
@@ -39,6 +40,7 @@ const LanguageSwitch = () => {
       ></LanguageOption>
       <LanguageOption
         checked={lang === 'uk' ? 'checked' : ''}
+        aria-label="UA"
         label="UA"
         type="radio"
         name="language"

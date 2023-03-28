@@ -26,6 +26,7 @@ import {
   PetTitle,
   PhoneLink,
 } from './ModalNotice.styled';
+import { useTranslation } from 'react-i18next';
 
 export const ModalNotice = ({
   noticeData,
@@ -96,6 +97,8 @@ export const ModalNotice = ({
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <BackDrop onClick={() => setIsModalShown(false)}>
       <ModalBox onClick={e => e.stopPropagation()}>
@@ -113,40 +116,40 @@ export const ModalNotice = ({
             <PetTitle>{title}</PetTitle>
             <PetInfo>
               <PetInfoItem>
-                <PetInfoItemTitle>Name:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.name')}</PetInfoItemTitle>
                 {name}
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>Birthday:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.birthday')}</PetInfoItemTitle>
                 {dateConverter(birthDate, 'dd.MM.yyyy')}
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>Breed:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.breed')}</PetInfoItemTitle>
                 {breed}
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>Place:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.place')}</PetInfoItemTitle>
                 {location}
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>The sex:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.sex')}</PetInfoItemTitle>
                 {sex}
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>Email:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('friends.email')}</PetInfoItemTitle>
                 <a className="userContact" href={`mailto:${email}`}>
                   {email}
                 </a>
               </PetInfoItem>
               <PetInfoItem>
-                <PetInfoItemTitle>Phone:</PetInfoItemTitle>
+                <PetInfoItemTitle>{t('notices.phone')}</PetInfoItemTitle>
                 <a className="userContact" href={`tel:${phone}`}>
                   {phone}
                 </a>
               </PetInfoItem>
               {category === 'sell' ? (
                 <PetInfoItem>
-                  <PetInfoItemTitle>Price:</PetInfoItemTitle>
+                  <PetInfoItemTitle>{t('notices.price')}</PetInfoItemTitle>
                   {price}
                 </PetInfoItem>
               ) : (
@@ -155,22 +158,22 @@ export const ModalNotice = ({
             </PetInfo>
           </InfoBox>
           <PetComments>
-            <span>Comments: </span>
+            <span>{t('notices.comm')} </span>
             {comments}
           </PetComments>
           <PhoneLink>
-            <a href={`tel:${phone}`}>Contact</a>
+            <a href={`tel:${phone}`}>{t('notices.contact')}</a>
           </PhoneLink>
 
           {((isUserAuthorized && !isUserRefreshing && !isFavorite) ||
             !isUserAuthorized) && (
             <AddToFavoriteBtn onClick={() => addToFavorite(_id)}>
-              Add to <AiFillHeart className="addIcon" />
+              {t('notices.addTo')} <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
           {isUserAuthorized && !isUserRefreshing && isFavorite && (
             <AddToFavoriteBtn onClick={() => removeFromFavorite(_id)}>
-              Remove from <AiFillHeart className="addIcon" />
+              {t('notices.remove')} <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
         </PetBox>
