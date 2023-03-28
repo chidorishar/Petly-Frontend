@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { useAuth } from 'redux/hooks/getAuth';
+
 import { Navigation } from 'components/Navigation/Navigation';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 
@@ -19,6 +20,7 @@ export default function SharedLayout() {
           {isUserAuthorized && <UserMenu />}
         </Container>
       </Header>
+
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

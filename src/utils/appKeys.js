@@ -17,6 +17,7 @@ const ROUTES = {
 
 const CACHE_TAGS = {
   AUTH_LOGIN: 'AuthLogin',
+  PETS: 'Pet',
 };
 
 /**
@@ -28,6 +29,7 @@ const BACKEND_ENDPOINTS = {
   LOGOUT: 'auth/logout',
   CURRENT: 'auth/current',
   REFRESH: 'auth/refresh',
+  USERS_PETS: 'users/pets',
   UPDATE_USER_INFO: 'users',
 };
 

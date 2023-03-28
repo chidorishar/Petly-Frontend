@@ -43,7 +43,7 @@ const UserPage = () => {
           )}
         </UserInfoContainer>
         {userData && (
-          <PetsData pets={userData.pets} onPetDeleted={onPetDeleted} />
+          <PetsData pets={userData.pets} onPetListChanged={onPetDeleted} />
         )}
       </UserPageContainer>
     </UserPageSection>
