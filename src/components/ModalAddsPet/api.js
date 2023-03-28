@@ -8,7 +8,7 @@ axios.defaults.baseURL = `http://${BACKEND_BASE_URL}`;
 export const addNewPet = async data => {
   try {
     const response = await axios.post(`/api/users/pets/`, data);
-    return response.data;
+    return response;
   } catch (error) {
     return error.response;
   }
