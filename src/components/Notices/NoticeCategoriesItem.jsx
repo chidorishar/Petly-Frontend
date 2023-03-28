@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Box } from 'components/common/';
 import { RiDeleteBinFill } from 'react-icons/ri';
 import { differenceInCalendarYears } from 'date-fns';
-import { addToFavorites } from './api';
+import { addToFavorites, deleteFromFavorites } from './api';
 import { useAuth } from 'redux/hooks/getAuth';
 import { toast } from 'react-toastify';
 
@@ -44,6 +44,7 @@ export const NoticeCategoriesItem = ({
   isOwner,
   isFavorite,
   onDeleteNotice,
+  onUpdateNoticeStatus,
 }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,9 +54,11 @@ export const NoticeCategoriesItem = ({
     return el.text;
   };
 
-  const handleClick = async id => {
-    if (isUserAuthorized && !isUserRefreshing) await addToFavorites(id);
-    else toast.error('You should register to get access to favotites');
+  const handleClick = async (id, isFavorite) => {
+    if (isUserAuthorized && !isUserRefreshing) {
+      isFavorite ? await deleteFromFavorites(id) : await addToFavorites(id);
+      onUpdateNoticeStatus();
+    } else toast.error('You should register to get access to favorites');
   };
 
   const calcFullYearsOld = birthDate => {
@@ -68,7 +71,7 @@ export const NoticeCategoriesItem = ({
         <PetImg src={image} alt={breed} />
         <Wrapper>
           <CategoryTitle>{getLabel(category)}</CategoryTitle>
-          <AddToFavBtn onClick={() => handleClick(id)}>
+          <AddToFavBtn onClick={() => handleClick(id, isFavorite)}>
             <FavoriteIcon $favorite={isFavorite} />
           </AddToFavBtn>
         </Wrapper>
@@ -118,4 +121,5 @@ NoticeCategoriesItem.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   onDeleteNotice: PropTypes.func,
+  onUpdateNoticeStatus: PropTypes.func.isRequired,
 };

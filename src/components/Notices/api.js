@@ -5,7 +5,7 @@ import { BACKEND_BASE_URL } from 'utils/appKeys';
 
 axios.defaults.baseURL = `http://${BACKEND_BASE_URL}`;
 
-const addToFavorites = async id => {
+export const addToFavorites = async id => {
   try {
     const response = await axios.patch(`/api/notices/favorites/${id}`);
     return response.data;
@@ -14,7 +14,16 @@ const addToFavorites = async id => {
   }
 };
 
-const deleteNotice = async id => {
+export const deleteFromFavorites = async id => {
+  try {
+    const response = await axios.delete(`/api/notices/favorites/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteNotice = async id => {
   try {
     const response = await axios.delete(`/api/notices/own/${id}`);
     return response.data;
@@ -22,5 +31,3 @@ const deleteNotice = async id => {
     console.log(error);
   }
 };
-
-export { addToFavorites, deleteNotice };

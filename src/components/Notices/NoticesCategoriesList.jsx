@@ -2,7 +2,11 @@ import PropTypes from 'prop-types';
 import { NoticeCategoriesItem } from './NoticeCategoriesItem';
 import { Container, CardWrapper } from './NoticesCategoriesList.styled';
 
-export const NoticesCategoriesList = ({ notices, onDeleteNotice }) => {
+export const NoticesCategoriesList = ({
+  notices,
+  onDeleteNotice,
+  onUpdateNoticeStatus,
+}) => {
   return (
     <Container>
       {notices.map(notice => (
@@ -19,6 +23,7 @@ export const NoticesCategoriesList = ({ notices, onDeleteNotice }) => {
             isOwner={notice?.isOwner ?? false}
             isFavorite={notice?.isFavorite ?? false}
             onDeleteNotice={onDeleteNotice}
+            onUpdateNoticeStatus={onUpdateNoticeStatus}
           />
         </CardWrapper>
       ))}
@@ -27,6 +32,7 @@ export const NoticesCategoriesList = ({ notices, onDeleteNotice }) => {
 };
 
 NoticesCategoriesList.propTypes = {
-  notices: PropTypes.array,
-  onDeleteNotice: PropTypes.func,
+  notices: PropTypes.array.isRequired,
+  onDeleteNotice: PropTypes.func.isRequired,
+  onUpdateNoticeStatus: PropTypes.func.isRequired,
 };

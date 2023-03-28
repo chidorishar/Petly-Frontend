@@ -45,7 +45,7 @@ export const NoticesPage = () => {
   console.log(searchParams.get('name'));
 
   const handleSubmit = evt => {
-    evt.preventDefault();
+    evt?.preventDefault();
     fetchNotices(category, search);
   };
 
@@ -59,8 +59,8 @@ export const NoticesPage = () => {
 
   const handleDelete = async id => {
     await deleteNotice(id);
-    setNotices(state => state.filter(notice => notice._id !== id));
   };
+
   return (
     <Container>
       <NoticesTitle />
@@ -71,7 +71,11 @@ export const NoticesPage = () => {
         removeQuery={clearSearch}
       />
       <NoticesNavigation onCategoryClick={handleClick} />
-      <NoticesCategoriesList notices={notices} onDeleteNotice={handleDelete} />
+      <NoticesCategoriesList
+        notices={notices}
+        onDeleteNotice={handleDelete}
+        onUpdateNoticeStatus={handleSubmit}
+      />
     </Container>
   );
 };
