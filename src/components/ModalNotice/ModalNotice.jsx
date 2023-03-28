@@ -49,8 +49,6 @@ export const ModalNotice = ({
     toast(' Please login to add to favorites! ');
   };
 
-  console.log('From modal');
-
   const {
     _id,
     title,
@@ -90,7 +88,7 @@ export const ModalNotice = ({
       console.log(`Error update favorite list ${error}`);
     }
   };
-  console.log(isFavorite);
+
   return (
     <BackDrop onClick={() => setIsModalShown(false)}>
       <ModalBox onClick={e => e.stopPropagation()}>
