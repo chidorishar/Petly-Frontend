@@ -17,7 +17,7 @@ import { dateConverter } from 'utils';
 
 const updateUserDataInBD = async dataObject => {
   return await axios.patch(
-    `http://${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
+    `${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
     dataObject
   );
 };

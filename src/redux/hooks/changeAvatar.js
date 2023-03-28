@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BACKEND_BASE_URL } from 'utils/appKeys';
 
-axios.defaults.baseURL = `http://${BACKEND_BASE_URL}`;
+axios.defaults.baseURL = `${BACKEND_BASE_URL}`;
 
 export const changeAvatar = async file => {
   try {
