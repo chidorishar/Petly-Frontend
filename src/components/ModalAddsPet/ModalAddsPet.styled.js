@@ -28,13 +28,7 @@ export const Modal = styled.div`
   background: ${p => p.theme.colors.secondaryBackground};
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    width: 608px;
-    padding: 40px 80px 40px 80px;
-    border-radius: ${p => p.theme.radii.mainBorderRadius};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 608px;
     padding: 40px 80px 40px 80px;
     border-radius: ${p => p.theme.radii.mainBorderRadius};
@@ -53,11 +47,7 @@ export const FormLabel = styled.label`
   font-size: ${p => p.theme.fontSizes.n};
   font-weight: ${p => p.theme.fontWeights.heading};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.ml};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.ml};
   }
 `;
@@ -71,23 +61,14 @@ export const FormLabelFoto = styled(FormLabel)`
   margin: 0 0 20px 0;
   font-size: ${p => p.theme.fontSizes.m};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.nl};
-    margin: 0 0 40px 0;
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.nl};
     margin: 0 0 40px 0;
   }
 `;
 
 export const FormLabelComment = styled(FormLabel)`
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.ml};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.ml};
   }
 `;
@@ -106,12 +87,8 @@ export const Field = styled(FormikField)`
   border-color: ${p => p.theme.colors.inputModal};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin: 12px 0 0 0;
-    font-size: ${p => p.theme.fontSizes.m};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    height: 48px;
     margin: 12px 0 0 0;
     font-size: ${p => p.theme.fontSizes.m};
   }
@@ -132,12 +109,7 @@ export const FieldComment = styled.textarea`
 
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    height: 116px;
-    width: 394px;
-    margin: 12px auto 0 auto;
-  }
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 116px;
     width: 394px;
     margin: 12px auto 0 auto;
@@ -147,12 +119,7 @@ export const Comment = styled.p`
   font-size: ${p => p.theme.fontSizes.n};
   font-weight: ${p => p.theme.fontWeights.heading};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin-left: 27px;
-    font-size: ${p => p.theme.fontSizes.ml};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-left: 27px;
     font-size: ${p => p.theme.fontSizes.ml};
   }
@@ -165,11 +132,7 @@ export const DatePickerWrapperStyles = createGlobalStyle`
   margin: 0 0 0 0;
   font-size: ${p => p.theme.fontSizes.m};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.nl};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.nl};
   }
 } 
@@ -193,11 +156,8 @@ export const DatePickerWrapperStyles = createGlobalStyle`
   border-color: ${p => p.theme.colors.inputModal};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.m};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    height: 48px;
     font-size: ${p => p.theme.fontSizes.m};
   }
 }
@@ -207,7 +167,7 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 0 28px 0;
+  margin: 0 0 40px;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -215,16 +175,7 @@ export const ButtonWrapper = styled.div`
   flex-direction: column;
   margin: 0 0 0 0;
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -262,7 +213,6 @@ export const ModalButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 12px 0 0 0;
   padding: 9px 8px 9px 8px;
   height: 40px;
   font-size: ${p => p.theme.fontSizes.m};
@@ -283,21 +233,23 @@ export const ModalButton = styled.button`
     color: ${p => p.theme.colors.secondaryBackground};
     border: ${p => p.theme.borders.inputModal};
     border-color: ${p => p.theme.colors.accent};
-    background-color: ${p => p.theme.colors.hoverBtn};
+    background-color: ${p => p.theme.colors.accent};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transform: scale(1.01);
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 44px;
     width: 180px;
     font-size: ${p => p.theme.fontSizes.nl};
   }
+`;
 
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    height: 44px;
-    width: 180px;
-    font-size: ${p => p.theme.fontSizes.nl};
+export const ModalButtonDown = styled(ModalButton)`
+  margin-top: 12px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    margin-top: 0px;
   }
 `;
 
@@ -322,15 +274,11 @@ export const CrossButton = styled.button`
   :hover,
   :focus {
     border: 1px solid ${p => p.theme.colors.accent};
-    background-color: ${p => p.theme.colors.hoverBtn};
+    background-color: ${p => p.theme.colors.accent};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transform: scale(1.01);
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    height: 44px;
-    width: 44px;
-  }
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 44px;
     width: 44px;
   }
@@ -346,11 +294,7 @@ export const Icon = styled(RxCross1)`
     color: ${p => p.theme.colors.secondaryBackground};
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    height: 34px;
-    width: 34px;
-  }
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 34px;
     width: 34px;
   }
@@ -369,12 +313,7 @@ export const ImgPlug = styled.div`
 
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    height: 182px;
-    width: 182px;
-    border-radius: ${p => p.theme.radii.mainBorderRadius};
-  }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 182px;
     width: 182px;
     border-radius: ${p => p.theme.radii.mainBorderRadius};
@@ -394,12 +333,7 @@ export const ImgPet = styled.img`
 
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    height: 182px;
-    width: 182px;
-    border-radius: ${p => p.theme.radii.mainBorderRadius};
-  }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 182px;
     width: 182px;
     border-radius: ${p => p.theme.radii.mainBorderRadius};
@@ -412,11 +346,7 @@ export const ModalTitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   line-height: ${p => p.theme.lineHeights.body};
 
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    font-size: ${p => p.theme.fontSizes.lx};
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.lx};
   }
 `;

@@ -22,6 +22,7 @@ import {
   Comment,
   ImgPet,
   ImgPlug,
+  ModalButtonDown,
 } from './ModalAddsPet.styled';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -300,7 +301,7 @@ const StepOne = forwardRef(({ next, cancel, data }, ref) => {
             <ModalButton type="button" onClick={() => cancel(values)}>
               Cancel
             </ModalButton>
-            <ModalButton type="submit">Next</ModalButton>
+            <ModalButtonDown type="submit">Next</ModalButtonDown>
           </ButtonWrapper>
         </Form>
       )}
@@ -459,9 +460,9 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
             <ModalButton type="button" onClick={() => prev(values)}>
               Back
             </ModalButton>
-            <ModalButton type="submit" onClick={() => resetForm()}>
+            <ModalButtonDown type="submit" onClick={() => resetForm()}>
               Done
-            </ModalButton>
+            </ModalButtonDown>
           </ButtonWrapperTwo>
           <ResetButton></ResetButton>
         </Form>
