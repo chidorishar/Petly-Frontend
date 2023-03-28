@@ -31,7 +31,6 @@ export const AuthNavLink = styled(NavLink)`
   border: 2px solid #f59256;
   border-radius: 40px;
 
-  font-family: ${p => p.theme.fonts.mainFamily};
   font-weight: 500;
   font-size: 14px;
   line-height: 1.36;

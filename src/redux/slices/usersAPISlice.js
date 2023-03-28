@@ -1,11 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
 
 import { AUTH_HEADER_NAME, axiosBaseQuery } from 'services/axiosBaseQuery';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS, CACHE_TAGS } from 'utils/appKeys';
-// import {
-//   CONTACTS_DATA_CACHE_TAG,
-//   phonebookAPI,
-// } from 'redux/slices/contactsApiSlice';
 
 async function invalidateCachedSmthng(_, { dispatch, queryFulfilled }) {
   try {
@@ -24,9 +21,12 @@ export const usersAPI = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set([AUTH_HEADER_NAME], `Bearer ${token}`);
+      const accessToken = getState().auth.accessToken;
+      if (accessToken) {
+        axios.defaults.headers.common[
+          'Authorization'
+        ] = `Bearer ${accessToken}`;
+        headers.set([AUTH_HEADER_NAME], `Bearer ${accessToken}`);
       }
       return headers;
     },
@@ -62,8 +62,18 @@ export const usersAPI = createApi({
       invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
 
-    refreshUser: builder.query({
-      query: () => ({ url: BACKEND_ENDPOINTS.REFRESH }),
+    currentUser: builder.query({
+      query: () => ({ url: BACKEND_ENDPOINTS.CURRENT }),
+      onQueryStarted: invalidateCachedSmthng,
+      invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
+    }),
+
+    refreshUser: builder.mutation({
+      query: payload => ({
+        url: BACKEND_ENDPOINTS.REFRESH,
+        method: 'post',
+        data: { refreshToken: payload },
+      }),
       onQueryStarted: invalidateCachedSmthng,
       invalidatesTags: [CACHE_TAGS.AUTH_LOGIN],
     }),
@@ -74,5 +84,6 @@ export const {
   useSignupUserMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
-  useLazyRefreshUserQuery,
+  useLazyCurrentUserQuery,
+  useRefreshUserMutation,
 } = usersAPI;
