@@ -71,7 +71,9 @@ export const ModalNotice = ({
     }
 
     try {
-      await axios.patch(`${BACKEND_BASE_URL}/api/notices/favorites/${id}`);
+      await axios.patch(
+        `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
+      );
       onUpdateNoticeStatus(id);
     } catch (error) {
       console.log(`Error update favorite list ${error}`);
@@ -85,7 +87,9 @@ export const ModalNotice = ({
     }
 
     try {
-      await axios.delete(`${BACKEND_BASE_URL}/api/notices/favorites/${id}`);
+      await axios.delete(
+        `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
+      );
       onUpdateNoticeStatus(id);
     } catch (error) {
       console.log(`Error update favorite list ${error}`);
