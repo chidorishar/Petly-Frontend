@@ -5,7 +5,7 @@ import { BACKEND_BASE_URL, BACKEND_ENDPOINTS, CACHE_TAGS } from 'utils/appKeys';
 export const petsApi = createApi({
   reducerPath: 'pets',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${BACKEND_BASE_URL}/api/`,
+    baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
       // By default, if we have a token in the store, let's use that for authenticated requests
       const token = getState().auth.accessToken;

@@ -19,7 +19,7 @@ export const usersAPI = createApi({
   reducerPath: 'usersAPI',
 
   baseQuery: axiosBaseQuery({
-    baseUrl: `${BACKEND_BASE_URL}/api/`,
+    baseUrl: `http://${BACKEND_BASE_URL}/api/`,
     prepareHeaders: (headers, { getState }) => {
       const accessToken = getState().auth.accessToken;
       if (accessToken) {
