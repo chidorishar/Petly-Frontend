@@ -54,6 +54,20 @@ export const NoticesPage = () => {
     fetchNotices(category, search);
   };
 
+  async function getNoticeDetailInfo(id) {
+    const noticeDetailedInfoResp = await getNoticeDetailedInfo(id);
+
+    if (noticeDetailedInfoResp.status === 200) {
+      return noticeDetailedInfoResp.data;
+    } else {
+      toast.error(
+        `Something went wrong. Please try again later. Network error status ${noticeDetailedInfoResp.status}`
+      );
+
+      return null;
+    }
+  }
+
   const handleClick = category => {
     setCategory(category);
   };
@@ -68,16 +82,23 @@ export const NoticesPage = () => {
   };
 
   const handleLearnMoreClick = async id => {
-    const noticeDetailedInfoResp = await getNoticeDetailedInfo(id);
+    const noticeDetails = await getNoticeDetailInfo(id);
 
-    if (noticeDetailedInfoResp.status === 200) {
-      setNoticeDetailedInfo(noticeDetailedInfoResp.data);
+    if (noticeDetails) {
+      setNoticeDetailedInfo(noticeDetails);
       setIsModalOpen(true);
-    } else
-      toast.error(
-        `Something went wrong. Please try again later. Network error status ${noticeDetailedInfoResp.status}`
-      );
+    }
   };
+
+  async function handleNoticeStatusUpdateInModal(id) {
+    fetchNotices(category, search);
+
+    const noticeDetails = await getNoticeDetailInfo(id);
+
+    if (noticeDetails) {
+      setNoticeDetailedInfo(noticeDetails);
+    }
+  }
 
   return (
     <Container>
@@ -98,6 +119,7 @@ export const NoticesPage = () => {
       {isModalOpen && (
         <ModalNotice
           noticeData={noticeDetailedInfo}
+          onUpdateNoticeStatus={handleNoticeStatusUpdateInModal}
           setIsModalShown={setIsModalOpen}
         />
       )}

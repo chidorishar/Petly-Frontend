@@ -27,7 +27,11 @@ import {
   PhoneLink,
 } from './ModalNotice.styled';
 
-export const ModalNotice = ({ noticeData, setIsModalShown }) => {
+export const ModalNotice = ({
+  noticeData,
+  setIsModalShown,
+  onUpdateNoticeStatus,
+}) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
 
   useEffect(() => {
@@ -64,31 +68,29 @@ export const ModalNotice = ({ noticeData, setIsModalShown }) => {
 
   const addToFavorite = async id => {
     try {
-      if (!(isUserAuthorized && !isUserRefreshing)) {
+      if (!isUserAuthorized) {
         showToast;
         return;
       }
-      await axios.patch(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
-        params: {
-          id: id,
-        },
-      });
+      await axios.patch(
+        `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
+      );
+      onUpdateNoticeStatus(id);
     } catch (error) {
       console.log(`Error update favorite list ${error}`);
     }
   };
   const removeFromFavorite = async id => {
     try {
-      await axios.delete(`http://${BACKEND_BASE_URL}/api/notices/favorites/`, {
-        params: {
-          id: id,
-        },
-      });
+      await axios.delete(
+        `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
+      );
+      onUpdateNoticeStatus(id);
     } catch (error) {
       console.log(`Error update favorite list ${error}`);
     }
   };
-
+  console.log(isFavorite);
   return (
     <BackDrop onClick={() => setIsModalShown(false)}>
       <ModalBox onClick={e => e.stopPropagation()}>
@@ -196,6 +198,6 @@ ModalNotice.propTypes = {
     isFavorite: PropTypes.bool,
   }).isRequired,
 
-  // active: PropTypes.bool.isRequired,
+  onUpdateNoticeStatus: PropTypes.func.isRequired,
   setIsModalShown: PropTypes.func.isRequired,
 };
