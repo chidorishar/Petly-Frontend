@@ -9,5 +9,6 @@ export const LogoImg = styled.img`
   }
   @media (min-width: 1280px) {
     margin-right: 80px;
+    margin-right: 0;
   }
 `;

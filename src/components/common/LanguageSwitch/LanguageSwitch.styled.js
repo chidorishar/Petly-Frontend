@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
 export const LanguageSwitchEl = styled.div`
+  margin-left: 40px;
   background: transparent;
   padding: 4px;
   border-radius: 3px;
   width: fit-content;
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    margin-right: 40px;
+  }
 `;
 
 export const LanguageOption = styled.input`
@@ -13,10 +18,10 @@ export const LanguageOption = styled.input`
   cursor: pointer;
   border-radius: 50%;
   border: solid 1px #f59256;
-  padding: 20px 20px;
+  padding: 15px 15px;
   background-color: ${p => p.theme.colors.secondaryBackground};
   color: ${p => p.theme.colors.heading};
-  font-size: ${p => p.theme.fontSizes.s};
+  font-size: ${p => p.theme.fontSizes.xs};
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms;
 
   :first-child {
