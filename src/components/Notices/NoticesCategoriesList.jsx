@@ -6,6 +6,7 @@ export const NoticesCategoriesList = ({
   notices,
   onDeleteNotice,
   onUpdateNoticeStatus,
+  onLearnMoreClick,
 }) => {
   return (
     <Container>
@@ -24,6 +25,7 @@ export const NoticesCategoriesList = ({
             isFavorite={notice?.isFavorite ?? false}
             onDeleteNotice={onDeleteNotice}
             onUpdateNoticeStatus={onUpdateNoticeStatus}
+            onLearnMoreClick={onLearnMoreClick}
           />
         </CardWrapper>
       ))}
@@ -35,4 +37,5 @@ NoticesCategoriesList.propTypes = {
   notices: PropTypes.array.isRequired,
   onDeleteNotice: PropTypes.func.isRequired,
   onUpdateNoticeStatus: PropTypes.func.isRequired,
+  onLearnMoreClick: PropTypes.func.isRequired,
 };

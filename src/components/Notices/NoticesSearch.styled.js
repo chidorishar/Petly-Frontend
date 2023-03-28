@@ -21,7 +21,6 @@ export const Input = styled.input`
   width: 100%;
   height: 40px;
   padding: 8px 20px;
-  z-index: 1;
 
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -44,7 +43,6 @@ export const Button = styled.button`
   right: 12px;
   height: 100%;
 
-  z-index: 2;
   border: 1px solid transparent;
   border-radius: 50%;
   background-color: transparent;

@@ -40,6 +40,7 @@ export const Button = styled.button`
 
 export const AddPetBtn = styled.button`
   position: fixed;
+  z-index: 1;
 
   width: 80px;
   height: 80px;
@@ -50,7 +51,6 @@ export const AddPetBtn = styled.button`
   min-width: 44px;
   transform: translateX(-107%);
   bottom: 15vh;
-  z-index: 99;
 
   transition: ${({ theme }) => theme.transitions.normal};
 
@@ -107,7 +107,6 @@ export const Span = styled.span`
   position: absolute;
   left: 10px;
   color: #fff;
-  z-index: 100;
   min-width: 60px;
   margin-right: 26px;
 

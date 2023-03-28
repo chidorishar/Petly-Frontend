@@ -10,10 +10,10 @@ const noticesRoutes = {
   own: 'own',
   favorites: 'favorites',
 };
-//6420859c98afbb5b70f7bd4e
+
 const getNotices = async (category = 'sell', searchString = '') => {
-  console.log('in getNotices');
   let response = null;
+
   const url = `/api/notices/${noticesRoutes[category]}${
     searchString.trim() ? `?searchQuery=${searchString}` : ''
   }`;
@@ -23,7 +23,7 @@ const getNotices = async (category = 'sell', searchString = '') => {
   } catch (error) {
     console.log(error);
   }
-  // console.log('rrrrrr', response.data);
+
   return response.data;
 };
 
