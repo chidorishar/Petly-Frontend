@@ -33,7 +33,7 @@ export const ModalBox = styled(Box)`
   &.active {
     transform: scale(1);
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 704px;
     height: 548px;
     padding-top: 32px;
@@ -42,7 +42,7 @@ export const ModalBox = styled(Box)`
 `;
 export const PetBox = styled(Box)`
   width: 100%;
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     display: flex;
     flex-wrap: wrap;
   }
@@ -55,7 +55,7 @@ export const ImgBox = styled(Box)`
   img {
     width: 100%;
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 288px;
     max-height: 328px;
     margin-right: 20px;
@@ -80,7 +80,7 @@ export const CategoryBox = styled(Box)`
   }
 `;
 export const InfoBox = styled(Box)`
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 250px;
   }
 `;
@@ -90,7 +90,7 @@ export const PetTitle = styled.p`
   line-height: ${p => p.theme.lineHeights.body};
   letter-spacing: -0.01em;
   margin-bottom: 16px;
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.mll};
     line-height: 1.36;
     margin-bottom: 20px;
@@ -113,7 +113,7 @@ export const PetInfoItem = styled.li`
       color: ${p => p.theme.colors.hoverBtn};
     }
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.m};
     line-height: 1.36;
   }
@@ -131,7 +131,7 @@ export const PetComments = styled.p`
     font-weight: ${p => p.theme.fontWeights.semiBold};
   }
   margin-bottom: 40px;
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.m};
     margin-bottom: 32px;
   }
@@ -159,7 +159,7 @@ export const PhoneLink = styled(ButtonWideCommon)`
     text-decoration: none;
     color: inherit;
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 160px;
     margin-bottom: 0;
     order: 5;
@@ -193,7 +193,7 @@ export const AddToFavoriteBtn = styled(ButtonWideCommon)`
       margin-left: 8px;
     }
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 160px;
     order: 4;
     margin-left: auto;
