@@ -5,6 +5,7 @@ import { differenceInCalendarYears } from 'date-fns';
 import { addToFavorites, deleteFromFavorites } from './api';
 import { useAuth } from 'redux/hooks/getAuth';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import {
   CardContainer,
@@ -65,6 +66,7 @@ export const NoticeCategoriesItem = ({
     return differenceInCalendarYears(new Date(), new Date(birthDate));
   };
 
+  const { t } = useTranslation();
   return (
     <CardContainer>
       <ImgWrapper>
@@ -81,24 +83,28 @@ export const NoticeCategoriesItem = ({
         <Box display="flex">
           <Box marginRight="40px">
             <PetInfo>
-              <li>Breed:</li>
-              <li>Place:</li>
-              <li>Age:</li>
-              {category === 'sell' && <li>Price:</li>}
+              <li>{t('notices.breed')}</li>
+              <li>{t('notices.place')}</li>
+              <li>{t('notices.age')}</li>
+              {category === 'sell' && <li>{t('notices.price')}</li>}
             </PetInfo>
           </Box>
           <PetInfo>
             <li>{breed}</li>
             <li>{location}</li>
-            <li>{calcFullYearsOld(birthDate)} year</li>
+            <li>
+              {calcFullYearsOld(birthDate)} {t('notices.year')}
+            </li>
             {category === 'sell' && <li>{price}</li>}
           </PetInfo>
         </Box>
         <BottomWrapper>
-          <Button onClick={() => setIsModalOpen(true)}>Learn more</Button>
+          <Button onClick={() => setIsModalOpen(true)}>
+            {t('notices.more')}
+          </Button>
           {isOwner && (
             <DeleteButton onClick={() => onDeleteNotice(id)}>
-              <Span>Delete</Span>
+              <Span>{t('notices.del')}</Span>
               <RiDeleteBinFill />
             </DeleteButton>
           )}

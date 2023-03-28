@@ -4,6 +4,7 @@ import { BsFillPlusCircleFill } from 'react-icons/bs';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { UserPetsList } from 'components/UserPetsList/UserPetsList';
+import { useTranslation } from 'react-i18next';
 
 export const PetsData = ({ pets, onPetDeleted }) => {
   const [showModal, setShowModal] = useState(false);
@@ -11,15 +12,15 @@ export const PetsData = ({ pets, onPetDeleted }) => {
   const handleAddPet = () => {
     setShowModal(true);
   };
-
+  const { t } = useTranslation();
   return (
     <Box flexGrow={1}>
       {/* MODAL WINDOW */}
       {showModal && <></>}
       <DataTopBox>
-        <PetsTitle>My pets:</PetsTitle>
+        <PetsTitle>{t('user.pets')}</PetsTitle>
         <AddBox>
-          <span>Add pet</span>
+          <span>{t('userModal.add')}</span>
           <AddPetBtn onClick={handleAddPet}>
             <BsFillPlusCircleFill />
           </AddPetBtn>

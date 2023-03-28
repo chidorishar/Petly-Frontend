@@ -117,7 +117,7 @@
 
   "user": {
     "info": "My information:",
-    "pets": "My pets",
+    "pets": "My pets:",
     "nopets": "You don't have any animals added yet. If you want to add your pet, click button Add pet.",
     "edit": "Edit photo",
     "name": "Name:",
@@ -135,7 +135,7 @@
     "logoutconf": "Do you want to logout?"
   },
 
-  "usermodal": {
+  "userModal": {
     "add": "Add pet",
     "name": "Name pet",
     "namepl": "Type pet name",

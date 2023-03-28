@@ -10,6 +10,7 @@ import {
   Span,
 } from './NoticesNavigation.styled';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesNavigation = ({ onCategoryClick }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
@@ -30,6 +31,7 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
     setSelectedButton(buttonType);
     onCategoryClick(buttonType);
   };
+  const { t } = useTranslation();
 
   return (
     <CommonWrapper>
@@ -63,7 +65,7 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
       </Wrapper>
       <Wrapper>
         <AddPetBtn>
-          <Span>Add pet</Span>
+          <Span>{t('notices.add')}</Span>
           <Icon />
         </AddPetBtn>
       </Wrapper>
