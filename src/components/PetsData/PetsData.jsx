@@ -8,7 +8,7 @@ import { PetsTitle, AddPetBtn, DataTopBox, AddBox } from './PetsData.styled';
 import { UserPetsList } from 'components/UserPetsList/UserPetsList';
 import { ModalAddPet } from 'components/ModalAddsPet/ModalAddsPet';
 
-export const PetsData = ({ pets, onPetDeleted }) => {
+export const PetsData = ({ pets, onPetListChanged }) => {
   const [isModalAddPetShown, setShowModalAddPet] = useState(false);
 
   const handleAddPetClick = () => {
@@ -27,10 +27,13 @@ export const PetsData = ({ pets, onPetDeleted }) => {
           </AddPetBtn>
         </AddBox>
       </DataTopBox>
-      <UserPetsList pets={pets} onPetDeleted={onPetDeleted} />
+      <UserPetsList pets={pets} onPetDeleted={onPetListChanged} />
       {isModalAddPetShown &&
         createPortal(
-          <ModalAddPet setModalStateInParent={setShowModalAddPet} />,
+          <ModalAddPet
+            setModalStateInParent={setShowModalAddPet}
+            onPetAddSuccess={onPetListChanged}
+          />,
           document.body
         )}
     </Box>
@@ -39,5 +42,5 @@ export const PetsData = ({ pets, onPetDeleted }) => {
 
 PetsData.propTypes = {
   pets: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-  onPetDeleted: PropTypes.func.isRequired,
+  onPetListChanged: PropTypes.func.isRequired,
 };

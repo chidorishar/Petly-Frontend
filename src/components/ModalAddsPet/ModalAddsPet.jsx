@@ -70,7 +70,7 @@ const validationAddPetTwoStep = yup.object().shape({
   comment: yup.string().min(8).max(120).required('Please write about your pet'),
 });
 
-export const ModalAddPet = ({ setModalStateInParent }) => {
+export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
   const [isModalAddPetShown, setShowModalAddPet] = useState(true);
   const userToken = useSelector(selectUserAccessToken);
 
@@ -118,7 +118,6 @@ export const ModalAddPet = ({ setModalStateInParent }) => {
     photo: '',
     comment: '',
   });
-  // console.log('data start:', data);
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleChangeData = newData => {
@@ -154,17 +153,17 @@ export const ModalAddPet = ({ setModalStateInParent }) => {
       axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
 
     const addResponse = await addNewPet(formData);
-    console.log(addResponse);
 
     if (addResponse.status === 201) {
       toast.success(`${values.name} successfully added!`, {
-        position: toast.POSITION.TOP_RIGHT,
+        position: toast.POSITION.TOP_CENTER,
       });
+      onPetAddSuccess();
     } else
       toast.error(
         `Error adding data! Network error ${addResponse.statusText}`,
         {
-          position: toast.POSITION.TOP_LEFT,
+          position: toast.POSITION.TOP_CENTER,
         }
       );
 
@@ -206,6 +205,7 @@ export const ModalAddPet = ({ setModalStateInParent }) => {
 
 ModalAddPet.propTypes = {
   setModalStateInParent: PropTypes.func.isRequired,
+  onPetAddSuccess: PropTypes.func.isRequired,
 };
 
 const DatePickerField = ({
