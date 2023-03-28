@@ -3,7 +3,7 @@
  */
 
 import * as Yup from 'yup';
-import i18n from 'i18next';
+// import i18n from 'i18next';
 
 const passwordRegexp =
   /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()-_/#:;<>])[A-Za-z\d@$!%*?&]/;
