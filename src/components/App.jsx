@@ -1,6 +1,6 @@
 import { lazy, useEffect } from 'react';
 // import { Navigate, Route, Routes } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';
 import {
@@ -61,33 +61,34 @@ export const App = () => {
               <Route
                 path={ROUTES.LOGIN}
                 element={
-                  <RestrictedRoute redirectTo="/" component={<LoginPage />} />
+                  <RestrictedRoute
+                    redirectTo={ROUTES.USERPAGE}
+                    component={<LoginPage />}
+                  />
                 }
               />
               <Route
                 path={ROUTES.REGISTER}
                 element={
                   <RestrictedRoute
-                    redirectTo="/"
+                    redirectTo={ROUTES.USERPAGE}
                     component={<RegisterPage />}
                   />
                 }
               />
-              <Route path={ROUTES.NEWS} element={<NewsPage />} />
-              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
               <Route
                 path={ROUTES.USERPAGE}
                 element={
                   <PrivateRoute redirectTo="/" component={<UserPage />} />
                 }
               />
-              <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
-              <Route path="*" element={<></>} />
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
+              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
             </>
           )}
         </Route>
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
