@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 
+import { dateConverter } from 'utils';
 import { BACKEND_BASE_URL } from 'utils/appKeys';
 import { useAuth } from 'redux/hooks/getAuth';
 
@@ -110,7 +111,7 @@ export const ModalNotice = ({ noticeData, setIsModalShown }) => {
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Birthday:</PetInfoItemTitle>
-                {birthDate}
+                {dateConverter(birthDate, 'dd.MM.yyyy')}
               </PetInfoItem>
               <PetInfoItem>
                 <PetInfoItemTitle>Breed:</PetInfoItemTitle>
@@ -136,7 +137,7 @@ export const ModalNotice = ({ noticeData, setIsModalShown }) => {
                   {phone}
                 </a>
               </PetInfoItem>
-              {price ? (
+              {category === 'sell' ? (
                 <PetInfoItem>
                   <PetInfoItemTitle>Price:</PetInfoItemTitle>
                   {price}
