@@ -6,13 +6,15 @@ import {
   Button,
 } from './NoticesSearch.styled';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesSearch = ({ value, onChange, onSubmit, removeQuery }) => {
+  const { t } = useTranslation();
   return (
     <Form onSubmit={onSubmit}>
       <Input
         type="text"
-        placeholder="Search"
+        placeholder={t('news.search')}
         name="name"
         value={value}
         onChange={onChange}
