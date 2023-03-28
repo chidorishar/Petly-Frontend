@@ -87,24 +87,28 @@ export const NoticeCategoriesItem = ({
           <Box display="flex">
             <Box marginRight="40px">
               <PetInfo>
-                <li>Breed:</li>
-                <li>Place:</li>
-                <li>Age:</li>
-                {category === 'sell' && <li>Price:</li>}
+                <li> {t('notices.breed')}</li>
+                <li>{t('notices.place')}</li>
+                <li>{t('notices.age')}</li>
+                {category === 'sell' && <li>{t('notices.price')}</li>}
               </PetInfo>
             </Box>
             <PetInfo>
               <li>{breed}</li>
               <li>{location}</li>
-              <li>{calcFullYearsOld(birthDate)} year</li>
+              <li>
+                {calcFullYearsOld(birthDate)} {t('notices.year')}
+              </li>
               {category === 'sell' && <li>{price}</li>}
             </PetInfo>
           </Box>
           <BottomWrapper>
-            <Button onClick={() => onLearnMoreClick(id)}>Learn more</Button>
+            <Button onClick={() => onLearnMoreClick(id)}>
+              {t('notices.more')}
+            </Button>
             {isOwner && (
               <DeleteButton onClick={() => onDeleteNotice(id)}>
-                <Span>Delete</Span>
+                <Span>{t('notices.del')}</Span>
                 <RiDeleteBinFill />
               </DeleteButton>
             )}
