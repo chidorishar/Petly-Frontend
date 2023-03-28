@@ -17,10 +17,10 @@ const registerSchema = Yup.object({
     [Yup.ref('password'), null],
     i18n.t('validation.passMatch')
   ),
-  name: Yup.string().required('Name is required'),
+  name: Yup.string().required(i18n.t('validation.requiredName')),
   location: Yup.string()
-    .matches(locationRegexp, 'Must be in format: City, Region')
-    .required('City, region is required'),
+    .matches(locationRegexp, i18n.t('validation.addressFormat'))
+    .required(i18n.t('validation.requiredLocation')),
   phone: phoneSchema,
 });
 

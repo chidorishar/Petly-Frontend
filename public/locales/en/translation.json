@@ -162,6 +162,7 @@
 
   "validation": {
     "requiredLocation": "City, region is required",
+    "addressFormat": "Must be in format: City, Region",
     "requiredEmail": "Email is a required field",
     "requiredPass": "Password is a required field",
     "requiredName": "Name is a required",
