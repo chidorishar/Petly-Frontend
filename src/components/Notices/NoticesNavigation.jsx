@@ -15,7 +15,6 @@ import { useTranslation } from 'react-i18next';
 export const NoticesNavigation = ({ onCategoryClick }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
   const [selectedButton, setSelectedButton] = useState('sell');
-
   const nameCategoryUnAuth = [
     { type: 'sell', text: 'sell' },
     { type: 'lostFound', text: 'lost found' },

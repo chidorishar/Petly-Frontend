@@ -116,6 +116,7 @@
   },
 
   "user": {
+    "account": "Account",
     "hello": "Hello",
     "info": "My information:",
     "pets": "My pets:",
