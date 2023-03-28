@@ -56,10 +56,25 @@ export const WavesBackground = styled(BackgroundImageStyled)`
   left: 0;
   right: 0;
 
-  width: max-content;
+  height: calc(100vh - 125px);
+  width: 100%;
   margin: 0 auto;
 
   @media ${p => p.theme.breakpoints.tablet.media} {
     transform: translateY(-43px);
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    width: auto;
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+
+    @media ${p => p.theme.breakpoints.desktop.media} {
+      width: auto;
+      max-width: none;
+    }
   }
 `;

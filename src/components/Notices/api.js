@@ -31,3 +31,13 @@ export const deleteNotice = async id => {
     console.log(error);
   }
 };
+
+export const getNoticeDetailedInfo = async id => {
+  try {
+    const response = await axios.get(`/api/notices/notice/${id}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+};
