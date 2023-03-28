@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 
 // import { Container } from 'components/common/shared.styled';
 import { Header } from './SharedLayout.styled';
-import ModalAddPet from 'components/ModalAddsPet/ModalAddsPet';
+import { ModalAddPet } from 'components/ModalAddsPet/ModalAddsPet';
 
 export default function SharedLayout() {
   // const { isUserAuthorized } = useAuth();

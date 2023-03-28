@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Overlay,
   ModalTitle,
@@ -6,7 +7,21 @@ import {
   ModalButton,
   Form,
   Field,
+  FieldComment,
   ErrorText,
+  FormLabel,
+  CrossButton,
+  DatePickerWrapperStyles,
+  Icon,
+  InputWrapper,
+  ButtonWrapper,
+  ButtonWrapperTwo,
+  FormLabelCentre,
+  FormLabelFoto,
+  FormLabelComment,
+  Comment,
+  ImgPet,
+  ImgPlug,
 } from './ModalAddsPet.styled';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -16,54 +31,44 @@ import { TfiPlus } from 'react-icons/tfi';
 // import { useCreatePetMutation } from 'redux/slices/petSliceAPISlice';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+// import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { ResetButton } from './ResetButton';
 
 // eslint-disable-next-line react/prop-types
-const FormError = ({ name, component: Component = 'div' }) => {
+const FormError = forwardRef(({ name, component: Component = 'div' }, ref) => {
   return (
-    <ErrorMessage name={name} as={Component}>
+    <ErrorMessage name={name} as={Component} ref={ref}>
       {message => <ErrorText>{message}</ErrorText>}
     </ErrorMessage>
   );
-};
+});
+
+FormError.displayName = 'FormError';
 
 const validationAddPetOneStep = yup.object().shape({
   name: yup.string().min(2).max(16).required('Name pet is required!'),
-  birth: yup
+  birthday: yup
     .date()
-    .required('Birth is required!')
-    .test(
-      'is-ddmmyyyy',
-      'Date must be in the format DD.MM.YYYY'.toString(),
-      value => {
-        if (!value) return false;
-        const regex = /^\d{2}\.\d{2}\.\d{4}$/;
-        return regex.test(moment(value, 'DD.MM.YYYY').format('DD.MM.YYYY'));
-      }
-    )
+    .required('birthday is required!')
     .test('is-valid-date', value => {
       const minDate = new Date('2000-01-01');
       return value >= minDate;
     })
-    .max(new Date()),
-  breed: yup.string().required('Breed is required!'),
+    .max(new Date() + 1),
+  breed: yup.string().min(2).max(16).required('Breed is required!'),
 });
 
 const validationAddPetTwoStep = yup.object().shape({
   photo: yup.mixed().required('Please select a file'),
-  comments: yup
-    .string()
-    .min(8)
-    .max(300)
-    .required('Please write about your pet'),
+  comment: yup.string().min(8).max(120).required('Please write about your pet'),
 });
 
-function ModalAddPet() {
-  const [showModal, setShowModal] = useState(false);
+export const ModalAddPet = () => {
+  const [showModal, setShowModal] = useState(true);
   const modalRef = useRef(null);
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const closeModal = () => navigate('/');
   // const [createPet, { data: mutationData, error, loading, called }] = useCreatePetMutation();
   //Для валідації//
 
@@ -74,12 +79,20 @@ function ModalAddPet() {
     }
   }, [showModal]);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
+  // const handleOpenModal = () => {
+  //   setShowModal(true);
+  // };
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setData({
+      name: '',
+      birthday: startDate,
+      breed: '',
+      photo: '',
+      comment: '',
+    });
+    closeModal(false);
   };
 
   const handleOverlayClick = e => {
@@ -97,31 +110,25 @@ function ModalAddPet() {
   const startDate = new Date();
   const [data, setData] = useState({
     name: '',
-    birth: startDate,
+    birthday: startDate,
     breed: '',
     photo: '',
-    comments: '',
-    photoPreview: null,
+    comment: '',
   });
-  console.log('data start:', data);
+  // console.log('data start:', data);
   const [currentStep, setCurrentStep] = useState(0);
-
-  const makeRequest = formData => {
-    console.log('Form Submitted:', formData);
-  };
 
   const handleChangeData = newData => {
     setData(prev => ({
       ...prev,
       ...newData,
-      photo: newData.photo ? newData.photo[0] : prev.photo,
     }));
   };
 
   const handleNextStep = (newData, final = false) => {
     handleChangeData(newData);
     if (final) {
-      makeRequest({ ...data, ...newData });
+      setData({ ...data, ...newData });
       return;
     }
     setCurrentStep(prev => prev + 1);
@@ -132,28 +139,24 @@ function ModalAddPet() {
     setCurrentStep(prev => prev - 1);
   };
 
-  // const handleFileChange = e => {
-  //   const file = e.target.files[0];
-  //   const reader = new FileReader();
-  //   reader.onloadend = () => {
-  //     setData(prev => ({
-  //       ...prev,
-  //       photo: file,
-  //       photoPreview: reader.result,
-  //     }));
-  //   };
-  //   if (file) {
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
   const handleSubmitForm = async (values, formikBag = {}) => {
     const { setSubmitting } = formikBag;
     const formData = { ...data, ...values };
     try {
-      await makeRequest(formData);
-      console.log('await submitForm:', formData);
+      await formData;
       // createPet({variables:{formData}})
+
+      // console.log('await resetForm:', formData);
+      setCurrentStep(0);
+      setData({
+        name: '',
+        birthday: startDate,
+        breed: '',
+        photo: '',
+        comment: '',
+      });
+      // console.log('after try setData:', data);
+
       toast.success(`${formData.name} successfully added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
@@ -165,7 +168,7 @@ function ModalAddPet() {
       setSubmitting && setSubmitting(false);
       handleCloseModal();
     }
-    console.log('data submit:', formData);
+    // console.log('data submit:', formData);
   };
 
   const steps = [
@@ -187,27 +190,24 @@ function ModalAddPet() {
 
   return (
     <div>
-      <ModalButton onClick={handleOpenModal}>Open Modal</ModalButton>
+      {/* <ModalButton onClick={handleOpenModal}>Open Modal</ModalButton> */}
 
       {showModal && (
         <Overlay onClick={handleOverlayClick}>
           <Modal ref={modalRef} tabIndex={0} onKeyDown={handleKeyDown}>
-            <div className="modal-header">
-              <ModalTitle>Modal Title</ModalTitle>
-              <ModalButton onClick={handleCloseModal}>Close Modal</ModalButton>
-            </div>
+            <CrossButton onClick={handleCloseModal}>
+              <Icon />
+            </CrossButton>
+            <ModalTitle>Add pet</ModalTitle>
             {steps[currentStep]}
           </Modal>
         </Overlay>
       )}
     </div>
   );
-}
-
-export default ModalAddPet;
+};
 
 const DatePickerField = ({
-  label,
   name,
   value,
   placeholder,
@@ -216,13 +216,11 @@ const DatePickerField = ({
   maxDate,
 }) => {
   const handleChange = date => {
-    //new Date(date).toISOString()
     onChange(date);
   };
 
   return (
     <>
-      <label htmlFor={name}>{label}</label>
       <DatePicker
         id={name}
         name={name}
@@ -236,13 +234,13 @@ const DatePickerField = ({
         scrollableYearDropdown
         yearDropdownItemNumber={80}
         utcOffset={0}
+        closeOnScroll={e => e.target === document}
       />
     </>
   );
 };
 
 DatePickerField.propTypes = {
-  label: PropTypes.string.isRequired,
   name: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.instanceOf(Date),
@@ -254,54 +252,63 @@ DatePickerField.propTypes = {
   maxDate: PropTypes.object,
 };
 
-const StepOne = ({ next, cancel, data }) => {
+const StepOne = forwardRef(({ next, cancel, data }, ref) => {
   const handleSubmit = values => {
     next(values);
   };
+  const formRef = useRef();
 
   return (
     <Formik
       validationSchema={validationAddPetOneStep}
       initialValues={data}
       onSubmit={handleSubmit}
+      innerRef={formRef}
     >
       {({ values, handleBlur, handleSubmit, setFieldValue }) => (
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <>
-            <label htmlFor="name">
+          <InputWrapper>
+            <FormLabel htmlFor="name" ref={ref}>
               Name pet
               <Field type="text" name="name" placeholder="Type name pet" />
-            </label>
-            <FormError component="div" name="name" />
+              <FormError component="div" name="name" />
+            </FormLabel>
 
-            <DatePickerField
-              label="Date of birth"
-              name="birth"
-              value={values.birth}
-              placeholder="Type date of birth"
-              onChange={date => setFieldValue('birth', date)}
-              onBlur={handleBlur}
-              utcOffset={0}
-            />
-            <FormError name="birth" />
+            <FormLabelCentre htmlFor="birthday">
+              Date of birthday
+              <DatePickerField
+                id="birthday"
+                name="birthday"
+                value={values.birthday}
+                placeholder="Type date of birthday"
+                onChange={date => setFieldValue('birthday', date)}
+                onBlur={handleBlur}
+                utcOffset={0}
+              />
+              <DatePickerWrapperStyles />
+              <FormError name="birthday" />
+            </FormLabelCentre>
 
-            <label htmlFor="breed">
+            <FormLabel htmlFor="breed">
               Breed
               <Field type="text" name="breed" placeholder="Type breed" />
-            </label>
-            <FormError name="breed" />
+              <FormError name="breed" />
+            </FormLabel>
+          </InputWrapper>
 
+          <ButtonWrapper>
             <ModalButton type="button" onClick={() => cancel(values)}>
               Cancel
             </ModalButton>
-
             <ModalButton type="submit">Next</ModalButton>
-          </>
+          </ButtonWrapper>
         </Form>
       )}
     </Formik>
   );
-};
+});
+
+StepOne.displayName = 'StepOne';
 
 StepOne.propTypes = {
   next: PropTypes.func.isRequired,
@@ -334,13 +341,9 @@ const Thumb = ({ file, onClick }) => {
 
   if (!file) {
     return (
-      <div
-        onClick={onClick}
-        className="img-thumbnail mt-2 d-flex justify-content-center align-items-center"
-        style={{ height: 200, width: 200 }}
-      >
-        <TfiPlus size={100} />
-      </div>
+      <ImgPlug onClick={onClick}>
+        <TfiPlus size={48} />
+      </ImgPlug>
     );
   }
 
@@ -351,16 +354,7 @@ const Thumb = ({ file, onClick }) => {
     console.error('Invalid file name type');
     return null;
   }
-  return (
-    <img
-      src={thumb}
-      alt={file.name}
-      className="img-thumbnail mt-2"
-      height={200}
-      width={200}
-      onClick={onClick}
-    />
-  );
+  return <ImgPet src={thumb} alt={file.name} onClick={onClick} />;
 };
 
 Thumb.propTypes = {
@@ -393,6 +387,7 @@ FileInput.propTypes = {
 const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const formRef = useRef();
 
   const handleFileChange = event => {
     const file = event.target.files[0];
@@ -400,6 +395,11 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
       setSelectedFile(file);
       updateData({ ...data, photo: file });
     }
+  };
+
+  const handleCommentChange = event => {
+    const value = event.target.value;
+    updateData({ ...data, comment: value });
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
@@ -420,11 +420,12 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
       initialValues={data}
       onSubmit={handleSubmit}
       enableReinitialize
+      innerRef={formRef}
     >
-      {({ values, handleSubmit, setFieldValue }) => (
+      {({ values, handleSubmit, setFieldValue, resetForm }) => (
         <Form autoComplete="off" onSubmit={handleSubmit}>
-          <>
-            <label htmlFor="photo">
+          <InputWrapper>
+            <FormLabelFoto htmlFor="photo">
               Add photo and some comments
               <FileInput
                 onChange={e => {
@@ -438,21 +439,31 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
                 file={selectedFile ? selectedFile : data.photo}
                 onClick={() => fileInputRef.current.click()}
               />
-            </label>
+            </FormLabelFoto>
             <FormError name="photo" />
 
-            <label htmlFor="comments">
-              Comments
-              <Field type="text" name="comments" placeholder="Type comments" />
-            </label>
-            <FormError name="comments" />
+            <FormLabelComment htmlFor="comment">
+              <Comment>Comments</Comment>
+              <FieldComment
+                type="textarea"
+                name="comment"
+                placeholder="Type comments"
+                value={data.comment}
+                onChange={handleCommentChange}
+              />
+            </FormLabelComment>
+            <FormError name="comment" />
+          </InputWrapper>
 
+          <ButtonWrapperTwo>
             <ModalButton type="button" onClick={() => prev(values)}>
               Back
             </ModalButton>
-
-            <ModalButton type="submit">Submit</ModalButton>
-          </>
+            <ModalButton type="submit" onClick={() => resetForm()}>
+              Done
+            </ModalButton>
+          </ButtonWrapperTwo>
+          <ResetButton></ResetButton>
         </Form>
       )}
     </Formik>
@@ -465,5 +476,4 @@ StepTwo.propTypes = {
   submitForm: PropTypes.func.isRequired,
   updateData: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
-  setFieldValue: PropTypes.any,
 };
