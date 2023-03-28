@@ -144,30 +144,29 @@ export const ModalAddPet = ({ setModalStateInParent }) => {
 
   const handleSubmitForm = async (values, formikBag = {}) => {
     const { setSubmitting } = formikBag;
-    const formData = { ...data, ...values };
+
+    const formData = new FormData();
+    Object.keys(values).forEach(key => {
+      formData.append(key, values[key]);
+    });
 
     if (userToken)
       axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+
     const addResponse = await addNewPet(formData);
+    console.log(addResponse);
 
     if (addResponse.status === 201) {
-      setCurrentStep(0);
-      setData({
-        name: '',
-        birthday: startDate,
-        breed: '',
-        photo: '',
-        comment: '',
-      });
-      // console.log('after try setData:', data);
-
-      toast.success(`${formData.name} successfully added!`, {
+      toast.success(`${values.name} successfully added!`, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else
-      toast.error('Error adding data!', {
-        position: toast.POSITION.TOP_LEFT,
-      });
+      toast.error(
+        `Error adding data! Network error ${addResponse.statusText}`,
+        {
+          position: toast.POSITION.TOP_LEFT,
+        }
+      );
 
     setSubmitting && setSubmitting(false);
     handleCloseModal();
@@ -405,13 +404,7 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const formData = new FormData();
-    formData.append('photo', selectedFile);
-    Object.keys(values).forEach(key => {
-      formData.append(key, values[key]);
-    });
-    updateData(values);
-    await submitForm(formData);
+    await submitForm(values);
     next(values, true);
     setSubmitting(false);
   };
