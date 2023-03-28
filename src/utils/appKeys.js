@@ -33,6 +33,8 @@ const BACKEND_ENDPOINTS = {
   UPDATE_USER_INFO: 'users',
 };
 
-export const BACKEND_BASE_URL = 'localhost:4000';
+export const BACKEND_BASE_URL =
+  // eslint-disable-next-line no-undef
+  process.env.REACT_APP_BACKEND_BASE_URL ?? 'http://localhost:4000';
 
 export { ROUTES, BACKEND_ENDPOINTS, CACHE_TAGS };
