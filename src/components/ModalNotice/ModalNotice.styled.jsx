@@ -11,10 +11,10 @@ export const BackDrop = styled(Box)`
   background-color: ${p => p.theme.colors.backdrop};
   top: 0;
   left: 0;
-  padding: 30px;
+
   display: flex;
   justify-content: center;
-
+  align-items: center;
   opacity: 0;
   pointer-events: none;
 
