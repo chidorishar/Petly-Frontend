@@ -1,11 +1,11 @@
 import { PropTypes } from 'prop-types';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsAuth } from 'redux/auth/authSelectors';
 import axios from 'axios';
-import { BACKEND_BASE_URL } from 'utils/appKeys';
+
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import { BACKEND_BASE_URL } from 'utils/appKeys';
+import { useAuth } from 'redux/hooks/getAuth';
 
 import { AiFillHeart } from 'react-icons/ai';
 import { GrClose } from 'react-icons/gr';
@@ -26,12 +26,13 @@ import {
   PhoneLink,
 } from './ModalNotice.styled';
 
-export const ModalNotice = ({ pet, active, setActive }) => {
-  const isAuth = useSelector(selectIsAuth);
+export const ModalNotice = ({ noticeData, setIsModalShown }) => {
+  const { isUserAuthorized, isUserRefreshing } = useAuth();
+
   useEffect(() => {
     const handleKeyClose = e => {
       if (e.key === 'Escape') {
-        setActive(false);
+        setIsModalShown(false);
       }
     };
     document.addEventListener('keydown', handleKeyClose);
@@ -42,6 +43,9 @@ export const ModalNotice = ({ pet, active, setActive }) => {
   const showToast = () => {
     toast(' Please login to add to favorites! ');
   };
+
+  console.log('From modal');
+
   const {
     _id,
     title,
@@ -49,19 +53,17 @@ export const ModalNotice = ({ pet, active, setActive }) => {
     location,
     birthDate,
     category,
-    name,
     sex,
     price = '',
     image,
     comments,
-    phone,
-    email,
+    owner: { name, phone, email },
     isFavorite,
-  } = pet;
+  } = noticeData;
 
   const addToFavorite = async id => {
     try {
-      if (!isAuth) {
+      if (!(isUserAuthorized && !isUserRefreshing)) {
         showToast;
         return;
       }
@@ -85,15 +87,10 @@ export const ModalNotice = ({ pet, active, setActive }) => {
       console.log(`Error update favorite list ${error}`);
     }
   };
-  return active ? (
-    <BackDrop
-      className={active ? 'active' : ''}
-      onClick={() => setActive(false)}
-    >
-      <ModalBox
-        className={active ? 'active' : ''}
-        onClick={e => e.stopPropagation()}
-      >
+
+  return (
+    <BackDrop className={'active'} onClick={() => setIsModalShown(false)}>
+      <ModalBox className={'active'} onClick={e => e.stopPropagation()}>
         <PetBox>
           <ImgBox>
             <img src={image} alt={name} />
@@ -157,46 +154,47 @@ export const ModalNotice = ({ pet, active, setActive }) => {
             <a href={`tel:${phone}`}>Contact</a>
           </PhoneLink>
 
-          {((isAuth && !isFavorite) || !isAuth) && (
-            <AddToFavoriteBtn onClick={addToFavorite(_id)}>
+          {((isUserAuthorized && !isUserRefreshing && !isFavorite) ||
+            !isUserAuthorized) && (
+            <AddToFavoriteBtn onClick={() => addToFavorite(_id)}>
               Add to <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
-          {isAuth && isFavorite && (
-            <AddToFavoriteBtn onClick={removeFromFavorite(_id)}>
+          {isUserAuthorized && !isUserRefreshing && isFavorite && (
+            <AddToFavoriteBtn onClick={() => removeFromFavorite(_id)}>
               Remove from <AiFillHeart className="addIcon" />
             </AddToFavoriteBtn>
           )}
         </PetBox>
 
-        <CloseBtn onClick={() => setActive(false)}>
+        <CloseBtn onClick={() => setIsModalShown(false)}>
           <GrClose className="closeIcon" />
         </CloseBtn>
       </ModalBox>
       <ToastContainer />
     </BackDrop>
-  ) : (
-    ''
   );
 };
 ModalNotice.propTypes = {
-  pet: PropTypes.shape({
-    _id: PropTypes.Number.isRequired,
+  noticeData: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     category: PropTypes.string,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
     birthDate: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     sex: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    owner: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+    }).isRequired,
     comments: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavorite: PropTypes.bool,
   }).isRequired,
 
-  active: PropTypes.bool.isRequired,
-  setActive: PropTypes.func.isRequired,
+  // active: PropTypes.bool.isRequired,
+  setIsModalShown: PropTypes.func.isRequired,
 };

@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { selectUserAccessToken } from 'redux/selectors';
-import { deleteNotice } from 'components/Notices/api';
+import { deleteNotice, getNoticeDetailedInfo } from 'components/Notices/api';
 import getNotices from './getNotices';
 
 import { NoticesSearch } from 'components/Notices/NoticesSearch';
@@ -13,13 +14,18 @@ import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
 
 import { Container } from 'components/common';
+import { ModalNotice } from 'components';
 
 export const NoticesPage = () => {
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userToken = useSelector(selectUserAccessToken);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [noticeDetailedInfo, setNoticeDetailedInfo] = useState({});
 
   const fetchNotices = async (category, query) => {
     try {
@@ -42,7 +48,6 @@ export const NoticesPage = () => {
     setSearchParams({ query: e.target.value.toLocaleLowerCase().trim() });
     setSearch(e.target.value.toLocaleLowerCase());
   };
-  console.log(searchParams.get('name'));
 
   const handleSubmit = evt => {
     evt?.preventDefault();
@@ -62,6 +67,18 @@ export const NoticesPage = () => {
     fetchNotices(category, search);
   };
 
+  const handleLearnMoreClick = async id => {
+    const noticeDetailedInfoResp = await getNoticeDetailedInfo(id);
+
+    if (noticeDetailedInfoResp.status === 200) {
+      setNoticeDetailedInfo(noticeDetailedInfoResp.data);
+      setIsModalOpen(true);
+    } else
+      toast.error(
+        `Something went wrong. Please try again later. Network error status ${noticeDetailedInfoResp.status}`
+      );
+  };
+
   return (
     <Container>
       <NoticesTitle />
@@ -76,7 +93,14 @@ export const NoticesPage = () => {
         notices={notices}
         onDeleteNotice={handleDelete}
         onUpdateNoticeStatus={handleSubmit}
+        onLearnMoreClick={handleLearnMoreClick}
       />
+      {isModalOpen && (
+        <ModalNotice
+          noticeData={noticeDetailedInfo}
+          setIsModalShown={setIsModalOpen}
+        />
+      )}
     </Container>
   );
 };
