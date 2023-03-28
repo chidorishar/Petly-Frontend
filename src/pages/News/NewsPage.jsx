@@ -66,7 +66,7 @@ const NewsPage = () => {
             type="text"
             name="query"
             value={search}
-            placeholder="Search"
+            placeholder={t('news.search')}
             autoFocus
             onChange={handleChange}
           />
