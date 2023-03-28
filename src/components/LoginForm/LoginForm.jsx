@@ -141,12 +141,12 @@ export const LoginForm = () => {
           </TextMessage>
         ) : null}
         <Button disabled={isSuccess} type="submit">
-          Login
+          {t('login.login')}
         </Button>
       </FormCommon>
       <Text>
-        Don&#39;t have an account?&nbsp;
-        <Link to={ROUTES.REGISTER}>Register</Link>
+        {t('login.noacc')}
+        <Link to={ROUTES.REGISTER}>{t('login.register')}</Link>
       </Text>
     </ContainerCardCommon>
   );
