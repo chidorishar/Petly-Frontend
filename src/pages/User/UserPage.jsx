@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PetsData } from 'components/PetsData/PetsData';
 import { UserData } from 'components/UserData/UserData';
+import { useTranslation } from 'react-i18next';
 
 import {
   UserPageSection,
@@ -31,11 +32,13 @@ const UserPage = () => {
     getUserData();
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <UserPageSection>
       <UserPageContainer>
         <UserInfoContainer>
-          <UserTitle>My information:</UserTitle>
+          <UserTitle>{t('user.info')}</UserTitle>
           {userData && (
             <UserWrapper>
               <UserData user={userData} onUserDataUpdated={onUserDataUpdated} />
