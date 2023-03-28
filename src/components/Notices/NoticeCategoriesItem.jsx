@@ -66,7 +66,7 @@ export const NoticeCategoriesItem = ({
   };
 
   return (
-    <CardContainer onClick={() => setIsModalOpen(true)}>
+    <CardContainer>
       <ImgWrapper>
         <PetImg src={image} alt={breed} />
         <Wrapper>
@@ -95,7 +95,7 @@ export const NoticeCategoriesItem = ({
           </PetInfo>
         </Box>
         <BottomWrapper>
-          <Button>Learn more</Button>
+          <Button onClick={() => setIsModalOpen(true)}>Learn more</Button>
           {isOwner && (
             <DeleteButton onClick={() => onDeleteNotice(id)}>
               <Span>Delete</Span>

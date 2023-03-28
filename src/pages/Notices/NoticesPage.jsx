@@ -59,6 +59,7 @@ export const NoticesPage = () => {
 
   const handleDelete = async id => {
     await deleteNotice(id);
+    fetchNotices(category, search);
   };
 
   return (

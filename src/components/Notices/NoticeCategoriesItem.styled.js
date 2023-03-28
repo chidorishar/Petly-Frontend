@@ -66,9 +66,9 @@ export const CardWrapper = styled.div`
 `;
 export const CardTitle = styled.h3`
   width: 231px;
-  height: 76px;
   margin-left: 20px;
   margin-right: 37px;
+  margin-bottom: 20px;
 
   font-family: 'Manrope';
   font-style: normal;
