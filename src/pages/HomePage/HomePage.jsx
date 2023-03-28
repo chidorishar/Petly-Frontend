@@ -54,6 +54,7 @@ const HomePage = () => {
             srcSetOldTypes={`${waveMobile} 1x, ${waveMobile2x} 2x`}
             placeholderImg={`${waveMobile}`}
             typeOldTypes={'image/png'}
+            zIndex={-1}
           >
             {/* DOG */}
             <DogBackground
@@ -76,6 +77,7 @@ const HomePage = () => {
             srcSetOldTypes={`${waveTablet} 1x, ${waveTablet2x} 2x`}
             placeholderImg={`${waveTablet}`}
             typeOldTypes={'image/png'}
+            zIndex={-1}
           >
             {/* DOG */}
             <DogBackground
@@ -98,6 +100,7 @@ const HomePage = () => {
             srcSetOldTypes={`${waveDesktop} 1x, ${waveDesktop2x} 2x`}
             placeholderImg={`${waveDesktop}`}
             typeOldTypes={'image/png'}
+            zIndex={-1}
           >
             {/* DOG */}
             <DogBackground

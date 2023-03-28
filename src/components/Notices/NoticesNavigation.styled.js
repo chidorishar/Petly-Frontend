@@ -40,6 +40,7 @@ export const Button = styled.button`
 
 export const AddPetBtn = styled.button`
   position: fixed;
+  z-index: 1;
 
   width: 80px;
   height: 80px;
