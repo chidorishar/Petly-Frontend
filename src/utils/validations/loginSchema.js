@@ -11,10 +11,10 @@ const loginschema = Yup.object().shape({
     .matches(/[a-z]/, 'Password requires a lowercase letter')
     .matches(/[A-Z]/, 'Password requires an uppercase letter')
     .matches(/[^\w]/, 'Password requires a symbol'),
-  confirm: Yup.string().oneOf(
+  /* confirm: Yup.string().oneOf(
     [Yup.ref('password'), null],
     'Must match "password" field value'
-  ),
+  ), */
 });
 
 export { loginschema };

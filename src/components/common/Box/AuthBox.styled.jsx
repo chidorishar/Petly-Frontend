@@ -16,31 +16,34 @@ import {
 } from 'images/auth';
 
 export const AuthBox = styled.div`
-  /* width: max-content; */
-  height: 100%;
+  width: 100vw;
+  /* height: 100%; */
   margin: 0 auto;
   display: flex;
 
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: contain;
+  
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     background-image: url(${(desktop, desktopWebp)});
-    background-size: 1280px auto;
-    height: 701px;
+    height: 60vw;
+    background-position: 50% 324px;
+    background-size: 1396px auto;
+    
     @media (min-device-pixel-ratio: 2),
+      
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url(${(desktop2x, desktop2xWebp)});
+      
     }
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
-    padding-bottom: auto;
-    height: 956px;
     background-image: url(${(tablet, tabletWebp)});
-    background-size: 768px auto;
+    background-position: 50% 569px;
+    background-size: 1398px auto;
+    height: 133vw;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -49,10 +52,10 @@ export const AuthBox = styled.div`
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    padding-bottom: auto;
-    height: 590px;
+    background-position: 20% 359px;
+    background-size: 620px auto;
+    height: 178vw;
     background-image: url(${(mobile, mobileWebp)});
-    background-size: 320px auto;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
