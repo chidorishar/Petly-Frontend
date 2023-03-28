@@ -116,37 +116,38 @@
   },
 
   "user": {
+    "hello": "Hello",
     "info": "My information:",
     "pets": "My pets:",
-    "nopets": "You don't have any animals added yet. If you want to add your pet, click button Add pet.",
+    "noPets": "No pets...",
     "edit": "Edit photo",
     "name": "Name:",
     "birthday": "Birthday:",
     "phone": "Phone:",
     "city": "City:",
     "logout": "Logout",
-    "petname": "Name:",
-    "petbirth": "Date of birth:",
-    "petbreed": "Breed:",
-    "petcomm": "Comments:",
+    "petName": "Name:",
+    "petBirth": "Date of birth:",
+    "petBreed": "Breed:",
+    "petComm": "Comments:",
     "yes": "YES",
     "no": "NO",
-    "removeconf": "Do you want to remove this pet?",
-    "logoutconf": "Do you want to logout?"
+    "removeConf": "Do you want to remove this pet?",
+    "logoutConf": "Do you want to logout?"
   },
 
   "userModal": {
     "add": "Add pet",
     "name": "Name pet",
-    "namepl": "Type pet name",
+    "namePl": "Type pet name",
     "breed": "Breed",
-    "breedpl": "Type breed",
+    "breedPl": "Type breed",
     "birth": "Date of birth",
     "canc": "Cancel",
     "next": "Next",
     "back": "Back",
     "done": "Done",
-    "addphoto": "Add photo"
+    "addPhoto": "Add photo"
   },
 
   "error": {
