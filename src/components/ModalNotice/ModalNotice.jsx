@@ -45,8 +45,8 @@ export const ModalNotice = ({
       document.removeEventListener('keydown', handleKeyClose);
     };
   }, []);
-  const showToast = () => {
-    toast(' Please login to add to favorites! ');
+  const showNotAuthNotification = () => {
+    toast.error('You should register to get access to favorites');
   };
 
   const {
@@ -65,11 +65,12 @@ export const ModalNotice = ({
   } = noticeData;
 
   const addToFavorite = async id => {
+    if (!isUserAuthorized) {
+      showNotAuthNotification();
+      return;
+    }
+
     try {
-      if (!isUserAuthorized) {
-        showToast;
-        return;
-      }
       await axios.patch(
         `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
       );
@@ -78,7 +79,13 @@ export const ModalNotice = ({
       console.log(`Error update favorite list ${error}`);
     }
   };
+
   const removeFromFavorite = async id => {
+    if (!isUserAuthorized) {
+      showNotAuthNotification();
+      return;
+    }
+
     try {
       await axios.delete(
         `http://${BACKEND_BASE_URL}/api/notices/favorites/${id}`
