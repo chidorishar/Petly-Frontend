@@ -34,7 +34,7 @@ export const deleteNotice = async id => {
 
 export const getNoticeDetailedInfo = async id => {
   try {
-    const response = await axios.delete(`/api/notices/notice/${id}`);
+    const response = await axios.get(`/api/notices/notice/${id}`);
     return response;
   } catch (error) {
     console.log(error);
