@@ -27,7 +27,7 @@ export const BurgerNav = ({ close }) => {
       <Container>
         <LogoMenu>
           <Logo />
-          <BurgerNavCloseBtn onClick={close} />
+          <BurgerNavCloseBtn onClick={close} aria-label="Close" />
         </LogoMenu>
         <UserAuthMenu>
           {isMobile && isUserAuthorized && !isUserRefreshing && <UserNav />}

@@ -6,6 +6,7 @@ on:
 
 env:
   REACT_APP_BACKEND_BASE_URL: ${{ vars.REACT_APP_BACKEND_BASE_URL }}
+  REACT_APP_FRONTEND_BASE_URL: ${{ vars.REACT_APP_FRONTEND_BASE_URL }}
 
 jobs:
   build-and-deploy:
@@ -24,6 +25,5 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          REACT_APP_BACKEND_BASE_URL: ${{ vars.REACT_APP_BACKEND_BASE_URL }}
           branch: gh-pages
           folder: build

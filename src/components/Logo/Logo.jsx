@@ -1,12 +1,11 @@
 import logoIcon from './petly.svg';
 import { LogoImg } from './Logo.styled';
+import { Link } from 'react-router-dom';
 
 export const Logo = () => {
   return (
-    <>
-      <a href=".">
-        <LogoImg src={logoIcon} alt="petly" />
-      </a>
-    </>
+    <Link to="/">
+      <LogoImg src={logoIcon} alt="petly" />
+    </Link>
   );
 };
