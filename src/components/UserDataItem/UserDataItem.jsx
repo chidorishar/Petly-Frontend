@@ -91,7 +91,8 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       value: location,
       placeholder: i18n.t('user.cityPl'),
       type: 'text',
-      pattern: /^[A-Z][a-z]+[,][ ][A-Z][a-z]+$/,
+      pattern:
+        /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F]+[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+){1}, ([-'a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F`]+){2}$/,
       initialValue: userLocation,
       changeValueMethod: setLocation,
     },
