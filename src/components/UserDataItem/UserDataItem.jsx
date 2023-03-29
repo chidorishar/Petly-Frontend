@@ -14,7 +14,7 @@ import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS } from 'utils/appKeys';
 import { dateConverter } from 'utils';
-
+import i18n from 'i18next';
 const updateUserDataInBD = async dataObject => {
   return await axios.patch(
     `${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
@@ -38,13 +38,14 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
   );
   const [phone, setPhone] = useState(userPhone);
   const [location, setLocation] = useState(userLocation);
+
   const elementsData = {
     name: {
       id: 0,
       name: 'name',
-      text: 'Name:',
+      text: i18n.t('user.name'),
       value: name,
-      placeholder: 'Your name',
+      placeholder: i18n.t('user.namePl'),
       type: 'text',
       pattern: /^[a-zA-Z0-9_]{3,16}$/,
       initialValue: name,
@@ -53,7 +54,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     email: {
       id: 1,
       name: 'email',
-      text: 'Email:',
+      text: i18n.t('user.email'),
       value: email,
       placeholder: 'user@email.com',
       type: 'email',
@@ -64,7 +65,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     birthday: {
       id: 2,
       name: 'birthday',
-      text: 'Birthday:',
+      text: i18n.t('user.birthday'),
       value: birthday,
       placeholder: '01.01.2023',
       type: 'text',
@@ -75,7 +76,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     phone: {
       id: 3,
       name: 'phone',
-      text: 'Phone:',
+      text: i18n.t('user.phone'),
       value: phone,
       placeholder: '+380XXXXXXXXX',
       type: 'text',
@@ -86,9 +87,9 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     location: {
       id: 4,
       name: 'location',
-      text: 'City:',
+      text: i18n.t('user.city'),
       value: location,
-      placeholder: 'Brovary, Kiev',
+      placeholder: i18n.t('user.cityPl'),
       type: 'text',
       pattern: /^[A-Z][a-z]+[,][ ][A-Z][a-z]+$/,
       initialValue: userLocation,
