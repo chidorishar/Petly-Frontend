@@ -19,7 +19,7 @@ const passwordSchema = Yup.string()
   .matches(/[a-z]/, 'Password requires a lowercase letter')
   .matches(/[A-Z]/, 'Password requires an uppercase letter')
   .matches(/[^\w]/, 'Password requires a symbol');
-  /* .required('Password is required')
+/* .required('Password is required')
   .min(7, 'Must be at least 7 characters long')
   .max(32, 'Must be at most 32 characters long')
   .matches(
