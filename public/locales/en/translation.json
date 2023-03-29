@@ -33,9 +33,7 @@
   "news": {
     "news": "News",
     "search": "Search",
-    "more": "Read more",
-    "end": "End of content...",
-    "totop": "back to top?"
+    "more": "Read more"
   },
 
   "friends": {
@@ -126,7 +124,7 @@
     "birthday": "Birthday:",
     "phone": "Phone:",
     "city": "City:",
-    "logout": "Logout",
+    "logout": "Log out",
     "petName": "Name:",
     "petBirth": "Date of birth:",
     "petBreed": "Breed:",
@@ -143,12 +141,13 @@
     "namePl": "Type pet name",
     "breed": "Breed",
     "breedPl": "Type breed",
-    "birth": "Date of birth",
+    "birth": "Type date of birth",
     "canc": "Cancel",
     "next": "Next",
     "back": "Back",
     "done": "Done",
-    "addPhoto": "Add photo"
+    "petComm": "Comments",
+    "addPhoto": "Add photo and some comments"
   },
 
   "error": {
