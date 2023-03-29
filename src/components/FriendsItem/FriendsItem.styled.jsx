@@ -167,4 +167,8 @@ export const TimeItem = styled.li`
   @media ${p => p.theme.breakpoints.tablet.media} {
     width: 120px;
   }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    width: 130px;
+  }
 `;

@@ -11,11 +11,13 @@ const ROUTES = {
   NEWS: '/news',
   NOTICES: '/notices',
   FRIENDS: '/friends',
+  USERPAGE: '/user',
   PROFILE: '/profile',
 };
 
 const CACHE_TAGS = {
   AUTH_LOGIN: 'AuthLogin',
+  PETS: 'Pet',
 };
 
 /**
@@ -27,8 +29,12 @@ const BACKEND_ENDPOINTS = {
   LOGOUT: 'auth/logout',
   CURRENT: 'auth/current',
   REFRESH: 'auth/refresh',
+  USERS_PETS: 'users/pets',
+  UPDATE_USER_INFO: 'users',
 };
 
-export const BACKEND_BASE_URL = 'localhost:4000';
+export const BACKEND_BASE_URL =
+  // eslint-disable-next-line no-undef
+  process.env.REACT_APP_BACKEND_BASE_URL ?? 'http://localhost:4000';
 
 export { ROUTES, BACKEND_ENDPOINTS, CACHE_TAGS };

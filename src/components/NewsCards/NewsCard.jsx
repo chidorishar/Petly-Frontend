@@ -10,11 +10,15 @@ import {
   Link,
 } from './NewsCard.styled';
 
+import { useTranslation } from 'react-i18next';
+
 const NewsCard = newItem => {
   const { date, description, title, url } = newItem.newItem;
 
   const text = description?.slice(0, 350) + '...';
   const name = title?.length < 50 ? title : title?.slice(0, 50) + '...';
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -25,7 +29,7 @@ const NewsCard = newItem => {
         <Box>
           <Date>{dateConverter(date, 'dd/MM/yyyy')}</Date>
           <Link href={url} target="_blank" rel="noreferrer">
-            Read more
+            {t('news.more')}
           </Link>
         </Box>
       </Item>

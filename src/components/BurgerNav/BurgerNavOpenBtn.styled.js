@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 export const GiHamburgerMenuOpen = styled.button`
+  font-size: 2em;
+
   display: flex;
   justify-content: center;
   flex-direction: column;
-  font-size: 2em;
-  cursor: pointer;
+
   margin-left: auto;
+
+  border-radius: 25%;
+
   background: ${p => p.theme.colors.mainBackground};
+  cursor: pointer;
+
   @media (min-width: 768px) {
     margin-left: 25px;
   }

@@ -29,6 +29,8 @@ export const NaviLink = styled(NavLink)`
 
   transition: color ${p => p.theme.transitions.normal};
 
+  text-align: center;
+
   &.active {
     color: ${p => p.theme.colors.accent};
     font-weight: 700;

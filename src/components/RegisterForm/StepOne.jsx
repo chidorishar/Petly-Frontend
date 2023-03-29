@@ -7,6 +7,7 @@ import { ROUTES } from 'utils/appKeys';
 
 import * as Styled from './RegisterForm.styled';
 import { TextInput } from 'components/common';
+import { useTranslation } from 'react-i18next';
 
 const StepOne = ({ handleStepChange }) => {
   const { values, handleChange, validateField, errors, isValidating } =
@@ -29,22 +30,24 @@ const StepOne = ({ handleStepChange }) => {
     setStepIsPressed(true);
   };
 
+  const { t } = useTranslation();
+
   return (
     <Styled.Wrapper>
-      <Styled.Title>Registration</Styled.Title>
+      <Styled.Title>{t('registration.registration')}</Styled.Title>
       <Styled.InputWrapper>
         <TextInput
           errorText={errors.email}
           handleChange={handleChange}
           inputName="email"
-          placeholder="Email"
+          placeholder={t('login.email')}
           value={values.email}
         />
         <TextInput
           errorText={errors.password}
           handleChange={handleChange}
           inputName="password"
-          placeholder="Password"
+          placeholder={t('registration.password')}
           value={values.password}
           inputType="password"
         />
@@ -52,19 +55,21 @@ const StepOne = ({ handleStepChange }) => {
           errorText={errors.confirmPassword}
           handleChange={handleChange}
           inputName="confirmPassword"
-          placeholder="Confrim Password"
+          placeholder={t('registration.confirm')}
           value={values.confirmPassword}
           inputType="password"
         />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
         <Styled.Button type="button" onClick={handleNextClick}>
-          Next
+          {t('registration.next')}
         </Styled.Button>
       </Styled.ButtonWrapper>
       <Styled.BottomText>
-        Already have an account?{' '}
-        <Styled.BottomLink to={ROUTES.LOGIN}>Login</Styled.BottomLink>
+        {t('registration.have')}{' '}
+        <Styled.BottomLink to={ROUTES.LOGIN}>
+          {t('registration.login')}
+        </Styled.BottomLink>
       </Styled.BottomText>
     </Styled.Wrapper>
   );

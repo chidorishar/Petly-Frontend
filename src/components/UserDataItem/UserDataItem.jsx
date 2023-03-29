@@ -7,16 +7,17 @@ import {
   UserLabel,
   UserSpan,
   EditBtn,
-  FormBox,
+  Form,
 } from './UserDataItem.styled';
 
 import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS } from 'utils/appKeys';
-
+import { dateConverter } from 'utils';
+import i18n from 'i18next';
 const updateUserDataInBD = async dataObject => {
   return await axios.patch(
-    `http://${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
+    `${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
     dataObject
   );
 };
@@ -32,25 +33,28 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
 
   const [name, setName] = useState(userName);
   const [email, setEmail] = useState(userEmail);
-  const [birthday, setBirthday] = useState(userBirthdayDate);
+  const [birthday, setBirthday] = useState(
+    dateConverter(userBirthdayDate, 'dd.MM.yyyy')
+  );
   const [phone, setPhone] = useState(userPhone);
   const [location, setLocation] = useState(userLocation);
+
   const elementsData = {
     name: {
       id: 0,
       name: 'name',
-      text: 'Name:',
+      text: i18n.t('user.name'),
       value: name,
-      placeholder: 'Your name',
+      placeholder: i18n.t('user.namePl'),
       type: 'text',
-      pattern: /^[a-zA-Z0-9_]{3,16}$/,
+      pattern: /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
       initialValue: userName,
       changeValueMethod: setName,
     },
     email: {
       id: 1,
       name: 'email',
-      text: 'Email:',
+      text: i18n.t('user.email'),
       value: email,
       placeholder: 'user@email.com',
       type: 'email',
@@ -61,18 +65,18 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     birthday: {
       id: 2,
       name: 'birthday',
-      text: 'Birthday:',
+      text: i18n.t('user.birthday'),
       value: birthday,
       placeholder: '01.01.2023',
       type: 'text',
       pattern: /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.\d{4}$/,
-      initialValue: userBirthdayDate,
+      initialValue: dateConverter(userBirthdayDate, 'dd.MM.yyyy'),
       changeValueMethod: setBirthday,
     },
     phone: {
       id: 3,
       name: 'phone',
-      text: 'Phone:',
+      text: i18n.t('user.phone'),
       value: phone,
       placeholder: '+380XXXXXXXXX',
       type: 'text',
@@ -83,9 +87,9 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     location: {
       id: 4,
       name: 'location',
-      text: 'City:',
+      text: i18n.t('user.city'),
       value: location,
-      placeholder: 'Brovary, Kiev',
+      placeholder: i18n.t('user.cityPl'),
       type: 'text',
       pattern: /^[A-Z][a-z]+[,][ ][A-Z][a-z]+$/,
       initialValue: userLocation,
@@ -99,9 +103,22 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
 
   const updateUserData = async dataObject => {
     try {
+      // if passed object contains "birthday" field then:
+      // convert date from dd.MM.yyyy to "MM/dd/yyyy" and set it as a Date object
+      if (dataObject['birthday']) {
+        const dataValue = dataObject['birthday'];
+
+        const transformedDate = dataValue.replace(/(\d+[.])(\d+[.])/, '$2$1');
+        dataObject['birthday'] = new Date(transformedDate);
+      }
+
       const res = await updateUserDataInBD(dataObject);
       if (res.status === 200) onUserDataUpdated();
     } catch (error) {
+      // reset all inputs to their initial values if error occurred
+      Object.values(elementsData).forEach(element =>
+        element.changeValueMethod(element.initialValue)
+      );
       console.log(`Error updating user data ${error}`);
     }
   };
@@ -162,49 +179,47 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
   };
 
   return (
-    <FormBox>
-      <form type="submit" onKeyDown={handleKeyDown}>
-        {Object.values(elementsData).map(el => {
-          const elName = el.name;
+    <Form type="submit" onKeyDown={handleKeyDown}>
+      {Object.values(elementsData).map(el => {
+        const elName = el.name;
 
-          return (
-            <UserLabel key={el.id}>
-              <UserSpan>{el.text}</UserSpan>
-              <UserInput
-                type={el.type}
-                name={elName}
-                value={el.value ?? ''}
-                placeholder={el.placeholder}
-                className={
-                  isInputDataNotValid
-                    ? currEditedInputName === elName
-                      ? 'enabled error'
-                      : ''
-                    : currEditedInputName === elName
-                    ? 'enabled'
+        return (
+          <UserLabel key={el.id}>
+            <UserSpan>{el.text}</UserSpan>
+            <UserInput
+              type={el.type}
+              name={elName}
+              value={el.value ?? ''}
+              placeholder={el.placeholder}
+              className={
+                isInputDataNotValid
+                  ? currEditedInputName === elName
+                    ? 'enabled error'
                     : ''
-                }
-                disabled={currEditedInputName !== elName}
-                onChange={handleInputChange}
-              />
-              <EditBtn
-                data-el-name={elName}
-                onClick={handleEditButtonClick}
-                className={
-                  isEditing && currEditedInputName !== elName ? 'disabled' : ''
-                }
-              >
-                {isEditing && currEditedInputName === elName ? (
-                  <FaCheck fill={'currentColor'} />
-                ) : (
-                  <MdEdit fill={'currentColor'} />
-                )}
-              </EditBtn>
-            </UserLabel>
-          );
-        })}
-      </form>
-    </FormBox>
+                  : currEditedInputName === elName
+                  ? 'enabled'
+                  : ''
+              }
+              disabled={currEditedInputName !== elName}
+              onChange={handleInputChange}
+            />
+            <EditBtn
+              data-el-name={elName}
+              onClick={handleEditButtonClick}
+              className={
+                isEditing && currEditedInputName !== elName ? 'disabled' : ''
+              }
+            >
+              {isEditing && currEditedInputName === elName ? (
+                <FaCheck fill="currentColor" />
+              ) : (
+                <MdEdit fill="currentColor" />
+              )}
+            </EditBtn>
+          </UserLabel>
+        );
+      })}
+    </Form>
   );
 };
 
@@ -218,167 +233,3 @@ UserDataItem.propTypes = {
     location: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-//old code
-/*
-        <UserLabel>
-          <UserSpan>Name:</UserSpan>
-          <UserInput
-            type="text"
-            name="name"
-            value={name ?? ''}
-            placeholder="Your name"
-            className={
-              errorInput
-                ? currEditInputID === 0
-                  ? 'enabled error'
-                  : ''
-                : currEditInputID === 0
-                ? 'enabled'
-                : ''
-            }
-            disabled={currEditInputID !== 0}
-            onChange={handleInputChange}
-          />
-          <EditBtn
-            data-type="name"
-            onClick={e => handleEnableToEdit(0, e)}
-            className={isClicked && currEditInputID !== 0 ? 'disabled' : ''}
-          >
-            {isClicked && currEditInputID === 0 ? (
-              <FaCheck fill={'currentColor'} />
-            ) : (
-              <MdEdit fill={'currentColor'} />
-            )}
-          </EditBtn>
-        </UserLabel>
-
-        <UserLabel>
-          <UserSpan>Email:</UserSpan>
-          <UserInput
-            type="email"
-            name="email"
-            value={email ?? ''}
-            placeholder="user@email.com"
-            className={
-              errorInput
-                ? currEditInputID === 1
-                  ? 'enabled error'
-                  : ''
-                : currEditInputID === 1
-                ? 'enabled'
-                : ''
-            }
-            disabled={currEditInputID !== 1}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <EditBtn
-            data-type="email"
-            onClick={e => handleEnableToEdit(1, e)}
-            className={isClicked && currEditInputID !== 1 ? 'disabled' : ''}
-          >
-            {isClicked && currEditInputID === 1 ? (
-              <FaCheck fill={'currentColor'} />
-            ) : (
-              <MdEdit fill={'currentColor'} />
-            )}
-          </EditBtn>
-        </UserLabel>
-        <UserLabel>
-          <UserSpan>Birthday:</UserSpan>
-          <UserInput
-            type="text"
-            name="date"
-            value={date ?? ''}
-            placeholder="01.01.2023"
-            className={
-              errorInput
-                ? currEditInputID === 2
-                  ? 'enabled error'
-                  : ''
-                : currEditInputID === 2
-                ? 'enabled'
-                : ''
-            }
-            disabled={currEditInputID !== 2}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <EditBtn
-            data-type="date"
-            onClick={e => handleEnableToEdit(2, e)}
-            className={isClicked && currEditInputID !== 2 ? 'disabled' : ''}
-          >
-            {isClicked && currEditInputID === 2 ? (
-              <FaCheck fill={'currentColor'} />
-            ) : (
-              <MdEdit fill={'currentColor'} />
-            )}
-          </EditBtn>
-        </UserLabel>
-        <UserLabel>
-          <UserSpan>Phone:</UserSpan>
-          <UserInput
-            type="phone"
-            name="phone"
-            value={phone ?? ''}
-            placeholder="+380XXXXXXXXX"
-            className={
-              errorInput
-                ? currEditInputID === 3
-                  ? 'enabled error'
-                  : ''
-                : currEditInputID === 3
-                ? 'enabled'
-                : ''
-            }
-            disabled={currEditInputID !== 3}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <EditBtn
-            data-type="phone"
-            onClick={e => handleEnableToEdit(3, e)}
-            className={isClicked && currEditInputID !== 3 ? 'disabled' : ''}
-          >
-            {isClicked && currEditInputID === 3 ? (
-              <FaCheck fill={'currentColor'} />
-            ) : (
-              <MdEdit fill={'currentColor'} />
-            )}
-          </EditBtn>
-        </UserLabel>
-        <UserLabel>
-          <UserSpan>City:</UserSpan>
-          <UserInput
-            type="text"
-            name="city"
-            value={city ?? ''}
-            placeholder="Your city"
-            className={
-              errorInput
-                ? currEditInputID === 4
-                  ? 'enabled error'
-                  : ''
-                : currEditInputID === 4
-                ? 'enabled'
-                : ''
-            }
-            disabled={currEditInputID !== 4}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <EditBtn data-type="city" onClick={e => handleEnableToEdit(4, e)}>
-            {isClicked && activeType === 'city' ? (
-              <FaCheck
-                fill={errorInput ? theme.colors.heading : theme.colors.accent}
-              />
-            ) : (
-              <MdEdit
-                fill={isClicked ? theme.colors.heading : theme.colors.accent}
-              />
-            )}
-          </EditBtn>
-        </UserLabel>
-*/

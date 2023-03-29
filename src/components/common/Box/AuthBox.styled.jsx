@@ -1,48 +1,62 @@
 import styled from 'styled-components';
 
-import desktop from '../../../images/auth/desktop.png';
-import tablet from '../../../images/auth/tablet.png';
-import mobile from '../../../images/auth/mobile.png';
-import desktop2x from '../../../images/auth/desktop@2x.png';
-import tablet2x from '../../../images/auth/tablet@2x.png';
-import mobile2x from '../../../images/auth/mobile@2x.png';
+import {
+  desktop,
+  tablet,
+  mobile,
+  desktop2x,
+  tablet2x,
+  mobile2x,
+  desktopWebp,
+  tabletWebp,
+  mobileWebp,
+  desktop2xWebp,
+  tablet2xWebp,
+  mobile2xWebp,
+} from 'images/auth';
 
 export const AuthBox = styled.div`
-  height: 100%;
+  width: 100vw;
+  /* height: 100%; */
+  margin: 0 auto;
+  display: flex;
+
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-size: contain;
 
-  @media ${p => p.theme.breakpoints.tablet.desktop} {
-    padding-top: 91px;
-    padding-bottom: 124px;
-    background-image: url(${desktop});
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    background-image: url(${(desktop, desktopWebp)});
+    height: 60vw;
+    background-position: 50% 324px;
+    background-size: 1396px auto;
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${desktop2x});
+      background-image: url(${(desktop2x, desktop2xWebp)});
     }
   }
 
-  @media ${p => p.theme.breakpoints.tablet.media} and (max-width: 1279px) {
-    padding-top: 204px;
-    padding-bottom: 260px;
-    background-image: url(${tablet});
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    background-image: url(${(tablet, tabletWebp)});
+    background-position: 50% 569px;
+    background-size: 1398px auto;
+    height: 133vw;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${tablet2x});
+      background-image: url(${(tablet2x, tablet2xWebp)});
     }
   }
 
-  @media (max-width: 767px) {
-    padding-top: 42px;
-    padding-bottom: 151px;
-    background-image: url(${mobile});
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    background-position: 20% 359px;
+    background-size: 620px auto;
+    height: 178vw;
+    background-image: url(${(mobile, mobileWebp)});
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${mobile2x});
+      background-image: url(${(mobile2x, mobile2xWebp)});
     }
   }
 `;

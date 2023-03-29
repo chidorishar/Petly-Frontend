@@ -1,17 +1,22 @@
 import { useFormik } from 'formik';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
+import { ErrorIcon } from 'assets/icons';
+import { SuccessIcon } from 'assets/icons';
 
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
 
 import { useLoginUserMutation } from 'redux/slices/usersAPISlice';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
   ContainerCardCommon,
   FormCommon,
+  IconInput,
   InputCommon,
+  InputWrapper,
   Link,
   Text,
   TextMessage,
@@ -75,21 +80,28 @@ export const LoginForm = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <ContainerCardCommon>
-      <Title>Login</Title>
+      <Title>{t('login.login')}</Title>
       <FormCommon onSubmit={formik.handleSubmit}>
-        <InputCommon
-          type="email"
-          name="email"
-          placeholder="Email"
-          autoComplete="on"
-          autoFocus
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-          style={{ outlineColor: ifCurrentEmail() }}
-        ></InputCommon>
+        <InputWrapper style={{ outlineColor: ifCurrentEmail() }}>
+          <InputCommon
+            type="email"
+            name="email"
+            placeholder={t('login.email')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+          ></InputCommon>
+          <IconInput>
+            {formik.touched.email && formik.errors.email ? <ErrorIcon /> : null}
+            {formik.touched.email && !formik.errors.email ? (
+              <SuccessIcon />
+            ) : null}
+          </IconInput>
+        </InputWrapper>
         {formik.touched.email && !formik.errors.email ? (
           <TextMessage style={{ color: '#3CBC81' }}>
             Email is correct
@@ -100,15 +112,24 @@ export const LoginForm = () => {
             {formik.errors.email}
           </TextMessage>
         ) : null}
-        <InputCommon
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.password}
-          style={{ outlineColor: ifCurrentPassword() }}
-        ></InputCommon>
+        <InputWrapper style={{ outlineColor: ifCurrentPassword() }}>
+          <InputCommon
+            type="password"
+            name="password"
+            placeholder={t('login.password')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+          ></InputCommon>
+          <IconInput>
+            {formik.touched.password && formik.errors.password ? (
+              <ErrorIcon />
+            ) : null}
+            {formik.touched.password && !formik.errors.password ? (
+              <SuccessIcon />
+            ) : null}
+          </IconInput>
+        </InputWrapper>
         {formik.touched.password && !formik.errors.password ? (
           <TextMessage style={{ color: '#3CBC81' }}>
             Password is secure
@@ -120,12 +141,12 @@ export const LoginForm = () => {
           </TextMessage>
         ) : null}
         <Button disabled={isSuccess} type="submit">
-          Login
+          {t('login.login')}
         </Button>
       </FormCommon>
       <Text>
-        Don&#39;t have an account?&nbsp;
-        <Link to={ROUTES.REGISTER}>Register</Link>
+        {t('login.noacc')}
+        <Link to={ROUTES.REGISTER}>{t('login.register')}</Link>
       </Text>
     </ContainerCardCommon>
   );
