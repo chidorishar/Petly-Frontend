@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import { FriendsItem } from 'components/FriendsItem/FriendsItem';
 import { List, Title } from './FriendsList.styled';
+import { useTranslation } from 'react-i18next';
 
 const FriendsList = ({ friends }) => {
+  const { t } = useTranslation();
   return (
     <>
-      <Title>Our Friends</Title>
+      <Title>{t('friends.friends')}</Title>
       <List>
         {friends.map(
           ({

@@ -1,8 +1,10 @@
 import { ROUTES } from 'utils/appKeys';
 
 import { AuthNavList, AuthNavLink } from './AuthNav.styled';
+import { useTranslation } from 'react-i18next';
 
 export const AuthNav = () => {
+  const { t } = useTranslation();
   return (
     <>
       <AuthNavList>
@@ -10,7 +12,10 @@ export const AuthNav = () => {
           <AuthNavLink to={ROUTES.LOGIN}>Login</AuthNavLink>
         </li>
         <li>
-          <AuthNavLink to={ROUTES.REGISTER}>Registration</AuthNavLink>
+          <AuthNavLink to={ROUTES.REGISTER}>
+            {' '}
+            {t('registration.registration')}
+          </AuthNavLink>
         </li>
       </AuthNavList>
     </>

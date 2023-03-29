@@ -7,6 +7,7 @@ import { Box } from 'components/common/Box/Box.styled';
 import { PetsTitle, AddPetBtn, DataTopBox, AddBox } from './PetsData.styled';
 import { UserPetsList } from 'components/UserPetsList/UserPetsList';
 import { ModalAddPet } from 'components/ModalAddsPet/ModalAddsPet';
+import { useTranslation } from 'react-i18next';
 
 export const PetsData = ({ pets, onPetListChanged }) => {
   const [isModalAddPetShown, setShowModalAddPet] = useState(false);
@@ -14,14 +15,14 @@ export const PetsData = ({ pets, onPetListChanged }) => {
   const handleAddPetClick = () => {
     setShowModalAddPet(true);
   };
-
+  const { t } = useTranslation();
   return (
     <Box flexGrow={1}>
       {/* MODAL WINDOW */}
       <DataTopBox>
-        <PetsTitle>My pets:</PetsTitle>
+        <PetsTitle>{t('user.pets')}</PetsTitle>
         <AddBox>
-          <span>Add pet</span>
+          <span>{t('notices.add')}</span>
           <AddPetBtn onClick={handleAddPetClick}>
             <BsFillPlusCircleFill />
           </AddPetBtn>

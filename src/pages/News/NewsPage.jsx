@@ -15,6 +15,7 @@ import {
 import NewsCard from '../../components/NewsCards/NewsCard';
 
 import { Section, Container } from 'components/common';
+import { useTranslation } from 'react-i18next';
 
 const NewsPage = () => {
   const [news, setNews] = useState([]);
@@ -53,17 +54,19 @@ const NewsPage = () => {
     setSearch('');
   };
 
+  const { t } = useTranslation();
+
   return (
     <Section>
       <Container>
-        <Title>News</Title>
+        <Title>{t('news.news')}</Title>
         {/* <ToastContainer /> */}
         <Form onSubmit={handleSubmit}>
           <Input
             type="text"
             name="query"
             value={search}
-            placeholder="Search"
+            placeholder={t('news.search')}
             autoFocus
             onChange={handleChange}
           />
@@ -86,7 +89,7 @@ const NewsPage = () => {
         </Box>
         {search !== '' && query && news.length === 0 && (
           <NotFoundBox>
-            <NotFound>Nothing found. Please, try again.</NotFound>
+            <NotFound>{t('error.notfound')}</NotFound>
           </NotFoundBox>
         )}
       </Container>
