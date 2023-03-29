@@ -11,7 +11,7 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
     values,
     handleChange,
     setFieldValue,
-    validateField,
+    // validateField,
     errors,
     isValidating,
   } = useFormikContext();
@@ -26,10 +26,10 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
   }, [isValidating, ifCurrentIsInvalid, stepIsPressed]);
 
   const handleNextClick = async () => {
-    validateField('title');
-    validateField('name');
-    validateField('birthDate');
-    validateField('breed');
+    // validateField('title');
+    // validateField('name');
+    // validateField('birthDate');
+    // validateField('breed');
 
     setStepIsPressed(true);
   };

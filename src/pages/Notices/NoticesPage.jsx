@@ -13,8 +13,8 @@ import { NoticesTitle } from 'components/Notices/NoticesTitle';
 import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
 
-import { Container } from 'components/common';
-import { ModalNotice } from 'components';
+import { Container, Modal } from 'components/common';
+import { AddNoticeForm, ModalNotice } from 'components';
 
 export const NoticesPage = () => {
   // eslint-disable-next-line no-unused-vars
@@ -25,6 +25,7 @@ export const NoticesPage = () => {
   const [notices, setNotices] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddNoticeModalOpen, setIsAddNoticeModalOpen] = useState(false);
   const [noticeDetailedInfo, setNoticeDetailedInfo] = useState({});
 
   const fetchNotices = async (category, query) => {
@@ -90,6 +91,14 @@ export const NoticesPage = () => {
     }
   };
 
+  const handleAddNoticeModalClose = () => {
+    setIsAddNoticeModalOpen(false);
+  };
+
+  const handleAddNoticeModalToggle = () => {
+    setIsAddNoticeModalOpen(toggle => !toggle);
+  };
+
   async function handleNoticeStatusUpdateInModal(id) {
     fetchNotices(category, search);
 
@@ -109,7 +118,10 @@ export const NoticesPage = () => {
         onSubmit={handleSubmit}
         removeQuery={clearSearch}
       />
-      <NoticesNavigation onCategoryClick={handleClick} />
+      <NoticesNavigation
+        onAddNoticeClick={handleAddNoticeModalToggle}
+        onCategoryClick={handleClick}
+      />
       <NoticesCategoriesList
         notices={notices}
         onDeleteNotice={handleDelete}
@@ -123,6 +135,12 @@ export const NoticesPage = () => {
           setIsModalShown={setIsModalOpen}
         />
       )}
+      <Modal
+        isOpen={isAddNoticeModalOpen}
+        handleClose={handleAddNoticeModalClose}
+      >
+        <AddNoticeForm handleClose={handleAddNoticeModalClose} />
+      </Modal>
     </Container>
   );
 };
