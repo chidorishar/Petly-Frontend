@@ -122,6 +122,12 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     }
   };
 
+  function resetState() {
+    setIsInputDataNotValid(false);
+    setIsEditing(false);
+    setCurrEditedInputName(null);
+  }
+
   const handleInputChange = e => {
     const { name, value } = e.target;
     const currElement = elementsData[name];
@@ -148,13 +154,10 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     //reset current input value if input has invalid data
     if (isInputDataNotValid) {
       currentElement.changeValueMethod(currElInitialValue);
-      setIsInputDataNotValid(false);
-      setIsEditing(false);
-      setCurrEditedInputName(null);
+      resetState();
     } else if (isInputContentChanged) {
       updateUserData({ [currEditedInputName]: currentElement.value });
-      setCurrEditedInputName(null);
-      setIsEditing(false);
+      resetState();
     }
 
     // if clicked on the same input's edit button
@@ -176,9 +179,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       (event.code === 'NumpadEnter' && isInputDataNotValid)
     ) {
       currElement.changeValueMethod(currElement.initialValue);
-      setCurrEditedInputName(null);
-      setIsEditing(false);
-      setIsInputDataNotValid(false);
+      resetState();
     } else if (
       (event.code === 'Enter' && !isInputDataNotValid) ||
       (event.code === 'NumpadEnter' && !isInputDataNotValid)
@@ -187,9 +188,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
         updateUserData({ [currElement.name]: currElement.value });
       }
 
-      setCurrEditedInputName(null);
-      setIsEditing(false);
-      setIsInputDataNotValid(false);
+      resetState();
     }
     if (event.code !== 'Escape' || !currEditedInputName) return;
 
