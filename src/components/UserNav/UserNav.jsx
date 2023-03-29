@@ -7,7 +7,7 @@ export const UserNav = () => {
   const { t } = useTranslation();
   return (
     <UserNavBox>
-      <UserNavLink to={ROUTES.PROFILE}>
+      <UserNavLink to={ROUTES.USERPAGE}>
         <UserNavIcon src={AccountIcon} alt="account" />
         {t('user.account')}
       </UserNavLink>

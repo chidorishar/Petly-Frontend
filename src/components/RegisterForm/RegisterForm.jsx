@@ -35,7 +35,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(ROUTES.PROFILE);
+      navigate(ROUTES.USERPAGE);
     }
   }, [isSuccess, navigate]);
 
