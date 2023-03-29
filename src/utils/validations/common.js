@@ -8,8 +8,7 @@ import * as Yup from 'yup';
 /* const passwordRegexp =
   /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()-_/#:;<>])[A-Za-z\d@$!%*?&]/; */
 
-const emailRegexp =
-  /^([a-zA-Z0-9_.]+){1}([a-zA-Z0-9_\-.]+){1}@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,3})$/;
+const emailRegexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
 
@@ -20,7 +19,7 @@ const passwordSchema = Yup.string()
   .matches(/[a-z]/, 'Password requires a lowercase letter')
   .matches(/[A-Z]/, 'Password requires an uppercase letter')
   .matches(/[^\w]/, 'Password requires a symbol');
-  /* .required('Password is required')
+/* .required('Password is required')
   .min(7, 'Must be at least 7 characters long')
   .max(32, 'Must be at most 32 characters long')
   .matches(

@@ -22,20 +22,17 @@ export const AuthBox = styled.div`
   display: flex;
 
   background-repeat: no-repeat;
-  
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     background-image: url(${(desktop, desktopWebp)});
     height: 60vw;
     background-position: 50% 324px;
     background-size: 1396px auto;
-    
+
     @media (min-device-pixel-ratio: 2),
-      
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url(${(desktop2x, desktop2xWebp)});
-      
     }
   }
 

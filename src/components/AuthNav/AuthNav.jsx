@@ -9,9 +9,7 @@ export const AuthNav = () => {
     <>
       <AuthNavList>
         <li>
-          <AuthNavLink className="active" to={ROUTES.LOGIN}>
-            {t('login.login')}
-          </AuthNavLink>
+          <AuthNavLink to={ROUTES.LOGIN}>Login</AuthNavLink>
         </li>
         <li>
           <AuthNavLink to={ROUTES.REGISTER}>

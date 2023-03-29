@@ -48,6 +48,8 @@ export const AuthNavLink = styled(NavLink)`
   overflow-y: hidden;
   :hover,
   :focus {
+    background: ${p => p.theme.colors.accent};
+
     transform: scale(1.05);
     transition: transform 0.5s;
   }

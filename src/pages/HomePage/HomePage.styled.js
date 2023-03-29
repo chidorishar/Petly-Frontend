@@ -41,7 +41,7 @@ export const DogBackground = styled(BackgroundImageStyled)`
   transform-origin: bottom;
 
   width: fit-content;
-  height: fit-content;
+  height: 63vh;
 
   @media ${p => p.theme.breakpoints.tablet.media} {
     transform: scale(1.01);
@@ -49,6 +49,7 @@ export const DogBackground = styled(BackgroundImageStyled)`
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     transform: scale(0.94);
+    height: fit-content;
   }
 `;
 

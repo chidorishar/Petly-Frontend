@@ -47,8 +47,8 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       value: name,
       placeholder: i18n.t('user.namePl'),
       type: 'text',
-      pattern: /^[a-zA-Z0-9_]{3,16}$/,
-      initialValue: name,
+      pattern: /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
+      initialValue: userName,
       changeValueMethod: setName,
     },
     email: {
