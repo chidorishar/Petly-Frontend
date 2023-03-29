@@ -46,8 +46,8 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       value: name,
       placeholder: 'Your name',
       type: 'text',
-      pattern: /^[a-zA-Z0-9_]{3,16}$/,
-      initialValue: name,
+      pattern: /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
+      initialValue: userName,
       changeValueMethod: setName,
     },
     email: {

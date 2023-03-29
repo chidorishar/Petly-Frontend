@@ -74,6 +74,7 @@ export const NoticeCategoriesItem = ({
           <Wrapper>
             <CategoryTitle>{getLabel(category)}</CategoryTitle>
             <AddToFavBtn
+              $favorite={isFavorite}
               onClick={() => handleAddToFavoriteClick(id, isFavorite)}
             >
               <FavoriteIcon $favorite={isFavorite} />
