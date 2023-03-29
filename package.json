@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://chidorishar.github.io/Petly-Frontend/",
   "dependencies": {
+    "@ngxs/hmr-plugin": "^3.7.6",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
