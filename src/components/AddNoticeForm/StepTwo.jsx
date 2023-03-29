@@ -15,13 +15,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
 
   const handleFileChange = e => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setFieldValue('image', reader.result);
-    };
-
-    reader.readAsDataURL(file);
+    setFieldValue('image', file);
   };
 
   return (
