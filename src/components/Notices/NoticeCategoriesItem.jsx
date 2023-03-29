@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { differenceInCalendarYears } from 'date-fns';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { addToFavorites, deleteFromFavorites } from './api';
 import { useAuth } from 'redux/hooks/getAuth';
@@ -23,13 +24,14 @@ import {
   FavoriteIcon,
   Span,
 } from './NoticeCategoriesItem.styled';
+import i18n from 'i18next';
 
 const nameCategory = [
-  { type: 'sell', text: 'sell' },
-  { type: 'lost-found', text: 'lost found' },
-  { type: 'for-free', text: 'in good hands' },
-  { type: 'favorites', text: 'favorite ads' },
-  { type: 'own', text: 'my ads' },
+  { type: 'sell', text: i18n.t('notices.sell') },
+  { type: 'lost-found', text: i18n.t('notices.lost') },
+  { type: 'for-free', text: i18n.t('notices.free') },
+  { type: 'favorites', text: i18n.t('notices.fav') },
+  { type: 'own', text: i18n.t('notices.own') },
 ];
 
 export const NoticeCategoriesItem = ({
@@ -65,6 +67,7 @@ export const NoticeCategoriesItem = ({
     return differenceInCalendarYears(new Date(), new Date(birthDate));
   };
 
+  const { t } = useTranslation();
   return (
     <>
       {' '}
@@ -86,24 +89,28 @@ export const NoticeCategoriesItem = ({
           <Box display="flex">
             <Box marginRight="40px">
               <PetInfo>
-                <li>Breed:</li>
-                <li>Place:</li>
-                <li>Age:</li>
-                {category === 'sell' && <li>Price:</li>}
+                <li> {t('notices.breed')}</li>
+                <li>{t('notices.place')}</li>
+                <li>{t('notices.age')}</li>
+                {category === 'sell' && <li>{t('notices.price')}</li>}
               </PetInfo>
             </Box>
             <PetInfo>
               <li>{breed}</li>
               <li>{location}</li>
-              <li>{calcFullYearsOld(birthDate)} year</li>
+              <li>
+                {calcFullYearsOld(birthDate)} {t('notices.year')}
+              </li>
               {category === 'sell' && <li>{price}</li>}
             </PetInfo>
           </Box>
           <BottomWrapper>
-            <Button onClick={() => onLearnMoreClick(id)}>Learn more</Button>
+            <Button onClick={() => onLearnMoreClick(id)}>
+              {t('notices.more')}
+            </Button>
             {isOwner && (
               <DeleteButton onClick={() => onDeleteNotice(id)}>
-                <Span>Delete</Span>
+                <Span>{t('notices.del')}</Span>
                 <RiDeleteBinFill />
               </DeleteButton>
             )}

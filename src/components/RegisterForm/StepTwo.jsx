@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { ROUTES } from 'utils/appKeys';
 
 import * as Styled from './RegisterForm.styled';
+import { useTranslation } from 'react-i18next';
 
 const StepTwo = ({ handleStepChange, animationState, refProp }) => {
   const { values, handleChange, errors } = useFormikContext();
@@ -13,42 +14,47 @@ const StepTwo = ({ handleStepChange, animationState, refProp }) => {
   const handlePrevClick = () => {
     handleStepChange();
   };
+  const { t } = useTranslation();
 
   return (
     <Styled.WrapperTwo state={animationState} ref={refProp}>
-      <Styled.Title>Registration</Styled.Title>
+      <Styled.Title>{t('registration.registration')}</Styled.Title>
       <Styled.InputWrapper>
         <TextInput
           inputName="name"
-          placeholder="Name"
+          placeholder={t('registration.name')}
           value={values.name}
           errorText={errors.name}
           handleChange={handleChange}
         />
         <TextInput
           inputName="location"
-          placeholder="City, region"
+          placeholder={t('registration.city')}
           value={values.location}
           errorText={errors.location}
           handleChange={handleChange}
         />
         <TextInput
           inputName="phone"
-          placeholder="Mobile phone"
+          placeholder={t('registration.phone')}
           value={values.phone}
           errorText={errors.phone}
           handleChange={handleChange}
         />
       </Styled.InputWrapper>
       <Styled.ButtonWrapper>
-        <Styled.Button type="submit">Register</Styled.Button>
+        <Styled.Button type="submit">
+          {t('registration.register')}
+        </Styled.Button>
         <Styled.Button type="button" onClick={handlePrevClick} isLight>
-          Back
+          {t('registration.back')}
         </Styled.Button>
       </Styled.ButtonWrapper>
       <Styled.BottomText>
-        Already have an account?{' '}
-        <Styled.BottomLink to={ROUTES.LOGIN}>Login</Styled.BottomLink>
+        {t('registration.have')}{' '}
+        <Styled.BottomLink to={ROUTES.LOGIN}>
+          {t('registration.login')}
+        </Styled.BottomLink>
       </Styled.BottomText>
     </Styled.WrapperTwo>
   );

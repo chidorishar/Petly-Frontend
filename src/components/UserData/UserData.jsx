@@ -10,6 +10,7 @@ import {
 } from './UserData.styled';
 
 import sprite from 'images/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 import userDefaultImage from 'images/userDefaultImage.jpg';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
@@ -33,6 +34,8 @@ export const UserData = ({ user, onUserDataUpdated }) => {
     if (response.status === 201) onUserDataUpdated();
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <UserImageWrapper>
@@ -47,7 +50,7 @@ export const UserData = ({ user, onUserDataUpdated }) => {
           <EditAvatarIcon>
             <use href={sprite + '#camera'} />
           </EditAvatarIcon>
-          <span>Edit Photo</span>
+          <span>{t('user.edit')}</span>
         </EditPhotoLabel>
       </UserImageWrapper>
       <UserDataWrapper>

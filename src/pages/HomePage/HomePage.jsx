@@ -30,6 +30,7 @@ import dogDesktop2xWEBP from 'pages/HomePage/images/desktop/dog-desktop@2x.webp'
 
 import { theme } from 'utils';
 import { Container } from 'components/common';
+import { useTranslation } from 'react-i18next';
 
 import {
   Section,
@@ -43,6 +44,8 @@ const HomePage = () => {
   const isMobile = useMedia(theme.breakpoints.mobile.media);
   const isTablet = useMedia(theme.breakpoints.tablet.media);
   const isDesktop = useMedia(theme.breakpoints.desktop.media);
+
+  const { t } = useTranslation();
 
   return (
     <Section>
@@ -117,7 +120,7 @@ const HomePage = () => {
       )}
 
       <Container>
-        <Heading> Take good care of your small pets</Heading>
+        <Heading>{t('main.welcome')}</Heading>
       </Container>
     </Section>
   );

@@ -14,6 +14,7 @@ import {
   NameBox,
 } from './UserPetsList.styled';
 import { DeleteIcon } from 'components/DeleteIcon/DeleteIcon';
+import { useTranslation } from 'react-i18next';
 
 async function deletePetFromList(petId) {
   let axResponse = null;
@@ -40,6 +41,8 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
     }
   };
 
+  const { t } = useTranslation();
+
   return pets.length ? (
     <List>
       {pets.map(({ _id: id, photo, breed, name, birthday, comment }) => {
@@ -50,7 +53,7 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
               <li>
                 <NameBox>
                   <Box>
-                    <span>Name: </span>
+                    <span>{t('user.petName')} </span>
                     {name}
                   </Box>
                   <DeleteBtn onClick={() => handleDeletePet(id)}>
@@ -59,15 +62,15 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
                 </NameBox>
               </li>
               <li>
-                <span>Date of birth: </span>
+                <span>{t('user.petBirth')} </span>
                 {dateConverter(birthday, 'dd.MM.yyyy')}
               </li>
               <li>
-                <span>Breed: </span>
+                <span>{t('user.petBreed')} </span>
                 {breed}
               </li>
               <li>
-                <span>Comments: </span>
+                <span>{t('user.petComm')} </span>
                 {comment}
               </li>
             </PetInfo>
@@ -82,7 +85,7 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
           <PetInfo>
             <li>
               <Box m="0 40px" fontSize="ml">
-                <span>No pets...</span>
+                <span>{t('user.noPets')}</span>
               </Box>
             </li>
           </PetInfo>

@@ -85,10 +85,10 @@ export const App = () => {
               <Route path={ROUTES.NEWS} element={<NewsPage />} />
               <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
               <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </>
           )}
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
