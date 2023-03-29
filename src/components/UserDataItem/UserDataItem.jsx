@@ -148,8 +148,13 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     //reset current input value if input has invalid data
     if (isInputDataNotValid) {
       currentElement.changeValueMethod(currElInitialValue);
+      setIsInputDataNotValid(false);
+      setIsEditing(false);
+      setCurrEditedInputName(null);
     } else if (isInputContentChanged) {
       updateUserData({ [currEditedInputName]: currentElement.value });
+      setCurrEditedInputName(null);
+      setIsEditing(false);
     }
 
     // if clicked on the same input's edit button
@@ -165,9 +170,29 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
 
   /** handle escape key press */
   const handleKeyDown = event => {
+    const currElement = elementsData[currEditedInputName];
+    if (
+      (event.code === 'Enter' && isInputDataNotValid) ||
+      (event.code === 'NumpadEnter' && isInputDataNotValid)
+    ) {
+      currElement.changeValueMethod(currElement.initialValue);
+      setCurrEditedInputName(null);
+      setIsEditing(false);
+      setIsInputDataNotValid(false);
+    } else if (
+      (event.code === 'Enter' && !isInputDataNotValid) ||
+      (event.code === 'NumpadEnter' && !isInputDataNotValid)
+    ) {
+      if (currElement.initialValue !== currElement.value) {
+        updateUserData({ [currElement.name]: currElement.value });
+      }
+
+      setCurrEditedInputName(null);
+      setIsEditing(false);
+      setIsInputDataNotValid(false);
+    }
     if (event.code !== 'Escape' || !currEditedInputName) return;
 
-    const currElement = elementsData[currEditedInputName];
     if (isInputDataNotValid) {
       currElement.changeValueMethod(currElement.initialValue);
     } else if (currElement.initialValue !== currElement.value)
