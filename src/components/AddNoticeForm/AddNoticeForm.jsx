@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Form, Formik } from 'formik';
 import { Transition } from 'react-transition-group';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 
 import { StepOne } from './StepOne';
@@ -49,7 +50,8 @@ const AddNoticeForm = ({ handleClose }) => {
   const handleSubmit = async values => {
     const formData = new FormData();
     Object.keys(values).forEach(key => {
-      formData.append(key, values[key]);
+      if (key === 'price' && values.category !== NOTICE_CATEGORY.SELL) return;
+      formData.set(key, values[key]);
     });
 
     const transformedDate = values.birthDate.replace(
@@ -57,15 +59,20 @@ const AddNoticeForm = ({ handleClose }) => {
       '$2$1'
     );
 
-    // TODO: Remove, correct price.
-    formData.delete('birthDate');
-    formData.delete('price');
-    formData.append('birthDate', new Date(transformedDate));
-    formData.append('price', Number(values.price));
+    formData.set('birthDate', new Date(transformedDate));
+    if (values.category === NOTICE_CATEGORY.SELL) {
+      formData.set('price', Number(values.price));
+    }
 
     const resp = await postNotice(formData);
 
-    console.log(resp);
+    if (resp.status === 201) {
+      toast.success('Notice added successfully!');
+      handleClose();
+      return;
+    }
+
+    toast.error('Something has gone wrong! Try again');
   };
 
   return (
