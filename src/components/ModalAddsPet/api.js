@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { BACKEND_BASE_URL } from 'utils/appKeys';
 
+// import { toast } from 'react-toastify';
+
 axios.defaults.baseURL = `${BACKEND_BASE_URL}`;
 
-export const changeAvatar = async file => {
+export const addNewPet = async data => {
   try {
-    console.log(file.get('avatarImg'));
-    const response = await axios.patch('/api/users/avatar', file);
+    const response = await axios.post(`/api/users/pets/`, data);
     return response;
   } catch (error) {
     return error.response;

@@ -12,10 +12,19 @@ import {
 } from './UserPage.styled';
 import { getUser } from 'redux/hooks/getUser';
 
+import { useSelector } from 'react-redux';
+import { selectUserAccessToken } from 'redux/selectors';
+import axios from 'axios';
+
 const UserPage = () => {
   const [userData, setUserData] = useState(null);
+  const userToken = useSelector(selectUserAccessToken);
 
   const getUserData = async () => {
+    if (userToken)
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+    else axios.defaults.headers.common['Authorization'] = null;
+
     const { user } = await getUser();
     setUserData(user);
   };
@@ -46,7 +55,7 @@ const UserPage = () => {
           )}
         </UserInfoContainer>
         {userData && (
-          <PetsData pets={userData.pets} onPetDeleted={onPetDeleted} />
+          <PetsData pets={userData.pets} onPetListChanged={onPetDeleted} />
         )}
       </UserPageContainer>
     </UserPageSection>
