@@ -68,7 +68,12 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
         )}
         <div>
           <p>Load the pet’s image:</p>
-          <input name="image" type="file" onChange={handleFileChange} />
+          <input
+            accept="image/*"
+            name="image"
+            type="file"
+            onChange={handleFileChange}
+          />
           <p>{errors.image}</p>
         </div>
         <div>

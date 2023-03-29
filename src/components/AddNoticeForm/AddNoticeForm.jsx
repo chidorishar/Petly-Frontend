@@ -11,6 +11,7 @@ import {
   NOTICE_CATEGORY,
   NOTICE_GENDER,
 } from 'utils/validations';
+import { postNotice } from 'components/Notices/api';
 
 const initialValues = {
   category: NOTICE_CATEGORY.LOST_FOUND,
@@ -45,8 +46,26 @@ const AddNoticeForm = ({ handleClose }) => {
     setFormStep(prevStep => prevStep - 1);
   };
 
-  const handleSubmit = values => {
-    alert(JSON.stringify(values, null, 2));
+  const handleSubmit = async values => {
+    const formData = new FormData();
+    Object.keys(values).forEach(key => {
+      formData.append(key, values[key]);
+    });
+
+    const transformedDate = values.birthDate.replace(
+      /(\d+[.])(\d+[.])/,
+      '$2$1'
+    );
+
+    // TODO: Remove, correct price.
+    formData.delete('birthDate');
+    formData.delete('price');
+    formData.append('birthDate', new Date(transformedDate));
+    formData.append('price', Number(values.price));
+
+    const resp = await postNotice(formData);
+
+    console.log(resp);
   };
 
   return (
