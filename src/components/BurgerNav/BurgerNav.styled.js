@@ -7,6 +7,7 @@ export const BurgerNavMenu = styled.div`
   height: 100vh;
   top: 0;
   right: 0;
+  overflow-y: auto;
   padding: 16px 0;
   background-color: ${p => p.theme.colors.mainBackground};
 `;

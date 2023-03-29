@@ -7,9 +7,7 @@ export const AuthNav = () => {
     <>
       <AuthNavList>
         <li>
-          <AuthNavLink className="active" to={ROUTES.LOGIN}>
-            Login
-          </AuthNavLink>
+          <AuthNavLink to={ROUTES.LOGIN}>Login</AuthNavLink>
         </li>
         <li>
           <AuthNavLink to={ROUTES.REGISTER}>Registration</AuthNavLink>
