@@ -9,7 +9,7 @@ export const Logout = () => {
   return (
     <LogOutBtn onClick={logout}>
       <LogoutIcon />
-      {t('notices.logout')}
+      {t('user.logout')}
     </LogOutBtn>
   );
 };
