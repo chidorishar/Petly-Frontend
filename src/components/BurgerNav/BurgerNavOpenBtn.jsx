@@ -6,7 +6,7 @@ import { GiHamburgerMenuOpen } from './BurgerNavOpenBtn.styled';
 export const BurgerNavOpenBtn = ({ onClick }) => {
   return (
     <>
-      <GiHamburgerMenuOpen onClick={onClick}>
+      <GiHamburgerMenuOpen onClick={onClick} aria-label="Open">
         <GiHamburgerMenu />
       </GiHamburgerMenuOpen>
     </>
