@@ -15,7 +15,7 @@ i18next
     },
     fallbackLng: 'en',
     whitelist: ['en', 'uk'],
-    debug: true,
+    debug: false,
 
     detection: {
       order: ['localStorage', 'cookie'],
