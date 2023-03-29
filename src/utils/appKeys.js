@@ -38,3 +38,18 @@ export const BACKEND_BASE_URL =
   process.env.REACT_APP_BACKEND_BASE_URL ?? 'http://localhost:4000';
 
 export { ROUTES, BACKEND_ENDPOINTS, CACHE_TAGS };
+
+export const NETWORK_ACTIONS = {
+  GET_ALL_NEWS: {
+    method: 'get',
+    url: `/api/news`,
+    // url: `${BACKEND_BASE_URL}/api/news`,
+    prefix: 'getAllNews',
+  },
+  GET_NEWS_BY_QUERY: {
+    method: 'get',
+    url: `/api/news/`,
+    prefix: 'getNewsByQuery',
+    // url: `${BACKEND_BASE_URL}/api/news/`,
+  },
+};
