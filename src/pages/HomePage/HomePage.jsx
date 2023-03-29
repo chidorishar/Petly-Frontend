@@ -29,7 +29,6 @@ import dogDesktopWEBP from 'pages/HomePage/images/desktop/dog-desktop.webp';
 import dogDesktop2xWEBP from 'pages/HomePage/images/desktop/dog-desktop@2x.webp';
 
 import { theme } from 'utils';
-import { Container } from 'components/common';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -37,6 +36,7 @@ import {
   Heading,
   DogBackground,
   WavesBackground,
+  SectionContainer,
 } from './HomePage.styled';
 import { Heart } from 'components';
 
@@ -57,7 +57,7 @@ const HomePage = () => {
             srcSetOldTypes={`${waveMobile} 1x, ${waveMobile2x} 2x`}
             placeholderImg={`${waveMobile}`}
             typeOldTypes={'image/png'}
-            zIndex={-1}
+            zIndex={0}
           >
             {/* DOG */}
             <DogBackground
@@ -80,7 +80,7 @@ const HomePage = () => {
             srcSetOldTypes={`${waveTablet} 1x, ${waveTablet2x} 2x`}
             placeholderImg={`${waveTablet}`}
             typeOldTypes={'image/png'}
-            zIndex={-1}
+            zIndex={0}
           >
             {/* DOG */}
             <DogBackground
@@ -104,24 +104,23 @@ const HomePage = () => {
             placeholderImg={`${waveDesktop}`}
             typeOldTypes={'image/png'}
             zIndex={-1}
+          ></WavesBackground>
+          {/* DOG */}
+          <DogBackground
+            srcSetWebp={`${dogDesktopWEBP} 1x, ${dogDesktop2xWEBP} 2x`}
+            srcSetOldTypes={`${dogDesktop} 1x, ${dogDesktop2x} 2x`}
+            placeholderImg={`${dogDesktop}`}
+            typeOldTypes={'image/png'}
+            zIndex={0}
           >
-            {/* DOG */}
-            <DogBackground
-              srcSetWebp={`${dogDesktopWEBP} 1x, ${dogDesktop2xWEBP} 2x`}
-              srcSetOldTypes={`${dogDesktop} 1x, ${dogDesktop2x} 2x`}
-              placeholderImg={`${dogDesktop}`}
-              typeOldTypes={'image/png'}
-              zIndex={0}
-            >
-              <Heart />
-            </DogBackground>
-          </WavesBackground>
+            <Heart />
+          </DogBackground>
         </>
       )}
 
-      <Container>
+      <SectionContainer>
         <Heading>{t('main.welcome')}</Heading>
-      </Container>
+      </SectionContainer>
     </Section>
   );
 };
