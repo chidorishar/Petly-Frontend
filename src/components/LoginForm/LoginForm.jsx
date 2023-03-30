@@ -109,7 +109,7 @@ export const LoginForm = () => {
         ) : null}
         {formik.touched.email && formik.errors.email ? (
           <TextMessage style={{ color: '#E2001A' }}>
-            {formik.errors.email}
+            {t(`${formik.errors.email}`)}
           </TextMessage>
         ) : null}
         <InputWrapper style={{ outlineColor: ifCurrentPassword() }}>
@@ -137,7 +137,7 @@ export const LoginForm = () => {
         ) : null}
         {formik.touched.password && formik.errors.password ? (
           <TextMessage style={{ color: '#E2001A' }}>
-            {formik.errors.password}
+            {t(`${formik.errors.password}`)}
           </TextMessage>
         ) : null}
         <Button disabled={isSuccess} type="submit">
