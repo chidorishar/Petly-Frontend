@@ -46,7 +46,7 @@ export const theme = {
     mainBackgroundWithGradient: baseColors.whiteSecondary,
     mainBackgroundWithTransp: baseColors.whiteSecondary,
     mainBackgroundDark: '#300303',
-    secondaryBackground: baseColors.white,
+    secondaryBackground: baseColors.whiteSecondary,
 
     black: baseColors.black,
     darkMain: baseColors.darkMain,

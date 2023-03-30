@@ -17,13 +17,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 410px;
+  height: 80vh;
   gap: 40px;
+
+  background-color: ${p => p.theme.colors.secondaryBackground};
 
   transition: background-color ${({ theme }) => theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
+    padding: 7px;
+
     border-radius: 22px;
   }
 
@@ -32,7 +37,6 @@ const Wrapper = styled.div`
     height: 80vh;
     padding: 60px 80px;
 
-    background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }

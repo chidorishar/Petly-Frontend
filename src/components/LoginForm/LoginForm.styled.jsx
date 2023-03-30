@@ -2,9 +2,19 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const ContainerCardCommon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+
+  width: 100%;
   max-width: 618px;
+  max-height: 380px;
+  height: 80vh;
   margin: 0 auto;
   padding: 60px 40px;
+
   text-align: center;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
@@ -14,30 +24,20 @@ export const ContainerCardCommon = styled.div`
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     max-width: 618px;
-    width: 100%;
   }
-  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow-y: auto;
 
-    max-height: 524px;
-    height: 80vh;
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 608px;
-    width: 100%;
+    max-height: 524px;
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    width: 100%;
     margin: 0;
-    padding-top: 54px;
-    /* margin-bottom: 207px; */
-    padding: 0;
+    padding: 7px;
+
     border: none;
     border-radius: 22px;
-    background-color: ${({ theme: { colors } }) => colors.mainBackground};
+
     box-shadow: none;
   }
 `;
