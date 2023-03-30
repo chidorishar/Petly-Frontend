@@ -5,7 +5,6 @@ const baseColors = {
   accentSuccess: '#3cbc81',
   accentError: '#e2001a',
 
-  quinary: '#111321',
   septenary: '#181C27',
   octonary: '#535353',
   nonary: '#b33232',
@@ -14,6 +13,7 @@ const baseColors = {
 
   black: '#000',
   darkMain: '#111111',
+  darkSecondary: '#111321',
 
   white: '#fff',
   whiteSecondary: '#FDF7F2',
@@ -31,6 +31,7 @@ export const theme = {
     body: baseColors.darkGradient, //'#383a4d',
     accent: baseColors.accent,
 
+    accentedTextDark: baseColors.darkSecondary + '99',
     accentedTextLight: baseColors.accent,
     heading: baseColors.darkMain,
     inputText: 'rgba(17, 17, 17, 0.6)',
@@ -130,9 +131,11 @@ export const darkTheme = {
   colors: {
     ...theme.colors,
 
+    accentedTextDark: baseColors.accent + '99',
     accentedTextLight: baseColors.white,
     heading: baseColors.white,
     navText: baseColors.whiteSecondary,
+    newsText: baseColors.whiteSecondary,
 
     accentedBackgroundLight: baseColors.accent,
     mainBackgroundWithGradient: baseColors.darkGradient,
