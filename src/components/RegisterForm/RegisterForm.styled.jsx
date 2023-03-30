@@ -150,7 +150,6 @@ const BottomLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
@@ -166,8 +165,10 @@ export const Button = styled.button`
   &:nth-child(2) {
     background: ${p => p.theme.colors.white};
     color: ${p => p.theme.colors.black};
-    outline: ${p => p.theme.borders.primaryBtn} ${({ theme: { colors } }) => colors.accent};
-    &:hover,:focus {
+    outline: ${p => p.theme.borders.primaryBtn}
+      ${({ theme: { colors } }) => colors.accent};
+    &:hover,
+    :focus {
       color: ${p => p.theme.colors.white};
       background: ${p => p.theme.colors.accent};
     }
@@ -183,27 +184,27 @@ export const Button = styled.button`
   :focus {
     transform: scale(1.05);
 
-  color: ${p => p.theme.colors.darkMain};
-}
-:hover:before {
-  left: 100%;
-}
+    color: ${p => p.theme.colors.darkMain};
+  }
+  :hover:before {
+    left: 100%;
+  }
 
-:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-  );
-  transition: all 650ms;
-}
+  :before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transition: all 650ms;
+  }
 `;
 
 export {
