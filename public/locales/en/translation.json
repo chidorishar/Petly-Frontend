@@ -159,6 +159,7 @@
   },
 
   "notification": {
+    "errorAdd": "Error adding data! Network error",
     "welcome": "Welcome back",
     "petDel": "Pet deleted",
     "Unauthorized": "Unauthorized!",
