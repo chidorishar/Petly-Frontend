@@ -8,7 +8,12 @@ import {
   useRefreshUserMutation,
 } from 'redux/slices/usersAPISlice';
 
-import { GlobalStyle, ToastContainer, lightTheme, darkTheme } from 'utils';
+import {
+  GlobalStyle,
+  ToastContainer,
+  theme as lightTheme,
+  darkTheme,
+} from 'utils';
 import { ROUTES } from 'utils/appKeys';
 
 import { RestrictedRoute } from './ProtectedRoute';

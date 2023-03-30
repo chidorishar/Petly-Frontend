@@ -91,10 +91,6 @@ export const theme = {
   },
 };
 
-export const lightTheme = {
-  body: '#fff',
-};
-
 export const darkTheme = {
   ...theme,
   body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
