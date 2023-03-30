@@ -3,7 +3,6 @@
  */
 
 import * as Yup from 'yup';
-// import i18n from 'i18next';
 
 /* const passwordRegexp =
   /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()-_/#:;<>])[A-Za-z\d@$!%*?&]/; */
@@ -13,12 +12,12 @@ const emailRegexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
 
 const passwordSchema = Yup.string()
-  .required('Password is a required field')
-  .min(8, 'Password must be at least 8 characters')
-  .matches(/[0-9]/, 'Password requires a number')
-  .matches(/[a-z]/, 'Password requires a lowercase letter')
-  .matches(/[A-Z]/, 'Password requires an uppercase letter')
-  .matches(/[^\w]/, 'Password requires a symbol');
+  .required('validation.requiredPass')
+  .min(8, 'validation.passMin')
+  .matches(/[0-9]/, 'validation.passNumber')
+  .matches(/[a-z]/, 'validation.passLowercase')
+  .matches(/[A-Z]/, 'validation.passUppercase')
+  .matches(/[^\w]/, 'validation.passSymbol');
 /* .required('Password is required')
   .min(7, 'Must be at least 7 characters long')
   .max(32, 'Must be at most 32 characters long')
@@ -28,12 +27,12 @@ const passwordSchema = Yup.string()
   ); */
 
 const emailSchema = Yup.string()
-  .email('Email is invalid')
-  .matches(emailRegexp, 'Email is invalid')
-  .required('Email is required');
+  .email('validation.invalidEmail')
+  .matches(emailRegexp, 'validation.invalidEmail')
+  .required('validation.requiredEmail');
 
 const phoneSchema = Yup.string()
-  .required('Mobile phone is required')
-  .matches(phoneRegexp, 'Phone number is invalid');
+  .required('validation.requiredPhone')
+  .matches(phoneRegexp, 'validation.phoneInvalid');
 
 export { passwordSchema, emailSchema, phoneSchema };

@@ -47,7 +47,7 @@ export const ModalNotice = ({
     };
   }, []);
   const showNotAuthNotification = () => {
-    toast.error('You should register to get access to favorites');
+    toast.error(t('notification.notRegistered'));
   };
 
   const {

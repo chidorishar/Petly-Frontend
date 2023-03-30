@@ -19,12 +19,16 @@ import { useTranslation } from 'react-i18next';
 async function deletePetFromList(petId) {
   let axResponse = null;
 
+  const { t } = useTranslation();
+
   try {
     axResponse = await axios.delete(`/api/users/pets/${petId}`);
   } catch ({ response }) {
     console.log(response.status);
     toast.error(
-      response.status === 400 ? 'Unauthorized!' : 'Something went wrong'
+      response.status === 400
+        ? t('notification.Unauthorized')
+        : t('notification.someWrong')
     );
   }
 
@@ -36,7 +40,7 @@ export const UserPetsList = ({ pets, onPetDeleted }) => {
     const resp = await deletePetFromList(id);
 
     if (resp) {
-      toast.success(`Pet deleted`);
+      toast.success('notification.petDel');
       onPetDeleted();
     }
   };
