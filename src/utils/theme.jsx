@@ -1,30 +1,62 @@
+const baseColors = {
+  accent: '#F59256',
+  accentSecondary: '#3091EB',
+
+  accentSuccess: '#3cbc81',
+  accentError: '#e2001a',
+
+  quinary: '#111321',
+  septenary: '#181C27',
+  octonary: '#535353',
+  nonary: '#b33232',
+  denary: '#383a4d',
+  undenary: '#300303',
+
+  black: '#000',
+  darkMain: '#111111',
+
+  white: '#fff',
+  whiteSecondary: '#FDF7F2',
+
+  darkGradient:
+    'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)',
+};
+
 export const theme = {
   borders: {
     primaryBtn: '2px solid',
     inputModal: '1px solid',
   },
   colors: {
-    body: '#FDF7F2',
-    accent: '#F59256',
-    mainBackground: '#FDF7F2',
-    mainBackgroundDark: '#300303',
-    secondaryBackground: '#FFFFFF',
-    heading: '#111111',
-    searchText: '#535353',
+    body: baseColors.darkGradient, //'#383a4d',
+    accent: baseColors.accent,
+
+    accentedTextLight: baseColors.accent,
+    heading: baseColors.darkMain,
+    inputText: 'rgba(17, 17, 17, 0.6)',
     navText: '#181C27',
     newsText: '#111321',
-    inputText: 'rgba(17, 17, 17, 0.6)',
-    black: '#000000',
-    link: '#3091EB',
+    searchText: '#535353',
+    textLight: baseColors.white,
+
+    accentedBackgroundLight: baseColors.whiteSecondary,
+    mainBackground: baseColors.whiteSecondary,
+    mainBackgroundWithGradient: baseColors.whiteSecondary,
+    mainBackgroundWithTransp: baseColors.whiteSecondary,
+    mainBackgroundDark: '#300303',
+    secondaryBackground: baseColors.white,
+
+    black: baseColors.black,
+    link: baseColors.accentSecondary,
     backdrop: ' #11111199',
-    placeholder: '#1b1b1b99',
+    placeholder: '#b3323299',
     hoverBtn: '#FF6101',
-    input: '#FDF7F2',
+    input: baseColors.whiteSecondary,
     shadowCard: 'rgba(49, 21, 4, 0.07)',
     inputModal: 'rgba(245, 146, 86, 0.5)',
-    success: '#3cbc81',
-    warning: '#e2001a',
-    darkMain: '#000',
+    success: baseColors.accentSuccess,
+    warning: baseColors.accentError,
+    darkMain: baseColors.black,
   },
   fontSizes: {
     xs: '12px',
@@ -94,12 +126,17 @@ export const theme = {
 
 export const darkTheme = {
   ...theme,
-  body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
+
   colors: {
     ...theme.colors,
-    body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
-    secondaryBackground: theme.colors.searchText,
-    heading: theme.colors.secondaryBackground,
-    navText: theme.colors.mainBackground,
+
+    accentedTextLight: baseColors.white,
+    heading: baseColors.white,
+    navText: baseColors.whiteSecondary,
+
+    accentedBackgroundLight: baseColors.accent,
+    mainBackgroundWithGradient: baseColors.darkGradient,
+    mainBackgroundWithTransp: 'transparent',
+    secondaryBackground: baseColors.septenary,
   },
 };
