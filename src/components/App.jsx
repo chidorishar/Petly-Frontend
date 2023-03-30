@@ -66,41 +66,39 @@ export const App = () => {
                 {/* HOMEPAGE */}
                 <Route index element={<HomePage />} />
 
-                {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-
-                <Route
-                  path={ROUTES.LOGIN}
-                  element={
-                    <RestrictedRoute
-                      redirectTo={ROUTES.USERPAGE}
-                      component={<LoginPage />}
-                    />
-                  }
-                />
-                <Route
-                  path={ROUTES.REGISTER}
-                  element={
-                    <RestrictedRoute
-                      redirectTo={ROUTES.USERPAGE}
-                      component={<RegisterPage />}
-                    />
-                  }
-                />
-                <Route
-                  path={ROUTES.USERPAGE}
-                  element={
-                    <PrivateRoute redirectTo="/" component={<UserPage />} />
-                  }
-                />
-                <Route path={ROUTES.NEWS} element={<NewsPage />} />
-                <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-                <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
-              </>
-            )}
-          </Route>
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </ThemeProvider>
+              {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+              <Route
+                path={ROUTES.LOGIN}
+                element={
+                  <RestrictedRoute
+                    redirectTo={ROUTES.USERPAGE}
+                    component={<LoginPage />}
+                  />
+                }
+              />
+              <Route
+                path={ROUTES.REGISTER}
+                element={
+                  <RestrictedRoute
+                    redirectTo={ROUTES.USERPAGE}
+                    component={<RegisterPage />}
+                  />
+                }
+              />
+              <Route
+                path={ROUTES.USERPAGE}
+                element={
+                  <PrivateRoute redirectTo="/" component={<UserPage />} />
+                }
+              />
+              <Route path={ROUTES.NEWS} element={<NewsPage />} />
+              <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+              <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
+          )}
+        </Route>
+      </Routes>
     </>
   );
 };

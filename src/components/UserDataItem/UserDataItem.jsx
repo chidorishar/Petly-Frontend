@@ -14,7 +14,7 @@ import { FaCheck } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 import { BACKEND_BASE_URL, BACKEND_ENDPOINTS } from 'utils/appKeys';
 import { dateConverter } from 'utils';
-
+import i18n from 'i18next';
 const updateUserDataInBD = async dataObject => {
   return await axios.patch(
     `${BACKEND_BASE_URL}/api/${BACKEND_ENDPOINTS.UPDATE_USER_INFO}`,
@@ -38,22 +38,23 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
   );
   const [phone, setPhone] = useState(userPhone);
   const [location, setLocation] = useState(userLocation);
+
   const elementsData = {
     name: {
       id: 0,
       name: 'name',
-      text: 'Name:',
+      text: i18n.t('user.name'),
       value: name,
-      placeholder: 'Your name',
+      placeholder: i18n.t('user.namePl'),
       type: 'text',
-      pattern: /^[a-zA-Z0-9_]{3,16}$/,
-      initialValue: name,
+      pattern: /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
+      initialValue: userName,
       changeValueMethod: setName,
     },
     email: {
       id: 1,
       name: 'email',
-      text: 'Email:',
+      text: i18n.t('user.email'),
       value: email,
       placeholder: 'user@email.com',
       type: 'email',
@@ -64,7 +65,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     birthday: {
       id: 2,
       name: 'birthday',
-      text: 'Birthday:',
+      text: i18n.t('user.birthday'),
       value: birthday,
       placeholder: '01.01.2023',
       type: 'text',
@@ -75,7 +76,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     phone: {
       id: 3,
       name: 'phone',
-      text: 'Phone:',
+      text: i18n.t('user.phone'),
       value: phone,
       placeholder: '+380XXXXXXXXX',
       type: 'text',
@@ -86,11 +87,12 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     location: {
       id: 4,
       name: 'location',
-      text: 'City:',
+      text: i18n.t('user.city'),
       value: location,
-      placeholder: 'Brovary, Kiev',
+      placeholder: i18n.t('user.cityPl'),
       type: 'text',
-      pattern: /^[A-Z][a-z]+[,][ ][A-Z][a-z]+$/,
+      pattern:
+        /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F]+[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+){1}, ([-'a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F`]+){2}$/,
       initialValue: userLocation,
       changeValueMethod: setLocation,
     },
@@ -122,6 +124,12 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     }
   };
 
+  function resetState() {
+    setIsInputDataNotValid(false);
+    setIsEditing(false);
+    setCurrEditedInputName(null);
+  }
+
   const handleInputChange = e => {
     const { name, value } = e.target;
     const currElement = elementsData[name];
@@ -148,8 +156,10 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
     //reset current input value if input has invalid data
     if (isInputDataNotValid) {
       currentElement.changeValueMethod(currElInitialValue);
+      resetState();
     } else if (isInputContentChanged) {
       updateUserData({ [currEditedInputName]: currentElement.value });
+      resetState();
     }
 
     // if clicked on the same input's edit button
@@ -165,9 +175,25 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
 
   /** handle escape key press */
   const handleKeyDown = event => {
+    const currElement = elementsData[currEditedInputName];
+    if (
+      (event.code === 'Enter' && isInputDataNotValid) ||
+      (event.code === 'NumpadEnter' && isInputDataNotValid)
+    ) {
+      currElement.changeValueMethod(currElement.initialValue);
+      resetState();
+    } else if (
+      (event.code === 'Enter' && !isInputDataNotValid) ||
+      (event.code === 'NumpadEnter' && !isInputDataNotValid)
+    ) {
+      if (currElement.initialValue !== currElement.value) {
+        updateUserData({ [currElement.name]: currElement.value });
+      }
+
+      resetState();
+    }
     if (event.code !== 'Escape' || !currEditedInputName) return;
 
-    const currElement = elementsData[currEditedInputName];
     if (isInputDataNotValid) {
       currElement.changeValueMethod(currElement.initialValue);
     } else if (currElement.initialValue !== currElement.value)

@@ -6,8 +6,9 @@ import { RxCross1 } from 'react-icons/rx';
 export const Overlay = styled.div`
   z-index: 300;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
   width: 100%;
   display: flex;
@@ -25,8 +26,9 @@ export const Overlay = styled.div`
 
 export const Modal = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  /* display: flex;
+  flex-direction: column; */
   align-items: center;
   justify-content: center;
   padding: 40px 20px 40px 20px;
@@ -37,7 +39,11 @@ export const Modal = styled.div`
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 608px;
-    padding: 40px 80px 40px 80px;
+    padding: 40px 80px;
+    border-radius: ${p => p.theme.radii.mainBorderRadius};
+  }
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
     border-radius: ${p => p.theme.radii.mainBorderRadius};
   }
 `;
@@ -254,6 +260,8 @@ export const ModalButton = styled.button`
 
 export const ModalButtonDown = styled(ModalButton)`
   margin-top: 12px;
+  background: ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.secondaryBackground};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-top: 0px;
@@ -348,6 +356,7 @@ export const ImgPet = styled.img`
 `;
 
 export const ModalTitle = styled.p`
+  text-align: center;
   margin: 0 0 28px 0;
   font-size: ${p => p.theme.fontSizes.ml};
   font-weight: ${p => p.theme.fontWeights.heading};

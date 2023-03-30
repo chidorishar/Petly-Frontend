@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { toast } from 'react-toastify';
 // import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useTranslation } from 'react-i18next';
 
 import {
   Overlay,
@@ -188,6 +189,8 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
     />,
   ];
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Overlay onClick={handleOverlayClick}>
@@ -195,7 +198,7 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
           <CrossButton onClick={handleCloseModal}>
             <Icon />
           </CrossButton>
-          <ModalTitle>Add pet</ModalTitle>
+          <ModalTitle>{t('notices.add')}</ModalTitle>
           {steps[currentStep]}
         </Modal>
       </Overlay>
@@ -259,6 +262,8 @@ const StepOne = forwardRef(({ next, cancel, data }, ref) => {
   };
   const formRef = useRef();
 
+  const { t } = useTranslation();
+
   return (
     <Formik
       validationSchema={validationAddPetOneStep}
@@ -270,18 +275,22 @@ const StepOne = forwardRef(({ next, cancel, data }, ref) => {
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <InputWrapper>
             <FormLabel htmlFor="name" ref={ref}>
-              Name pet
-              <Field type="text" name="name" placeholder="Type name pet" />
+              {t('modal.name')}
+              <Field
+                type="text"
+                name="name"
+                placeholder={t('userModal.namePl')}
+              />
               <FormError component="div" name="name" />
             </FormLabel>
 
             <FormLabelCentre htmlFor="birthday">
-              Date of birthday
+              {t('modal.birth')}
               <DatePickerField
                 id="birthday"
                 name="birthday"
                 value={values.birthday}
-                placeholder="Type date of birthday"
+                placeholder={t('userModal.birth')}
                 onChange={date => setFieldValue('birthday', date)}
                 onBlur={handleBlur}
                 utcOffset={0}
@@ -291,17 +300,23 @@ const StepOne = forwardRef(({ next, cancel, data }, ref) => {
             </FormLabelCentre>
 
             <FormLabel htmlFor="breed">
-              Breed
-              <Field type="text" name="breed" placeholder="Type breed" />
+              {t('modal.breed')}
+              <Field
+                type="text"
+                name="breed"
+                placeholder={t('userModal.breedPl')}
+              />
               <FormError name="breed" />
             </FormLabel>
           </InputWrapper>
 
           <ButtonWrapper>
             <ModalButton type="button" onClick={() => cancel(values)}>
-              Cancel
+              {t('userModal.canc')}
             </ModalButton>
-            <ModalButtonDown type="submit">Next</ModalButtonDown>
+            <ModalButtonDown type="submit">
+              {t('userModal.next')}
+            </ModalButtonDown>
           </ButtonWrapper>
         </Form>
       )}
@@ -409,6 +424,8 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
     setSubmitting(false);
   };
 
+  const { t } = useTranslation();
+
   return (
     <Formik
       validationSchema={validationAddPetTwoStep}
@@ -421,7 +438,7 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <InputWrapper>
             <FormLabelFoto htmlFor="photo">
-              Add photo and some comments
+              {t('userModal.addPhoto')}
               <FileInput
                 onChange={e => {
                   handleFileChange(e);
@@ -438,11 +455,11 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
             <FormError name="photo" />
 
             <FormLabelComment htmlFor="comment">
-              <Comment>Comments</Comment>
+              <Comment>{t('userModal.petComm')}</Comment>
               <FieldComment
                 type="textarea"
                 name="comment"
-                placeholder="Type comments"
+                placeholder={t('modal.comm')}
                 value={data.comment}
                 onChange={handleCommentChange}
               />
@@ -452,10 +469,10 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
 
           <ButtonWrapperTwo>
             <ModalButton type="button" onClick={() => prev(values)}>
-              Back
+              {t('modal.back')}
             </ModalButton>
             <ModalButtonDown type="submit" onClick={() => resetForm()}>
-              Done
+              {t('modal.done')}
             </ModalButtonDown>
           </ButtonWrapperTwo>
           <ResetButton></ResetButton>

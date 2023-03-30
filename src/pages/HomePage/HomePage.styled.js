@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
+import { Container } from 'components/common';
+
 import { BackgroundImageStyled } from 'components/common';
+
+export const SectionContainer = styled(Container)`
+  position: relative;
+  pointer-events: none;
+`;
 
 export const Heading = styled.h1`
   font-weight: 500;
@@ -30,6 +37,9 @@ export const Section = styled.section`
   }
 
   @media ${p => p.theme.breakpoints.desktop.media} {
+    overflow: hidden;
+    height: calc(100vh - 64px);
+
     padding-top: 59px;
     padding-bottom: 408px;
   }
@@ -57,7 +67,7 @@ export const WavesBackground = styled(BackgroundImageStyled)`
   left: 0;
   right: 0;
 
-  height: calc(100vh - 125px);
+  height: calc(100vh - 120px);
   width: 100%;
   margin: 0 auto;
 

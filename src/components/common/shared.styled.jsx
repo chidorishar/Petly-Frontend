@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
 
+import { Container } from 'components/common';
+
 export const activeAccentedButton = ({ theme, bgColor, hoverColor }) => css`
   border: ${theme.borders.small};
 
@@ -80,4 +82,10 @@ export const InputCommon = styled.input`
   margin-top: ${p => p.theme.space[1]}px;
   padding: ${p => p.theme.space[1]}px;
   border-radius: ${p => p.theme.radii.normal};
+`;
+
+export const FormContainer = styled(Container)`
+  position: relative;
+
+  height: 100%;
 `;

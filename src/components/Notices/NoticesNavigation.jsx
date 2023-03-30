@@ -10,26 +10,28 @@ import {
   Span,
 } from './NoticesNavigation.styled';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 export const NoticesNavigation = ({ onCategoryClick }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
   const [selectedButton, setSelectedButton] = useState('sell');
-
   const nameCategoryUnAuth = [
-    { type: 'sell', text: 'sell' },
-    { type: 'lostFound', text: 'lost found' },
-    { type: 'forFree', text: 'in good hands' },
+    { type: 'sell', text: i18n.t('notices.sell') },
+    { type: 'lostFound', text: i18n.t('notices.lost') },
+    { type: 'forFree', text: i18n.t('notices.free') },
   ];
 
   const nameCategoryAuth = [
-    { type: 'favorites', text: 'favorite ads' },
-    { type: 'own', text: 'my ads' },
+    { type: 'favorites', text: i18n.t('notices.fav') },
+    { type: 'own', text: i18n.t('notices.own') },
   ];
 
   const handleClick = buttonType => {
     setSelectedButton(buttonType);
     onCategoryClick(buttonType);
   };
+  const { t } = useTranslation();
 
   return (
     <CommonWrapper>
@@ -63,7 +65,7 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
       </Wrapper>
       <Wrapper>
         <AddPetBtn>
-          <Span>Add pet</Span>
+          <Span>{t('notices.add')}</Span>
           <Icon />
         </AddPetBtn>
       </Wrapper>

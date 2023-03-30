@@ -12,6 +12,7 @@ export const Heart = () => {
       href="https://happypaw.ua/ua/assistance"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="heart"
     >
       <HeartImgStyled
         srcSetWebp={`${heartWEBP} 1x, ${heart2xWEBP} 2x`}

@@ -178,26 +178,42 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
   justify-content: center;
   align-items: center;
   color: #fff;
+
+  stroke: ${props => props.theme.colors.accent};
+  fill: ${props =>
+    props.$favorite
+      ? props.theme.colors.accent
+      : props.theme.colors.secondaryBackground};
+
+  &:focus,
+  &:hover {
+    outline: none;
+
+    background-color: ${({ theme }) => theme.colors.accent};
+    stroke: ${props =>
+      props.$favorite
+        ? props.theme.colors.warning + '66'
+        : props.theme.colors.accent};
+    fill: ${props =>
+      props.$favorite
+        ? props.theme.colors.warning + '66'
+        : props.theme.colors.secondaryBackground};
+  }
 `;
 
 export const FavoriteIcon = styled(AiFillHeart)`
-  stroke: ${({ theme: { colors } }) => colors.accent};
+  fill: inherit;
+  stroke: inherit;
   stroke-width: 90px;
 
   transition: stroke ${({ theme: { transitions } }) => transitions.normal};
   animation: ${props =>
     props.$favorite ? 'beat 0.8s infinite alternate' : 'none'};
 
-  &:hover,
-  &:focus {
-    stroke: ${({ theme: { colors } }) => colors.secondaryBackground};
-    fill: ${({ theme: { colors } }) => colors.accent};
-  }
-
-  fill: ${props =>
+  /* fill: ${props =>
     props.$favorite
       ? props.theme.colors.accent
-      : props.theme.colors.secondaryBackground};
+      : props.theme.colors.secondaryBackground}; */
 
   @keyframes beat {
     to {

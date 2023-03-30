@@ -8,7 +8,6 @@ export const Title = styled.h1`
   margin-left: auto;
   margin-top: 42px;
 
-  font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -24,14 +23,17 @@ export const Title = styled.h1`
     font-weight: 700;
     font-size: 48px;
     line-height: 66px;
+    /* line-height: 1; */
     margin-top: 88px;
+    white-space: nowrap;
   }
   @media screen and (min-width: 1280px) {
     width: 492px;
     height: 66px;
     font-weight: 700;
     font-size: 48px;
-    line-height: 66px;
+    /* line-height: 1; */
     margin-top: 70px;
+    white-space: nowrap;
   }
 `;

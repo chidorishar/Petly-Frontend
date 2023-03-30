@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import EllipsisText from 'react-ellipsis-text';
+import { useTranslation } from 'react-i18next';
 
 import {
   SponsorLink,
@@ -39,6 +40,8 @@ export const FriendsItem = ({
       return { day: week[index], ...day };
     });
 
+  const { t } = useTranslation();
+
   return (
     <SponsorItem>
       <SponsorLink href={siteUrl} target="_blank">
@@ -59,7 +62,7 @@ export const FriendsItem = ({
           >
             {workDays === null || workDays === undefined ? (
               <>
-                <Text>Time: </Text>
+                <Text> {t('friends.time')}</Text>
                 <Text>{noDataPlaceholder}</Text>
               </>
             ) : (
@@ -67,15 +70,15 @@ export const FriendsItem = ({
                 {' '}
                 {workDays[0]?.isOpen ? (
                   <>
-                    <Text>Time:</Text>
+                    <Text>{t('friends.time')}</Text>
                     <Time>
                       {workDays[0].from}-{workDays[0].to}
                     </Time>
                   </>
                 ) : (
                   <>
-                    <Text>Time:</Text>
-                    <Time>Closed</Time>
+                    <Text>{t('friends.time')}</Text>
+                    <Time>{t('friends.closed')}</Time>
                   </>
                 )}
                 {isVisible || <TimeTable shedule={newWorkDays} />}
@@ -83,7 +86,7 @@ export const FriendsItem = ({
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Adress:</Text>
+            <Text>{t('friends.address')}</Text>
             {mapUrl ? (
               <ContactLink href={mapUrl} target="_blank">
                 <EllipsisText text={adress} length={maxSymbolsInLine} />
@@ -93,7 +96,7 @@ export const FriendsItem = ({
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Email:</Text>
+            <Text>{t('friends.email')}</Text>
             {email ? (
               <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
             ) : (
@@ -101,7 +104,7 @@ export const FriendsItem = ({
             )}
           </TextWrapper>
           <TextWrapper>
-            <Text>Phone:</Text>
+            <Text>{t('friends.phone')}</Text>
             {phone ? (
               <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
             ) : (

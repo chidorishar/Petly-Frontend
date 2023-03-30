@@ -1,9 +1,10 @@
 import * as Yup from 'yup';
+import i18n from 'i18next';
 
 const loginschema = Yup.object().shape({
   email: Yup.string()
-    .required('Email is a required field')
-    .email('Enter a valid Email'),
+    .required(i18n.t('validation.requiredEmail'))
+    .email(i18n.t('validation.invalidEmail')),
   password: Yup.string()
     .required('Password is a required field')
     .min(8, 'Password must be at least 8 characters')
