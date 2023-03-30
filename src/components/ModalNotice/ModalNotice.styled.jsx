@@ -13,10 +13,14 @@ export const BackDrop = styled(Box)`
   left: 0;
 
   display: flex;
-  justify-content: center;
   align-items: center;
   opacity: 0;
   pointer-events: none;
+
+  justify-content: flex-start;
+  flex-shrink: 0;
+  overflow: hidden;
+  overflow-y: auto;
 
   overflow: auto;
 
@@ -25,6 +29,7 @@ export const BackDrop = styled(Box)`
 `;
 export const ModalBox = styled(Box)`
   padding: 60px 20px 40px;
+  margin: auto;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   background-color: ${p => p.theme.colors.secondaryBackground};
   max-width: 280px;

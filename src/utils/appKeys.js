@@ -35,6 +35,6 @@ const BACKEND_ENDPOINTS = {
 
 export const BACKEND_BASE_URL =
   // eslint-disable-next-line no-undef
-  process.env.REACT_APP_BACKEND_BASE_URL ?? 'http://localhost:4000';
+  process.env.REACT_APP_BACKEND_BASE_URL ?? 'http://localhost:3000';
 
 export { ROUTES, BACKEND_ENDPOINTS, CACHE_TAGS };

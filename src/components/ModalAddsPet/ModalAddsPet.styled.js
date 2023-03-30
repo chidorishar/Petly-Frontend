@@ -12,9 +12,15 @@ export const Overlay = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* opacity: 0; */
   padding: 20px;
   background: ${p => p.theme.colors.inputText};
+  transition: all 2s ${p => p.theme.transitions.normal};
 `;
 
 export const Modal = styled.div`
@@ -24,6 +30,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
   padding: 40px 20px 40px 20px;
+  margin: auto;
   min-width: 280px;
   background: ${p => p.theme.colors.secondaryBackground};
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
