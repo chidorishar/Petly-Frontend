@@ -30,8 +30,8 @@ export const UserInfoContainer = styled.div`
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 704px;
     margin-bottom: 20px;
-    // position: relative;
   }
+
   @media ${p => p.theme.breakpoints.desktop.media} {
     width: 411px;
     margin-right: 16px;

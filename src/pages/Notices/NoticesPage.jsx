@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import { selectUserAccessToken } from 'redux/selectors';
 import { deleteNotice, getNoticeDetailedInfo } from 'components/Notices/api';
@@ -12,6 +13,7 @@ import { NoticesSearch } from 'components/Notices/NoticesSearch';
 import { NoticesTitle } from 'components/Notices/NoticesTitle';
 import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
+import { NotFound, NotFoundBox } from 'pages/News/NewsPage.styled';
 
 import { Container, Modal } from 'components/common';
 import { AddNoticeForm, ModalNotice } from 'components';
@@ -26,10 +28,13 @@ export const NoticesPage = () => {
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('sell');
   const [notices, setNotices] = useState([]);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddNoticeModalOpen, setIsAddNoticeModalOpen] = useState(false);
   const [noticeDetailedInfo, setNoticeDetailedInfo] = useState({});
+
+  const { t } = useTranslation();
 
   const fetchNotices = async (category, query) => {
     try {
@@ -37,11 +42,13 @@ export const NoticesPage = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
       else axios.defaults.headers.common['Authorization'] = null;
 
+      setIsRefreshing(true);
       const noticesArray = await getNotices(category, query);
       setNotices(noticesArray);
     } catch (error) {
       console.log(error.message);
     }
+    setIsRefreshing(false);
   };
 
   useEffect(() => {
@@ -136,6 +143,11 @@ export const NoticesPage = () => {
         onUpdateNoticeStatus={handleSubmit}
         onLearnMoreClick={handleLearnMoreClick}
       />
+      {notices.length === 0 && !isRefreshing && (
+        <NotFoundBox>
+          <NotFound>{t('error.notfound')}</NotFound>
+        </NotFoundBox>
+      )}
       {isModalOpen && (
         <ModalNotice
           noticeData={noticeDetailedInfo}

@@ -66,6 +66,7 @@ export const AddPetBtn = styled.button`
 
     width: 44px;
     height: 44px;
+    padding-top: 2px;
     margin-left: 12px;
 
     transform: none;
@@ -93,7 +94,7 @@ export const Icon = styled(IoAddOutline)`
   height: 21px;
   color: #fff;
   top: 20px;
-  right: 27px;
+  right: 29px;
 
   @media screen and (min-width: 768px) {
     position: none;
