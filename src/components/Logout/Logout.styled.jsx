@@ -10,6 +10,8 @@ export const LogOutBtn = styled.button`
   background-color: transparent;
   color: rgba(17, 17, 17, 0.6);
 
+  transition: color ${p => p.theme.transitions.normal};
+
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: 16px;
   line-height: 1.37;
@@ -17,6 +19,10 @@ export const LogOutBtn = styled.button`
 
   @media ${p => p.theme.breakpoints.mobileOnly.media} {
     margin-left: auto;
+  }
+
+  &:hover {
+    color: ${p => p.theme.colors.hoverBtn};
   }
 `;
 
@@ -26,5 +32,11 @@ export const LogoutIcon = styled(IoLogOutOutline)`
   margin-right: 6px;
   opacity: 0.6;
 
-  color: #f59256;
+  color: ${p => p.theme.colors.accent};
+
+  transition: color ${p => p.theme.transitions.normal};
+
+  ${LogOutBtn}:hover & {
+    color: ${p => p.theme.colors.hoverBtn};
+  }
 `;
