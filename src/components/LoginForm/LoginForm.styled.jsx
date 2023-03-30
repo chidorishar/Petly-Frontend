@@ -10,19 +10,27 @@ export const ContainerCardCommon = styled.div`
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
   @media ${p => p.theme.breakpoints.desktop.media} {
-    margin-top: 81px;
-    margin-bottom: 17vw;
+    max-width: 618px;
+    width: 100%;
   }
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin-top: 204px;
-    margin-bottom: 35vw;
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+
+    max-height: 524px;
+    height: 80vh;
+    max-width: 608px;
+    width: 100%;
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     width: 100%;
     margin: 0;
-    margin-top: 54px;
-    margin-bottom: 207px;
+    padding-top: 54px;
+    /* margin-bottom: 207px; */
     padding: 0;
     border: none;
     border-radius: 22px;

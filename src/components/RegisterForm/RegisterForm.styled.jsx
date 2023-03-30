@@ -3,28 +3,16 @@ import styled from 'styled-components';
 
 const FormWrapper = styled.div`
   position: relative;
-  width: 100%;
 
-  @media ${p => p.theme.breakpoints.mobile.media} {
-    margin-top: 42px;
-    margin-bottom: 107px;
-  }
-
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin-top: 150px;
-    margin-bottom: 201px;
-  }
-
-  @media ${p => p.theme.breakpoints.desktop.media} {
-    margin-top: 44px;
-    margin-bottom: 69px;
-  }
+  height: 100%;
 `;
 
 const Wrapper = styled.div`
   position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
 
   display: flex;
   flex-direction: column;
@@ -38,11 +26,13 @@ const Wrapper = styled.div`
   }
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    max-height: 650px;
+    height: 80vh;
+    padding: 60px 80px;
+
     background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
-
-    padding: 60px 80px;
   }
 
   @media ${p => p.theme.breakpoints.tablet.media} {
@@ -51,10 +41,16 @@ const Wrapper = styled.div`
 
   @media ${p => p.theme.breakpoints.desktop.media} {
     width: 618px;
+    max-height: 609px;
   }
 `;
 
 const WrapperTwo = styled(Wrapper)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow-y: auto;
+
   transition: opacity 0.5s ease, transform 0.5s ease;
 
   @media ${p => p.theme.breakpoints.desktop.media} {
@@ -74,7 +70,7 @@ const WrapperTwo = styled(Wrapper)`
     }
   }};
 
-  transform: translateX(
+  transform: translate(
     calc(
       -50% + ${({ state }) => {
           switch (state) {
@@ -86,7 +82,8 @@ const WrapperTwo = styled(Wrapper)`
               return 0;
           }
         }}px
-    )
+    ),
+    -50%
   );
 `;
 
