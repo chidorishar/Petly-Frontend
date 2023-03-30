@@ -179,14 +179,11 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
   align-items: center;
   color: #fff;
 
-  stroke: ${props =>
-    props.$favorite
-      ? props.theme.colors.warning + '66'
-      : props.theme.colors.accent};
+  stroke: ${props => props.theme.colors.accent};
   fill: ${props =>
     props.$favorite
-      ? props.theme.colors.warning + 'ba'
-      : props.theme.colors.accent};
+      ? props.theme.colors.accent
+      : props.theme.colors.secondaryBackground};
 
   &:focus,
   &:hover {

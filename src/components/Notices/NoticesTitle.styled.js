@@ -8,7 +8,6 @@ export const Title = styled.h1`
   margin-left: auto;
   margin-top: 42px;
 
-  font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
