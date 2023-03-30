@@ -103,6 +103,18 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
     }
   }, [isModalAddPetShown]);
 
+  useEffect(() => {
+    if (isModalAddPetShown) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalAddPetShown]);
+
   const handleCloseModal = () => {
     setShowModalAddPet(false);
     setModalStateInParent(false);

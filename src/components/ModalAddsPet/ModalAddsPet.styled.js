@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-// import { NavLink } from 'react-router-dom';
 import { Form as FormikForm, Field as FormikField } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
 
@@ -13,16 +12,19 @@ export const Overlay = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 20px;
   background: ${p => p.theme.colors.inputText};
+  transition: all 2s ${p => p.theme.transitions.normal};
 `;
 
 export const Modal = styled.div`
   position: relative;
   margin: 0 auto;
-  /* display: flex;
-  flex-direction: column; */
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
@@ -359,16 +361,3 @@ export const ModalTitle = styled.p`
     font-size: ${p => p.theme.fontSizes.lx};
   }
 `;
-
-// export const ModalContent = styled.div`
-//   max-width: 500px;
-//   width: 100%;
-// `;
-
-// export const ModalPortal = styled.div`
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   z-index: 100;
-// `;
