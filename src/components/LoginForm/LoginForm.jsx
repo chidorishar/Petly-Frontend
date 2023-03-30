@@ -26,6 +26,8 @@ import {
 export const LoginForm = () => {
   const [sendLoginRequest, { isSuccess }] = useLoginUserMutation();
 
+  const { t } = useTranslation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -39,7 +41,7 @@ export const LoginForm = () => {
           data: { user },
         } = await sendLoginRequest(values).unwrap();
 
-        toast.success(`Welcome back, ${user.name}!`);
+        toast.success(`${t('notification.welcome')}, ${user.name}!`);
       } catch (error) {
         toast.error(
           error.status === 400
@@ -81,8 +83,6 @@ export const LoginForm = () => {
       return currentColor;
     }
   };
-
-  const { t } = useTranslation();
 
   return (
     <ContainerCardCommon>
