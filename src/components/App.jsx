@@ -52,19 +52,18 @@ export const App = () => {
   };
 
   return (
-    <>
-      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <GlobalStyle />
-        <ToastContainer />
-        <button onClick={switchTheme}>Switch Theme</button>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            {isRefreshingUserData ? (
-              <Route index element={<Loader />} />
-            ) : (
-              <>
-                {/* HOMEPAGE */}
-                <Route index element={<HomePage />} />
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
+      <ToastContainer />
+      <button onClick={switchTheme}>Switch Theme</button>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          {isRefreshingUserData ? (
+            <Route index element={<Loader />} />
+          ) : (
+            <>
+              {/* HOMEPAGE */}
+              <Route index element={<HomePage />} />
 
               {/* ⏬ WRITE your PAGES below this comment ⏬*/}
               <Route
@@ -99,6 +98,6 @@ export const App = () => {
           )}
         </Route>
       </Routes>
-    </>
+    </ThemeProvider>
   );
 };
