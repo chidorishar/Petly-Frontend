@@ -108,7 +108,17 @@ export const Box = styled.ul`
 
 export const NotFound = styled.p`
   font-size: ${p => p.theme.fontSizes.nl};
-  color: red;
+  text-align: center;
+
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+
+  border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+
+  background-color: ${p => p.theme.colors.accent};
+  color: r ${p => p.theme.fontSizes.heading};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: 30px;
   }
@@ -116,5 +126,6 @@ export const NotFound = styled.p`
 export const NotFoundBox = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
 `;
