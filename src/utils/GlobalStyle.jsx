@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+
+html {
+  height: 100%;
+}
  
 body {
     margin: 0;
@@ -8,7 +12,6 @@ body {
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     
     background:  ${p => p.theme.body};
-    color: ${p => p.theme.textColor};
 
     &::-webkit-scrollbar {
     width: 0px;
@@ -36,32 +39,4 @@ table {
   text-indent: 0;
   border-color: inherit;
 }
-
-button {
-    color: ${p => p.theme.button.text};
-    border-color: ${p => p.theme.button.border};
-    background-color: ${p => p.theme.button.background};
-    
-   
-  :hover,
-  :focus {
-    color: ${p => p.theme.button.text};
-    border-color: ${p => p.theme.button.border};
-    background-color: ${p => p.theme.button.hoverBackground};
-    
-  }
-  }
-
-  p, h1, h2, h3 {
-    color: ${p => p.theme.textColor};
-  }
-
-
-
-
-
-
-
-
-
 `;

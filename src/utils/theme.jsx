@@ -93,22 +93,15 @@ export const theme = {
 
 export const lightTheme = {
   body: '#fff',
-  textColor: '#111111',
-  button: {
-    text: '#F59256',
-    background: '#FDF7F2',
-    hoverBackground: '#FF6101',
-    border: '#FF6101',
-  },
 };
 
 export const darkTheme = {
-  body: '#300303',
-  textColor: '#fff',
-  button: {
-    text: '#ffffff',
-    background: '#FF6101',
-    hoverBackground: '#FDF7F2',
-    border: '#FF6101',
+  ...theme,
+  body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
+  colors: {
+    ...theme.colors,
+    secondaryBackground: theme.colors.searchText,
+    heading: theme.colors.secondaryBackground,
+    navText: theme.colors.mainBackground,
   },
 };

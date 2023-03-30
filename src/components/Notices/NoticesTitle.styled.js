@@ -6,7 +6,6 @@ export const Title = styled.h1`
   height: 33px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 42px;
 
   font-style: normal;
   font-weight: 700;
@@ -15,7 +14,7 @@ export const Title = styled.h1`
   /* identical to box height */
 
   text-align: center;
-  color: #111111;
+  color: ${({ theme }) => theme.colors.heading};
 
   @media screen and (min-width: 768px) {
     width: 492px;
@@ -24,7 +23,6 @@ export const Title = styled.h1`
     font-size: 48px;
     line-height: 66px;
     /* line-height: 1; */
-    margin-top: 88px;
     white-space: nowrap;
   }
   @media screen and (min-width: 1280px) {
@@ -33,7 +31,6 @@ export const Title = styled.h1`
     font-weight: 700;
     font-size: 48px;
     /* line-height: 1; */
-    margin-top: 70px;
     white-space: nowrap;
   }
 `;
