@@ -5,7 +5,8 @@ import { NOTICE_CATEGORY, NOTICE_GENDER } from 'utils/validations';
 import * as Styled from './AddNoticeForm.styled';
 
 const StepTwo = ({ animationState, handleStepChange, refProp }) => {
-  const { values, handleChange, setFieldValue, errors } = useFormikContext();
+  const { values, handleChange, setFieldValue, errors, isSubmitting } =
+    useFormikContext();
 
   const handleSexChange = sex => () => {
     if (values.sex === sex) return;
@@ -85,7 +86,9 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
         <button type="button" onClick={handleStepChange}>
           Back
         </button>
-        <button type="submit">Done</button>
+        <button type="submit" disabled={isSubmitting}>
+          Done
+        </button>
       </Styled.ButtonsWrapper>
     </Styled.WrapperTwo>
   );
