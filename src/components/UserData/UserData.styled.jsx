@@ -25,6 +25,7 @@ export const UserImage = styled.img`
   border-radius: 50%;
   object-fit: contain;
   width: 233px;
+  height: 233px;
 `;
 
 export const EditPhotoLabel = styled.label`

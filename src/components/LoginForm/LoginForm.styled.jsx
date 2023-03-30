@@ -17,7 +17,7 @@ export const ContainerCardCommon = styled.div`
 
   text-align: center;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
-  background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
+  background-color: ${({ theme: { colors } }) => colors.ternaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
 
   transition: background-color ${({ theme }) => theme.transitions.normal};

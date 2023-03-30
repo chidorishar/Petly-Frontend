@@ -42,7 +42,7 @@ export const UserInfoContainer = styled.div`
 export const UserTitle = styled.p`
   margin-bottom: 18px;
 
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.heading};
 
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
@@ -52,8 +52,6 @@ export const UserTitle = styled.p`
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 40px;
-
-    color: ${p => p.theme.colors.heading};
 
     font-size: ${p => p.theme.fontSizes.mll};
   }

@@ -38,14 +38,22 @@ export const NameBox = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    position: relative;
+  }
 `;
 export const PetImg = styled.img`
+  flex-shrink: 0;
+
   width: 240px;
+  height: 240px;
   border-radius: ${({ theme: { radii } }) => radii.secondaryBorderRadius};
   margin-bottom: 20px;
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 161px;
+    height: 161px;
     display: block;
     margin-right: 32px;
     margin-bottom: 0;
@@ -80,36 +88,46 @@ export const PetInfo = styled.ul`
   }
 `;
 export const DeleteBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  padding: 0;
-
-  color: ${({ theme: { colors } }) => colors.inputText};
-  background-color: transparent;
   font-size: ${({ theme: { fontSizes } }) => fontSizes.nl};
 
-  transition: color ${({ theme: { transitions } }) => transitions.normal}};  
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  border-radius: ${({ theme: { radii } }) => radii.round};
+
+  color: ${({ theme: { colors } }) => colors.inputText};
+  background-color: ${({ theme: { colors } }) => colors.white};
+
+  transition: color ${({ theme: { transitions } }) => transitions.normal};
 
   &:focus,
   &:hover {
     outline: none;
-    background-color: transparent;
+
     color: ${({ theme: { colors } }) => colors.hoverBtn};
   }
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
-    position: absolute;
+    font-size: ${p => p.theme.fontSizes.ml};
+
     width: 44px;
     height: 44px;
-    font-size: ${p => p.theme.fontSizes.ml};
-    right: 0;
-    top: 0;
-    border-radius: ${({ theme: { radii } }) => radii.round};
+
     background-color: ${({ theme: { colors } }) => colors.mainBackground};
-    align-items: center;
+
     &:focus,
     &:hover {
-      background-color: ${({ theme: { colors } }) => colors.mainBackground};
       color: ${({ theme: { colors } }) => colors.hoverBtn};
+      background-color: ${({ theme: { colors } }) => colors.mainBackground};
     }
   }
 `;

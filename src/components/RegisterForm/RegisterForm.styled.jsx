@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   height: 80vh;
   gap: 40px;
 
-  background-color: ${p => p.theme.colors.secondaryBackground};
+  background-color: ${p => p.theme.colors.ternaryBackground};
 
   transition: background-color ${({ theme }) => theme.transitions.normal};
 
