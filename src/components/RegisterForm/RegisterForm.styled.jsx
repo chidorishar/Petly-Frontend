@@ -103,7 +103,7 @@ const Title = styled.h2`
     font-size: ${p => p.theme.fontSizes.lx};
   }
 
-  color: ${p => p.theme.colors.heading};
+  color: ${p => p.theme.colors.accentedTextDark};
 `;
 
 const InputWrapper = styled.div`
@@ -138,7 +138,7 @@ const ButtonWrapper = styled.div`
 const BottomText = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
-  color: ${p => p.theme.colors.inputText};
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 `;
 
 const BottomLink = styled(Link)`
@@ -161,12 +161,16 @@ export const Button = styled.button`
 
   background: ${p => (p.isLight ? 'transparent' : p.theme.colors.accent)};
   color: ${p =>
-    p.isLight ? p.theme.colors.darkMain : p.theme.colors.secondaryBackground};
+    p.isLight ? p.theme.colors.heading : p.theme.colors.secondaryBackground};
 
-  :hover,
-  :focus {
-    transition: transform 0.5s;
+  transition: color ${p => p.theme.transitions.normal};
+
+  &:hover,
+  &:focus {
+    /* transition: transform 0.5s; */
+    color: ${p => (p.isLight ? p.theme.colors.accent : p.theme.colors.heading)};
   }
+
   :hover:before {
     left: 100%;
   }

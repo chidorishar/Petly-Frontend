@@ -50,6 +50,7 @@ export const theme = {
 
     black: baseColors.black,
     darkMain: baseColors.darkMain,
+    white: baseColors.white,
     whiteSecondary: baseColors.whiteSecondary,
     link: baseColors.accentSecondary,
 

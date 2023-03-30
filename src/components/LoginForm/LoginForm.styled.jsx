@@ -45,7 +45,10 @@ export const ContainerCardCommon = styled.div`
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.lx};
-  color: ${({ theme: { colors } }) => colors.heading};
+  color: ${p => p.theme.colors.accentedTextDark};
+
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
@@ -168,7 +171,9 @@ export const Button = styled.button`
   }
 
   background: ${p => p.theme.colors.accent};
-  color: ${p => p.theme.colors.secondaryBackground};
+  color: ${p => p.theme.colors.white};
+
+  transition: transform 0.5s, color ${({ theme }) => theme.transitions.normal};
 
   position: relative;
   overflow-x: hidden;
@@ -176,7 +181,8 @@ export const Button = styled.button`
   :hover,
   :focus {
     transform: scale(1.05);
-    transition: transform 0.5s;
+
+    color: ${p => p.theme.colors.darkMain};
   }
   :hover:before {
     left: 100%;
@@ -207,7 +213,7 @@ export const Text = styled.p`
   margin: 0 auto;
   padding: 0;
 
-  color: ${({ theme: { colors } }) => colors.inputText};
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 `;
 
 export const Link = styled(NavLink)`
