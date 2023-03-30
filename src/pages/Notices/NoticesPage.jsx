@@ -15,8 +15,11 @@ import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList'
 
 import { Container, Modal } from 'components/common';
 import { AddNoticeForm, ModalNotice } from 'components';
+import { useAuth } from 'redux/hooks/getAuth';
 
 export const NoticesPage = () => {
+  const { isUserAuthorized } = useAuth();
+
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userToken = useSelector(selectUserAccessToken);
@@ -96,6 +99,11 @@ export const NoticesPage = () => {
   };
 
   const handleAddNoticeModalToggle = () => {
+    if (!isUserAuthorized) {
+      toast.error('You need to be logged in to add a notice');
+      return;
+    }
+
     setIsAddNoticeModalOpen(toggle => !toggle);
   };
 
