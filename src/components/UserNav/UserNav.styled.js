@@ -20,7 +20,7 @@ export const UserNavLink = styled(Link)`
   height: 44px;
   background: #f59256;
   border-radius: 40px;
-  font-family: ${p => p.theme.fonts.mainFamily};
+
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
