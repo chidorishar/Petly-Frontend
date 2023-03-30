@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import { NOTICE_CATEGORY, NOTICE_GENDER } from 'utils/validations';
 import * as Styled from './AddNoticeForm.styled';
+import { useTranslation } from 'react-i18next';
 
 const StepTwo = ({ animationState, handleStepChange, refProp }) => {
+  const { t } = useTranslation();
   const { values, handleChange, setFieldValue, errors, isSubmitting } =
     useFormikContext();
 
@@ -22,31 +24,31 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
   return (
     <Styled.WrapperTwo state={animationState} ref={refProp}>
       <Styled.ContentWrapper>
-        <Styled.Title>Add pet</Styled.Title>
-        <Styled.Subtitle>The sex:</Styled.Subtitle>
+        <Styled.Title>{t('notices.add')}</Styled.Title>
+        <Styled.Subtitle>{t('modal.sex')}</Styled.Subtitle>
         <Styled.OptionsWrapperTwo>
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.MALE)}
             // isActive={NOTICE_GENDER.MALE === value.sex}
           >
-            Male
+            {t('modal.m')}
           </Styled.SexButton>
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.FEMALE)}
             // isActive={NOTICE_GENDER.FEMALE === value.sex}
           >
-            Female
+            {t('modal.f')}
           </Styled.SexButton>
         </Styled.OptionsWrapperTwo>
         <div>
-          <Styled.Subtitle>Location</Styled.Subtitle>
+          <Styled.Subtitle>{t('modal.location')}</Styled.Subtitle>
           <Styled.InputCommon
             name="location"
             value={values.location}
             onChange={handleChange}
-            placeholder="Type location"
+            placeholder={t('modal.locationPl')}
             style={
               errors.location
                 ? { outlineColor: '#E2001A' }
@@ -73,7 +75,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
           </div>
         )}
         <div>
-          <Styled.Subtitle>Load the pet’s image:</Styled.Subtitle>
+          <Styled.Subtitle>{t('modal.img')}</Styled.Subtitle>
           <Styled.ContainerAddImage>
             <Styled.InputAddImage
               accept="image/*"
@@ -90,13 +92,13 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
           <Styled.TextMessage>{errors.image}</Styled.TextMessage>
         </div>
         <div>
-          <Styled.Subtitle>Comments</Styled.Subtitle>
+          <Styled.Subtitle>{t('userModal.petComm')}</Styled.Subtitle>
           <Styled.InputComments
             type="text"
             name="comments"
             value={values.comments}
             onChange={handleChange}
-            placeholder="Type comment"
+            placeholder={t('modal.comm')}
             style={
               errors.comments
                 ? { outlineColor: '#E2001A' }
@@ -108,10 +110,10 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
       </Styled.ContentWrapper>
       <Styled.ButtonsWrapper>
         <Styled.ModalButton type="button" onClick={handleStepChange}>
-          Back
+          {t('modal.back')}
         </Styled.ModalButton>
         <Styled.ModalButtonDown disabled={isSubmitting} type="submit">
-          Done
+          {t('modal.done')}
         </Styled.ModalButtonDown>
       </Styled.ButtonsWrapper>
     </Styled.WrapperTwo>

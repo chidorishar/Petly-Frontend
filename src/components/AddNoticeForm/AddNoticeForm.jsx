@@ -13,6 +13,7 @@ import {
   NOTICE_GENDER,
 } from 'utils/validations';
 import { postNotice } from 'components/Notices/api';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   category: NOTICE_CATEGORY.LOST_FOUND,
@@ -34,6 +35,8 @@ const AddNoticeForm = ({ handleClose }) => {
   const [formStep, setFormStep] = useState(minStep);
   const secondStepRef = useRef(null);
   const fiestStepRef = useRef(null);
+
+  const { t } = useTranslation();
 
   const handleStepIncrement = () => {
     if (formStep === maxStep) return;
@@ -67,12 +70,12 @@ const AddNoticeForm = ({ handleClose }) => {
     const resp = await postNotice(formData);
 
     if (resp.status === 201) {
-      toast.success('Notice added successfully!');
+      toast.success(t('notification.addNoticeSuccess'));
       handleClose();
       return;
     }
 
-    toast.error('Something has gone wrong! Try again');
+    toast.error(t('notification.someWrong'));
   };
 
   return (
