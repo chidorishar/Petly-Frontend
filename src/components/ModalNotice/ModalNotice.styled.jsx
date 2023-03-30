@@ -11,17 +11,23 @@ export const BackDrop = styled(Box)`
   background-color: ${p => p.theme.colors.backdrop};
   top: 0;
   left: 0;
-
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+
   pointer-events: none;
 
   overflow: auto;
 
   opacity: 1;
   pointer-events: all;
+  @media screen and (max-width: 767px) and (max-height: 900px) {
+    align-items: flex-start;
+  }
+  @media screen and (min-width: 767px) and (max-height: 550px) {
+    align-items: flex-start;
+  }
 `;
 export const ModalBox = styled(Box)`
   padding: 60px 20px 40px;
@@ -29,6 +35,7 @@ export const ModalBox = styled(Box)`
   background-color: ${p => p.theme.colors.secondaryBackground};
   max-width: 280px;
   height: min-content;
+  max-height: 920px;
   transform: scale(0.5);
 
   transform: scale(1);
@@ -36,6 +43,7 @@ export const ModalBox = styled(Box)`
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 704px;
     padding-top: 32px;
+    max-height: 548px;
     border-radius: ${p => p.theme.radii.mainBorderRadius};
   }
 `;
