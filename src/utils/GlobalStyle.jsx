@@ -3,16 +3,18 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
  
 body {
-  margin: 0;
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  
+  min-height: 100vh;
+  margin: 0;
     
   background-image:  ${p => p.theme.colors.body};
 
   &:after{
     content: '';
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: -2;
