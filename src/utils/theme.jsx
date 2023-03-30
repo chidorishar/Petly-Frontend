@@ -131,7 +131,7 @@ export const theme = {
   },
 };
 
-export const darkTheme = {
+const darkTheme = {
   ...theme,
 
   colors: {
@@ -151,4 +151,9 @@ export const darkTheme = {
     secondaryBackground: baseColors.septenary,
     ternaryBackground: baseColors.septenary,
   },
+};
+
+export const allThemes = {
+  dark: darkTheme,
+  light: theme,
 };
