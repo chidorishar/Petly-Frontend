@@ -22,73 +22,97 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
   return (
     <Styled.WrapperTwo state={animationState} ref={refProp}>
       <Styled.ContentWrapper>
-        <h2>Add pet</h2>
-        <Styled.OptionsWrapper>
-          <button
+        <Styled.Title>Add pet</Styled.Title>
+        <Styled.Subtitle>The sex:</Styled.Subtitle>
+        <Styled.OptionsWrapperTwo>
+          <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.MALE)}
             // isActive={NOTICE_GENDER.MALE === value.sex}
           >
             Male
-          </button>
-          <button
+          </Styled.SexButton>
+          <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.FEMALE)}
             // isActive={NOTICE_GENDER.FEMALE === value.sex}
           >
             Female
-          </button>
-        </Styled.OptionsWrapper>
+          </Styled.SexButton>
+        </Styled.OptionsWrapperTwo>
         <div>
-          <p>Location</p>
-          <input
+          <Styled.Subtitle>Location</Styled.Subtitle>
+          <Styled.InputCommon
             name="location"
             value={values.location}
             onChange={handleChange}
             placeholder="Type location"
+            style={
+              errors.location
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.location}</p>
+          <Styled.TextMessage>{errors.location}</Styled.TextMessage>
         </div>
         {values.category === NOTICE_CATEGORY.SELL && (
           <div>
-            <p>Price</p>
-            <input
+            <Styled.Subtitle>Price</Styled.Subtitle>
+            <Styled.InputCommon
               name="price"
               value={values.price}
               onChange={handleChange}
               placeholder="Type price"
+              style={
+                errors.price
+                  ? { outlineColor: '#E2001A' }
+                  : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+              }
             />
-            <p>{errors.price}</p>
+            <Styled.TextMessage>{errors.price}</Styled.TextMessage>
           </div>
         )}
         <div>
-          <p>Load the pet’s image:</p>
-          <input
-            accept="image/*"
-            name="image"
-            type="file"
-            onChange={handleFileChange}
-          />
-          <p>{errors.image}</p>
+          <Styled.Subtitle>Load the pet’s image:</Styled.Subtitle>
+          <Styled.ContainerAddImage>
+            <Styled.InputAddImage
+              accept="image/*"
+              name="image"
+              type="file"
+              onChange={handleFileChange}
+              style={
+                errors.image
+                  ? { outlineColor: '#E2001A' }
+                  : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+              }
+            />
+          </Styled.ContainerAddImage>
+          <Styled.TextMessage>{errors.image}</Styled.TextMessage>
         </div>
         <div>
-          <p>Comments</p>
-          <input
+          <Styled.Subtitle>Comments</Styled.Subtitle>
+          <Styled.InputComments
+            type="text"
             name="comments"
             value={values.comments}
             onChange={handleChange}
             placeholder="Type comment"
+            style={
+              errors.comments
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.comments}</p>
+          <Styled.TextMessage>{errors.comments}</Styled.TextMessage>
         </div>
       </Styled.ContentWrapper>
       <Styled.ButtonsWrapper>
-        <button type="button" onClick={handleStepChange}>
+        <Styled.ModalButton type="button" onClick={handleStepChange}>
           Back
-        </button>
-        <button type="submit" disabled={isSubmitting}>
+        </Styled.ModalButton>
+        <Styled.ModalButtonDown disabled={isSubmitting} type="submit">
           Done
-        </button>
+        </Styled.ModalButtonDown>
       </Styled.ButtonsWrapper>
     </Styled.WrapperTwo>
   );

@@ -24,13 +24,17 @@ export const ContainerCardCommon = styled.div`
     height: 80vh;
     max-width: 608px;
     width: 100%;
+    margin-top: 81px;
+  }
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    margin-top: 204px;
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     width: 100%;
     margin: 0;
-    padding-top: 54px;
-    /* margin-bottom: 207px; */
+    margin-top: 54px;
+
     padding: 0;
     border: none;
     border-radius: 22px;
