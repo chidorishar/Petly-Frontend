@@ -30,7 +30,7 @@ export const UserNavLink = styled(Link)`
   display: flex;
   align-items: center;
   letter-spacing: 0.04em;
-  color: ${p => p.theme.colors.secondaryBackground};
+  color: ${p => p.theme.colors.textLight};
   @media (min-width: 1280px) {
     margin-left: auto;
   }

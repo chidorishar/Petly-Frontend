@@ -58,11 +58,16 @@ const validationAddPetOneStep = yup.object().shape({
   birthday: yup
     .date()
     .required('birthday is required!')
-    .test('is-valid-date', value => {
+    .test('is-valid-date', function (value) {
       const minDate = new Date('2000-01-01');
-      return value >= minDate;
+      // return this.createError({ message: customError });
+      if (value >= minDate) return true;
+      else
+        return this.createError({
+          message: 'Date must be greater than 2000-01-01',
+        });
     })
-    .max(new Date() + 1),
+    .max(new Date() + 1, 'Date must be less than today'),
   breed: yup.string().min(2).max(16).required('Breed is required!'),
 });
 
