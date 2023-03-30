@@ -16,6 +16,8 @@ export const Title = styled.h1`
   text-align: center;
   color: ${({ theme }) => theme.colors.heading};
 
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media screen and (min-width: 768px) {
     width: 492px;
     height: 66px;

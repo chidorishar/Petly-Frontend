@@ -9,6 +9,9 @@ export const ContainerCardCommon = styled.div`
   border-radius: ${p => p.theme.radii.mainBorderRadius};
   background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
+
+  transition: background-color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.desktop.media} {
     max-width: 618px;
     width: 100%;

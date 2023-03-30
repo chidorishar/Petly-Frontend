@@ -26,6 +26,8 @@ export const ListItem = styled(Box)`
   padding: 16px 20px 40px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.11);
 
+  transition: background-color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     flex-direction: row;
     padding: 20px;

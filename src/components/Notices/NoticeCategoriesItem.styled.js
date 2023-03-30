@@ -17,6 +17,8 @@ export const CardContainer = styled.div`
 
   background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
+  transition: background-color ${p => p.theme.transitions.normal};
+
   @media screen and (min-width: 768px) {
     width: 336px;
   }
@@ -77,6 +79,8 @@ export const CardTitle = styled.h3`
   letter-spacing: -0.01em;
 
   color: ${({ theme }) => theme.colors.accentedTextDark};
+
+  transition: color ${p => p.theme.transitions.normal};
 `;
 
 export const CardList = styled.div`
@@ -143,6 +147,8 @@ export const CategoryTitle = styled.p`
   letter-spacing: 0, 04em;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
+
+  transition: color ${p => p.theme.transitions.normal};
 `;
 export const AddToFavBtn = styled(InsetButtonCommon)`
   width: 44px;
@@ -164,6 +170,8 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
     props.$favorite
       ? props.theme.colors.accent
       : props.theme.colors.mainBackgroundWithTransp};
+
+  transition: fill ${p => p.theme.transitions.normal};
 
   &:focus,
   &:hover {
@@ -208,6 +216,8 @@ export const PetInfo = styled.ul`
   font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
   color: ${({ theme: { colors } }) => colors.dark};
+
+  transition: color ${p => p.theme.transitions.normal};
 `;
 export const BottomWrapper = styled.div`
   display: flex;

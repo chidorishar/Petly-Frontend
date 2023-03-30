@@ -26,6 +26,8 @@ export const Title = styled.h2`
 
   color: ${p => p.theme.colors.heading};
 
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: 48px;
   }

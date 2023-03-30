@@ -19,6 +19,8 @@ const Wrapper = styled.div`
   align-items: center;
   gap: 40px;
 
+  transition: background-color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;

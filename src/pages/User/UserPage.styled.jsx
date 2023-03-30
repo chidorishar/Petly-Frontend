@@ -48,6 +48,8 @@ export const UserTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.nl};
   line-height: 1.35;
 
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 40px;
 
@@ -69,6 +71,8 @@ export const UserWrapper = styled.div`
 
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background-color: ${p => p.theme.colors.secondaryBackground};
+
+  transition: background-color ${({ theme }) => theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     position: relative;
