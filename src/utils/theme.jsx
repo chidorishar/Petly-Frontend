@@ -47,7 +47,7 @@ export const theme = {
     mainBackgroundWithTransp: baseColors.whiteSecondary,
     mainBackgroundDark: '#300303',
     secondaryBackground: baseColors.white,
-    ternaryBackground: baseColors.white,
+    ternaryBackground: baseColors.whiteSecondary,
 
     black: baseColors.black,
     darkMain: baseColors.darkMain,
