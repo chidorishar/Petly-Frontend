@@ -6,7 +6,10 @@ body {
     margin: 0;
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-    background-color: ${p => p.theme.colors.mainBackground};
+    
+    background:  ${p => p.theme.body};
+    color: ${p => p.theme.textColor};
+
     &::-webkit-scrollbar {
     width: 0px;
   }
@@ -33,4 +36,28 @@ table {
   text-indent: 0;
   border-color: inherit;
 }
+
+button {
+    color: ${p => p.theme.button.text};
+    border-color: ${p => p.theme.button.border};
+    background-color: ${p => p.theme.button.background};
+    
+   
+  :hover,
+  :focus {
+    color: ${p => p.theme.button.text};
+    border-color: ${p => p.theme.button.border};
+    background-color: ${p => p.theme.button.hoverBackground};
+    
+  }
+  }
+
+
+
+
+
+
+
+
+
 `;

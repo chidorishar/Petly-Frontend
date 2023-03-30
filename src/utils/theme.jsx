@@ -6,6 +6,7 @@ export const theme = {
   colors: {
     accent: '#F59256',
     mainBackground: '#FDF7F2',
+    mainBackgroundDark: '#300303',
     secondaryBackground: '#FFFFFF',
     heading: '#111111',
     searchText: '#535353',
@@ -87,5 +88,27 @@ export const theme = {
       media: '(min-width: 1280px)',
       width: '1280px',
     },
+  },
+};
+
+export const lightTheme = {
+  body: '#fff',
+  textColor: '#111111',
+  button: {
+    text: '#F59256',
+    background: '#FDF7F2',
+    hoverBackground: '#FF6101',
+    border: '#FF6101',
+  },
+};
+
+export const darkTheme = {
+  body: '#300303',
+  textColor: '#fff',
+  button: {
+    text: '#ffffff',
+    background: '#FF6101',
+    hoverBackground: '#FDF7F2',
+    border: '#FF6101',
   },
 };
