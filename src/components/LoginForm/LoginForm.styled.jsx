@@ -11,18 +11,18 @@ export const ContainerCardCommon = styled.div`
   box-shadow: 7px 4px 14px 0px #0000001c;
   @media ${p => p.theme.breakpoints.desktop.media} {
     margin-top: 81px;
-    margin-bottom: 17vw;
+
   }
   @media ${p => p.theme.breakpoints.tablet.media} {
     margin-top: 204px;
-    margin-bottom: 35vw;
+  
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     width: 100%;
     margin: 0;
     margin-top: 54px;
-    margin-bottom: 207px;
+    
     padding: 0;
     border: none;
     border-radius: 22px;

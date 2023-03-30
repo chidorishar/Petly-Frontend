@@ -43,82 +43,102 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
   return (
     <Styled.WrapperOne state={animationState} ref={refProp}>
       <Styled.ContentWrapper>
-        <h2>Add pet</h2>
+        <Styled.Title>Add pet</Styled.Title>
         <Styled.NoticeDescription>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
         </Styled.NoticeDescription>
         <Styled.OptionsWrapper>
-          <button
+          <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.LOST_FOUND)}
             // isActive={values.category === NOTICE_CATEGORY.LOST_FOUND}
           >
             lost/found
-          </button>
-          <button
+          </Styled.ModalButton>
+          <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.FOR_FREE)}
             // isActive={values.category === NOTICE_CATEGORY.FOR_FREE}
           >
             in good hands
-          </button>
-          <button
+          </Styled.ModalButton>
+          <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.SELL)}
             // isActive={values.category === NOTICE_CATEGORY.SELL}
           >
             sell
-          </button>
+          </Styled.ModalButton>
         </Styled.OptionsWrapper>
         <div>
-          <p>Title</p>
-          <input
+          <Styled.Subtitle>Title</Styled.Subtitle>
+          <Styled.InputCommon
             name="title"
             value={values.title}
             onChange={handleChange}
             placeholder="Type name"
+            style={
+              errors.title
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.title}</p>
+          <Styled.TextMessage>{errors.title}</Styled.TextMessage>
         </div>
         <div>
-          <p>Name</p>
-          <input
+          <Styled.Subtitle>Name</Styled.Subtitle>
+          <Styled.InputCommon
             name="name"
             value={values.name}
             onChange={handleChange}
             placeholder="Type pet's name"
+            style={
+              errors.name
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.name}</p>
+          <Styled.TextMessage>{errors.name}</Styled.TextMessage>
         </div>
         <div>
-          <p>Date of birth</p>
-          <input
+          <Styled.Subtitle>Date of birth</Styled.Subtitle>
+          <Styled.InputCommon
             name="birthDate"
             value={values.birthDate}
             onChange={handleChange}
             placeholder="Type date of birth"
+            style={
+              errors.birthDate
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.birthDate}</p>
+          <Styled.TextMessage>{errors.birthDate}</Styled.TextMessage>
         </div>
         <div>
-          <p>Breed</p>
-          <input
+          <Styled.Subtitle>Breed</Styled.Subtitle>
+          <Styled.InputCommon
             name="breed"
             value={values.breed}
             onChange={handleChange}
             placeholder="Type breed"
+            style={
+              errors.breed
+                ? { outlineColor: '#E2001A' }
+                : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
+            }
           />
-          <p>{errors.breed}</p>
+          <Styled.TextMessage>{errors.breed}</Styled.TextMessage>
         </div>
       </Styled.ContentWrapper>
 
       <Styled.ButtonsWrapper>
-        <button type="button" onClick={handleCancel}>
+        <Styled.ModalButton type="button" onClick={handleCancel}>
           Cancel
-        </button>
-        <button type="button" onClick={handleNextClick}>
+        </Styled.ModalButton>
+        <Styled.ModalButtonDown type="button" onClick={handleNextClick}>
           Next
-        </button>
+        </Styled.ModalButtonDown>
       </Styled.ButtonsWrapper>
     </Styled.WrapperOne>
   );
