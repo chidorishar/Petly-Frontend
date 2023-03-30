@@ -155,7 +155,7 @@
 
   "error": {
     "message": "Something went wrong...",
-    "notfound": "Nothing found. Please, try again."
+    "notfound": "Nothing found. Please, try again later."
   },
 
   "notification": {
