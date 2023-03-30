@@ -104,7 +104,7 @@ export const LoginForm = () => {
         </InputWrapper>
         {formik.touched.email && !formik.errors.email ? (
           <TextMessage style={{ color: '#3CBC81' }}>
-            Email is correct
+            {t('notification.emailIsCor')}
           </TextMessage>
         ) : null}
         {formik.touched.email && formik.errors.email ? (
@@ -132,7 +132,7 @@ export const LoginForm = () => {
         </InputWrapper>
         {formik.touched.password && !formik.errors.password ? (
           <TextMessage style={{ color: '#3CBC81' }}>
-            Password is secure
+            {t('notification.passwordIsSec')}
           </TextMessage>
         ) : null}
         {formik.touched.password && formik.errors.password ? (

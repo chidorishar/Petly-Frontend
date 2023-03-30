@@ -3,6 +3,7 @@
  */
 
 import * as Yup from 'yup';
+// import i18n from 'i18next';
 
 import { passwordSchema, emailSchema, phoneSchema } from './common';
 
@@ -17,12 +18,12 @@ const registerSchema = Yup.object({
     'validation.passMatch'
   ),
   name: Yup.string()
-    .required('Name is required')
+    .required('validation.requiredName')
     .matches(
       /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
       'validation.requiredName'
     )
-    .max(40, 'Please enter valid name'),
+    .max(40, 'validation.validName'),
   location: Yup.string()
     .matches(locationRegexp, 'validation.addressFormat')
     .required('validation.requiredLocation'),

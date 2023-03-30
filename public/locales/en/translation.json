@@ -160,6 +160,11 @@
 
   "notification": {
     "notAuthorized": "You must be authorized",
+    "emailIsCor": " Email is correct",
+    "passwordIsSec": "Password is secure",
+    "UserExists": "User already exists",
+    "SomeWrong": "Something went wrong",
+    "userCreatedS": "User created successfully",
     "wrongLogin": "Email or password is wrong",
     "noAdsFound": "Sorry, no ads were found by your query."
   },
@@ -168,10 +173,12 @@
     "requiredLocation": "City, region is required",
     "addressFormat": "Must be in format: City, Region",
     "requiredEmail": "Email is a required field",
+    "invalidEmail": "Email is invalid",
     "requiredPass": "Password is a required field",
     "requiredName": "Name is a required",
+    "validName": "Please enter valid name",
     "requiredPhone": "Mobile phone is a required",
-    "invalidEmail": "Enter a valid Email",
+    "phoneInvalid": "Phone number is invalid",
     "passMin": "Password must be at least 8 characters",
     "passNumber": "Password requires a number",
     "passLowercase": "Password requires a lowercase letter",

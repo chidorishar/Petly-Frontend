@@ -37,14 +37,14 @@ const StepOne = ({ handleStepChange }) => {
       <Styled.Title>{t('registration.registration')}</Styled.Title>
       <Styled.InputWrapper>
         <TextInput
-          errorText={errors.email}
+          errorText={t(errors.email)}
           handleChange={handleChange}
           inputName="email"
           placeholder={t('login.email')}
           value={values.email}
         />
         <TextInput
-          errorText={errors.password}
+          errorText={t(errors.password)}
           handleChange={handleChange}
           inputName="password"
           placeholder={t('registration.password')}
@@ -52,7 +52,7 @@ const StepOne = ({ handleStepChange }) => {
           inputType="password"
         />
         <TextInput
-          errorText={errors.confirmPassword}
+          errorText={t(errors.confirmPassword)}
           handleChange={handleChange}
           inputName="confirmPassword"
           placeholder={t('registration.confirm')}
