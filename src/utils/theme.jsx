@@ -4,6 +4,7 @@ export const theme = {
     inputModal: '1px solid',
   },
   colors: {
+    body: '#FDF7F2',
     accent: '#F59256',
     mainBackground: '#FDF7F2',
     mainBackgroundDark: '#300303',
@@ -96,6 +97,7 @@ export const darkTheme = {
   body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
   colors: {
     ...theme.colors,
+    body: 'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)', //'#383a4d',
     secondaryBackground: theme.colors.searchText,
     heading: theme.colors.secondaryBackground,
     navText: theme.colors.mainBackground,

@@ -11,7 +11,7 @@ body {
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
     
-    background:  ${p => p.theme.body};
+    background:  ${p => p.theme.colors.body};
 
     &::-webkit-scrollbar {
     width: 0px;
