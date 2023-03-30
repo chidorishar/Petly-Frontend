@@ -150,49 +150,60 @@ const BottomLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
 
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
-
+  border-radius: 22px;
   padding: 10.5px;
 
-  border-radius: 24px;
-  border: ${p => p.isLight && `2px solid ${p.theme.colors.accent}`};
-
-  background: ${p => (p.isLight ? 'transparent' : p.theme.colors.accent)};
-  color: ${p =>
-    p.isLight ? p.theme.colors.heading : p.theme.colors.secondaryBackground};
-
-  transition: color ${p => p.theme.transitions.normal};
-
-  &:hover,
-  &:focus {
-    /* transition: transform 0.5s; */
-    color: ${p => (p.isLight ? p.theme.colors.accent : p.theme.colors.heading)};
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    border-radius: 10.5px;
+    border-radius: 24px;
   }
 
-  :hover:before {
-    left: 100%;
+  background: ${p => p.theme.colors.accent};
+  &:nth-child(2) {
+    background: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.black};
+    outline: ${p => p.theme.borders.primaryBtn} ${({ theme: { colors } }) => colors.accent};
+    &:hover,:focus {
+      color: ${p => p.theme.colors.white};
+      background: ${p => p.theme.colors.accent};
+    }
   }
+  color: ${p => p.theme.colors.white};
 
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent,
-      /* rgba(255, 255, 255, 0.6), */ transparent
-    );
-    transition: all 650ms;
-  }
+  transition: transform 0.5s, color ${({ theme }) => theme.transitions.normal};
+
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  :hover,
+  :focus {
+    transform: scale(1.05);
+
+  color: ${p => p.theme.colors.darkMain};
+}
+:hover:before {
+  left: 100%;
+}
+
+:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transition: all 650ms;
+}
 `;
 
 export {
