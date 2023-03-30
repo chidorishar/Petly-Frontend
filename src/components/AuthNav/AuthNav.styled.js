@@ -28,6 +28,9 @@ export const AuthNavLink = styled(NavLink)`
   background: ${p => p.theme.colors.secondaryBackground};
   color: ${p => p.theme.colors.heading};
 
+  transition: color ${p => p.theme.transitions.normal},
+    background-color ${p => p.theme.transitions.normal}, transform 0.5s;
+
   border: 2px solid #f59256;
   border-radius: 40px;
 
@@ -46,12 +49,13 @@ export const AuthNavLink = styled(NavLink)`
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
+
   :hover,
   :focus {
     background: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.darkLight};
 
     transform: scale(1.05);
-    transition: transform 0.5s;
   }
   :hover:before {
     left: 100%;
@@ -74,9 +78,17 @@ export const AuthNavLink = styled(NavLink)`
   }
 
   &.active {
-    background: ${p => p.theme.colors.accent};
     border-radius: 40px;
-    color: ${p => p.theme.colors.secondaryBackground};
+
+    background: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.darkLight};
+
+    transition: color ${p => p.theme.transitions.normal};
+
+    :hover,
+    :focus {
+      color: ${p => p.theme.colors.heading};
+    }
 
     :hover:before {
       left: 100%;

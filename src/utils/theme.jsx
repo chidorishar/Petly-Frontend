@@ -50,6 +50,7 @@ export const theme = {
 
     black: baseColors.black,
     darkMain: baseColors.darkMain,
+    darkLight: baseColors.white,
     white: baseColors.white,
     whiteSecondary: baseColors.whiteSecondary,
     link: baseColors.accentSecondary,
@@ -138,6 +139,7 @@ export const darkTheme = {
     accentedTextDark: baseColors.accent,
     accentedTextDarkOpaq: baseColors.accent + '99',
     accentedTextLight: baseColors.white,
+    darkLight: baseColors.darkMain,
     heading: baseColors.white,
     navText: baseColors.whiteSecondary,
     newsText: baseColors.whiteSecondary,
