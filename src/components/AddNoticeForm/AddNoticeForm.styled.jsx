@@ -128,7 +128,8 @@ export const InputCommon = styled.input`
   padding: 11px 16px 10px 16px;
   border: none;
   border-radius: 24px;
-  outline: ${p => p.theme.borders.inputModal} ${({ theme: { colors } }) => colors.inputModal};
+  outline: ${p => p.theme.borders.inputModal}
+    ${({ theme: { colors } }) => colors.inputModal};
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
     padding: 11px 14px 12px 14px;
@@ -182,12 +183,13 @@ export const InputComments = styled.textarea`
   font-weight: ${p => p.theme.fontWeights.text};
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
   color: ${({ theme: { colors } }) => colors.inputText};
-  
+
   width: 100%;
   padding: 11px 16px 10px 16px;
   border: none;
   border-radius: 24px;
-  outline: ${p => p.theme.borders.inputModal} ${({ theme: { colors } }) => colors.inputModal};
+  outline: ${p => p.theme.borders.inputModal}
+    ${({ theme: { colors } }) => colors.inputModal};
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
     vertical-align: sub;
@@ -308,5 +310,4 @@ export const SexButton = styled.button`
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.m};
   }
-
 `;
