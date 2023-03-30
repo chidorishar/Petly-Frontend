@@ -24,21 +24,21 @@ const StepTwo = ({ handleStepChange, animationState, refProp }) => {
           inputName="name"
           placeholder={t('registration.name')}
           value={values.name}
-          errorText={errors.name}
+          errorText={t(errors.name)}
           handleChange={handleChange}
         />
         <TextInput
           inputName="location"
           placeholder={t('registration.city')}
           value={values.location}
-          errorText={errors.location}
+          errorText={t(errors.location)}
           handleChange={handleChange}
         />
         <TextInput
           inputName="phone"
           placeholder={t('registration.phone')}
           value={values.phone}
-          errorText={errors.phone}
+          errorText={t(errors.phone)}
           handleChange={handleChange}
         />
       </Styled.InputWrapper>
