@@ -66,19 +66,19 @@ export const CardWrapper = styled.div`
 `;
 export const CardTitle = styled.h3`
   width: 231px;
-  margin-left: 20px;
+
   margin-right: 37px;
   margin-bottom: 20px;
 
-  font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
   line-height: 38px;
   letter-spacing: -0.01em;
 
-  color: #111111;
+  color: ${({ theme }) => theme.colors.accentedTextDark};
 `;
+
 export const CardList = styled.div`
   width: 231px;
   margin-left: 20px;
@@ -89,7 +89,6 @@ export const P = styled.p`
   width: 231px;
   margin-top: 8px;
 
-  font-family: 'Manrope';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -103,11 +102,12 @@ export const Button = styled.button`
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
+
   border: 2px solid #f59256;
   border-radius: 40px;
   font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
-  color: #f59256;
+  color: ${({ theme }) => theme.colors.accentedTextLight};
   padding: 8px 16px;
 
   background-color: transparent;
@@ -122,33 +122,13 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.accent};
   }
 `;
-export const DeleteButton = styled.button`
+export const DeleteButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   margin-top: 12px;
-  margin-right: auto;
-  margin-left: auto;
-  border: 2px solid #f59256;
-  border-radius: 40px;
-  font-size: ${({ theme: { fontSizes } }) => fontSizes[2]}px;
-  font-weight: ${({ theme: { fontWeights } }) => fontWeights.medium};
-  color: #f59256;
-  padding: 8px 16px;
-
-  background-color: transparent;
-
-  transition: background-color
-      ${({ theme: { transitions } }) => transitions.normal},
-    color ${({ theme: { transitions } }) => transitions.normal};
-
-  &:hover,
-  &focus {
-    color: ${({ theme }) => theme.colors.mainBackground};
-    background-color: ${({ theme }) => theme.colors.accent};
-  }
 `;
+
 export const CategoryTitle = styled.p`
   display: flex;
   padding: 6px 20px;
@@ -183,7 +163,7 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
   fill: ${props =>
     props.$favorite
       ? props.theme.colors.accent
-      : props.theme.colors.secondaryBackground};
+      : props.theme.colors.mainBackgroundWithTransp};
 
   &:focus,
   &:hover {
@@ -197,7 +177,7 @@ export const AddToFavBtn = styled(InsetButtonCommon)`
     fill: ${props =>
       props.$favorite
         ? props.theme.colors.warning + '66'
-        : props.theme.colors.secondaryBackground};
+        : props.theme.colors.whiteSecondary};
   }
 `;
 

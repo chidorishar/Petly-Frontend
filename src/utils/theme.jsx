@@ -31,7 +31,8 @@ export const theme = {
     body: baseColors.darkGradient, //'#383a4d',
     accent: baseColors.accent,
 
-    accentedTextDark: baseColors.darkSecondary + '99',
+    accentedTextDark: baseColors.darkSecondary,
+    accentedTextDarkOpaq: baseColors.darkSecondary + '99',
     accentedTextLight: baseColors.accent,
     heading: baseColors.darkMain,
     inputText: 'rgba(17, 17, 17, 0.6)',
@@ -48,7 +49,10 @@ export const theme = {
     secondaryBackground: baseColors.white,
 
     black: baseColors.black,
+    darkMain: baseColors.darkMain,
+    whiteSecondary: baseColors.whiteSecondary,
     link: baseColors.accentSecondary,
+
     backdrop: ' #11111199',
     placeholder: '#b3323299',
     hoverBtn: '#FF6101',
@@ -57,7 +61,6 @@ export const theme = {
     inputModal: 'rgba(245, 146, 86, 0.5)',
     success: baseColors.accentSuccess,
     warning: baseColors.accentError,
-    darkMain: baseColors.black,
   },
   fontSizes: {
     xs: '12px',
@@ -131,7 +134,8 @@ export const darkTheme = {
   colors: {
     ...theme.colors,
 
-    accentedTextDark: baseColors.accent + '99',
+    accentedTextDark: baseColors.accent,
+    accentedTextDarkOpaq: baseColors.accent + '99',
     accentedTextLight: baseColors.white,
     heading: baseColors.white,
     navText: baseColors.whiteSecondary,

@@ -71,7 +71,7 @@ export const Date = styled.span`
   font-weight: ${p => p.theme.fontWeights.text};
   font-size: ${p => p.theme.fontSizes.m};
   line-height: 1.37;
-  color: ${p => p.theme.colors.accentedTextDark};
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 `;
 
 export const Link = styled.a`
