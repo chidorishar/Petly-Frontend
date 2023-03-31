@@ -1,5 +1,4 @@
 import { lazy, useEffect } from 'react';
-// import { Navigate, Route, Routes } from 'react-router-dom';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { store } from 'redux/store';

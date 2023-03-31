@@ -15,10 +15,13 @@ import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
 import { NotFound, NotFoundBox } from 'pages/News/NewsPage.styled';
 
-import { Container, Section } from 'components/common';
-import { ModalNotice } from 'components';
+import { Container, Modal } from 'components/common';
+import { AddNoticeForm, ModalNotice } from 'components';
+import { useAuth } from 'redux/hooks/getAuth';
 
 export const NoticesPage = () => {
+  const { isUserAuthorized } = useAuth();
+
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userToken = useSelector(selectUserAccessToken);
@@ -28,6 +31,7 @@ export const NoticesPage = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddNoticeModalOpen, setIsAddNoticeModalOpen] = useState(false);
   const [noticeDetailedInfo, setNoticeDetailedInfo] = useState({});
 
   const { t } = useTranslation();
@@ -97,6 +101,19 @@ export const NoticesPage = () => {
     }
   };
 
+  const handleAddNoticeModalClose = () => {
+    setIsAddNoticeModalOpen(false);
+  };
+
+  const handleAddNoticeModalToggle = () => {
+    if (!isUserAuthorized) {
+      toast.error('You need to be logged in to add a notice');
+      return;
+    }
+
+    setIsAddNoticeModalOpen(toggle => !toggle);
+  };
+
   async function handleNoticeStatusUpdateInModal(id) {
     fetchNotices(category, search);
 
@@ -109,34 +126,41 @@ export const NoticesPage = () => {
 
   return (
     <Container>
-      <Section>
-        <NoticesTitle />
-        <NoticesSearch
-          value={search}
-          onChange={updateQueryString}
-          onSubmit={handleSubmit}
-          removeQuery={clearSearch}
+      <NoticesTitle />
+      <NoticesSearch
+        value={search}
+        onChange={updateQueryString}
+        onSubmit={handleSubmit}
+        removeQuery={clearSearch}
+      />
+      <NoticesNavigation
+        onAddNoticeClick={handleAddNoticeModalToggle}
+        onCategoryClick={handleClick}
+      />
+      <NoticesCategoriesList
+        notices={notices}
+        onDeleteNotice={handleDelete}
+        onUpdateNoticeStatus={handleSubmit}
+        onLearnMoreClick={handleLearnMoreClick}
+      />
+      {notices.length === 0 && !isRefreshing && (
+        <NotFoundBox>
+          <NotFound>{t('error.notfound')}</NotFound>
+        </NotFoundBox>
+      )}
+      {isModalOpen && (
+        <ModalNotice
+          noticeData={noticeDetailedInfo}
+          onUpdateNoticeStatus={handleNoticeStatusUpdateInModal}
+          setIsModalShown={setIsModalOpen}
         />
-        <NoticesNavigation onCategoryClick={handleClick} />
-        <NoticesCategoriesList
-          notices={notices}
-          onDeleteNotice={handleDelete}
-          onUpdateNoticeStatus={handleSubmit}
-          onLearnMoreClick={handleLearnMoreClick}
-        />
-        {notices.length === 0 && !isRefreshing && (
-          <NotFoundBox>
-            <NotFound>{t('error.notfound')}</NotFound>
-          </NotFoundBox>
-        )}
-        {isModalOpen && (
-          <ModalNotice
-            noticeData={noticeDetailedInfo}
-            onUpdateNoticeStatus={handleNoticeStatusUpdateInModal}
-            setIsModalShown={setIsModalOpen}
-          />
-        )}
-      </Section>
+      )}
+      <Modal
+        isOpen={isAddNoticeModalOpen}
+        handleClose={handleAddNoticeModalClose}
+      >
+        <AddNoticeForm handleClose={handleAddNoticeModalClose} />
+      </Modal>
     </Container>
   );
 };

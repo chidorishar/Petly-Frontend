@@ -41,3 +41,13 @@ export const getNoticeDetailedInfo = async id => {
     return error.response;
   }
 };
+
+export const postNotice = async values => {
+  try {
+    const response = await axios.post(`/api/notices/new/`, values);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response;
+  }
+};
