@@ -312,8 +312,8 @@ export const SexButton = styled.button`
   align-items: flex-end;
   justify-content: center;
   text-align: center;
-  width: 104px;
-  height: 104px;
+  width: 95px;
+  height: 95px;
 
   padding: 5px;
 
