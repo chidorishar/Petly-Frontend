@@ -158,7 +158,7 @@ export const TimeList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: white;
+  background-color: ${p => p.theme.colors.secondaryBackground};
   border: ${p => `2px solid ${p.theme.colors.accent}`};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
