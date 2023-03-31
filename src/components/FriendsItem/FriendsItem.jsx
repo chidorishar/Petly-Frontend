@@ -52,7 +52,7 @@ export const FriendsItem = ({
         <List>
           <TextWrapper
             onClick={() => {
-              setIsVisible(!isVisible);
+              if (newWorkDays.length !== 0) setIsVisible(!isVisible);
             }}
             onMouseLeave={() => {
               setTimeout(() => {

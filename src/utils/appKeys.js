@@ -12,7 +12,6 @@ const ROUTES = {
   NOTICES: '/notices',
   FRIENDS: '/friends',
   USERPAGE: '/user',
-  PROFILE: '/profile',
 };
 
 const CACHE_TAGS = {

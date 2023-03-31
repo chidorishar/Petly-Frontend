@@ -14,6 +14,7 @@ export const Heading = styled.h1`
   width: 280px;
   font-size: 32px;
   line-height: calc(44 / 32);
+  color: ${p => p.theme.colors.heading};
 
   @media (min-width: ${p => p.theme.breakpoints.tablet.width}) {
     font-size: 68px;

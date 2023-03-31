@@ -93,6 +93,8 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
   const [isModalAddPetShown, setShowModalAddPet] = useState(true);
   const userToken = useSelector(selectUserAccessToken);
 
+  const { t } = useTranslation();
+
   const modalRef = useRef(null);
   //Для валідації//
 
@@ -186,17 +188,16 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
     const addResponse = await addNewPet(formData);
 
     if (addResponse.status === 201) {
-      toast.success(`${values.name} successfully added!`, {
+      toast.success(`${values.name} ${t('notification.addPetSuccess')}`, {
         position: toast.POSITION.TOP_CENTER,
       });
+
+      // (`${t('notification.welcome')}, ${user.name}!`)
       onPetAddSuccess();
     } else
-      toast.error(
-        `Error adding data! Network error ${addResponse.statusText}`,
-        {
-          position: toast.POSITION.TOP_CENTER,
-        }
-      );
+      toast.error(`${t('notification.errorAdd')} ${addResponse.statusText}`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
     setSubmitting && setSubmitting(false);
     handleCloseModal();
@@ -218,8 +219,6 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
       updateData={setData}
     />,
   ];
-
-  const { t } = useTranslation();
 
   return (
     <>

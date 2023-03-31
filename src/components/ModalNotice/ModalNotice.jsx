@@ -42,8 +42,13 @@ export const ModalNotice = ({
       }
     };
     document.addEventListener('keydown', handleKeyClose);
+
+    // body noscroll
+    document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', handleKeyClose);
+      document.body.style.overflow = '';
     };
   }, []);
   const showNotAuthNotification = () => {
@@ -102,10 +107,7 @@ export const ModalNotice = ({
           <ImgBox>
             <img src={image} alt={name} />
             <CategoryBox>
-              <p>
-                {category}
-                {/* {active && pet.petId} */}
-              </p>
+              <p>{category}</p>
             </CategoryBox>
           </ImgBox>
           <InfoBox>

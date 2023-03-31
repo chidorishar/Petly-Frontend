@@ -1,8 +1,7 @@
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { ErrorIcon } from 'assets/icons';
-import { SuccessIcon } from 'assets/icons';
+import { ErrorIcon, SuccessIcon, ImEye, ImEyeBlocked } from 'assets/icons';
 
 import { loginschema } from 'utils/validations';
 import { ROUTES } from 'utils/appKeys';
@@ -25,6 +24,9 @@ import {
 
 export const LoginForm = () => {
   const [sendLoginRequest, { isSuccess }] = useLoginUserMutation();
+  const [show, setShow] = useState(false);
+
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +41,7 @@ export const LoginForm = () => {
           data: { user },
         } = await sendLoginRequest(values).unwrap();
 
-        toast.success(`Welcome back, ${user.name}!`);
+        toast.success(`${t('notification.welcome')}, ${user.name}!`);
       } catch (error) {
         toast.error(
           error.status === 400
@@ -82,7 +84,9 @@ export const LoginForm = () => {
     }
   };
 
-  const { t } = useTranslation();
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <ContainerCardCommon>
@@ -116,13 +120,14 @@ export const LoginForm = () => {
         ) : null}
         <InputWrapper style={{ outlineColor: ifCurrentPassword() }}>
           <InputCommon
-            type="password"
+            type={show ? 'text' : 'password'}
             name="password"
             placeholder={t('login.password')}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.password}
           ></InputCommon>
+          <div onClick={handleShow}>{show ? <ImEye /> : <ImEyeBlocked />}</div>
           <IconInput>
             {formik.touched.password && formik.errors.password ? (
               <ErrorIcon />

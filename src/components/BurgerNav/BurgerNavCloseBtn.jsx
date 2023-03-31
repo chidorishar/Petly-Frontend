@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { GrClose } from 'react-icons/gr';
 
 import { GiHamburgerMenuClose } from './BurgerNavCloseBtn.styled';

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import * as Styled from './TextInput.styled';
 import { TextInputError } from './TextInputError';
 import { TextInputIcon } from './TextInputIcon';
+import { ImEye, ImEyeBlocked } from 'assets/icons';
+import { useState } from 'react';
 
 const TextInput = ({
   value,
@@ -12,6 +14,11 @@ const TextInput = ({
   placeholder,
   inputType = 'text',
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <Styled.Wrapper isError={!!errorText}>
       <Styled.InputWrapper>
@@ -20,8 +27,10 @@ const TextInput = ({
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
-          type={inputType}
+          type={showPassword ? "text":inputType}
         />
+        {inputType === 'password' ? (
+          <div onClick={handleClick}>{ showPassword ? <ImEye /> : <ImEyeBlocked />}</div>) : null}
         <TextInputIcon hasError={!!errorText} />
       </Styled.InputWrapper>
       <TextInputError errorText={errorText} />

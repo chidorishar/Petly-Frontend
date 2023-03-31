@@ -9,14 +9,14 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { persistedAuthReducer } from './slices/authSlice.js';
+import { persistedThemeReducer } from './slices/themeSlice.js';
 import { usersAPI } from './slices/usersAPISlice.js';
-import { friendsReducer } from './slices/friendsSlice.js';
 
 export const store = configureStore({
   reducer: {
     [usersAPI.reducerPath]: usersAPI.reducer,
     auth: persistedAuthReducer,
-    friends: friendsReducer,
+    theme: persistedThemeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

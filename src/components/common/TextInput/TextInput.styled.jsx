@@ -24,6 +24,8 @@ export const Wrapper = styled.div`
 
 export const InputWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  gap: 10px;
   justify-content: space-between;
 `;
 
@@ -40,10 +42,12 @@ export const TextInput = styled.input`
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
+    line-height: 20px;
   }
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.n};
+    line-height: 25px;
   }
 `;
 
