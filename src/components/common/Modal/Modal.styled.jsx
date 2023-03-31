@@ -19,7 +19,6 @@ export const Wrapper = styled.div`
   height: 100%;
 
   transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
 
   opacity: ${({ state }) => {
     switch (state) {
