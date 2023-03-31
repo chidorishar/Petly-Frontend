@@ -5,6 +5,8 @@ export const NaviList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding-bottom: 8px;
   gap: 40px;
 
   @media (min-width: 768px) {

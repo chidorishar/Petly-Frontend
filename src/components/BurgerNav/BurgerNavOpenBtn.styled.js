@@ -11,13 +11,13 @@ export const GiHamburgerMenuOpen = styled.button`
 
   border-radius: 25%;
 
-  background: ${p => p.theme.colors.mainBackground};
+  background: ${p => p.theme.colors.accentedBackgroundLight};
   cursor: pointer;
 
   @media (min-width: 768px) {
     margin-left: 25px;
   }
   svg {
-    fill: ${p => p.theme.colors.heading};
+    fill: ${p => p.theme.colors.black};
   }
 `;

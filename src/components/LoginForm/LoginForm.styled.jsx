@@ -2,43 +2,42 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const ContainerCardCommon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+
+  width: 100%;
   max-width: 618px;
+  max-height: 380px;
+  height: 80vh;
   margin: 0 auto;
   padding: 60px 40px;
+
   text-align: center;
   border-radius: ${p => p.theme.radii.mainBorderRadius};
-  background-color: ${({ theme: { colors } }) => colors.secondaryBackground};
+  background-color: ${({ theme: { colors } }) => colors.ternaryBackground};
   box-shadow: 7px 4px 14px 0px #0000001c;
+
+  transition: background-color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.desktop.media} {
     max-width: 618px;
-    width: 100%;
   }
-  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    overflow-y: auto;
 
-    max-height: 524px;
-    height: 80vh;
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 608px;
-    width: 100%;
-    margin-top: 81px;
-  }
-  @media ${p => p.theme.breakpoints.tablet.media} {
-    margin-top: 204px;
+    max-height: 524px;
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    width: 100%;
     margin: 0;
-    margin-top: 54px;
+    padding: 7px;
 
-    padding: 0;
     border: none;
     border-radius: 22px;
-    background-color: ${({ theme: { colors } }) => colors.mainBackground};
+
     box-shadow: none;
   }
 `;
@@ -46,7 +45,10 @@ export const ContainerCardCommon = styled.div`
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.lx};
-  color: ${({ theme: { colors } }) => colors.heading};
+  color: ${p => p.theme.colors.accentedTextDark};
+
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
@@ -169,7 +171,9 @@ export const Button = styled.button`
   }
 
   background: ${p => p.theme.colors.accent};
-  color: ${p => p.theme.colors.secondaryBackground};
+  color: ${p => p.theme.colors.white};
+
+  transition: transform 0.5s, color ${({ theme }) => theme.transitions.normal};
 
   position: relative;
   overflow-x: hidden;
@@ -177,7 +181,8 @@ export const Button = styled.button`
   :hover,
   :focus {
     transform: scale(1.05);
-    transition: transform 0.5s;
+
+    color: ${p => p.theme.colors.darkMain};
   }
   :hover:before {
     left: 100%;
@@ -208,7 +213,7 @@ export const Text = styled.p`
   margin: 0 auto;
   padding: 0;
 
-  color: ${({ theme: { colors } }) => colors.inputText};
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 `;
 
 export const Link = styled(NavLink)`

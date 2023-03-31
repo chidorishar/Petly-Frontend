@@ -1,28 +1,76 @@
+export const THEME_MODES = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};
+export const LS_SELECTED_THEME_MODE_KEY = 'themeMode';
+export const LS_ALL_THEMES_KEY = 'themeMode';
+
+const baseColors = {
+  accent: '#F59256',
+  accentSecondary: '#3091EB',
+
+  accentSuccess: '#3cbc81',
+  accentError: '#e2001a',
+
+  septenary: '#181C27',
+  octonary: '#535353',
+  nonary: '#b33232',
+  denary: '#383a4d',
+  undenary: '#300303',
+
+  black: '#000',
+  darkMain: '#111111',
+  darkSecondary: '#111321',
+
+  white: '#fff',
+  whiteSecondary: '#FDF7F2',
+
+  darkGradient:
+    'linear-gradient(332deg, hsl(232deg 48% 20%) 0%, hsl(201deg 66% 16%) 57%, hsl(271deg 52% 36%) 100%)',
+};
+
 export const theme = {
   borders: {
     primaryBtn: '2px solid',
     inputModal: '1px solid',
   },
   colors: {
-    accent: '#F59256',
-    mainBackground: '#FDF7F2',
-    secondaryBackground: '#FFFFFF',
-    heading: '#111111',
-    searchText: '#535353',
+    body: baseColors.darkGradient, //'#383a4d',
+    accent: baseColors.accent,
+
+    accentedTextDark: baseColors.darkSecondary,
+    accentedTextDarkOpaq: baseColors.darkSecondary + '99',
+    accentedTextLight: baseColors.accent,
+    heading: baseColors.darkMain,
+    inputText: 'rgba(17, 17, 17, 0.6)',
     navText: '#181C27',
     newsText: '#111321',
-    inputText: 'rgba(17, 17, 17, 0.6)',
-    black: '#000000',
-    link: '#3091EB',
+    searchText: '#535353',
+    textLight: baseColors.white,
+
+    accentedBackgroundLight: baseColors.whiteSecondary,
+    mainBackground: baseColors.whiteSecondary,
+    mainBackgroundWithGradient: baseColors.whiteSecondary,
+    mainBackgroundWithTransp: baseColors.whiteSecondary,
+    mainBackgroundDark: '#300303',
+    secondaryBackground: baseColors.white,
+    ternaryBackground: baseColors.whiteSecondary,
+
+    black: baseColors.black,
+    darkMain: baseColors.darkMain,
+    darkLight: baseColors.white,
+    white: baseColors.white,
+    whiteSecondary: baseColors.whiteSecondary,
+    link: baseColors.accentSecondary,
+
     backdrop: ' #11111199',
-    placeholder: '#1b1b1b99',
+    placeholder: '#b3323299',
     hoverBtn: '#FF6101',
-    input: '#FDF7F2',
+    input: baseColors.whiteSecondary,
     shadowCard: 'rgba(49, 21, 4, 0.07)',
     inputModal: 'rgba(245, 146, 86, 0.5)',
-    success: '#3cbc81',
-    warning: '#e2001a',
-    darkMain: '#000',
+    success: baseColors.accentSuccess,
+    warning: baseColors.accentError,
   },
   fontSizes: {
     xs: '12px',
@@ -88,4 +136,31 @@ export const theme = {
       width: '1280px',
     },
   },
+};
+
+const darkTheme = {
+  ...theme,
+
+  colors: {
+    ...theme.colors,
+
+    accentedTextDark: baseColors.accent,
+    accentedTextDarkOpaq: baseColors.accent + '99',
+    accentedTextLight: baseColors.white,
+    darkLight: baseColors.darkMain,
+    heading: baseColors.white,
+    navText: baseColors.whiteSecondary,
+    newsText: baseColors.whiteSecondary,
+
+    accentedBackgroundLight: baseColors.accent,
+    mainBackgroundWithGradient: baseColors.darkGradient,
+    mainBackgroundWithTransp: 'transparent',
+    secondaryBackground: baseColors.septenary,
+    ternaryBackground: baseColors.septenary,
+  },
+};
+
+export const allThemes = {
+  dark: darkTheme,
+  light: theme,
 };

@@ -3,22 +3,46 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
  
 body {
-    margin: 0;
   font-family: 'Manrope', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
-    background-color: ${p => p.theme.colors.mainBackground};
-    &::-webkit-scrollbar {
+  
+  min-height: 100vh;
+  margin: 0;
+    
+  background-image:  ${p => p.theme.colors.body};
+
+  &:after{
+    content: '';
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+    transition: background-color ${p => p.theme.transitions.normal};
+
+    background-color:  ${p => p.theme.colors.mainBackgroundWithTransp};
+  }
+
+  &::-webkit-scrollbar {
     width: 0px;
   }
+
   &::-webkit-scrollbar-track {
     border-radius: 1px;
     background-color: ${p => p.theme.colors.mainBackground};
   }
+
   &::-webkit-scrollbar-thumb {
-    background-color: ${p => p.theme.colors.accent};
+    /* background-color: ${p => p.theme.colors.accent}; */
     border-radius: 1px;
   }
 }
+
 .Toastify__toast-theme--light.Toastify__toast--info {
   color: ${p => p.theme.colors.accent};
   svg{
