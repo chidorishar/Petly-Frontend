@@ -37,6 +37,8 @@ export const ModalBox = styled(Box)`
   height: min-content;
   transform: scale(0.5);
 
+  color: ${p => p.theme.colors.heading};
+
   transform: scale(1);
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
@@ -89,6 +91,10 @@ export const CategoryBox = styled(Box)`
 `;
 export const InfoBox = styled(Box)`
   flex-grow: 1;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    max-width: 310px;
+  }
 `;
 export const PetTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.ml};
@@ -124,6 +130,9 @@ export const PetInfoItem = styled.li`
     text-decoration: none;
 
     color: ${p => p.theme.colors.heading};
+
+    transition: color ${p => p.theme.transitions.normal};
+
     &:focus,
     &:hover {
       color: ${p => p.theme.colors.hoverBtn};

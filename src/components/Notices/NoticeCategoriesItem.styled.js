@@ -16,8 +16,10 @@ export const CardContainer = styled.div`
   cursor: pointer;
 
   background-color: ${({ theme }) => theme.colors.secondaryBackground};
+  color: ${({ theme }) => theme.colors.heading};
 
-  transition: background-color ${p => p.theme.transitions.normal};
+  transition: background-color ${p => p.theme.transitions.normal},
+    color ${p => p.theme.transitions.normal};
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -99,7 +101,7 @@ export const P = styled.p`
   line-height: 22px;
   /* identical to box height */
 
-  color: #111111;
+  color: ${({ theme }) => theme.colors.heading};
 `;
 export const Button = styled.button`
   width: 100%;
