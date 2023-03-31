@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import getFriends from 'redux/hooks/getFriends';
+import getFriends from 'utils/network/getFriends';
 
 import FriendsList from 'components/FriendsList/FriendsList';
 import { Container, Section } from 'components/common';
