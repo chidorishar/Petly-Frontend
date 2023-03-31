@@ -26,31 +26,33 @@ const validGender = Object.values(NOTICE_GENDER);
 
 const addNoticeSchema = Yup.object().shape({
   title: Yup.string()
-    .required('Title is required')
+    .required('validation.requiredT')
     .min(2)
     .max(48)
-    .matches(nameRegexp, 'Title must contain only letters'),
-  category: Yup.string().oneOf(validCategory).required('Category is required'),
+    .matches(nameRegexp, 'validation.titleLetters'),
+  category: Yup.string()
+    .oneOf(validCategory)
+    .required('validation.requireCategory'),
   breed: Yup.string()
-    .required('Breed is required')
+    .required('validation.requireBreed')
     .min(2)
     .max(24)
-    .matches(nameRegexp, 'breed must contain only letters'),
+    .matches(nameRegexp, 'validation.requireBreedLetters'),
   location: Yup.string()
-    .required('Location is required')
-    .matches(locationRegexp, 'Location must be in format City, Region'),
+    .required('validation.requiredLocation')
+    .matches(locationRegexp, 'validation.addressFormat'),
   birthDate: Yup.string()
-    .required('Birthday is required')
-    .matches(birthdayRegexp, 'Birthday must be in format 19.12.2020'),
+    .required('validation.requiredBirthday')
+    .matches(birthdayRegexp, 'validation.birthdayFormat'),
   name: Yup.string()
-    .required('Name is required')
+    .required('validation.requiredName')
     .min(2)
     .max(16)
-    .matches(nameRegexp, 'Name must contain only letters'),
-  sex: Yup.string().required('Sex is required').oneOf(validGender),
+    .matches(nameRegexp, 'validation.nameFormat'),
+  sex: Yup.string().required('validation.requiredSex').oneOf(validGender),
   price: Yup.number().min(1),
-  comments: Yup.string().required('Comments is required').min(8).max(120),
-  image: Yup.string().required('Image is required'),
+  comments: Yup.string().required('validation.requiredComm').min(8).max(120),
+  image: Yup.string().required('validation.requiredImg'),
 });
 
 export { addNoticeSchema, NOTICE_CATEGORY, NOTICE_GENDER, NOTICE_CATEGORY_MAP };

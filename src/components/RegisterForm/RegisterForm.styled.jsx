@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-height: 410px;
+  max-height: 425px;
   height: 80vh;
   gap: 40px;
 
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     min-width: 280px;
-    padding: 7px;
+    padding: 10px;
 
     border-radius: 22px;
   }

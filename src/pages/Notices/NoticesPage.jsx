@@ -23,9 +23,10 @@ const unAuthCategories = ['sell', 'lostFound', 'forFree'];
 
 export const NoticesPage = () => {
   const { isUserAuthorized } = useAuth();
-  const userToken = useSelector(selectUserAccessToken);
+  const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const userToken = useSelector(selectUserAccessToken);
 
   const [search, setSearch] = useState(searchParams.get('query') ?? '');
   const [category, setCategory] = useState(
@@ -37,8 +38,6 @@ export const NoticesPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddNoticeModalOpen, setIsAddNoticeModalOpen] = useState(false);
   const [noticeDetailedInfo, setNoticeDetailedInfo] = useState({});
-
-  const { t } = useTranslation();
 
   const fetchNotices = async (category, query) => {
     try {
@@ -124,7 +123,7 @@ export const NoticesPage = () => {
 
   const handleAddNoticeModalToggle = () => {
     if (!isUserAuthorized) {
-      toast.error('You need to be logged in to add a notice');
+      toast.error(t('notification.needLogged'));
       return;
     }
 
@@ -143,7 +142,6 @@ export const NoticesPage = () => {
 
   return (
     <Section>
-      {' '}
       <Container>
         <NoticesTitle />
         <NoticesSearch

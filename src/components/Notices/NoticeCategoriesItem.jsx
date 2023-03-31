@@ -53,6 +53,7 @@ export const NoticeCategoriesItem = ({
   onLearnMoreClick,
 }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
+  const { t } = useTranslation();
 
   const getLabel = category => {
     const el = nameCategory.find(item => item.type === category);
@@ -108,7 +109,6 @@ export const NoticeCategoriesItem = ({
     return result;
   };
 
-  const { t } = useTranslation();
   return (
     <>
       {' '}

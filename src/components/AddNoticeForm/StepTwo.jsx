@@ -58,7 +58,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.location}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.location)}</Styled.TextMessage>
         </div>
         {values.category === NOTICE_CATEGORY.SELL && (
           <div>
@@ -74,7 +74,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
                   : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
               }
             />
-            <Styled.TextMessage>{errors.price}</Styled.TextMessage>
+            <Styled.TextMessage>{t(errors.price)}</Styled.TextMessage>
           </div>
         )}
         <div>
@@ -98,7 +98,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
               onClick={() => fileInputRef.current.click()}
             />
           </Styled.ContainerAddImage>
-          <Styled.TextMessage>{errors.image}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.image)}</Styled.TextMessage>
         </div>
         <div>
           <Styled.Subtitle>{t('userModal.petComm')}</Styled.Subtitle>
@@ -114,7 +114,7 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.comments}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.comments)}</Styled.TextMessage>
         </div>
       </Styled.ContentWrapper>
       <Styled.ButtonsWrapper>
