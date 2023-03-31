@@ -72,7 +72,7 @@ export const NoticesPage = () => {
       return noticeDetailedInfoResp.data;
     } else {
       toast.error(
-        `Something went wrong. Please try again later. Network error status ${noticeDetailedInfoResp.status}`
+        `${t('notification.networkError')} ${noticeDetailedInfoResp.status}`
       );
 
       return null;
