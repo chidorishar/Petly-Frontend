@@ -42,6 +42,10 @@ export const Title = styled.h2`
 
 export const WrapperOne = styled(Wrapper)`
   width: 100%;
+  max-height: 962px;
+  height: 95vh;
+  overflow-y: auto;
+
   transition: opacity 0.5s ease;
   opacity: ${({ state }) => {
     switch (state) {
@@ -56,9 +60,21 @@ export const WrapperOne = styled(Wrapper)`
   @media ${p => p.theme.breakpoints.mobile.media} {
     max-width: 280px;
   }
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-height: 960px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    max-height: 960px;
+  }
 `;
 
 export const WrapperTwo = styled(Wrapper)`
+  max-height: 805px;
+  height: 95vh;
+  overflow-y: auto;
+
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: ${({ state }) => {
     switch (state) {
@@ -86,6 +102,14 @@ export const WrapperTwo = styled(Wrapper)`
     ),
     -50%
   );
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-height: 970px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    max-height: 980px;
+  }
 `;
 
 export const NoticeDescription = styled.p`
@@ -198,7 +222,11 @@ export const InputComments = styled.textarea`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    gap: 28px;
+  }
 `;
 
 export const OptionsWrapper = styled.div`
