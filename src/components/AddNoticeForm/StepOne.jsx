@@ -83,7 +83,7 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.title}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.title)}</Styled.TextMessage>
         </div>
         <div>
           <Styled.Subtitle>{t('registration.name')}</Styled.Subtitle>
@@ -98,7 +98,7 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.name}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.name)}</Styled.TextMessage>
         </div>
         <div>
           <Styled.Subtitle>{t('modal.birth')}</Styled.Subtitle>
@@ -113,7 +113,7 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.birthDate}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.birthDate)}</Styled.TextMessage>
         </div>
         <div>
           <Styled.Subtitle>{t('modal.breed')}</Styled.Subtitle>
@@ -128,7 +128,7 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
                 : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
             }
           />
-          <Styled.TextMessage>{errors.breed}</Styled.TextMessage>
+          <Styled.TextMessage>{t(errors.breed)}</Styled.TextMessage>
         </div>
       </Styled.ContentWrapper>
 

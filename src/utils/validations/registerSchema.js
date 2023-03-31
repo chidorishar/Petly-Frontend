@@ -3,7 +3,6 @@
  */
 
 import * as Yup from 'yup';
-// import i18n from 'i18next';
 
 import { passwordSchema, emailSchema, phoneSchema } from './common';
 
