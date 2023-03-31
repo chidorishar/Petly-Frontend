@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
-import { differenceInCalendarYears } from 'date-fns';
+import {
+  differenceInCalendarYears,
+  differenceInCalendarMonths,
+} from 'date-fns';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -64,7 +67,45 @@ export const NoticeCategoriesItem = ({
   };
 
   const calcFullYearsOld = birthDate => {
-    return differenceInCalendarYears(new Date(), new Date(birthDate));
+    const differYears = differenceInCalendarYears(
+      new Date(),
+      new Date(birthDate)
+    );
+    let result;
+    if (differYears !== 0) {
+      switch (differYears) {
+        case 2:
+          result = `${differYears} ${t('notices.years2')}`;
+          break;
+        case 1:
+          result = `${differYears} ${t('notices.year')}`;
+          break;
+        default:
+          result = `${differYears} ${t('notices.years')}`;
+          break;
+      }
+      return result;
+    }
+    const differMonths = differenceInCalendarMonths(
+      new Date(),
+      new Date(birthDate)
+    );
+
+    switch (differMonths) {
+      case 1:
+        result = `${differMonths} ${t('notices.month')}`;
+        break;
+      case 0:
+        result = `${t('notices.less')}`;
+        break;
+      case 2:
+        result = `${differMonths} ${t('notices.months2')}`;
+        break;
+      default:
+        result = `${differMonths} ${t('notices.months')}`;
+        break;
+    }
+    return result;
   };
 
   const { t } = useTranslation();
@@ -98,9 +139,7 @@ export const NoticeCategoriesItem = ({
             <PetInfo>
               <li>{breed}</li>
               <li>{location}</li>
-              <li>
-                {calcFullYearsOld(birthDate)} {t('notices.year')}
-              </li>
+              <li>{calcFullYearsOld(birthDate)}</li>
               {category === 'sell' && <li>{price}</li>}
             </PetInfo>
           </Box>
