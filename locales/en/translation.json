@@ -161,6 +161,7 @@
   },
 
   "notification": {
+    "networkError": "Something went wrong. Please try again later. Network error status ",
     "needLogged": "You need to be logged in to add a notice",
     "errorAdd": "Error adding data! Network error",
     "welcome": "Welcome back",
