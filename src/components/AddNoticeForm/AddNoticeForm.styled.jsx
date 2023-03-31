@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-import {
-  addFile,
-  male,
-  female,
-  addFileWebp,
-  maleWebp,
-  femaleWebp,
-} from '../../images/NoticeAddPet';
+import { male, female, maleWebp, femaleWebp } from '../../images/NoticeAddPet';
+
+import { ImageLoader } from 'components/common';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -23,7 +18,8 @@ export const Wrapper = styled.div`
   max-width: 608px;
   width: 608px;
 
-  background: #ffffff;
+  color: ${({ theme: { colors } }) => colors.heading};
+  background: ${({ theme: { colors } }) => colors.secondaryBackground}};
   border-radius: 40px;
 
   @media ${p => p.theme.breakpoints.mobile.media} {
@@ -35,7 +31,8 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.lx};
-  color: ${({ theme: { colors } }) => colors.black};
+
+  color: ${({ theme: { colors } }) => colors.accentedTextDark};
   text-align: center;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.heading};
@@ -45,6 +42,10 @@ export const Title = styled.h2`
 
 export const WrapperOne = styled(Wrapper)`
   width: 100%;
+  max-height: 962px;
+  height: 95vh;
+  overflow-y: auto;
+
   transition: opacity 0.5s ease;
   opacity: ${({ state }) => {
     switch (state) {
@@ -59,9 +60,21 @@ export const WrapperOne = styled(Wrapper)`
   @media ${p => p.theme.breakpoints.mobile.media} {
     max-width: 280px;
   }
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-height: 960px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    max-height: 960px;
+  }
 `;
 
 export const WrapperTwo = styled(Wrapper)`
+  max-height: 805px;
+  height: 95vh;
+  overflow-y: auto;
+
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: ${({ state }) => {
     switch (state) {
@@ -89,12 +102,19 @@ export const WrapperTwo = styled(Wrapper)`
     ),
     -50%
   );
+
+  @media ${p => p.theme.breakpoints.tablet.media} {
+    max-height: 970px;
+  }
+
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    max-height: 980px;
+  }
 `;
 
 export const NoticeDescription = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
-  color: ${({ theme: { colors } }) => colors.black};
   text-align: center;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.m};
@@ -104,7 +124,8 @@ export const NoticeDescription = styled.p`
 export const Subtitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.ml};
-  color: ${({ theme: { colors } }) => colors.black};
+
+  padding-bottom: 12px;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.n};
   }
@@ -143,38 +164,28 @@ export const InputCommon = styled.input`
 export const ContainerAddImage = styled.div`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.text};
-  background-color: ${({ theme: { colors } }) => colors.mainBackground};
-  background-image: url(${(addFile, addFileWebp)});
-  background-position: 50%;
-  background-repeat: no-repeat;
-  color: ${({ theme: { colors } }) => colors.inputText};
-  width: 140px;
-  height: 140px;
-  padding: 11px 16px 10px 16px;
-  border: none;
-  border-radius: 24px;
-  outline: none;
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
-    width: 116px;
-    height: 116px;
   }
 `;
 
 export const InputAddImage = styled.input`
-  font-size: ${p => p.theme.fontSizes.m};
-  font-weight: ${p => p.theme.fontWeights.text};
-  background-color: ${({ theme: { colors } }) => colors.mainBackground};
-  color: ${({ theme: { colors } }) => colors.inputText};
   opacity: 0;
-  width: 140px;
-  height: 140px;
-  padding: 11px 16px 10px 16px;
+
   border: none;
   border-radius: 24px;
   outline: none;
-  @media ${p => p.theme.breakpoints.mobile.media} {
-    font-size: ${p => p.theme.fontSizes.s};
+  ze: ${p => p.theme.fontSizes.s};
+`;
+
+export const ImageFileReaderAndViewer = styled(ImageLoader)`
+  width: 116px;
+  height: 116px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    width: 140px;
+    height: 140px;
   }
 `;
 
@@ -211,7 +222,11 @@ export const InputComments = styled.textarea`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    gap: 28px;
+  }
 `;
 
 export const OptionsWrapper = styled.div`
@@ -224,8 +239,12 @@ export const OptionsWrapper = styled.div`
 export const OptionsWrapperTwo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 90px;
+  column-gap: 16px;
   row-gap: 16px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    column-gap: 45px;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -246,7 +265,8 @@ export const ModalButton = styled.button`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.heading};
   color: ${p => p.theme.colors.heading};
-  background-color: ${p => p.theme.colors.secondaryBackground};
+  background-color: ${p =>
+    p.isActive ? p.theme.colors.accent : p.theme.colors.secondaryBackground};
 
   border: ${p => p.theme.borders.primaryBtn};
   border-radius: ${p => p.theme.radii.mainBorderRadius};
@@ -280,20 +300,37 @@ export const ModalButtonDown = styled(ModalButton)`
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-top: 0px;
   }
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.darkLight};
+  }
 `;
 
 export const SexButton = styled.button`
   display: flex;
   align-items: flex-end;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
+  width: 104px;
   height: 104px;
-  width: 54px;
+
+  padding: 5px;
+
+  border-radius: 24px;
+
   background-repeat: no-repeat;
-  background-position: top;
-  background-color: ${p => p.theme.colors.secondaryBackground};
+  background-position: center 10px;
+  background-color: ${p =>
+    p.isActive ? '#f6ccb2' : p.theme.colors.secondaryBackground};
   font-size: ${p => p.theme.fontSizes.nl};
   font-weight: ${p => p.theme.fontWeights.heading};
-  color: ${p => p.theme.colors.text};
+
+  color: ${p =>
+    p.isActive ? p.theme.colors.darkLight : p.theme.colors.heading};
+  transition: background-color ${p => p.theme.transitions.normal},
+    color ${p => p.theme.transitions.normal};
+
   &:nth-child(1) {
     background-image: url(${(male, maleWebp)});
   }
@@ -304,7 +341,8 @@ export const SexButton = styled.button`
 
   :hover,
   :focus {
-    color: ${p => p.theme.colors.accent};
+    background-color: ${p =>
+      p.isActive ? p.theme.colors.accent : p.theme.colors.accent};
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {

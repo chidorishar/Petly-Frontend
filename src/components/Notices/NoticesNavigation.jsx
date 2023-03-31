@@ -13,9 +13,13 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
-export const NoticesNavigation = ({ onCategoryClick, onAddNoticeClick }) => {
+export const NoticesNavigation = ({
+  onCategoryClick,
+  onAddNoticeClick,
+  startCategory,
+}) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
-  const [selectedButton, setSelectedButton] = useState('sell');
+  const [selectedButton, setSelectedButton] = useState(startCategory);
   const nameCategoryUnAuth = [
     { type: 'sell', text: i18n.t('notices.sell') },
     { type: 'lostFound', text: i18n.t('notices.lost') },
@@ -76,4 +80,5 @@ export const NoticesNavigation = ({ onCategoryClick, onAddNoticeClick }) => {
 NoticesNavigation.propTypes = {
   onCategoryClick: PropTypes.func,
   onAddNoticeClick: PropTypes.func,
+  startCategory: PropTypes.string,
 };

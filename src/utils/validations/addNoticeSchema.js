@@ -6,6 +6,12 @@ const NOTICE_CATEGORY = {
   LOST_FOUND: 'lost-found',
 };
 
+const NOTICE_CATEGORY_MAP = {
+  sell: 'sell',
+  forFree: 'for-free',
+  lostFound: 'lost-found',
+};
+
 const NOTICE_GENDER = {
   MALE: 'male',
   FEMALE: 'female',
@@ -13,7 +19,7 @@ const NOTICE_GENDER = {
 
 const nameRegexp = /^([a-zA-Zа-яА-ЯёЁёЁЇїІіҐґЄє\s]+)$/;
 const locationRegexp =
-  /^([a-zA-Zа-яА-ЯІіЇїЄє]+){2}, ([a-zA-Zа-яА-ЯІіЇїЄє]+){2}$/;
+  /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-0-9]+)?),\s([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F0-9]+)*)$/;
 const birthdayRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/;
 const validCategory = Object.values(NOTICE_CATEGORY);
 const validGender = Object.values(NOTICE_GENDER);
@@ -49,4 +55,4 @@ const addNoticeSchema = Yup.object().shape({
   image: Yup.string().required('validation.requiredImg'),
 });
 
-export { addNoticeSchema, NOTICE_CATEGORY, NOTICE_GENDER };
+export { addNoticeSchema, NOTICE_CATEGORY, NOTICE_GENDER, NOTICE_CATEGORY_MAP };

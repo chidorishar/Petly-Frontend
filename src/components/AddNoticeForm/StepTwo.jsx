@@ -1,12 +1,15 @@
+import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
 
 import { NOTICE_CATEGORY, NOTICE_GENDER } from 'utils/validations';
 import * as Styled from './AddNoticeForm.styled';
-import { useTranslation } from 'react-i18next';
 
 const StepTwo = ({ animationState, handleStepChange, refProp }) => {
+  const fileInputRef = useRef(null);
   const { t } = useTranslation();
+
   const { values, handleChange, setFieldValue, errors, isSubmitting } =
     useFormikContext();
 
@@ -30,16 +33,16 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.MALE)}
-            // isActive={NOTICE_GENDER.MALE === value.sex}
+            isActive={NOTICE_GENDER.MALE === values.sex}
           >
-            {t('modal.m')}
+            <div> {t('modal.m')}</div>
           </Styled.SexButton>
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.FEMALE)}
-            // isActive={NOTICE_GENDER.FEMALE === value.sex}
+            isActive={NOTICE_GENDER.FEMALE === values.sex}
           >
-            {t('modal.f')}
+            <div> {t('modal.f')}</div>
           </Styled.SexButton>
         </Styled.OptionsWrapperTwo>
         <div>
@@ -82,11 +85,17 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
               name="image"
               type="file"
               onChange={handleFileChange}
+              ref={fileInputRef}
+              hidden
               style={
                 errors.image
                   ? { outlineColor: '#E2001A' }
                   : { outlineColor: 'rgba(245, 146, 86, 0.5)' }
               }
+            />
+            <Styled.ImageFileReaderAndViewer
+              file={values.image ? values.image : null}
+              onClick={() => fileInputRef.current.click()}
             />
           </Styled.ContainerAddImage>
           <Styled.TextMessage>{t(errors.image)}</Styled.TextMessage>

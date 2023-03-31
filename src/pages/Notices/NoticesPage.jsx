@@ -15,20 +15,23 @@ import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
 import { NotFound, NotFoundBox } from 'pages/News/NewsPage.styled';
 
-import { Container, Modal } from 'components/common';
+import { Container, Modal, Section } from 'components/common';
 import { AddNoticeForm, ModalNotice } from 'components';
 import { useAuth } from 'redux/hooks/getAuth';
-import { Section } from 'pages/HomePage/HomePage.styled';
+
+const unAuthCategories = ['sell', 'lostFound', 'forFree'];
 
 export const NoticesPage = () => {
   const { isUserAuthorized } = useAuth();
   const { t } = useTranslation();
 
-  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const userToken = useSelector(selectUserAccessToken);
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('sell');
+
+  const [search, setSearch] = useState(searchParams.get('query') ?? '');
+  const [category, setCategory] = useState(
+    searchParams.get('category') ?? 'sell'
+  );
   const [notices, setNotices] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -52,11 +55,24 @@ export const NoticesPage = () => {
   };
 
   useEffect(() => {
+    if (!unAuthCategories.includes(category) && !isUserAuthorized) {
+      // toast.error('You need to be logged in to see this category');
+      // return;
+    }
+    // setCategory('sell');
+  }, []);
+
+  useEffect(() => {
+    searchParams.set('category', category);
+    setSearchParams(searchParams);
+
     fetchNotices(category, search);
   }, [category]);
 
   const updateQueryString = e => {
-    setSearchParams({ query: e.target.value.toLocaleLowerCase().trim() });
+    searchParams.set('query', e.target.value.toLocaleLowerCase().trim());
+    setSearchParams(searchParams);
+
     setSearch(e.target.value.toLocaleLowerCase());
   };
 
@@ -137,6 +153,7 @@ export const NoticesPage = () => {
         <NoticesNavigation
           onAddNoticeClick={handleAddNoticeModalToggle}
           onCategoryClick={handleClick}
+          startCategory={category}
         />
         <NoticesCategoriesList
           notices={notices}
