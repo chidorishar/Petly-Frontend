@@ -5,3 +5,4 @@ export * from './BackgroundImage/BackgroundImage.styled';
 export * from './TextInput';
 export * from './Modal';
 export * from './Loader/Loader';
+export * from './ImageLoader/ImageLoader';

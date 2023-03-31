@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-import {
-  addFile,
-  male,
-  female,
-  addFileWebp,
-  maleWebp,
-  femaleWebp,
-} from '../../images/NoticeAddPet';
+import { male, female, maleWebp, femaleWebp } from '../../images/NoticeAddPet';
+
+import { ImageLoader } from 'components/common';
 
 export const Wrapper = styled.div`
   position: absolute;
@@ -23,7 +18,8 @@ export const Wrapper = styled.div`
   max-width: 608px;
   width: 608px;
 
-  background: #ffffff;
+  color: ${({ theme: { colors } }) => colors.heading};
+  background: ${({ theme: { colors } }) => colors.secondaryBackground}};
   border-radius: 40px;
 
   @media ${p => p.theme.breakpoints.mobile.media} {
@@ -35,7 +31,8 @@ export const Wrapper = styled.div`
 export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.semiBold};
   font-size: ${p => p.theme.fontSizes.lx};
-  color: ${({ theme: { colors } }) => colors.black};
+
+  color: ${({ theme: { colors } }) => colors.accentedTextDark};
   text-align: center;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-weight: ${p => p.theme.fontWeights.heading};
@@ -94,7 +91,6 @@ export const WrapperTwo = styled(Wrapper)`
 export const NoticeDescription = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
-  color: ${({ theme: { colors } }) => colors.black};
   text-align: center;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.m};
@@ -104,7 +100,8 @@ export const NoticeDescription = styled.p`
 export const Subtitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.ml};
-  color: ${({ theme: { colors } }) => colors.black};
+
+  padding-bottom: 12px;
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.n};
   }
@@ -143,38 +140,28 @@ export const InputCommon = styled.input`
 export const ContainerAddImage = styled.div`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.text};
-  background-color: ${({ theme: { colors } }) => colors.mainBackground};
-  background-image: url(${(addFile, addFileWebp)});
-  background-position: 50%;
-  background-repeat: no-repeat;
-  color: ${({ theme: { colors } }) => colors.inputText};
-  width: 140px;
-  height: 140px;
-  padding: 11px 16px 10px 16px;
-  border: none;
-  border-radius: 24px;
-  outline: none;
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     font-size: ${p => p.theme.fontSizes.s};
-    width: 116px;
-    height: 116px;
   }
 `;
 
 export const InputAddImage = styled.input`
-  font-size: ${p => p.theme.fontSizes.m};
-  font-weight: ${p => p.theme.fontWeights.text};
-  background-color: ${({ theme: { colors } }) => colors.mainBackground};
-  color: ${({ theme: { colors } }) => colors.inputText};
   opacity: 0;
-  width: 140px;
-  height: 140px;
-  padding: 11px 16px 10px 16px;
+
   border: none;
   border-radius: 24px;
   outline: none;
-  @media ${p => p.theme.breakpoints.mobile.media} {
-    font-size: ${p => p.theme.fontSizes.s};
+  ze: ${p => p.theme.fontSizes.s};
+`;
+
+export const ImageFileReaderAndViewer = styled(ImageLoader)`
+  width: 116px;
+  height: 116px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    width: 140px;
+    height: 140px;
   }
 `;
 
@@ -280,6 +267,11 @@ export const ModalButtonDown = styled(ModalButton)`
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-top: 0px;
   }
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.darkLight};
+  }
 `;
 
 export const SexButton = styled.button`
@@ -287,13 +279,13 @@ export const SexButton = styled.button`
   align-items: flex-end;
   text-align: left;
   height: 104px;
-  width: 54px;
+
   background-repeat: no-repeat;
   background-position: top;
   background-color: ${p => p.theme.colors.secondaryBackground};
   font-size: ${p => p.theme.fontSizes.nl};
   font-weight: ${p => p.theme.fontWeights.heading};
-  color: ${p => p.theme.colors.text};
+  color: ${p => p.theme.colors.heading};
   &:nth-child(1) {
     background-image: url(${(male, maleWebp)});
   }

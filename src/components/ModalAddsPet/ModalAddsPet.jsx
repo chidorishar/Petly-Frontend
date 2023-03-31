@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
 import { useSelector } from 'react-redux';
-import { TfiPlus } from 'react-icons/tfi';
 import PropTypes from 'prop-types';
 
 import axios from 'axios';
@@ -33,15 +32,15 @@ import {
   FormLabelFoto,
   FormLabelComment,
   Comment,
-  ImgPet,
-  ImgPlug,
   ModalButtonDown,
 } from './ModalAddsPet.styled';
 
 // import { useCreatePetMutation } from 'redux/slices/petSliceAPISlice';
 import { selectUserAccessToken } from 'redux/selectors';
-import { ResetButton } from './ResetButton';
 import { addNewPet } from './api';
+
+import { ResetButton } from './ResetButton';
+import { ImageLoader } from 'components/common';
 
 // eslint-disable-next-line react/prop-types
 const FormError = forwardRef(({ name, component: Component = 'div' }, ref) => {
@@ -361,56 +360,6 @@ StepOne.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-const Thumb = ({ file, onClick }) => {
-  const [loading, setLoading] = useState(false);
-  const [thumb, setThumb] = useState(undefined);
-
-  useEffect(() => {
-    if (!file) {
-      return;
-    }
-    if (!(file instanceof File)) {
-      console.error('Invalid file type');
-      return;
-    }
-    setLoading(true);
-    let reader = new FileReader();
-
-    reader.onloadend = () => {
-      setLoading(false);
-      setThumb(reader.result);
-    };
-
-    reader.readAsDataURL(file);
-  }, [file]);
-
-  if (!file) {
-    return (
-      <ImgPlug onClick={onClick}>
-        <TfiPlus size={48} />
-      </ImgPlug>
-    );
-  }
-
-  if (loading) {
-    return <p>loading...</p>;
-  }
-  if (file && typeof file.name !== 'string') {
-    console.error('Invalid file name type');
-    return null;
-  }
-  return <ImgPet src={thumb} alt={file.name} onClick={onClick} />;
-};
-
-Thumb.propTypes = {
-  file: PropTypes.any,
-  onClick: PropTypes.func,
-};
-
-Thumb.defaultProps = {
-  file: null,
-};
-
 const FileInput = forwardRef((props, ref) => {
   return (
     <input
@@ -476,7 +425,7 @@ const StepTwo = ({ next, prev, data, submitForm, updateData }) => {
                 }}
                 ref={fileInputRef}
               />
-              <Thumb
+              <ImageLoader
                 file={selectedFile ? selectedFile : data.photo}
                 onClick={() => fileInputRef.current.click()}
               />

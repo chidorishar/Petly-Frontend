@@ -13,7 +13,7 @@ const NOTICE_GENDER = {
 
 const nameRegexp = /^([a-zA-Zа-яА-ЯёЁёЁЇїІіҐґЄє\s]+)$/;
 const locationRegexp =
-  /^([a-zA-Zа-яА-ЯІіЇїЄє]+){2}, ([a-zA-Zа-яА-ЯІіЇїЄє]+){2}$/;
+  /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-0-9]+)?),\s([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F0-9]+)*)$/;
 const birthdayRegexp = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[012])\.\d{4}$/;
 const validCategory = Object.values(NOTICE_CATEGORY);
 const validGender = Object.values(NOTICE_GENDER);
