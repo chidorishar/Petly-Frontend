@@ -13,18 +13,24 @@ export const BackDrop = styled(Box)`
   left: 0;
 
   display: flex;
-  justify-content: center;
   align-items: center;
   opacity: 0;
   pointer-events: none;
 
+  justify-content: flex-start;
+  flex-shrink: 0;
+  overflow: hidden;
+  overflow-y: auto;
+
   overflow: auto;
 
   opacity: 1;
+  backdrop-filter: blur(10px);
   pointer-events: all;
 `;
 export const ModalBox = styled(Box)`
   padding: 60px 20px 40px;
+  margin: auto;
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
   background-color: ${p => p.theme.colors.secondaryBackground};
   max-width: 280px;
@@ -71,8 +77,11 @@ export const CategoryBox = styled(Box)`
   width: 158px;
   border-top-right-radius: 14px;
   border-bottom-right-radius: 14px;
+
+  color: ${p => p.theme.colors.darkMain};
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(50px);
+
   p {
     font-size: ${p => p.theme.fontSizes.xs};
     line-height: ${p => p.theme.lineHeights.body};
@@ -86,7 +95,11 @@ export const PetTitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.logo};
   line-height: ${p => p.theme.lineHeights.body};
   letter-spacing: -0.01em;
+
   margin-bottom: 16px;
+
+  color: ${p => p.theme.colors.accentedTextDark};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.mll};
     line-height: 1.36;
@@ -149,27 +162,34 @@ export const PetComments = styled.p`
 
 export const PhoneLink = styled(ButtonWideCommon)`
   width: 100%;
-  border-radius: ${p => p.theme.radii.mainBorderRadius};
-  background-color: ${p => p.theme.colors.accent};
-  color: ${p => p.theme.colors.secondaryBackground};
+  margin: 0;
+  margin-bottom: 12px;
+  padding: 9px 0;
+
   transition: ${p => p.theme.transitions.normal};
-  background-color: ${p => p.theme.colors.accent};
+
+  border-radius: ${p => p.theme.radii.mainBorderRadius};
+  border: 2px solid ${p => p.theme.colors.accent};
+  color: ${p => p.theme.colors.heading};
+  background-color: transparent;
+
   line-height: ${p => p.theme.lineHeights.body};
   font-weight: ${p => p.theme.fontWeights.heading};
   letter-spacing: 0.04em;
-  padding: 9px 0;
-  margin: 0;
-  margin-bottom: 12px;
+
   &:focus,
   &:hover {
-    background-color: ${p => p.theme.colors.hoverBtn};
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.whiteSecondary};
   }
+
   a {
     display: block;
     width: 100%;
     text-decoration: none;
     color: inherit;
   }
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 160px;
     margin-bottom: 0;
@@ -177,6 +197,7 @@ export const PhoneLink = styled(ButtonWideCommon)`
     margin-right: 20px;
   }
 `;
+
 export const AddToFavoriteBtn = styled(ButtonWideCommon)`
   display: flex;
   justify-content: center;
@@ -190,20 +211,26 @@ export const AddToFavoriteBtn = styled(ButtonWideCommon)`
   background-color: ${p => p.theme.colors.secondaryBackground};
   border: 2px solid ${p => p.theme.colors.accent};
   padding: 8px;
+
+  color: ${p => p.theme.colors.heading};
+
   .addIcon {
     color: ${p => p.theme.colors.accent};
     margin-left: 8px;
     transition: color ${p => p.theme.transitions.normal};
   }
+
   &:focus,
   &:hover {
-    background-color: ${p => p.theme.colors.hoverBtn};
-    color: ${p => p.theme.colors.secondaryBackground};
+    color: ${p => p.theme.colors.whiteSecondary};
+    background-color: ${p => p.theme.colors.accent};
+
     .addIcon {
-      color: ${p => p.theme.colors.secondaryBackground};
+      color: ${p => p.theme.colors.whiteSecondary};
       margin-left: 8px;
     }
   }
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     max-width: 160px;
     order: 4;

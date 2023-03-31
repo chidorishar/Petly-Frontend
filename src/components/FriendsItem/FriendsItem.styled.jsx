@@ -42,6 +42,8 @@ export const Time = styled.button`
   border: none;
   background-color: inherit;
 
+  color: ${p => p.theme.colors.accentedTextDark};
+
   transition: color ${p => p.theme.transitions.normal};
 
   &.active {
@@ -128,6 +130,9 @@ export const SponsorItem = styled.li`
   background-color: ${p => p.theme.colors.secondaryBackground};
   box-shadow: ${p => `7px 4px 14px ${p.theme.colors.shadowCard}`};
   border-radius: 20px;
+
+  transition: background-color ${p => p.theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.media} {
     padding: 16px;
     border-radius: 40px;
@@ -153,7 +158,7 @@ export const TimeList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: white;
+  background-color: ${p => p.theme.colors.secondaryBackground};
   border: ${p => `2px solid ${p.theme.colors.accent}`};
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;

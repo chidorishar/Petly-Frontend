@@ -42,16 +42,16 @@ export const UserInfoContainer = styled.div`
 export const UserTitle = styled.p`
   margin-bottom: 18px;
 
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.heading};
 
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   line-height: 1.35;
 
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-bottom: 40px;
-
-    color: ${p => p.theme.colors.heading};
 
     font-size: ${p => p.theme.fontSizes.mll};
   }
@@ -69,6 +69,8 @@ export const UserWrapper = styled.div`
 
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   background-color: ${p => p.theme.colors.secondaryBackground};
+
+  transition: background-color ${({ theme }) => theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     position: relative;

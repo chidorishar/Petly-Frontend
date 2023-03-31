@@ -102,10 +102,7 @@ export const ModalNotice = ({
           <ImgBox>
             <img src={image} alt={name} />
             <CategoryBox>
-              <p>
-                {category}
-                {/* {active && pet.petId} */}
-              </p>
+              <p>{category}</p>
             </CategoryBox>
           </ImgBox>
           <InfoBox>

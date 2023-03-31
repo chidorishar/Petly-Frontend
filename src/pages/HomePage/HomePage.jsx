@@ -28,8 +28,9 @@ import dogTablet2xWEBP from 'pages/HomePage/images/tablet/dog-tablet@2x.webp';
 import dogDesktopWEBP from 'pages/HomePage/images/desktop/dog-desktop.webp';
 import dogDesktop2xWEBP from 'pages/HomePage/images/desktop/dog-desktop@2x.webp';
 
-import { theme } from 'utils';
 import { useTranslation } from 'react-i18next';
+
+import { theme } from 'utils';
 
 import {
   Section,

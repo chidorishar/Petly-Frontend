@@ -35,7 +35,7 @@ export const Button = styled.button`
   color: ${props =>
     props.selected
       ? props.theme.colors.mainBackground
-      : props.theme.colors.accent};
+      : props.theme.colors.accentedTextLight};
 `;
 
 export const AddPetBtn = styled.button`
@@ -107,13 +107,19 @@ export const Icon = styled(IoAddOutline)`
 export const Span = styled.span`
   position: absolute;
   left: 10px;
-  color: #fff;
+
   min-width: 60px;
   margin-right: 26px;
+
+  color: ${({ theme }) => theme.colors.textLight};
 
   @media screen and (min-width: 768px) {
     position: absolute;
     left: -60px;
     color: #000;
+  }
+
+  @media ${({ theme }) => theme.breakpoints.tablet.mediaFrom} {
+    color: ${({ theme }) => theme.colors.heading};
   }
 `;

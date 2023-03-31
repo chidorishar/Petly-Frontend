@@ -25,6 +25,7 @@ export const UserImage = styled.img`
   border-radius: 50%;
   object-fit: contain;
   width: 233px;
+  height: 233px;
 `;
 
 export const EditPhotoLabel = styled.label`
@@ -37,7 +38,7 @@ export const EditPhotoLabel = styled.label`
   cursor: pointer;
 
   background-color: transparent;
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.accentedTextDark};
 
   transition: color ${p => p.theme.transitions.normal};
 

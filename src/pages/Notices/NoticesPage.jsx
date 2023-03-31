@@ -15,7 +15,7 @@ import { NoticesNavigation } from 'components/Notices/NoticesNavigation';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList';
 import { NotFound, NotFoundBox } from 'pages/News/NewsPage.styled';
 
-import { Container } from 'components/common';
+import { Container, Section } from 'components/common';
 import { ModalNotice } from 'components';
 
 export const NoticesPage = () => {
@@ -109,32 +109,34 @@ export const NoticesPage = () => {
 
   return (
     <Container>
-      <NoticesTitle />
-      <NoticesSearch
-        value={search}
-        onChange={updateQueryString}
-        onSubmit={handleSubmit}
-        removeQuery={clearSearch}
-      />
-      <NoticesNavigation onCategoryClick={handleClick} />
-      <NoticesCategoriesList
-        notices={notices}
-        onDeleteNotice={handleDelete}
-        onUpdateNoticeStatus={handleSubmit}
-        onLearnMoreClick={handleLearnMoreClick}
-      />
-      {notices.length === 0 && !isRefreshing && (
-        <NotFoundBox>
-          <NotFound>{t('error.notfound')}</NotFound>
-        </NotFoundBox>
-      )}
-      {isModalOpen && (
-        <ModalNotice
-          noticeData={noticeDetailedInfo}
-          onUpdateNoticeStatus={handleNoticeStatusUpdateInModal}
-          setIsModalShown={setIsModalOpen}
+      <Section>
+        <NoticesTitle />
+        <NoticesSearch
+          value={search}
+          onChange={updateQueryString}
+          onSubmit={handleSubmit}
+          removeQuery={clearSearch}
         />
-      )}
+        <NoticesNavigation onCategoryClick={handleClick} />
+        <NoticesCategoriesList
+          notices={notices}
+          onDeleteNotice={handleDelete}
+          onUpdateNoticeStatus={handleSubmit}
+          onLearnMoreClick={handleLearnMoreClick}
+        />
+        {notices.length === 0 && !isRefreshing && (
+          <NotFoundBox>
+            <NotFound>{t('error.notfound')}</NotFound>
+          </NotFoundBox>
+        )}
+        {isModalOpen && (
+          <ModalNotice
+            noticeData={noticeDetailedInfo}
+            onUpdateNoticeStatus={handleNoticeStatusUpdateInModal}
+            setIsModalShown={setIsModalOpen}
+          />
+        )}
+      </Section>
     </Container>
   );
 };

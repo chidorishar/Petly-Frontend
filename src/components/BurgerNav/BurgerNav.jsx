@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useMedia } from 'react-use';
 import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 
 import { useAuth } from 'redux/hooks/getAuth';
 
@@ -23,19 +24,24 @@ export const BurgerNav = ({ close }) => {
   });
 
   return (
-    <BurgerNavMenu onClick={close}>
-      <Container>
-        <LogoMenu>
-          <Logo />
-          <BurgerNavCloseBtn onClick={close} aria-label="Close" />
-        </LogoMenu>
-        <UserAuthMenu>
-          {isMobile && isUserAuthorized && !isUserRefreshing && <UserNav />}
-          {isMobile && !isUserAuthorized && <AuthNav />}
-        </UserAuthMenu>
-        <Nav />
-      </Container>
-    </BurgerNavMenu>
+    <>
+      {createPortal(
+        <BurgerNavMenu onClick={close}>
+          <Container>
+            <LogoMenu>
+              <Logo />
+              <BurgerNavCloseBtn onClick={close} aria-label="Close" />
+            </LogoMenu>
+            <UserAuthMenu>
+              {isMobile && isUserAuthorized && !isUserRefreshing && <UserNav />}
+              {isMobile && !isUserAuthorized && <AuthNav />}
+            </UserAuthMenu>
+            <Nav />
+          </Container>
+        </BurgerNavMenu>,
+        document.body
+      )}
+    </>
   );
 };
 

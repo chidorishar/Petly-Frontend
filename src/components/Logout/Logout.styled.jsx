@@ -8,7 +8,7 @@ export const LogOutBtn = styled.button`
   padding: 0;
 
   background-color: transparent;
-  color: rgba(17, 17, 17, 0.6);
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 
   transition: color ${p => p.theme.transitions.normal};
 
