@@ -59,12 +59,12 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
         </div>
         {values.category === NOTICE_CATEGORY.SELL && (
           <div>
-            <Styled.Subtitle>Price</Styled.Subtitle>
+            <Styled.Subtitle>{t('modal.price')}</Styled.Subtitle>
             <Styled.InputCommon
               name="price"
               value={values.price}
               onChange={handleChange}
-              placeholder="Type price"
+              placeholder={t('modal.pricepl')}
               style={
                 errors.price
                   ? { outlineColor: '#E2001A' }
