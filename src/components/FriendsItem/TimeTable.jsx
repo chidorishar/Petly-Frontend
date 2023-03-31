@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { TimeList, TimeItem, Text } from './FriendsItem.styled';
+import { useTranslation } from 'react-i18next';
 
 export const TimeTable = ({ shedule }) => {
+  const { t } = useTranslation();
   return (
     <TimeList>
       {shedule.map(item => (
@@ -13,7 +15,7 @@ export const TimeTable = ({ shedule }) => {
             </Text>
           ) : (
             <Text>
-              <span>{item.day}</span> Closed
+              <span>{item.day}</span> {t('friends.closed')}
             </Text>
           )}
         </TimeItem>
