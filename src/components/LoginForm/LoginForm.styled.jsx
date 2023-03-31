@@ -65,6 +65,10 @@ export const FormCommon = styled.form`
   @media (max-width: 767px) {
     padding: 40px 0;
   }
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    padding: 40px 10px;
+  }
 `;
 
 export const InputWrapper = styled.div`
