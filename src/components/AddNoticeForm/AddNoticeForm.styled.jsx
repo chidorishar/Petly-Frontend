@@ -261,7 +261,8 @@ export const ModalButton = styled.button`
   font-size: ${p => p.theme.fontSizes.m};
   font-weight: ${p => p.theme.fontWeights.heading};
   color: ${p => p.theme.colors.heading};
-  background-color: ${p => p.theme.colors.secondaryBackground};
+  background-color: ${p =>
+    p.isActive ? p.theme.colors.accent : p.theme.colors.secondaryBackground};
 
   border: ${p => p.theme.borders.primaryBtn};
   border-radius: ${p => p.theme.radii.mainBorderRadius};

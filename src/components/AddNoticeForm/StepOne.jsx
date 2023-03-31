@@ -3,9 +3,10 @@ import { useFormikContext } from 'formik';
 
 import PropTypes from 'prop-types';
 
-import { NOTICE_CATEGORY } from 'utils/validations';
+import { NOTICE_CATEGORY, NOTICE_CATEGORY_MAP } from 'utils/validations';
 import * as Styled from './AddNoticeForm.styled';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 
 const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
   const { t } = useTranslation();
@@ -20,6 +21,17 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
   const [stepIsPressed, setStepIsPressed] = useState(false);
   const ifCurrentIsInvalid =
     errors.title || errors.name || errors.birthDate || errors.breed;
+
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const currentCategory = searchParams.get('category');
+
+    if (currentCategory) {
+      setFieldValue('category', NOTICE_CATEGORY_MAP[currentCategory] ?? 'sell');
+      console.log('currentCategory', currentCategory);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (!ifCurrentIsInvalid && !isValidating && stepIsPressed) {
@@ -51,21 +63,21 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
           <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.LOST_FOUND)}
-            // isActive={values.category === NOTICE_CATEGORY.LOST_FOUND}
+            isActive={values.category === NOTICE_CATEGORY.LOST_FOUND}
           >
             {t('notices.lost')}
           </Styled.ModalButton>
           <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.FOR_FREE)}
-            // isActive={values.category === NOTICE_CATEGORY.FOR_FREE}
+            isActive={values.category === NOTICE_CATEGORY.FOR_FREE}
           >
             {t('notices.free')}
           </Styled.ModalButton>
           <Styled.ModalButton
             type="button"
             onClick={handleCategoryChange(NOTICE_CATEGORY.SELL)}
-            // isActive={values.category === NOTICE_CATEGORY.SELL}
+            isActive={values.category === NOTICE_CATEGORY.SELL}
           >
             {t('notices.sell')}
           </Styled.ModalButton>

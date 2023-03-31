@@ -6,6 +6,12 @@ const NOTICE_CATEGORY = {
   LOST_FOUND: 'lost-found',
 };
 
+const NOTICE_CATEGORY_MAP = {
+  sell: 'sell',
+  forFree: 'for-free',
+  lostFound: 'lost-found',
+};
+
 const NOTICE_GENDER = {
   MALE: 'male',
   FEMALE: 'female',
@@ -47,4 +53,4 @@ const addNoticeSchema = Yup.object().shape({
   image: Yup.string().required('Image is required'),
 });
 
-export { addNoticeSchema, NOTICE_CATEGORY, NOTICE_GENDER };
+export { addNoticeSchema, NOTICE_CATEGORY, NOTICE_GENDER, NOTICE_CATEGORY_MAP };
