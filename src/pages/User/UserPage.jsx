@@ -10,7 +10,7 @@ import {
   UserTitle,
   UserWrapper,
 } from './UserPage.styled';
-import { getUser } from 'redux/hooks/getUser';
+import { getUser } from 'utils/network/getUser';
 
 import { useSelector } from 'react-redux';
 import { selectUserAccessToken } from 'redux/selectors';

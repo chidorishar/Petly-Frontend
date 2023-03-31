@@ -31,16 +31,23 @@ export const FriendsItem = ({
   phone,
   email,
 }) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(true);
 
-  const week = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  const week = [
+    t('friends.monday'),
+    t('friends.tuesday'),
+    t('friends.wednesday'),
+    t('friends.thursday'),
+    t('friends.friday'),
+    t('friends.saturday'),
+    t('friends.sunday'),
+  ];
   const newWorkDays =
     workDays &&
     workDays.map((day, index) => {
       return { day: week[index], ...day };
     });
-
-  const { t } = useTranslation();
 
   return (
     <SponsorItem>

@@ -50,6 +50,7 @@ export const Title = styled.h2`
   transition: color ${({ theme }) => theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.mobile.media} {
+    padding-top: 10px;
     font-weight: ${p => p.theme.fontWeights.logo};
     font-size: ${p => p.theme.fontSizes.ml};
   }
@@ -64,6 +65,10 @@ export const FormCommon = styled.form`
 
   @media (max-width: 767px) {
     padding: 40px 0;
+  }
+
+  @media ${p => p.theme.breakpoints.mobile.media} {
+    padding: 40px 10px;
   }
 `;
 

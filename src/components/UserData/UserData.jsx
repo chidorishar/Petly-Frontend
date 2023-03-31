@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 
 import userDefaultImage from 'images/userDefaultImage.jpg';
 import { UserDataItem } from 'components/UserDataItem/UserDataItem';
-import { changeAvatar } from 'redux/hooks/changeAvatar';
+import { changeAvatar } from 'utils/network/changeAvatar';
 
 export const UserData = ({ user, onUserDataUpdated }) => {
   const {
