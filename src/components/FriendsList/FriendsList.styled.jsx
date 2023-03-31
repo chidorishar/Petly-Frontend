@@ -21,7 +21,12 @@ export const Title = styled.h2`
   text-align: center;
   font-size: 24px;
   line-height: 1.375;
+
   margin: 0;
+
+  color: ${p => p.theme.colors.heading};
+
+  transition: color ${({ theme }) => theme.transitions.normal};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: 48px;

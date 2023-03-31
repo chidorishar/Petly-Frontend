@@ -106,6 +106,6 @@ export const EditBtn = styled.button`
   }
 
   &.disabled {
-    color: ${p => p.theme.colors.heading};
+    color: ${p => p.theme.colors.darkMain};
   }
 `;

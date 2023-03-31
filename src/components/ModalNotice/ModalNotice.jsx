@@ -42,12 +42,17 @@ export const ModalNotice = ({
       }
     };
     document.addEventListener('keydown', handleKeyClose);
+
+    // body noscroll
+    document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', handleKeyClose);
+      document.body.style.overflow = '';
     };
   }, []);
   const showNotAuthNotification = () => {
-    toast.error('You should register to get access to favorites');
+    toast.error(t('notification.notRegistered'));
   };
 
   const {
@@ -102,10 +107,7 @@ export const ModalNotice = ({
           <ImgBox>
             <img src={image} alt={name} />
             <CategoryBox>
-              <p>
-                {category}
-                {/* {active && pet.petId} */}
-              </p>
+              <p>{category}</p>
             </CategoryBox>
           </ImgBox>
           <InfoBox>

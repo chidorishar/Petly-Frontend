@@ -47,7 +47,8 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       value: name,
       placeholder: i18n.t('user.namePl'),
       type: 'text',
-      pattern: /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
+      pattern:
+        /^([a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+[-]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)+([ ]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+[-]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)+[ ]?([a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)$/,
       initialValue: userName,
       changeValueMethod: setName,
     },
@@ -92,7 +93,7 @@ export const UserDataItem = ({ user, onUserDataUpdated }) => {
       placeholder: i18n.t('user.cityPl'),
       type: 'text',
       pattern:
-        /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F]+[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+){1}, ([-'a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F`]+){2}$/,
+        /^([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-0-9]+)?),\s([a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F-'`0-9]+(?:\s[a-zA-Zа-яА-ЯІіЇїЄє\u0410-\u044F0-9]+)*)$/,
       initialValue: userLocation,
       changeValueMethod: setLocation,
     },

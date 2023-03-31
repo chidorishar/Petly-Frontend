@@ -4,7 +4,6 @@ import { Form as FormikForm, Field as FormikField } from 'formik';
 import { RxCross1 } from 'react-icons/rx';
 
 export const Overlay = styled.div`
-  z-index: 300;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -13,22 +12,32 @@ export const Overlay = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* opacity: 0; */
+
   background: ${p => p.theme.colors.inputText};
+
+  backdrop-filter: blur(10px);
 `;
 
 export const Modal = styled.div`
   position: relative;
+  z-index: 1;
   margin: 0 auto;
-  /* display: flex;
-  flex-direction: column; */
+
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  width: 280px;
+  padding: 40px 20px 40px 20px;
+  margin: auto;
+  min-width: 280px;
   background: ${p => p.theme.colors.secondaryBackground};
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+
+  color: ${p => p.theme.colors.heading};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     width: 608px;
@@ -232,7 +241,7 @@ export const ModalButton = styled.button`
 
   cursor: pointer;
   transition: color ${p => p.theme.transitions.normal},
-    box-shadow 250ms ${p => p.theme.transitions.normal};
+    box-shadow ${p => p.theme.transitions.normal};
 
   :hover,
   :focus {
@@ -254,7 +263,7 @@ export const ModalButton = styled.button`
 export const ModalButtonDown = styled(ModalButton)`
   margin-top: 12px;
   background: ${p => p.theme.colors.accent};
-  color: ${p => p.theme.colors.secondaryBackground};
+  color: ${p => p.theme.colors.heading};
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     margin-top: 0px;
@@ -277,7 +286,8 @@ export const CrossButton = styled.button`
   border: none;
   cursor: pointer;
   transition: color ${p => p.theme.transitions.normal},
-    box-shadow 250ms ${p => p.theme.transitions.normal};
+    box-shadow ${p => p.theme.transitions.normal},
+    background-color ${p => p.theme.transitions.normal};
 
   :hover,
   :focus {
@@ -286,6 +296,7 @@ export const CrossButton = styled.button`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     transform: scale(1.01);
   }
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 44px;
     width: 44px;
@@ -296,11 +307,6 @@ export const Icon = styled(RxCross1)`
   flex: none;
   width: 24px;
   height: 24px;
-
-  :hover,
-  :focus {
-    color: ${p => p.theme.colors.secondaryBackground};
-  }
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 34px;
@@ -317,9 +323,27 @@ export const ImgPlug = styled.div`
   object-fit: cover;
   overflow: hidden;
   margin: 20px 0 0 0;
-  background-color: ${p => p.theme.colors.input};
 
   border-radius: ${p => p.theme.radii.secondaryBorderRadius};
+
+  transition: background-color ${p => p.theme.transitions.normal};
+
+  background-color: ${p => p.theme.colors.accentedBackgroundLight};
+
+  & > svg {
+    transition: color ${p => p.theme.transitions.normal},
+      transform ${p => p.theme.transitions.normal};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.darkMain};
+    background-color: ${p => p.theme.colors.accent};
+
+    & > svg {
+      transform: scale(1.4);
+    }
+  }
 
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     height: 182px;
@@ -355,20 +379,9 @@ export const ModalTitle = styled.p`
   font-weight: ${p => p.theme.fontWeights.heading};
   line-height: ${p => p.theme.lineHeights.body};
 
+  color: ${p => p.theme.colors.accentedTextDark};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.lx};
   }
 `;
-
-// export const ModalContent = styled.div`
-//   max-width: 500px;
-//   width: 100%;
-// `;
-
-// export const ModalPortal = styled.div`
-//   position: fixed;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   z-index: 100;
-// `;

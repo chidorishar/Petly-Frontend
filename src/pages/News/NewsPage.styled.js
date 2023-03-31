@@ -7,6 +7,8 @@ export const Title = styled.h1`
 
   color: ${p => p.theme.colors.heading};
 
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.mobile.media} {
     margin-bottom: 28px;
     font-size: ${p => p.theme.fontSizes.ml};

@@ -60,7 +60,7 @@ export const NoticeCategoriesItem = ({
     if (isUserAuthorized && !isUserRefreshing) {
       isFavorite ? await deleteFromFavorites(id) : await addToFavorites(id);
       onUpdateNoticeStatus();
-    } else toast.error('You should register to get access to favorites');
+    } else toast.error(t('notification.notRegistered'));
   };
 
   const calcFullYearsOld = birthDate => {

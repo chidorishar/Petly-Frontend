@@ -13,6 +13,7 @@ import { registerSchema } from 'utils/validations';
 
 import * as Styled from './RegisterForm.styled';
 import { ROUTES } from 'utils/appKeys';
+import { useTranslation } from 'react-i18next';
 
 const initialRegistrationValues = {
   email: '',
@@ -35,7 +36,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate(ROUTES.PROFILE);
+      navigate(ROUTES.USERPAGE);
     }
   }, [isSuccess, navigate]);
 
@@ -50,6 +51,8 @@ const RegisterForm = () => {
 
     setRegisterStep(prevStep => prevStep - 1);
   };
+
+  const { t } = useTranslation();
 
   const handleFormSubmit = async ({
     email,
@@ -68,12 +71,14 @@ const RegisterForm = () => {
 
     if (error) {
       toast.error(
-        error.status === 409 ? 'User already exists' : 'Something went wrong'
+        error.status === 409
+          ? t('notification.userExists')
+          : t('notification.someWrong')
       );
       return;
     }
 
-    toast.success('User created successfully');
+    toast.success(t('notification.userCreatedS'));
   };
 
   return (

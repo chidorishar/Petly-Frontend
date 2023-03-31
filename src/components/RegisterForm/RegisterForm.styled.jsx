@@ -17,11 +17,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 410px;
+  height: 80vh;
   gap: 40px;
 
+  background-color: ${p => p.theme.colors.ternaryBackground};
+
+  transition: background-color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.mobile.media} {
-    background-color: ${p => p.theme.colors.mainBackground};
     min-width: 280px;
+    padding: 7px;
+
     border-radius: 22px;
   }
 
@@ -30,7 +37,6 @@ const Wrapper = styled.div`
     height: 80vh;
     padding: 60px 80px;
 
-    background-color: ${p => p.theme.colors.secondaryBackground};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
@@ -101,7 +107,7 @@ const Title = styled.h2`
     font-size: ${p => p.theme.fontSizes.lx};
   }
 
-  color: ${p => p.theme.colors.heading};
+  color: ${p => p.theme.colors.accentedTextDark};
 `;
 
 const InputWrapper = styled.div`
@@ -136,7 +142,7 @@ const ButtonWrapper = styled.div`
 const BottomText = styled.p`
   font-size: ${p => p.theme.fontSizes.xs};
   line-height: 1.33;
-  color: ${p => p.theme.colors.inputText};
+  color: ${p => p.theme.colors.accentedTextDarkOpaq};
 `;
 
 const BottomLink = styled(Link)`
@@ -144,26 +150,41 @@ const BottomLink = styled(Link)`
 `;
 
 export const Button = styled.button`
-  position: relative;
-  overflow-x: hidden;
-  overflow-y: hidden;
-
   font-weight: ${p => p.theme.fontWeights.heading};
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
-
+  border-radius: 22px;
   padding: 10.5px;
 
-  border-radius: 24px;
-  border: ${p => p.isLight && `2px solid ${p.theme.colors.accent}`};
+  @media ${p => p.theme.breakpoints.desktop.media} {
+    border-radius: 10.5px;
+    border-radius: 24px;
+  }
 
-  background: ${p => (p.isLight ? 'transparent' : p.theme.colors.accent)};
-  color: ${p =>
-    p.isLight ? p.theme.colors.darkMain : p.theme.colors.secondaryBackground};
+  background: ${p => p.theme.colors.accent};
+  &:nth-child(2) {
+    background: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.black};
+    outline: ${p => p.theme.borders.primaryBtn}
+      ${({ theme: { colors } }) => colors.accent};
+    &:hover,
+    :focus {
+      color: ${p => p.theme.colors.white};
+      background: ${p => p.theme.colors.accent};
+    }
+  }
+  color: ${p => p.theme.colors.white};
 
+  transition: transform 0.5s, color ${({ theme }) => theme.transitions.normal};
+
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
   :hover,
   :focus {
-    transition: transform 0.5s;
+    transform: scale(1.05);
+
+    color: ${p => p.theme.colors.darkMain};
   }
   :hover:before {
     left: 100%;
@@ -179,7 +200,8 @@ export const Button = styled.button`
     background: linear-gradient(
       120deg,
       transparent,
-      /* rgba(255, 255, 255, 0.6), */ transparent
+      rgba(255, 255, 255, 0.6),
+      transparent
     );
     transition: all 650ms;
   }

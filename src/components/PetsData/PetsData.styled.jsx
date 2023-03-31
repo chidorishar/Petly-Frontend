@@ -7,6 +7,9 @@ export const PetsTitle = styled.p`
   font-size: ${p => p.theme.fontSizes.nl};
   letter-spacing: 0.04em;
   line-height: ${p => p.theme.lineHeights.body};
+
+  transition: color ${({ theme }) => theme.transitions.normal};
+
   @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
     font-size: ${p => p.theme.fontSizes.mll};
   }

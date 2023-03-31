@@ -66,12 +66,12 @@ export const UserData = ({ user, onUserDataUpdated }) => {
 
 UserData.propTypes = {
   user: PropTypes.shape({
-    avatarURL: PropTypes.string,
-    birthday: PropTypes.string,
+    avatarURL: PropTypes.string.isRequired,
+    birthday: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    phone: PropTypes.string,
-    location: PropTypes.string,
+    phone: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
   }).isRequired,
   onUserDataUpdated: PropTypes.func.isRequired,
 };

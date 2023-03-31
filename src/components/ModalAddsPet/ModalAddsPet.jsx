@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 // import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
 
 import {
   Overlay,
@@ -54,26 +55,45 @@ const FormError = forwardRef(({ name, component: Component = 'div' }, ref) => {
 FormError.displayName = 'FormError';
 
 const validationAddPetOneStep = yup.object().shape({
-  name: yup.string().min(2).max(16).required('Name pet is required!'),
+  name: yup
+    .string()
+    .min(2)
+    .max(16)
+    .required(i18n.t('validation.requiredNamePet')),
   birthday: yup
     .date()
-    .required('birthday is required!')
-    .test('is-valid-date', value => {
-      const minDate = new Date('2000-01-01');
-      return value >= minDate;
+    .required(i18n.t('validation.requiredBirthday'))
+    .test('is-valid-date', function (value) {
+      const minDate = new Date('1950-01-01');
+      // return this.createError({ message: customError });
+      if (value >= minDate) return true;
+      else
+        return this.createError({
+          message: i18n.t('validation.requireDate1'),
+        });
     })
-    .max(new Date() + 1),
-  breed: yup.string().min(2).max(16).required('Breed is required!'),
+    .max(new Date() + 1, i18n.t('validation.requireDate2')),
+  breed: yup
+    .string()
+    .min(2)
+    .max(16)
+    .required(i18n.t('validation.requireBreed')),
 });
 
 const validationAddPetTwoStep = yup.object().shape({
-  photo: yup.mixed().required('Please select a file'),
-  comment: yup.string().min(8).max(120).required('Please write about your pet'),
+  photo: yup.mixed().required(i18n.t('validation.selectFile')),
+  comment: yup
+    .string()
+    .min(8, i18n.t('validation.writePet'))
+    .max(120)
+    .required(i18n.t('validation.writePet')),
 });
 
 export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
   const [isModalAddPetShown, setShowModalAddPet] = useState(true);
   const userToken = useSelector(selectUserAccessToken);
+
+  const { t } = useTranslation();
 
   const modalRef = useRef(null);
   //Для валідації//
@@ -156,17 +176,16 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
     const addResponse = await addNewPet(formData);
 
     if (addResponse.status === 201) {
-      toast.success(`${values.name} successfully added!`, {
+      toast.success(`${values.name} ${t('notification.addPetSuccess')}`, {
         position: toast.POSITION.TOP_CENTER,
       });
+
+      // (`${t('notification.welcome')}, ${user.name}!`)
       onPetAddSuccess();
     } else
-      toast.error(
-        `Error adding data! Network error ${addResponse.statusText}`,
-        {
-          position: toast.POSITION.TOP_CENTER,
-        }
-      );
+      toast.error(`${t('notification.errorAdd')} ${addResponse.statusText}`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
     setSubmitting && setSubmitting(false);
     handleCloseModal();
@@ -188,8 +207,6 @@ export const ModalAddPet = ({ setModalStateInParent, onPetAddSuccess }) => {
       updateData={setData}
     />,
   ];
-
-  const { t } = useTranslation();
 
   return (
     <>

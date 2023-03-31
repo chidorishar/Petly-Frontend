@@ -1,6 +1,7 @@
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import i18n from 'i18next';
 
 import { dateConverter } from 'utils';
 
@@ -24,7 +25,9 @@ async function deletePetFromList(petId) {
   } catch ({ response }) {
     console.log(response.status);
     toast.error(
-      response.status === 400 ? 'Unauthorized!' : 'Something went wrong'
+      response.status === 400
+        ? i18n.t('notification.Unauthorized')
+        : i18n.t('notification.someWrong')
     );
   }
 
@@ -32,16 +35,16 @@ async function deletePetFromList(petId) {
 }
 
 export const UserPetsList = ({ pets, onPetDeleted }) => {
+  const { t } = useTranslation();
+
   const handleDeletePet = async id => {
     const resp = await deletePetFromList(id);
 
     if (resp) {
-      toast.success(`Pet deleted`);
+      toast.success(t('notification.petDel'));
       onPetDeleted();
     }
   };
-
-  const { t } = useTranslation();
 
   return pets.length ? (
     <List>

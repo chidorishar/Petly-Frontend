@@ -25,6 +25,7 @@ export const UserImage = styled.img`
   border-radius: 50%;
   object-fit: contain;
   width: 233px;
+  height: 233px;
 `;
 
 export const EditPhotoLabel = styled.label`
@@ -37,7 +38,9 @@ export const EditPhotoLabel = styled.label`
   cursor: pointer;
 
   background-color: transparent;
-  color: ${p => p.theme.colors.black};
+  color: ${p => p.theme.colors.accentedTextDark};
+
+  transition: color ${p => p.theme.transitions.normal};
 
   font-weight: ${p => p.theme.fontWeights.text};
   font-size: ${p => p.theme.fontSizes.xs};
@@ -52,6 +55,10 @@ export const EditPhotoLabel = styled.label`
     right: -74px;
     bottom: 0;
   }
+
+  &:hover {
+    color: ${p => p.theme.colors.hoverBtn};
+  }
 `;
 
 export const AvatarInput = styled.input`
@@ -64,12 +71,12 @@ export const EditAvatarIcon = styled.svg`
   width: 20px;
   height: 20px;
   margin-right: 4px;
-  fill: #f59256;
+  fill: ${p => p.theme.colors.accent};
 
-  transition: fill 250ms ease-in-out;
+  transition: fill ${p => p.theme.transitions.normal};
 
-  &:hover {
-    fill: #ff6101;
+  ${EditPhotoLabel}:hover & {
+    fill: ${p => p.theme.colors.hoverBtn};
   }
 `;
 

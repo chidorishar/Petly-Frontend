@@ -26,6 +26,8 @@ export const LoginForm = () => {
   const [sendLoginRequest, { isSuccess }] = useLoginUserMutation();
   const [show, setShow] = useState(false);
 
+  const { t } = useTranslation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -39,10 +41,12 @@ export const LoginForm = () => {
           data: { user },
         } = await sendLoginRequest(values).unwrap();
 
-        toast.success(`Welcome back, ${user.name}!`);
+        toast.success(`${t('notification.welcome')}, ${user.name}!`);
       } catch (error) {
         toast.error(
-          error.status === 400 ? 'Wrong credentials!' : 'Something went wrong'
+          error.status === 400
+            ? t('notification.wrong')
+            : t('notification.someWrong')
         );
       }
     },
@@ -80,7 +84,6 @@ export const LoginForm = () => {
     }
   };
 
-  const { t } = useTranslation();
   const handleShow = () => {
     setShow(!show);
   };
@@ -107,12 +110,12 @@ export const LoginForm = () => {
         </InputWrapper>
         {formik.touched.email && !formik.errors.email ? (
           <TextMessage style={{ color: '#3CBC81' }}>
-            Email is correct
+            {t('notification.emailIsCor')}
           </TextMessage>
         ) : null}
         {formik.touched.email && formik.errors.email ? (
           <TextMessage style={{ color: '#E2001A' }}>
-            {formik.errors.email}
+            {t(`${formik.errors.email}`)}
           </TextMessage>
         ) : null}
         <InputWrapper style={{ outlineColor: ifCurrentPassword() }}>
@@ -136,12 +139,12 @@ export const LoginForm = () => {
         </InputWrapper>
         {formik.touched.password && !formik.errors.password ? (
           <TextMessage style={{ color: '#3CBC81' }}>
-            Password is secure
+            {t('notification.passwordIsSec')}
           </TextMessage>
         ) : null}
         {formik.touched.password && formik.errors.password ? (
           <TextMessage style={{ color: '#E2001A' }}>
-            {formik.errors.password}
+            {t(`${formik.errors.password}`)}
           </TextMessage>
         ) : null}
         <Button disabled={isSuccess} type="submit">

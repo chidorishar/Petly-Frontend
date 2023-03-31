@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 
-export const NoticesNavigation = ({ onCategoryClick }) => {
+export const NoticesNavigation = ({ onCategoryClick, onAddNoticeClick }) => {
   const { isUserAuthorized, isUserRefreshing } = useAuth();
   const [selectedButton, setSelectedButton] = useState('sell');
   const nameCategoryUnAuth = [
@@ -64,7 +64,7 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
         )}
       </Wrapper>
       <Wrapper>
-        <AddPetBtn>
+        <AddPetBtn onClick={onAddNoticeClick}>
           <Span>{t('notices.add')}</Span>
           <Icon />
         </AddPetBtn>
@@ -75,4 +75,5 @@ export const NoticesNavigation = ({ onCategoryClick }) => {
 
 NoticesNavigation.propTypes = {
   onCategoryClick: PropTypes.func,
+  onAddNoticeClick: PropTypes.func,
 };
