@@ -239,8 +239,12 @@ export const OptionsWrapper = styled.div`
 export const OptionsWrapperTwo = styled.div`
   display: flex;
   flex-wrap: wrap;
-  column-gap: 90px;
+  column-gap: 16px;
   row-gap: 16px;
+
+  @media ${p => p.theme.breakpoints.tablet.mediaFrom} {
+    column-gap: 45px;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
@@ -306,15 +310,27 @@ export const ModalButtonDown = styled(ModalButton)`
 export const SexButton = styled.button`
   display: flex;
   align-items: flex-end;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
+  width: 104px;
   height: 104px;
 
+  padding: 5px;
+
+  border-radius: 24px;
+
   background-repeat: no-repeat;
-  background-position: top;
-  background-color: ${p => p.theme.colors.secondaryBackground};
+  background-position: center 10px;
+  background-color: ${p =>
+    p.isActive ? '#f6ccb2' : p.theme.colors.secondaryBackground};
   font-size: ${p => p.theme.fontSizes.nl};
   font-weight: ${p => p.theme.fontWeights.heading};
-  color: ${p => p.theme.colors.heading};
+
+  color: ${p =>
+    p.isActive ? p.theme.colors.darkLight : p.theme.colors.heading};
+  transition: background-color ${p => p.theme.transitions.normal},
+    color ${p => p.theme.transitions.normal};
+
   &:nth-child(1) {
     background-image: url(${(male, maleWebp)});
   }
@@ -325,7 +341,8 @@ export const SexButton = styled.button`
 
   :hover,
   :focus {
-    color: ${p => p.theme.colors.accent};
+    background-color: ${p =>
+      p.isActive ? p.theme.colors.accent : p.theme.colors.accent};
   }
 
   @media ${p => p.theme.breakpoints.mobile.media} {

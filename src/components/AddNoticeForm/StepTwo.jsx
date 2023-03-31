@@ -33,16 +33,16 @@ const StepTwo = ({ animationState, handleStepChange, refProp }) => {
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.MALE)}
-            // isActive={NOTICE_GENDER.MALE === value.sex}
+            isActive={NOTICE_GENDER.MALE === values.sex}
           >
-            {t('modal.m')}
+            <div> {t('modal.m')}</div>
           </Styled.SexButton>
           <Styled.SexButton
             type="button"
             onClick={handleSexChange(NOTICE_GENDER.FEMALE)}
-            // isActive={NOTICE_GENDER.FEMALE === value.sex}
+            isActive={NOTICE_GENDER.FEMALE === values.sex}
           >
-            {t('modal.f')}
+            <div> {t('modal.f')}</div>
           </Styled.SexButton>
         </Styled.OptionsWrapperTwo>
         <div>
