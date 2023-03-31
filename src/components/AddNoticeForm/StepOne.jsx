@@ -29,7 +29,6 @@ const StepOne = ({ handleNext, handleCancel, animationState, refProp }) => {
 
     if (currentCategory) {
       setFieldValue('category', NOTICE_CATEGORY_MAP[currentCategory] ?? 'sell');
-      console.log('currentCategory', currentCategory);
     }
   }, [searchParams]);
 
