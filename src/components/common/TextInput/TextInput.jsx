@@ -27,10 +27,13 @@ const TextInput = ({
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
-          type={showPassword ? "text":inputType}
+          type={showPassword ? 'text' : inputType}
         />
         {inputType === 'password' ? (
-          <div onClick={handleClick}>{ showPassword ? <ImEye /> : <ImEyeBlocked />}</div>) : null}
+          <div onClick={handleClick}>
+            {showPassword ? <ImEye /> : <ImEyeBlocked />}
+          </div>
+        ) : null}
         <TextInputIcon hasError={!!errorText} />
       </Styled.InputWrapper>
       <TextInputError errorText={errorText} />
