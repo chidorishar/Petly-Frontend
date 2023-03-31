@@ -1,3 +1,10 @@
+export const THEME_MODES = {
+  LIGHT: 'light',
+  DARK: 'dark',
+};
+export const LS_SELECTED_THEME_MODE_KEY = 'themeMode';
+export const LS_ALL_THEMES_KEY = 'themeMode';
+
 const baseColors = {
   accent: '#F59256',
   accentSecondary: '#3091EB',

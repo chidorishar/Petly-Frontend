@@ -1,8 +1,10 @@
-import { Logo } from 'components/Logo/Logo';
-import { Navigation } from 'components/Navigation/Navigation';
 import { Container } from 'components/common';
-import { HeaderBlok } from './Header.styled';
 import LanguageSwitch from 'components/common/LanguageSwitch/LanguageSwitch';
+
+import { HeaderBlok } from './Header.styled';
+import { Logo } from 'components/Logo/Logo';
+import { ColorThemeSwitch } from 'components/ColorThemeSwitch/ColorThemeSwitch';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export const Header = () => {
   return (
@@ -11,6 +13,7 @@ export const Header = () => {
         <HeaderBlok>
           <Logo />
           <LanguageSwitch />
+          <ColorThemeSwitch />
           <Navigation />
         </HeaderBlok>
       </Container>

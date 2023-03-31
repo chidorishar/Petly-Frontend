@@ -18,8 +18,6 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { Loader } from './common';
 import { ThemeProvider } from 'styled-components';
 
-import { useAppTheme } from 'utils/hooks';
-
 const NoticesPage = lazy(() => import('../pages/Notices/NoticesPage'));
 const RegisterPage = lazy(() => import('../pages/Register/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginPage'));
@@ -28,11 +26,13 @@ const OurFriendsPage = lazy(() => import('../pages/OurFriends/OurFriendsPage'));
 const UserPage = lazy(() => import('../pages/User/UserPage'));
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 
+import { useAppTheme } from 'redux/hooks/useAppTheme';
+
 export const App = () => {
   const [getCurrentUser, { isLoading: isRefreshingUserData }] =
     useLazyCurrentUserQuery();
   const [getAccessToken] = useRefreshUserMutation();
-  const { theme, themeLoaded, toggleTheme } = useAppTheme();
+  const { theme } = useAppTheme();
 
   useEffect(() => {
     const { accessToken, refreshToken } = store.getState().auth;
@@ -50,56 +50,52 @@ export const App = () => {
 
   return (
     <>
-      {themeLoaded && (
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <ToastContainer />
-          <button onClick={toggleTheme}>Switch Theme</button>
-          <Routes>
-            <Route path="/" element={<SharedLayout />}>
-              {isRefreshingUserData ? (
-                <Route index element={<Loader />} />
-              ) : (
-                <>
-                  {/* HOMEPAGE */}
-                  <Route index element={<HomePage />} />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            {isRefreshingUserData ? (
+              <Route index element={<Loader />} />
+            ) : (
+              <>
+                {/* HOMEPAGE */}
+                <Route index element={<HomePage />} />
 
-                  {/* ⏬ WRITE your PAGES below this comment ⏬*/}
-                  <Route
-                    path={ROUTES.LOGIN}
-                    element={
-                      <RestrictedRoute
-                        redirectTo={ROUTES.USERPAGE}
-                        component={<LoginPage />}
-                      />
-                    }
-                  />
-                  <Route
-                    path={ROUTES.REGISTER}
-                    element={
-                      <RestrictedRoute
-                        redirectTo={ROUTES.USERPAGE}
-                        component={<RegisterPage />}
-                      />
-                    }
-                  />
-                  <Route
-                    path={ROUTES.USERPAGE}
-                    element={
-                      <PrivateRoute redirectTo="/" component={<UserPage />} />
-                    }
-                  />
-                  <Route path={ROUTES.NEWS} element={<NewsPage />} />
-                  <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
-                  <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
-                  <Route path="*" element={<Navigate to="/" />} />
-                </>
-              )}
-            </Route>
-          </Routes>
-        </ThemeProvider>
-      )}
-      {!themeLoaded && <Loader />}
+                {/* ⏬ WRITE your PAGES below this comment ⏬*/}
+                <Route
+                  path={ROUTES.LOGIN}
+                  element={
+                    <RestrictedRoute
+                      redirectTo={ROUTES.USERPAGE}
+                      component={<LoginPage />}
+                    />
+                  }
+                />
+                <Route
+                  path={ROUTES.REGISTER}
+                  element={
+                    <RestrictedRoute
+                      redirectTo={ROUTES.USERPAGE}
+                      component={<RegisterPage />}
+                    />
+                  }
+                />
+                <Route
+                  path={ROUTES.USERPAGE}
+                  element={
+                    <PrivateRoute redirectTo="/" component={<UserPage />} />
+                  }
+                />
+                <Route path={ROUTES.NEWS} element={<NewsPage />} />
+                <Route path={ROUTES.FRIENDS} element={<OurFriendsPage />} />
+                <Route path={ROUTES.NOTICES} element={<NoticesPage />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </>
+            )}
+          </Route>
+        </Routes>
+      </ThemeProvider>
     </>
   );
 };
