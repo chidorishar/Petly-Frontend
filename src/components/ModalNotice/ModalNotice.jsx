@@ -42,8 +42,13 @@ export const ModalNotice = ({
       }
     };
     document.addEventListener('keydown', handleKeyClose);
+
+    // body noscroll
+    document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', handleKeyClose);
+      document.body.style.overflow = '';
     };
   }, []);
   const showNotAuthNotification = () => {

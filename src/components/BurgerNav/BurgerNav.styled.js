@@ -8,7 +8,7 @@ export const BurgerNavMenu = styled.div`
   top: 0;
   right: 0;
   overflow-y: auto;
-  padding: 44px 0 0;
+  padding: 19px 0 0;
   background: ${p => p.theme.colors.mainBackgroundWithGradient};
 `;
 

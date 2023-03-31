@@ -33,8 +33,8 @@ export const ContainerCardCommon = styled.div`
 
   @media ${p => p.theme.breakpoints.mobile.media} {
     margin: 0;
-    padding: 7px;
-
+    padding-top: 54px;
+    padding: 0;
     border: none;
     border-radius: 22px;
 
@@ -70,6 +70,8 @@ export const FormCommon = styled.form`
 export const InputWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: row;
+  gap: 10px;
   align-items: center;
 
   @media (max-width: 767px) {
@@ -116,6 +118,7 @@ export const InputCommon = styled.input`
   background-color: ${({ theme: { colors } }) => colors.mainBackground};
   color: ${({ theme: { colors } }) => colors.inputText};
   width: 100%;
+  height: 100%;
   border: none;
   outline: none;
   @media ${p => p.theme.breakpoints.mobile.media} {
@@ -128,7 +131,6 @@ export const IconInput = styled.div`
   align-items: center;
 
   @media ${p => p.theme.breakpoints.mobile.media} {
-    margin-top: -3px;
     max-height: 16px;
   }
 `;

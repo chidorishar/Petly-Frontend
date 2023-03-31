@@ -44,8 +44,12 @@ const Modal = ({ isOpen, children, handleClose }) => {
         unmountOnExit={true}
       >
         {state => (
-          <Styled.Backdrop onClick={handleBackdropClick}>
-            <Styled.Wrapper state={state} ref={transitionRef}>
+          <Styled.Backdrop>
+            <Styled.Wrapper
+              onClick={handleBackdropClick}
+              state={state}
+              ref={transitionRef}
+            >
               {children}
             </Styled.Wrapper>
           </Styled.Backdrop>
