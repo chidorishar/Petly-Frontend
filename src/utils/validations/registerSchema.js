@@ -20,7 +20,7 @@ const registerSchema = Yup.object({
   name: Yup.string()
     .required('validation.requiredName')
     .matches(
-      /^([a-zA-Z]+[-]?[a-zA-Z]+)+[ ]?([a-zA-Z]+)$/,
+      /^([a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+[-]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)+([ ]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+[-]?[a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)+[ ]?([a-zA-Z-яА-ЯІіЇїЄє\u0410-\u044F]+)$/,
       'validation.requiredName'
     )
     .max(40, 'validation.validName'),
