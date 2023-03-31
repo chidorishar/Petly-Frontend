@@ -1,7 +1,7 @@
 import { Container } from 'components/common';
 import LanguageSwitch from 'components/common/LanguageSwitch/LanguageSwitch';
 
-import { HeaderBlok } from './Header.styled';
+import { AdditionalFunctionalityWrapper, HeaderBlok } from './Header.styled';
 import { Logo } from 'components/Logo/Logo';
 import { ColorThemeSwitch } from 'components/ColorThemeSwitch/ColorThemeSwitch';
 import { Navigation } from 'components/Navigation/Navigation';
@@ -12,8 +12,10 @@ export const Header = () => {
       <Container>
         <HeaderBlok>
           <Logo />
-          <LanguageSwitch />
-          <ColorThemeSwitch />
+          <AdditionalFunctionalityWrapper>
+            <LanguageSwitch />
+            <ColorThemeSwitch />
+          </AdditionalFunctionalityWrapper>
           <Navigation />
         </HeaderBlok>
       </Container>

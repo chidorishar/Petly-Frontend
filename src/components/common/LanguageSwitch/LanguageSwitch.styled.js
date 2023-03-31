@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 export const LanguageSwitchEl = styled.div`
-  margin-left: 40px;
+  /* margin-left: 40px; */
   background: transparent;
   padding: 4px;
   border-radius: 3px;
   width: fit-content;
 
   @media ${p => p.theme.breakpoints.desktop.media} {
-    margin-right: 40px;
+    /* margin-right: 40px; */
   }
 `;
 
